@@ -20,8 +20,8 @@ namespace NanoInsight.Engine.Core
     public class ScanDirection : ScanProperty
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
-        public static readonly int Unidirection = 0;
-        public static readonly int Bidirection = 1;
+        public const int Unidirection = 0;
+        public const int Bidirection = 1;
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         public ScanDirection(int id)

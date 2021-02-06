@@ -11,5 +11,98 @@
     <Setting Name="ScanPixelDwell" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
+    <Setting Name="ScanHead" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="GalvoResponseTime" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="FullScanRange" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="ScanChannel405LaserPower" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="ScanChannel405LaserColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumPurple</Value>
+    </Setting>
+    <Setting Name="ScanChannel405Activated" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ScanChannel405Gain" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="ScanChannel405Offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ScanChannel405Gamma" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="ScanChannel405PseudoColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumPurple</Value>
+    </Setting>
+    <Setting Name="ScanChannel488LaserPower" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="ScanChannel488LaserColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkCyan</Value>
+    </Setting>
+    <Setting Name="ScanChannel488Activated" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ScanChannel488Gain" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="ScanChannel488Offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ScanChannel488Gamma" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="ScanChannel488PseudoColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkCyan</Value>
+    </Setting>
+    <Setting Name="ScanChannel561LaserPower" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="ScanChannel561LaserColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">YellowGreen</Value>
+    </Setting>
+    <Setting Name="ScanChannel561Activated" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ScanChannel561Gain" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="ScanChannel561Offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ScanChannel561Gamma" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ScanChannel561PseudoColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">YellowGreen</Value>
+    </Setting>
+    <Setting Name="ScanChannel640LaserPower" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="ScanChannel640LaserColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumVioletRed</Value>
+    </Setting>
+    <Setting Name="ScanChannel640Activated" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ScanChannel640Gain" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="ScanChannel640Offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="ScanChannel640Gamma" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="ScanChannel640PseudoColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">MediumVioletRed</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
