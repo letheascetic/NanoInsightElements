@@ -31,7 +31,16 @@ namespace NanoInsight.Engine.Core
         public const int UsbDacSetRegisterFailed = 0x12000040;
         public const int UsbDacReadConfigFailed = 0x12000080;
         public const int UsbDacWriteConfigFailed = 0x12000100;
-        
+        /* error for config */
+        public const int ConfigExecuteFailed = 0x13000000;
+        public const int ConfigStartAcquisitionFailed = 0x13000001;
+        public const int ConfigSetScanHeadFailed = 0x13000002;
+        public const int ConfigSetScanDirectionFailed = 0x13000004;
+        public const int ConfigSetScanModeFailed = 0x13000008;
+        public const int ConfigSetScanPixelFailed = 0x1300010;
+        public const int ConfigSetScanPixelDwellFailed = 0x13000020;
+
+
 
         /// <summary>
         /// 是否成功

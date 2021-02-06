@@ -104,5 +104,8 @@
     <Setting Name="ScanChannel640PseudoColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">MediumVioletRed</Value>
     </Setting>
+    <Setting Name="ScanMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

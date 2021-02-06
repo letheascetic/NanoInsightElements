@@ -430,5 +430,17 @@ namespace NanoInsight.Engine.Properties {
                 this["ScanChannel640PseudoColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ScanMode {
+            get {
+                return ((int)(this["ScanMode"]));
+            }
+            set {
+                this["ScanMode"] = value;
+            }
+        }
     }
 }
