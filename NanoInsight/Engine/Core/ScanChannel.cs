@@ -65,7 +65,7 @@ namespace NanoInsight.Engine.Core
 
         public int Gain { get; set; }
 
-        public double PinHole { get; set; }
+        public int PinHole { get; set; }
 
         public int Offset { get; set; }
 
@@ -88,6 +88,7 @@ namespace NanoInsight.Engine.Core
                     Offset = Settings.Default.ScanChannel405Offset;
                     Gamma = Settings.Default.ScanChannel405Gamma;
                     PseudoColor = Settings.Default.ScanChannel405PseudoColor;
+                    PinHole = 1;
                     break;
                 case Channel488:
                     ID = Channel488;
@@ -100,6 +101,7 @@ namespace NanoInsight.Engine.Core
                     Offset = Settings.Default.ScanChannel488Offset;
                     Gamma = Settings.Default.ScanChannel488Gamma;
                     PseudoColor = Settings.Default.ScanChannel488PseudoColor;
+                    PinHole = 1;
                     break;
                 case Channel561:
                     ID = Channel561;
@@ -112,6 +114,7 @@ namespace NanoInsight.Engine.Core
                     Offset = Settings.Default.ScanChannel561Offset;
                     Gamma = Settings.Default.ScanChannel561Gamma;
                     PseudoColor = Settings.Default.ScanChannel561PseudoColor;
+                    PinHole = 1;
                     break;
                 case Channel640:
                     ID = Channel640;
@@ -124,6 +127,7 @@ namespace NanoInsight.Engine.Core
                     Offset = Settings.Default.ScanChannel640Offset;
                     Gamma = Settings.Default.ScanChannel640Gamma;
                     PseudoColor = Settings.Default.ScanChannel640PseudoColor;
+                    PinHole = 1;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("ID Exception");

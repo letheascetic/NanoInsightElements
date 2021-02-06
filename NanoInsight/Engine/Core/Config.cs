@@ -1,6 +1,8 @@
 ﻿using log4net;
+using NanoInsight.Engine.Properties;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -185,11 +187,11 @@ namespace NanoInsight.Engine.Core
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int SetScanPixel(int id)
+        public int SelectScanPixel(int id)
         {
             if (ScanPixelList.Where(p => p.ID == id).FirstOrDefault() == null)
             {
-                return ApiCode.ConfigSetScanPixelFailed;
+                return ApiCode.ConfigSelectScanPixelFailed;
             }
             foreach (ScanPixel scanPixel in ScanPixelList)
             {
@@ -206,7 +208,270 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 快速模式开关
+        /// </summary>
+        public bool FastModeEnabled { get; set; }
+        /// <summary>
+        /// 像素时间列表
+        /// </summary>
+        public List<ScanPixelDwell> ScanPixelDwellList { get; set; }
+        /// <summary>
+        /// 选择的像素时间
+        /// </summary>
+        public ScanPixelDwell SelectedScanPixelDwell { get; set; }
 
+        /// <summary>
+        /// 选择像素时间
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int SelectScanPixelDwell(int id)
+        {
+            if (ScanPixelDwellList.Where(p => p.ID == id).FirstOrDefault() == null)
+            {
+                return ApiCode.ConfigSelectScanPixelFailed;
+            }
+            foreach (ScanPixelDwell pixelDwell in ScanPixelDwellList)
+            {
+                if (pixelDwell.ID == id)
+                {
+                    pixelDwell.IsEnabled = true;
+                    SelectedScanPixelDwell = pixelDwell;
+                }
+                else
+                {
+                    pixelDwell.IsEnabled = false;
+                }
+            }
+            return ApiCode.Success;
+        }
+        /// <summary>
+        /// 设置双向扫描时候的像素补偿
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scanPixelCalibration"></param>
+        /// <returns></returns>
+        public int SetScanPixelCalibration(int id, int scanPixelCalibration)
+        {
+            ScanPixelDwell scanPixelDwell = ScanPixelDwellList.Find(p => p.ID == id);
+            if (scanPixelDwell == null)
+            {
+                return ApiCode.ConfigScanPixelCalibrationFailed;
+            }
+            scanPixelDwell.ScanPixelCalibration = scanPixelCalibration;
+            return ApiCode.Success;
+        }
+        /// <summary>
+        /// 设置每行采集像素截取时的偏移量
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scanPixelOffset"></param>
+        /// <returns></returns>
+        public int SetScanPixelOffset(int id, int scanPixelOffset)
+        {
+            ScanPixelDwell scanPixelDwell = ScanPixelDwellList.Find(p => p.ID == id);
+            if (scanPixelDwell == null)
+            {
+                return ApiCode.ConfigScanPixelCalibrationFailed;
+            }
+            scanPixelDwell.ScanPixelOffset = scanPixelOffset;
+            return ApiCode.Success;
+        }
+        /// <summary>
+        /// 设置扫描像素缩放系数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scanPixelScale"></param>
+        /// <returns></returns>
+        public int SetScanPixelScale(int id, int scanPixelScale)
+        {
+            ScanPixelDwell scanPixelDwell = ScanPixelDwellList.Find(p => p.ID == id);
+            if (scanPixelDwell == null)
+            {
+                return ApiCode.ConfigScanPixelCalibrationFailed;
+            }
+            scanPixelDwell.ScanPixelScale = scanPixelScale;
+            return ApiCode.Success;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 跳行扫描开关
+        /// </summary>
+        public bool ScanLineSkipEnabled { get; set; }
+        /// <summary>
+        /// 跳行扫描列表
+        /// </summary>
+        public List<ScanLineSkip> ScanLineSkipList { get; set; }
+        /// <summary>
+        /// 选择的跳行扫描
+        /// </summary>
+        public ScanLineSkip SelectedScanLineSkip { get; set; }
+        /// <summary>
+        /// 选择跳行扫描
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int SelectLineSkip(int id)
+        {
+            ScanLineSkip scanLineSkip = ScanLineSkipList.Find(p => p.ID == id);
+            if (scanLineSkip == null)
+            {
+                return ApiCode.ConfigSelectLineSkipFailed;
+            }
+            SelectedScanLineSkip = scanLineSkip;
+            return ApiCode.Success;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        
+        public ScanChannel ScanChannel405 { get; set; }
+
+        public ScanChannel ScanChannel488 { get; set; }
+
+        public ScanChannel ScanChannel561 { get; set; }
+
+        public ScanChannel ScanChannel640 { get; set; }
+
+        public ScanChannel[] ScanChannels { get; set; }
+
+        public int SetChannelGain(int id, int gain)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelGainFailed;
+            }
+            scanChannel.Gain = gain;
+            Logger.Info(string.Format("Channel Gain [{0}:{1}].", id, gain));
+            return ApiCode.Success;
+        }
+
+        public int SetChannelOffset(int id, int offset)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelOffsetFailed;
+            }
+            scanChannel.Offset = offset;
+            Logger.Info(string.Format("Channel Offset [{0}:{1}].", id, offset));
+            return ApiCode.Success;
+        }
+
+        public int SetChannelPower(int id, int power)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelLaserPowerFailed;
+            }
+            scanChannel.LaserPower = power;
+            Logger.Info(string.Format("Channel Power [{0}:{1}].", id, power));
+            return ApiCode.Success;
+        }
+
+        public int SetChannelLaerColor(int id, Color color)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelLaserColorFailed;
+            }
+            scanChannel.LaserColor = color;
+            Logger.Info(string.Format("Channel Laser Color [{0}:{1}].", id, color));
+            return ApiCode.Success;
+        }
+
+        public int SetChannelPseudoColor(int id, Color color)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelPseudoColorFailed;
+            }
+            scanChannel.PseudoColor = color;
+            Logger.Info(string.Format("Channel Pseudo Color [{0}:{1}].", id, color));
+            return ApiCode.Success;
+        }
+
+        public int SetChannelPinHole(int id, int pinHole)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelPinHoleFailed;
+            }
+            scanChannel.PinHole = pinHole;
+            Logger.Info(string.Format("Channel Pin Hole [{0}:{1}].", id, pinHole));
+            return ApiCode.Success;
+        }
+
+        public int SetChannelStatus(int id, bool activated)
+        {
+            ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.ConfigSetChannelStatusFailed;
+            }
+            scanChannel.Activated = activated;
+            Logger.Info(string.Format("Channel Status [{0}:{1}].", id, activated));
+            return ApiCode.Success;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+        public static Config GetConfig()
+        {
+            if (pConfig == null)
+            {
+                lock (locker)
+                {
+                    if (pConfig == null)
+                    {
+                        pConfig = new Config();
+                    }
+                }
+            }
+            return pConfig;
+        }
+
+        private Config()
+        {
+            InputSampleRate = 5e5;
+            // 采集模式
+            ScanLiveMode = new ScanAcquisition(ScanAcquisition.Live);
+            ScanCaptureMode = new ScanAcquisition(ScanAcquisition.Capture);
+            // 扫描头
+            TwoGalvo = new ScanHead(ScanHead.TwoGalvo);
+            ThreeGalvo = new ScanHead(ScanHead.ThreeGalvo);
+            // 扫描模式
+            Resonant = new ScanMode(ScanMode.Resonant);
+            Galvano = new ScanMode(ScanMode.Galvano);
+            // 扫描方向
+            Unidirection = new ScanDirection(ScanDirection.Unidirection);
+            Bidirection = new ScanDirection(ScanDirection.Bidirection);
+            // 像素时间
+            FastModeEnabled = false;
+            ScanPixelDwellList = ScanPixelDwell.Initialize();
+            SelectedScanPixelDwell = ScanPixelDwellList.Where(p => p.IsEnabled).First();
+            // 扫描像素
+            ScanPixelList = ScanPixel.Initialize();
+            SelectedScanPixel = ScanPixelList.Where(p => p.IsEnabled).First();
+            // 跳行扫描
+            ScanLineSkipEnabled = Settings.Default.ScanLineSkipEnabled;
+            ScanLineSkipList = ScanLineSkip.Initialize();
+            SelectedScanLineSkip = ScanLineSkipList.Where(p => p.ID == Settings.Default.ScanLineSkip).First();
+            // 扫描通道
+            ScanChannel405 = new ScanChannel(ScanChannel.Channel405);
+            ScanChannel488 = new ScanChannel(ScanChannel.Channel488);
+            ScanChannel561 = new ScanChannel(ScanChannel.Channel561);
+            ScanChannel640 = new ScanChannel(ScanChannel.Channel640);
+            ScanChannels = new ScanChannel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
+
+        }
 
     }
 }

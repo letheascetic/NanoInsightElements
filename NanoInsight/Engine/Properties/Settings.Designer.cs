@@ -442,5 +442,29 @@ namespace NanoInsight.Engine.Properties {
                 this["ScanMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanLineSkip {
+            get {
+                return ((int)(this["ScanLineSkip"]));
+            }
+            set {
+                this["ScanLineSkip"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ScanLineSkipEnabled {
+            get {
+                return ((bool)(this["ScanLineSkipEnabled"]));
+            }
+            set {
+                this["ScanLineSkipEnabled"] = value;
+            }
+        }
     }
 }

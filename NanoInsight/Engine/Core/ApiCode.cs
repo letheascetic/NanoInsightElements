@@ -37,10 +37,20 @@ namespace NanoInsight.Engine.Core
         public const int ConfigSetScanHeadFailed = 0x13000002;
         public const int ConfigSetScanDirectionFailed = 0x13000004;
         public const int ConfigSetScanModeFailed = 0x13000008;
-        public const int ConfigSetScanPixelFailed = 0x1300010;
-        public const int ConfigSetScanPixelDwellFailed = 0x13000020;
-
-
+        public const int ConfigSelectScanPixelFailed = 0x1300010;
+        public const int ConfigSelectScanPixelDwellFailed = 0x13000020;
+        public const int ConfigScanPixelCalibrationFailed = 0x13000040;
+        public const int ConfigScanPixelOffsetFailed = 0x13000080;
+        public const int ConfigScanPixelScaleFailed = 0x13000100;
+        public const int ConfigSelectLineSkipFailed = 0x13000200;
+        public const int ConfigSetChannelGainFailed = 0x13000400;
+        public const int ConfigSetChannelLaserPowerFailed = 0x13000800;
+        public const int ConfigSetChannelOffsetFailed = 0x13001000;
+        public const int ConfigSetChannelStatusFailed = 0x13002000;
+        public const int ConfigSetChannelLaserColorFailed = 0x13004000;
+        public const int ConfigSetChannelPseudoColorFailed = 0x13008000;
+        public const int ConfigSetChannelPinHoleFailed = 0x13010000;
+        public const int ConfigSetChannelGammaFailed = 0x13020000;
 
         /// <summary>
         /// 是否成功
