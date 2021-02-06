@@ -1,0 +1,4282 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.C1Themes.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.C1Themes.Dock_SizeMode">
+      <summary>
+            Used in:
+            C1DockingTab\Style
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Dock_SizeMode.Normal">
+      <summary>
+            Borders are shown only for headers of columns.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Dock_SizeMode.Fit">
+      <summary>
+            No borders.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Dock_SizeMode.FillToEnd">
+      <summary>
+            Only left and right borders of columns are shown.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.TreeViewBorderStyleEnum">
+      <summary>
+            Used in:
+            C1TreeView\Style
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TreeViewBorderStyleEnum.ColumnsHeaderOnly">
+      <summary>
+            Borders are shown only for headers of columns.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TreeViewBorderStyleEnum.None">
+      <summary>
+            No borders.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TreeViewBorderStyleEnum.ColumnsLineOnly">
+      <summary>
+            Only left and right borders of columns are shown.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TreeViewBorderStyleEnum.Full">
+      <summary>
+            Borders are shown for all cells.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BackgroundPictureDrawModeEnum">
+      <summary>
+            Used in:
+            C1TrueDBGrid\Style
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundPictureDrawModeEnum.Center">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundPictureDrawModeEnum.Stretch">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundPictureDrawModeEnum.Tile">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundPictureDrawModeEnum.Fill">
+      <summary>
+            The image is stretched and aspect ratio is saved.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BorderType">
+      <summary>
+            Used in:
+            C1TrueDBGrid\GridBorder
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.None">
+      <summary>
+            No borders.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.Flat">
+      <summary>
+            Borders have a Flat appearance.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.Raised">
+      <summary>
+            Borders have a 3D raised appearance.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.Inset">
+      <summary>
+            Borders have a 3D inset appearance.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.Groove">
+      <summary>
+            A line around the inside of the border.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.Fillet">
+      <summary>
+            A fillet type border.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.RaisedBevel">
+      <summary>
+            Borders have a 3D raised with a bevel.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BorderType.InsetBevel">
+      <summary>
+            Borders have a 3D inset with a bevel.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ForegroundPicturePosition">
+      <summary>
+            Used in:
+            C1TrueDBGrid\Style
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.Near">
+      <summary>
+            Image is rendered in the near side of the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.Far">
+      <summary>
+            Image is rendered in the far side of the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.LeftOfText">
+      <summary>
+            Image is rendered to the left of any text in the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.RightOfText">
+      <summary>
+            Image is rendered to the right of any text in the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.TopOfText">
+      <summary>
+            Image is rendered on top of any text in the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.BottomOfText">
+      <summary>
+            Image is rendered below any text in the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.PictureOnly">
+      <summary>
+            Text is not displayed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ForegroundPicturePosition.TextOnly">
+      <summary>
+            Image is not displayed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.AlignHorzEnum">
+      <summary>
+            Used in:
+            C1TrueDBGrid\Style
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignHorzEnum.General">
+      <summary>
+            Text is aligned Near and numeric values Far
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignHorzEnum.Near">
+      <summary>
+            Text is aligned to the left.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignHorzEnum.Center">
+      <summary>
+            Text is aligned centered.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignHorzEnum.Far">
+      <summary>
+            Text is aligned to the right.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignHorzEnum.Justify">
+      <summary>
+            Text is aligned with respect to the cells boundries.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.AlignVertEnum">
+      <summary>
+            Used in:
+            C1TrueDBGrid\Style
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignVertEnum.Top">
+      <summary>
+            Text is rendered at the top of the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignVertEnum.Center">
+      <summary>
+            Text is rendered at the center of the cell.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.AlignVertEnum.Bottom">
+      <summary>
+            Text is rendered at the bottom of the cell.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.LineStyle">
+      <summary>
+            Used in:
+            C1TrueDBGrid\GridLines
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LineStyle.None">
+      <summary>
+            No line.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LineStyle.Single">
+      <summary>
+            Single line.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LineStyle.Double">
+      <summary>
+            Double line.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LineStyle.Raised">
+      <summary>
+            Line with 3D raised appearance.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LineStyle.Inset">
+      <summary>
+            Line with 3D inset appearance.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.PaletteType">
+      <summary>
+            Used in:
+            C1Schedule\PaletteType
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.PaletteType.Office2007">
+      <summary>
+            Office 2007 palette includes back and border colors 
+            of free and working hours and days, day headers, grid borders 
+            and calendar tabs. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.PaletteType.Office2010">
+      <summary>
+            Office 2010 palette includes back and border colors 
+            of free and working hours and days, day headers, grid borders 
+            and calendar tabs. 
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BackgroundGradient">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.None">
+      <summary>
+            Use no background gradient.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.Automatic">
+      <summary>
+            Use a gradient that matches the current system Visual Style.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.Silver">
+      <summary>
+            Use a silver background gradient.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.Blue">
+      <summary>
+            Use a blue background gradient.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.Gold">
+      <summary>
+            Use a gold background gradient.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.Olive">
+      <summary>
+            Use an olive background gradient.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.BackgroundGradient.Vista">
+      <summary>
+            Use the Vista-style background gradient.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.GradientMode">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.GradientMode.None">
+      <summary>
+            No gradient.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.GradientMode.Horizontal">
+      <summary>
+            Horizontal gradient (left to right).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.GradientMode.Vertical">
+      <summary>
+            Vertical gradient (top to bottom).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.GradientMode.DiagonalDown">
+      <summary>
+            Diagonal gradient (left-top to right-bottom).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.GradientMode.DiagonalUp">
+      <summary>
+            Diagonal gradient (left-bottom to right-top).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.GradientMode.Radial">
+      <summary>
+            Radial gradient.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ImageAlignment">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.LeftTop">
+      <summary>
+            Image is vertically aligned at the top, 
+            and horizontally aligned on the left. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.CenterTop">
+      <summary>
+            Image is vertically aligned at the top, 
+            and horizontally aligned at the center.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.RightTop">
+      <summary>
+            Image is vertically aligned at the top, 
+            and horizontally aligned on the right. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.LeftCenter">
+      <summary>
+            Image is vertically aligned in the middle, 
+            and horizontally aligned on the left. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.CenterCenter">
+      <summary>
+            Image is vertically aligned in the middle, 
+            and horizontally aligned at the center. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.RightCenter">
+      <summary>
+            Image is vertically aligned in the middle, 
+            and horizontally aligned on the right. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.LeftBottom">
+      <summary>
+            Image is vertically aligned at the bottom, 
+            and horizontally aligned on the left. 		
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.CenterBottom">
+      <summary>
+            Image is vertically aligned at the bottom, 
+            and horizontally aligned at the center.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageAlignment.RightBottom">
+      <summary>
+            Image is vertically aligned at the bottom, 
+            and horizontally aligned on the right. 
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ImageScaling">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.Clip">
+      <summary>
+            Use the image's original size, clipping it to the display area if necessary.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.Stretch">
+      <summary>
+            Stretch the image to fill the display area. 
+            This mode will usually change the image's aspect ratio.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.Scale">
+      <summary>
+            Scale the image to fit the display area. 
+            This mode may increase or reduce the size of the image 
+            while maintaining its aspect ratio.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.Tile">
+      <summary>
+            Tile the image to fill the display area.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.TileStretch">
+      <summary>
+            Tile the image into the 3x3 matrix and stretch it to fill the display area.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.TileStretchHorizontal">
+      <summary>
+            Tile the image into the row of 3 images and stretch it to fill the display area.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.TileStretchVertical">
+      <summary>
+            Tile the image into the column of 3 images and stretch it to fill the display area.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageScaling.Hide">
+      <summary>
+            Hide the image.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Alignment">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Alignment.NotSet">
+      <summary>
+            Default value.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Alignment.Near">
+      <summary>
+            Near.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Alignment.Far">
+      <summary>
+            Far.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Alignment.Center">
+      <summary>
+            Center.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Alignment.Spread">
+      <summary>
+            Spread.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.TextDirection">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TextDirection.Normal">
+      <summary>
+            Text is drawn in the horizontal direction, left to right.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TextDirection.Up">
+      <summary>
+            Text is draw vertically, from the bottom up.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.TextDirection.Down">
+      <summary>
+            Text is draw vertically, from the top down.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.RadialMenuTooltipPosition">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RadialMenuTooltipPosition.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RadialMenuTooltipPosition.Left">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RadialMenuTooltipPosition.Top">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RadialMenuTooltipPosition.Right">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RadialMenuTooltipPosition.Bottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ImageSetEnum">
+      <summary>
+            Describes the image set used for toolbar images of the
+            preview actions.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.Classic">
+      <summary>
+            Classic image set.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.XP">
+      <summary>
+            XP image set.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.XP2">
+      <summary>
+            XP alternative image set.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.XP3">
+      <summary>
+            XP second alternative image set.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.Adobe">
+      <summary>
+            Adobe image set.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.OsX">
+      <summary>
+            Os X image set.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ImageSetEnum.Original">
+      <summary>
+            Original (C1Preview "classic") image set.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_BorderDirEnum">
+      <summary>
+            C1.Win.C1FlexGrid.BorderDirEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderDirEnum.Both">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderDirEnum.Horizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderDirEnum.Vertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_BorderStyleEnum">
+      <summary>
+            C1.Win.C1FlexGrid.BorderStyleEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Flat">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Double">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Raised">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Inset">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Groove">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Fillet">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_BorderStyleEnum.Dotted">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_DisplayEnum">
+      <summary>
+            C1.Win.C1FlexGrid.DisplayEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_DisplayEnum.TextOnly">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_DisplayEnum.ImageOnly">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_DisplayEnum.Overlay">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_DisplayEnum.Stack">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_DisplayEnum.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_ImageAlignEnum">
+      <summary>
+            C1.Win.C1FlexGrid.ImageAlignEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.LeftTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.LeftCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.LeftBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.CenterTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.CenterCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.CenterBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.RightTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.RightCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.RightBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.Scale">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.Stretch">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.Tile">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.Hide">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_ImageAlignEnum.TileStretch">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_TextAlignEnum">
+      <summary>
+            C1.Win.C1FlexGrid.TextAlignEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.LeftTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.LeftCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.LeftBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.CenterTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.CenterCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.CenterBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.RightTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.RightCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.RightBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.GeneralTop">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.GeneralCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextAlignEnum.GeneralBottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_TextDirectionEnum">
+      <summary>
+            C1.Win.C1FlexGrid.TextDirectionEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextDirectionEnum.Normal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextDirectionEnum.Up">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextDirectionEnum.Down">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_TextEffectEnum">
+      <summary>
+            C1.Win.C1FlexGrid.TextEffectEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextEffectEnum.Flat">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextEffectEnum.Raised">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TextEffectEnum.Inset">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_TreeStyleFlags">
+      <summary>
+            C1.Win.C1FlexGrid.TreeStyleFlags
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.Lines">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.Symbols">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.ButtonBar">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.Leaf">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.Complete">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.Simple">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.CompleteLeaf">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_TreeStyleFlags.SimpleLeaf">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Flex_FocusRectEnum">
+      <summary>
+            C1.Win.C1FlexGrid.FocusRectEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_FocusRectEnum.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_FocusRectEnum.Light">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_FocusRectEnum.Heavy">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_FocusRectEnum.Solid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_FocusRectEnum.Raised">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Flex_FocusRectEnum.Inset">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Gantt_BarShape">
+      <summary>
+            C1.Win.C1GanttView.BarShape
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.ThickBar">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.TopBar">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.MiddleBar">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.BottomBar">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.TopLine">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.MiddleLine">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.BottomLine">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.Frame">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_BarShape.HalfFrame">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Gantt_HatchPattern">
+      <summary>
+            C1.Win.C1GanttView.HatchPattern
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Empty">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.SolidBrush">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Gradient">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Percent25">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Percent50">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Percent70">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.ForwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.BackwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.DiagonalCross">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Vertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Horizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.NarrowVertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.NarrowHorizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.Confetti">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_HatchPattern.ZigZag">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Gantt_TaskProperty">
+      <summary>
+            C1.Win.C1GanttView.TaskProperty
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Name">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Mode">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Calendar">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Duration">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.DurationUnits">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Start">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Finish">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.PercentComplete">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Deadline">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.ConstraintType">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.ConstraintDate">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Predecessors">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.ResourceNames">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_TaskProperty.Notes">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Gantt_ProgressLineStyle">
+      <summary>
+            C1.Win.C1GanttView.ProgressLineStyle
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_ProgressLineStyle.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_ProgressLineStyle.Solid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_ProgressLineStyle.Dash">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_ProgressLineStyle.Dot">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_ProgressLineStyle.DashDot">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Gantt_ProgressLineStyle.DashDotDot">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Ribbon_ThemeColor">
+      <summary>
+            C1.Win.C1Ribbon.ThemeColor
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Azure">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Blue">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Green">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Orange">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Orchid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Red">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Teal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeColor.Violet">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Ribbon_ThemeLightness">
+      <summary>
+            C1.Win.C1Ribbon.ThemeLightness
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeLightness.DarkGray">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeLightness.LightGray">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Ribbon_ThemeLightness.White">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Chart_ColorGeneration">
+      <summary>
+            C1.Win.C1Chart.ColorGeneration
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.CopyCurrentToCustom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Custom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Standard">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Office">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.GrayScale">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Apex">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Aspect">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Civic">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Concourse">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Equity">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Flow">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Foundry">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Median">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Metro">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Module">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Opulent">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Oriel">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Origin">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Paper">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Solstice">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Technic">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Trek">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Urban">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_ColorGeneration.Verve">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Chart_GradientStyleEnum">
+      <summary>
+            C1.Win.C1Chart.GradientStyleEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.Horizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.HorizontalCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.Vertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.VerticalCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.Diagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.DiagonalCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.DiagonalBack">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.DiagonalBackCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.Radial">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_GradientStyleEnum.FromCenter">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Chart_HatchStyleEnum">
+      <summary>
+            C1.Win.C1Chart.HatchStyleEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Horizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Vertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.ForwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.BackwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Cross">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DiagonalCross">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent05">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent10">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent20">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent25">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent30">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent40">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent50">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent60">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent70">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent75">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent80">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Percent90">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.LightDownwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.LightUpwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DarkDownwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DarkUpwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.WideDownwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.WideUpwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.LightVertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.LightHorizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.NarrowVertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.NarrowHorizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DarkVertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DarkHorizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DashedDownwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DashedUpwardDiagonal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DashedHorizontal">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DashedVertical">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.SmallConfetti">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.LargeConfetti">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.ZigZag">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Wave">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DiagonalBrick">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.HorizontalBrick">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Weave">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Plaid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Divot">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DottedGrid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.DottedDiamond">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Shingle">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Trellis">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.Sphere">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.SmallGrid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.SmallCheckerBoard">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.LargeCheckerBoard">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.OutlinedDiamond">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_HatchStyleEnum.SolidDiamond">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Chart_AlignImageEnum">
+      <summary>
+            C1.Win.C1Chart.AlignImageEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Hide">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Left">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Right">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Top">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Bottom">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Center">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Scale">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Stretch">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_AlignImageEnum.Tile">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Chart_RotationEnum">
+      <summary>
+            C1.Win.C1Chart.RotationEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_RotationEnum.Rotate0">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_RotationEnum.Rotate90">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_RotationEnum.Rotate180">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_RotationEnum.Rotate270">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Chart_BorderStyleEnum">
+      <summary>
+            C1.Win.C1Chart.BorderStyleEnum
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.NotSet">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.None">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Empty">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Solid">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Raised">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Inset">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.RaisedBevel">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.InsetBevel">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Groove">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Fillet">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Double">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Dashed">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.Chart_BorderStyleEnum.Opaque">
+      <summary>For internal use.</summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeVisualStyle">
+      <summary>
+            Common VisualStyle for all C1 controls.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Custom">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.System">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2007Blue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2007Black">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2007Silver">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2010Blue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2010Black">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2010Silver">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Windows7">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.WinXPBlue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.WinXPSilver">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.WinXPOlive">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Royale">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Yahoo">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Aero">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2003Blue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2003Olive">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Office2003Silver">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.OfficeXP">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.Classic">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeVisualStyle.WindowsXP">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.IC1ThemeControl">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.IC1ThemeControl.ThemeChanged(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="theme">
+      </param>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeBrushBase">
+      <summary>
+            Abstract base class for all classes representing a brush in a theme.
+            Use the <see cref="M:C1.Win.C1Themes.ThemeBrushBase.GetBrush(System.Drawing.Rectangle)" /> method to get an actual matching GDI+ brush.
+            Classes derived from <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> override Equals() and
+            GetHashCode() methods and compare objects by content rather than by references.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.ISerializable">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.Clone">
+      <summary>
+            Creates an exact copy of this <see cref="T:C1.Win.C1Themes.ThemeBrushBase" />.
+            </summary>
+      <returns>The <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> this method creates.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.GetBrush(System.Drawing.Rectangle)">
+      <summary>
+            Returns a GDI+ brush matching the theme brush.
+            It is the caller's responsibility to dispose this brush when it is no longer needed.
+            </summary>
+      <param name="brushRect">The brush rectangle (used for gradient brushes).</param>
+      <returns>The GDI+ <see cref="T:System.Drawing.Brush" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.DependOnRect">
+      <summary>
+            Returns true if a GDI+ brush created for this theme brush depends on the rectangle
+            passed to the <see cref="M:C1.Win.C1Themes.ThemeBrushBase.GetBrush(System.Drawing.Rectangle)" /> method. E.g. gradient brushes return
+            true in this method while solid return false.
+            </summary>
+      <returns>True if the GDI+ brush depends on the application area, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.EncodeToString">
+      <summary>
+            Encodes this <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object to string.
+            </summary>
+      <returns>String represengin this <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.IsBrushesEqual(C1.Win.C1Themes.ThemeBrushBase,C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Checks whether the two <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> objects are equal by value
+            (i.e. represent identically described theme brushes).
+            </summary>
+      <param name="tb1">First <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object.</param>
+      <param name="tb2">Second <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object.</param>
+      <returns>True if the two brushes are identical, or are both null.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBrushBase.TryDecodeFromString(System.String,C1.Win.C1Themes.ThemeBrushBase@)">
+      <summary>
+            Create <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object from specified string.
+            </summary>
+      <param name="s">String representing <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object.</param>
+      <param name="value">
+        <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> object created from string.</param>
+      <returns>True if string was successfully parsed, false otherwise.</returns>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeSolidBrush">
+      <summary>
+            Represents a solid theme brush.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.GetBrush(System.Drawing.Rectangle)">
+      <summary>
+            Overridden, creates a GDI+ <see cref="T:System.Drawing.SolidBrush" /> matching this <see cref="T:C1.Win.C1Themes.ThemeSolidBrush" /> object.
+            Can return null if color is not specified or transparent.
+            </summary>
+      <param name="brushRect">Target application area for the brush (ignored).</param>
+      <returns>A <see cref="T:System.Drawing.SolidBrush" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.DependOnRect">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.GetHashCode">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeSolidBrush.Equals(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeSolidBrush.Color">
+      <summary>
+            Gets or sets the color of this solid brush.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeGradientBrush">
+      <summary>
+            Abstract base class for gradient theme brushes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeGradientBrush.DependOnRect">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeLinearBrush">
+      <summary>
+            Abstract base class for linear gradient theme brushes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeLinearBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeLinearBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeLinearBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeLinearBrush.GammaCorrection">
+      <summary>
+            Gets or sets a value indicating whether gamma correction is enabled,
+            same as LinearGradientBrush.GammaCorrection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeLinearBrush.Angle">
+      <summary>
+            Gets or sets the angle, measured in degrees clockwise from the x-axis,
+            of the gradient's orientation line. 
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeTwoColorLinearBrush">
+      <summary>
+            Represents a linear gradient brush based on the starting and ending colors,
+            and a <see cref="P:C1.Win.C1Themes.ThemeTwoColorLinearBrush.Blend" /> object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorLinearBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorLinearBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorLinearBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorLinearBrush.GetBrush(System.Drawing.Rectangle)">
+      <summary>
+            Overridden, creates a <see cref="T:System.Drawing.Drawing2D.LinearGradientBrush" /> matching this <see cref="T:C1.Win.C1Themes.ThemeTwoColorLinearBrush" /> object.
+            </summary>
+      <param name="brushRect">The gradient rectangle.</param>
+      <returns>A <see cref="T:System.Drawing.Drawing2D.LinearGradientBrush" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorLinearBrush.GetHashCode">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorLinearBrush.Equals(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeTwoColorLinearBrush.StartColor">
+      <summary>
+            Gets or sets the starting gradient color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeTwoColorLinearBrush.EndColor">
+      <summary>
+            Gets or sets the ending gradient color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeTwoColorLinearBrush.Blend">
+      <summary>
+            Gets or sets the <see cref="P:C1.Win.C1Themes.ThemeTwoColorLinearBrush.Blend" /> object. Can be null.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeMultiColorLinearBrush">
+      <summary>
+            Represents a multicolor linear gradient brush.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorLinearBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorLinearBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorLinearBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorLinearBrush.GetBrush(System.Drawing.Rectangle)">
+      <summary>
+            Overridden, creates a <see cref="T:System.Drawing.Drawing2D.LinearGradientBrush" /> matching this <see cref="T:C1.Win.C1Themes.ThemeMultiColorLinearBrush" /> object.
+            </summary>
+      <param name="brushRect">Gradient brush rectangle.</param>
+      <returns>A <see cref="T:System.Drawing.Drawing2D.LinearGradientBrush" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorLinearBrush.GetHashCode">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorLinearBrush.Equals(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeMultiColorLinearBrush.InterpolationColors">
+      <summary>
+            Gets or sets a <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> that defines a multicolor linear gradient.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeRadialBrush">
+      <summary>
+            Abstract base class for radial gradient theme brushes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeRadialBrush.CreateBrush(System.Drawing.Rectangle)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="brushRect">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeRadialBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeRadialBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeRadialBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeRadialBrush.DependOnRect">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeRadialBrush.Center">
+      <summary>
+            Gets or sets a <see cref="T:System.Drawing.Point" /> structure that defines position
+            of center point.
+            (0,0) is the top-left corner, (100,100) is the bottom-right corner.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeTwoColorRadialBrush">
+      <summary>
+            Represents a radial gradient brush based on center point,
+            surrounding color and a <see cref="P:C1.Win.C1Themes.ThemeTwoColorRadialBrush.Blend" /> object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorRadialBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorRadialBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorRadialBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorRadialBrush.GetBrush(System.Drawing.Rectangle)">
+      <summary>
+            Overridden, creates a <see cref="T:System.Drawing.Drawing2D.PathGradientBrush" /> matching this <see cref="T:C1.Win.C1Themes.ThemeTwoColorRadialBrush" /> object.
+            </summary>
+      <param name="brushRect">The gradient rectangle.</param>
+      <returns>A <see cref="T:System.Drawing.Drawing2D.PathGradientBrush" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorRadialBrush.Equals(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeTwoColorRadialBrush.GetHashCode">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeTwoColorRadialBrush.CenterColor">
+      <summary>
+            Gets or sets the color at the center of the radial gradient.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeTwoColorRadialBrush.SurroundColor">
+      <summary>
+            Gets or sets the surrounding color of the radial gradient.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeTwoColorRadialBrush.Blend">
+      <summary>
+            Gets or sets the <see cref="P:C1.Win.C1Themes.ThemeTwoColorRadialBrush.Blend" /> object. Can be null.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeMultiColorRadialBrush">
+      <summary>
+            Represents a multicolor radial gradient brush.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorRadialBrush.EncodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorRadialBrush.DecodeValues(C1.Win.C1Themes.Utils.ValuesStore)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="store">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorRadialBrush.AssignFrom(C1.Win.C1Themes.ThemeBrushBase)">
+      <summary>
+            Overridden, assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeBrushBase" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorRadialBrush.GetBrush(System.Drawing.Rectangle)">
+      <summary>
+            Overridden, creates a <see cref="T:System.Drawing.Drawing2D.PathGradientBrush" /> matching this <see cref="T:C1.Win.C1Themes.ThemeMultiColorRadialBrush" /> object.
+            </summary>
+      <param name="brushRect">The gradient rectangle.</param>
+      <returns>A <see cref="T:System.Drawing.Drawing2D.PathGradientBrush" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorRadialBrush.Equals(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeMultiColorRadialBrush.GetHashCode">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeMultiColorRadialBrush.InterpolationColors">
+      <summary>
+            Gets or sets a <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> that defines this multicolor radiant gradient.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Utils.Utils">
+      <summary>
+            For internal use.
+            </summary>
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.IsBlendEqual(System.Drawing.Drawing2D.Blend,System.Drawing.Drawing2D.Blend)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="b1">
+      </param>
+      <param name="b2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.IsColorBlendEqual(System.Drawing.Drawing2D.ColorBlend,System.Drawing.Drawing2D.ColorBlend)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="cb1">
+      </param>
+      <param name="cb2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.GradientModeToAngle(C1.Win.C1Themes.GradientMode)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="gradientMode">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.AngleToGradientMode(System.Single)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="angle">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.GetThemeFormat(System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="fileName">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.IsRefPathEqual(C1.Win.C1Themes.ThemeItem,C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            For internal use.
+            Compares two references and returs true if they have same path.
+            </summary>
+      <param name="r1">
+      </param>
+      <param name="r2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.IsNameValid(System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.IndexOfString(System.Collections.Generic.IList{System.String},System.String,System.Boolean)">
+      <summary>
+            For internal use.
+            Searches a string in specified list of strings.
+            </summary>
+      <param name="strings">List of strings.</param>
+      <param name="s">String to search.</param>
+      <param name="ignoreCase">true to ignore case during the searching; otherwise, false.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.IsEqual(System.Object,System.Object)">
+      <summary>
+            Compares two objects and returs true if they are equal or both are null.
+            </summary>
+      <param name="v1">First object.</param>
+      <param name="v2">Second object.</param>
+      <returns>Returns true if objects are equal or both are null.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.GetResourceNames(System.Reflection.Assembly,System.String)">
+      <summary>
+            Enumerates resource names matching the specified regex.
+            The matching is case-insensitive.
+            </summary>
+      <param name="assembly">The assembly containing the resources.</param>
+      <param name="regex">The regular expression to match resource names against.</param>
+      <returns>Collection of matching resource names.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.ReadMetafileFromMemory(System.Byte[])">
+      <summary>
+            Reads a <see cref="T:System.Drawing.Imaging.Metafile" /> from a byte array.
+            </summary>
+      <param name="imageData">The byte array containing the <see cref="T:System.Drawing.Imaging.Metafile" /> data.</param>
+      <returns>The newly created <see cref="T:System.Drawing.Imaging.Metafile" />.</returns>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToMemory(System.Drawing.Imaging.Metafile)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToMemory(System.Drawing.Imaging.Metafile)">
+      <summary>
+            Writes a <see cref="T:System.Drawing.Imaging.Metafile" /> to a byte array.
+            </summary>
+      <param name="metafile">The <see cref="T:System.Drawing.Imaging.Metafile" /> to write.</param>
+      <returns>The byte array containing the <paramref name="metafile" /> data.</returns>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.ReadMetafileFromMemory(System.Byte[])" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToStream(System.Drawing.Imaging.Metafile,System.IO.Stream)">
+      <summary>
+            Serializes a <see cref="T:System.Drawing.Imaging.Metafile" /> to a <see cref="T:System.IO.Stream" />.
+            </summary>
+      <param name="metafile">The <see cref="T:System.Drawing.Imaging.Metafile" /> to serialize.</param>
+      <param name="stream">The target <see cref="T:System.IO.Stream" />.</param>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToMemory(System.Drawing.Imaging.Metafile)" />
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToFile(System.Drawing.Imaging.Metafile,System.String)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToFile(System.Drawing.Imaging.Metafile,System.String)">
+      <summary>
+            Serializes a <see cref="T:System.Drawing.Imaging.Metafile" /> to a disk file.
+            </summary>
+      <param name="metafile">The <see cref="T:System.Drawing.Imaging.Metafile" /> to serialize.</param>
+      <param name="fileName">The target file name.</param>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.WriteMetafileToStream(System.Drawing.Imaging.Metafile,System.IO.Stream)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+      <summary>
+            Saves an <see cref="T:System.Drawing.Image" /> to a <see cref="T:System.IO.Stream" />.
+            </summary>
+      <param name="image">The <see cref="T:System.Drawing.Image" /> to save.</param>
+      <param name="imageFormat">The <see cref="T:System.Drawing.Imaging.ImageFormat" /> to use for saving the image
+            (ignored if the image is a <see cref="T:System.Drawing.Imaging.Metafile" />).</param>
+      <returns>The <see cref="T:System.IO.MemoryStream" /> object containing image data, or <b>null</b> if an error occurred while saving.</returns>
+      <remarks>
+            Unlike the standard <see cref="M:System.Drawing.Image.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)" /> method,
+            this method saves <see cref="T:System.Drawing.Imaging.Metafile" /> objects as metafiles, without any conversions
+            (the standard method converts metafiles to PNG format prior to saving).
+            </remarks>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat,System.Boolean)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat,System.Boolean)">
+      <summary>
+            Saves an <see cref="T:System.Drawing.Image" /> to a <see cref="T:System.IO.Stream" />.
+            </summary>
+      <param name="image">The <see cref="T:System.Drawing.Image" /> to save.</param>
+      <param name="imageFormat">The <see cref="T:System.Drawing.Imaging.ImageFormat" /> to use for saving the image
+            (ignored if <paramref name="image" /> is a <see cref="T:System.Drawing.Imaging.Metafile" />, and <paramref name="keepAsMetafile" /> is <b>true</b>).</param>
+      <param name="keepAsMetafile">If <b>true</b>, metafiles are saved without conversion, ignoring <paramref name="imageFormat" />.
+            Otherwise, the image is saved in the specified format.</param>
+      <returns>The <see cref="T:System.IO.MemoryStream" /> object containing image data, or <b>null</b> if an error occurred while saving.</returns>
+      <remarks>
+            Unlike the standard <see cref="M:System.Drawing.Image.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)" /> method,
+            this method is able to save <see cref="T:System.Drawing.Imaging.Metafile" /> objects as metafiles, without any conversions
+            (the standard method converts metafiles to PNG format prior to saving even if such conversion is not requested).
+            </remarks>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image)">
+      <summary>
+            Saves an <see cref="T:System.Drawing.Image" /> to a array of bytes.
+            </summary>
+      <param name="image">The <see cref="T:System.Drawing.Image" /> to save.</param>
+      <returns>The <see cref="T:System.IO.MemoryStream" /> object containing image data, or <b>null</b> if an error occurred while saving.</returns>
+      <remarks>
+            Unlike the standard <see cref="M:System.Drawing.Image.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)" /> method,
+            this method is able to save <see cref="T:System.Drawing.Imaging.Metafile" /> objects as metafiles, without any conversions
+            (the standard method converts metafiles to PNG format prior to saving even if such conversion is not requested).
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.SaveImageToMemory(System.Drawing.Image,System.Drawing.Imaging.ImageFormat,System.Boolean)">
+      <summary>
+            Saves an <see cref="T:System.Drawing.Image" /> to a array of bytes.
+            </summary>
+      <param name="image">The <see cref="T:System.Drawing.Image" /> to save.</param>
+      <param name="imageFormat">The <see cref="T:System.Drawing.Imaging.ImageFormat" /> to use for saving the image
+            (ignored if <paramref name="image" /> is a <see cref="T:System.Drawing.Imaging.Metafile" />, and <paramref name="keepAsMetafile" /> is <b>true</b>).</param>
+      <param name="keepAsMetafile">If <b>true</b>, metafiles are saved without conversion, ignoring <paramref name="imageFormat" />.
+            Otherwise, the image is saved in the specified format.</param>
+      <returns>The byte[] object containing image data, or <b>null</b> if an error occurred while saving.</returns>
+      <remarks>
+            Unlike the standard <see cref="M:System.Drawing.Image.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)" /> method,
+            this method is able to save <see cref="T:System.Drawing.Imaging.Metafile" /> objects as metafiles, without any conversions
+            (the standard method converts metafiles to PNG format prior to saving even if such conversion is not requested).
+            </remarks>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.SaveImageToMemory(System.Drawing.Image)">
+      <summary>
+            Saves an <see cref="T:System.Drawing.Image" /> to a array of bytes.
+            </summary>
+      <param name="image">The <see cref="T:System.Drawing.Image" /> to save.</param>
+      <returns>The byte[] object containing image data, or <b>null</b> if an error occurred while saving.</returns>
+      <remarks>
+            Unlike the standard <see cref="M:System.Drawing.Image.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)" /> method,
+            this method is able to save <see cref="T:System.Drawing.Imaging.Metafile" /> objects as metafiles, without any conversions
+            (the standard method converts metafiles to PNG format prior to saving even if such conversion is not requested).
+            </remarks>
+      <seealso cref="M:C1.Win.C1Themes.Utils.Utils.SaveImageToStream(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)" />
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.LoadImageFromMemory(System.Byte[])">
+      <summary>
+            Creates an image from a byte array.
+            </summary>
+      <param name="data">The byte array containing the image data.</param>
+      <returns>The <see cref="T:System.Drawing.Image" /> object or null if the image could not be created.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.LoadIconFromMemory(System.Byte[])">
+      <summary>
+            Creates an icon from a byte array.
+            </summary>
+      <param name="data">The byte array containing the image data.</param>
+      <returns>The <see cref="T:System.Drawing.Icon" /> object or null if the image could not be created.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.Utils.SaveIconToMemory(System.Drawing.Icon)">
+      <summary>
+            Saves an <see cref="T:System.Drawing.Icon" /> to a array of bytes.
+            </summary>
+      <param name="image">The <see cref="T:System.Drawing.Icon" /> to save.</param>
+      <returns>The <see cref="T:System.IO.MemoryStream" /> object containing icon data, or <b>null</b> if an error occurred while saving.</returns>
+    </member>
+    <member name="T:C1.Win.C1Themes.Utils.ValuesStore">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ThemeFormat">
+      <summary>
+            Specifies the <see cref="T:C1.Win.C1Themes.C1Theme" /> persistence format.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeFormat.Xml">
+      <summary>
+            A theme is represented by a XML file.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeFormat.Compressed">
+      <summary>
+            A theme is represented by a zip file.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1Theme">
+      <summary>
+            Represents a theme that can be applied to WinForms controls to modify their appearance.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeItem">
+      <summary>
+            For internal use.
+            Represents node of the theme tree.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.INamedSerializable">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.GetReferences(System.Boolean)">
+      <summary>
+            Returns list of <see cref="T:C1.Win.C1Themes.ThemeItem" /> objects which are referenced
+            by current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object. Can return <b>null</b> if
+            this object has no references to another objects.
+            </summary>
+      <param name="directReferencesOnly">Indicates whether only direct references should be included.</param>
+      <returns>List of <see cref="T:C1.Win.C1Themes.ThemeItem" /> objects referenced by current object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.ReplaceReference(C1.Win.C1Themes.ThemeItem,C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            Replaces all references to oldRef with newRef.
+            </summary>
+      <param name="oldRef">Old reference.</param>
+      <param name="newRef">New reference.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.GetLinkedItems(System.Collections.Generic.List{C1.Win.C1Themes.ThemeItem},System.Boolean,System.Boolean)">
+      <summary>
+            For internal use.
+            Returns list of items references current <see cref="T:C1.Win.C1Themes.ThemeItem" /> via <see cref="P:C1.Win.C1Themes.ThemeItem.Ref" />
+            property or via parent reference if items is a <see cref="T:C1.Win.C1Themes.ThemePropBase" />.
+            </summary>
+      <param name="linkedItems">
+      </param>
+      <param name="includeChildren">Indicates whether linked items for child items also should be included in the result.</param>
+      <param name="directLinksOnly">Add only direct links specified via <see cref="P:C1.Win.C1Themes.ThemeItem.Ref" /> property.</param>
+      <returns>Returns list of linked <see cref="T:C1.Win.C1Themes.ThemeItem" /> objects.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.GetRelativeName(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            For internal use.
+            Returns the name of the current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object relative to specified parent.
+            Returns null if <paramref name="parent" /> is not a parent of current node.
+            </summary>
+      <param name="parent">Parent <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.</param>
+      <returns>Relative name of the <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.CanReference(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            Returns true if current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object can reference
+            specified <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+      <param name="themeItem">
+        <see cref="T:C1.Win.C1Themes.ThemeItem" /> object to check.</param>
+      <returns>Returns <b>true</b> if specified <see cref="T:C1.Win.C1Themes.ThemeItem" /> object can be referenced by current object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.IsChildFor(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            Returns true if current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object is a child for specified <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+      <param name="themeItem">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.GetChildPropDefaultValue(C1.Win.C1Themes.ThemePropBase)">
+      <summary>
+            Returns a value indicating whether child <see cref="T:C1.Win.C1Themes.ThemePropBase" /> object has default state.
+            </summary>
+      <param name="child">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.MakeEmpty">
+      <summary>
+            Resets current <see cref="T:C1.Win.C1Themes.ThemeItem" /> to empty/default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.MakeTreeEmpty">
+      <summary>
+            Resets current <see cref="T:C1.Win.C1Themes.ThemeItem" /> and all its children to empty/default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.IsTreeEmpty">
+      <summary>
+            Returns a value indicating whether current <see cref="T:C1.Win.C1Themes.ThemeItem" /> and all its
+            children are empty.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.AssignValueFrom(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            Assigns (copies) value from another <see cref="T:C1.Win.C1Themes.ThemeItem" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.AssignFrom(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            Assigns (copies) properties from another <see cref="T:C1.Win.C1Themes.ThemeItem" /> to the current object.
+            </summary>
+      <param name="source">The source object to copy properties from.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.Clone">
+      <summary>
+            Creates a copy of the current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+      <returns>The newly created <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItem.RedirectReferences(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            This method should be called after <see cref="M:C1.Win.C1Themes.ThemeItem.Clone" />, <see cref="M:C1.Win.C1Themes.ThemeItem.AssignFrom(C1.Win.C1Themes.ThemeItem)" />
+            methods if destination <see cref="T:C1.Win.C1Themes.ThemeItem" /> is in another theme tree then source <see cref="T:C1.Win.C1Themes.ThemeItem" />.
+            After assigning references point to items in OLD tree, this method redirects
+            those references to the destenation tree.
+            </summary>
+      <param name="newTopParent">
+      </param>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Ref">
+      <summary>
+            Gets or sets <see cref="T:C1.Win.C1Themes.ThemeItem" /> object referenced by this object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Path">
+      <summary>
+            Returns path to current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object in the tree.
+            Returns empty string if object is a top parent object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.FullName">
+      <summary>
+            Returns full name of the <see cref="T:C1.Win.C1Themes.ThemeItem" /> object in the theme tree.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Attrs">
+      <summary>
+            Gets attributes of the <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Index">
+      <summary>
+            Gets index of the <see cref="T:C1.Win.C1Themes.ThemeItem" /> object in the parent children list.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.TopParent">
+      <summary>
+            Gets top-parent <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.ThemeSection">
+      <summary>
+            Gets the <see cref="T:C1.Win.C1Themes.ThemeSectionPropBag" /> object that contains this <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Owner">
+      <summary>
+            Gets <see cref="T:C1.Win.C1Themes.ThemeItemCollection" /> collection containing this <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Children">
+      <summary>
+            Gets <see cref="T:C1.Win.C1Themes.ThemeItemCollection" /> collection containg children of the current node.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.HasChildren">
+      <summary>
+            Gets a value indicating whether this <see cref="T:C1.Win.C1Themes.ThemeItem" /> object containing children.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Parent">
+      <summary>
+            Gets a parent <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.IsEmpty">
+      <summary>
+            Gets a value indicating whether current <see cref="T:C1.Win.C1Themes.ThemeItem" /> object
+            is empty, i.e. its <see cref="P:C1.Win.C1Themes.ThemeItem.Ref" /> property is null.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Name">
+      <summary>
+            Gets or sets name of this <see cref="T:C1.Win.C1Themes.ThemeItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.FixedChildren">
+      <summary>
+            Gets a value indicating whether <see cref="P:C1.Win.C1Themes.ThemeItem.Children" /> collection can be changed by user.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Fixed">
+      <summary>
+            Gets a value indicating whether this <see cref="T:C1.Win.C1Themes.ThemeItem" /> can be removed by the user or its
+            name can be changed by the user.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.DisplayName">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItem.Description">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.#ctor">
+      <summary>
+            Initializes a new instance of the C1Theme class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.SerializeReset">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.SerializeReadProp(C1.Win.C1Themes.Serialization.Serializer,System.String,System.Type,System.String)">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.SerializeWrite(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Save(System.IO.Stream)">
+      <summary>
+            Saves the current theme to a stream. This method saves theme in the
+            <see cref="F:C1.Win.C1Themes.C1ThemeFormat.Xml" /> format.
+            </summary>
+      <param name="stream">The target stream.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Save(System.IO.Stream,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Saves the current theme to a stream.
+            </summary>
+      <param name="stream">The target stream.</param>
+      <param name="format">The theme persistence format to use.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Load(System.IO.Stream)">
+      <summary>
+            Loads the current theme from a stream. This method assumes
+            that stream contains theme in <see cref="F:C1.Win.C1Themes.C1ThemeFormat.Xml" /> format.
+            </summary>
+      <param name="stream">The source stream.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Load(System.IO.Stream,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Loads the current theme from a stream.
+            </summary>
+      <param name="stream">The source stream.</param>
+      <param name="format">The theme persistence format to use.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Save(System.String,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Saves the current theme to a file.
+            </summary>
+      <param name="fileName">The target file name.</param>
+      <param name="format">The theme persistence format to use.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Save(System.String)">
+      <summary>
+            Saves the current theme to a file. The theme format determined on
+            the base of the file extension.
+            </summary>
+      <param name="fileName">The target file name.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Load(System.String)">
+      <summary>
+            Loads the current theme from a file. The theme format determined on
+            the base of the file extension.
+            </summary>
+      <param name="fileName">The source file name.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.Load(System.String,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Loads the current theme from a file.
+            </summary>
+      <param name="stream">The source stream.</param>
+      <param name="format">The theme persistence format to use.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.AssignFrom(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            Loads the current theme from a <see cref="T:C1.Win.C1Themes.ThemeItem" />.
+            </summary>
+      <param name="source">The source theme item.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetUsedFonts">
+      <summary>
+            Retrieves names of all fonts used in the current theme.
+            </summary>
+      <returns>An array of strings containing names of all fonts used in the current theme.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.IsEmpty(System.String)">
+      <summary>
+            Checks whether the specified path contains neither a value nor a reference.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>True if the path contains neither a value nor a reference, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.IsTreeEmpty(System.String)">
+      <summary>
+            Recursively checks whether the specified path including all its children
+            contain neither values nor references.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>True if neither the path, nor any of its children contain values or references, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.HasValue(System.String)">
+      <summary>
+            Tests whether a path specifies a value.
+            <para>
+            Note that a path may be empty (i.e. <see cref="M:C1.Win.C1Themes.C1Theme.IsEmpty(System.String)" /> returns true)
+            and still specify a value via a reference on one of its parents
+            (i.e. this method will return true).
+            </para></summary>
+      <param name="path">The path to test.</param>
+      <returns>True if the path specifies a value, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetColor(System.String)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Color" /> value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The color specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetColor(System.String,System.Drawing.Color)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Color" /> value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <param name="defaultValue">Used if value at specified path does not exist.</param>
+      <returns>The color specified by <paramref name="path" /> or <see paramref="defaultValue" /> if value at specified path does not exist.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetBool(System.String)">
+      <summary>
+            Gets a boolean value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The boolean value specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetBool(System.String,System.Boolean)">
+      <summary>
+            Gets a boolean value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <param name="defaultValue">Used if value at specified path does not exist.</param>
+      <returns>The boolean value specified by <paramref name="path" /> or <see paramref="defaultValue" /> if value at specified path does not exist.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetInt(System.String)">
+      <summary>
+            Gets an integer value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The integer value specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetInt(System.String,System.Int32)">
+      <summary>
+            Gets an integer value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <param name="defaultValue">Used if value at specified path does not exist.</param>
+      <returns>The integer value specified by <paramref name="path" /> or <see paramref="defaultValue" /> if value at specified path does not exist.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetDouble(System.String)">
+      <summary>
+            Gets a double value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The double value specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetImage(System.String)">
+      <summary>
+            Gets an image specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The image specified by <paramref name="path" />, or null.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetImage(System.String,System.Drawing.Image)">
+      <summary>
+            Gets an image specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <param name="defaultValue">Used if value at specified path does not exist.</param>
+      <returns>The image specified by <paramref name="path" /> or <see paramref="defaultValue" /> if image at specified path does not exist.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetEnum(System.String)">
+      <summary>
+            Gets an enumeration value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The enum value specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetEnum``1(System.String,``0)">
+      <summary>
+            Gets an enumeration value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <param name="defaultValue">Used if value at specified path does not exist.</param>
+      <returns>The enum value specified by <paramref name="path" /> or <see paramref="defaultValue" /> if value at specified path does not exist.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetEnumStr(System.String)">
+      <summary>
+            Gets a string representation of an enumeration value specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The enum string specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetFont(System.String)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Font" /> specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The font specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetFont(System.String,System.Drawing.Font)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Font" /> specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <param name="defaultValue">Used if value at specified path does not exist.</param>
+      <returns>The font specified by <paramref name="path" /> or <see paramref="defaultValue" /> if font at specified path does not exist.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetString(System.String)">
+      <summary>
+            Gets a string specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The string specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetBlend(System.String)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Drawing2D.Blend" /> specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The blend specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetColorBlend(System.String)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The color blend specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetPoint(System.String)">
+      <summary>
+            Gets a <see cref="T:System.Drawing.Point" /> specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The point specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetThickness(System.String)">
+      <summary>
+            Gets a <see cref="T:System.Windows.Forms.Padding" /> specified by a path.
+            </summary>
+      <param name="path">The target path.</param>
+      <returns>The padding specified by <paramref name="path" />.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.ApplyThemeToObject(System.Object)">
+      <summary>
+            Applies a theme to an object.
+            <para>The target object must be either a C1 control supporting themes,
+            or a standard control (such as Button, Label etc)
+            for which basic theming is provided by this library.</para></summary>
+      <param name="obj">The object to apply the theme to.</param>
+      <returns>True of the theme was successfully applied, false otherwise (i.e. if the object does not support theming).</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.ApplyThemeToControlTree(System.Windows.Forms.Control,System.Predicate{System.Windows.Forms.Control})">
+      <summary>
+            Recursively applies a theme to a control and its children.
+            Controls that do not support themes are ignored (but the theme is applied to their children).
+            </summary>
+      <param name="root">The root control to apply the theme to.</param>
+      <param name="applyThemeToSubTree">Predicate which, if specified,
+            allows to break theme application on certain nodes in the tree if it returns false.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetThemeName(System.IO.Stream)">
+      <summary>
+            Retrieves the name of a theme stored in a stream. This method assumes that 
+            stream contains theme in <see cref="F:C1.Win.C1Themes.C1ThemeFormat.Xml" /> format.
+            </summary>
+      <param name="stream">The stream containing the theme XML.</param>
+      <returns>The name of the theme, or null if no theme could be found in the stream.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetThemeName(System.IO.Stream,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Retrieves the name of a theme stored in a stream.
+            </summary>
+      <param name="stream">The stream containing the theme XML.</param>
+      <param name="format">The document persistence format to use.</param>
+      <returns>The name of the theme, or null if no theme could be found in the stream.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetThemeName(System.String)">
+      <summary>
+            Retrieves the name of a theme stored in a stream. The theme format
+            determined on the base of the file extension.
+            </summary>
+      <param name="fileName">The file containing the theme XML.</param>
+      <returns>The name of the theme, or null if no theme could be found in the file.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1Theme.GetThemeName(System.String,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Retrieves the name of a theme stored in a stream.
+            </summary>
+      <param name="fileName">The file containing the theme XML.</param>
+      <param name="format">The document persistence format to use.</param>
+      <returns>The name of the theme, or null if no theme could be found in the file.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1Theme.Template">
+      <summary>
+            For internal use.
+            Gets an internal theme template.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1Theme.Attrs">
+      <summary>
+            Gets the theme attributes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1Theme.Icon">
+      <summary>
+            Gets or sets the theme icon.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1Theme.OriginalThemeVersion">
+      <summary>
+            Gets an original theme version that was defined in loaded xml.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ThemeCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.C1Themes.C1Theme" /> objects, keyed by their names.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeCollection.GetKeyForItem(C1.Win.C1Themes.C1Theme)">
+      <summary>
+            Gets the key for a specified theme.
+            </summary>
+      <param name="item">The theme to get the key for.</param>
+      <returns>The name of the specified theme.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeCollection.TryGetValue(System.String,C1.Win.C1Themes.C1Theme@)">
+      <summary>
+            Retrieves a theme by its name.
+            </summary>
+      <param name="key">The name of the theme to get.</param>
+      <param name="theme">OUT: the theme with the specified name, or null if none could be found.</param>
+      <returns>True if the theme was found, false otherwise.</returns>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeEventArgs">
+      <summary>
+            Specifies event data for a theme-related event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeEventArgs.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the ThemeEventArgs class.
+            </summary>
+      <param name="themeName">The name of the theme.</param>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeEventArgs.ThemeName">
+      <summary>
+            Gets the name of the theme related to the event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ApplicationThemeEventHandler">
+      <summary>
+            Represents a method that will handle an event related to an application-wide theme.
+            </summary>
+      <param name="e">The event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeEventHandler">
+      <summary>
+            Represents a method that will handle an event related to a theme.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Themes.ObjectThemeEventArgs">
+      <summary>
+            Specifies event data for a theme-related event that applies to a particular object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ObjectThemeEventArgs.#ctor(System.Object,System.String)">
+      <summary>
+            Initializes a new instance of the ObjectThemeEventArgs class.
+            </summary>
+      <param name="obj">The target object.</param>
+      <param name="themeName">The name of the theme.</param>
+    </member>
+    <member name="P:C1.Win.C1Themes.ObjectThemeEventArgs.Object">
+      <summary>
+            Gets the object related to the event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ObjectThemeEventHandler">
+      <summary>
+            Represents a method that will handle a theme-related event that applies to a particular object.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ThemeController">
+      <summary>
+            Represents a component that loads and manages C1 visual themes,
+            and applies them to forms and controls.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeController.DefaultThemeName">
+      <summary>
+            The default theme name id.
+            <para>
+            When assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> property of a theme controller,
+            indicates that it should use the default application theme.
+            </para></summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeController.NoTheme">
+      <summary>
+            The empty theme name id.
+            <para>
+            When assigned to the "Theme" extender property (provided by C1ThemeController) on a control,
+            indicates that no theme should be applied to that control by the theme controller.
+            </para></summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.#ctor">
+      <summary>
+            Initializes a new instance of the C1ThemeController class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.ResetTheme">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.ShouldSerializeTheme">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.GetTheme(System.Object)">
+      <summary>
+            Gets the name of a theme set on an object by this theme controller.
+            </summary>
+      <param name="control">The object to get the theme name for.</param>
+      <returns>The name of the theme set on the object.
+            The "(none)" string is returned if no theme was set on the object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.SetTheme(System.Object,System.String)">
+      <summary>
+            Sets a theme name on an object.
+            </summary>
+      <param name="control">The object on which to set the theme name.</param>
+      <param name="value">The name of the theme.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.OnThemeChanging(System.String)">
+      <summary>
+            Fires the <see cref="E:C1.Win.C1Themes.C1ThemeController.ThemeChanging" /> event.
+            </summary>
+      <param name="themeName">The name of the theme that will be assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> property.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.OnThemeChanged(System.String)">
+      <summary>
+            Fires the <see cref="E:C1.Win.C1Themes.C1ThemeController.ThemeChanged" /> event.
+            </summary>
+      <param name="themeName">The name of the theme that was assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> property.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.OnObjectThemeChanging(System.Object,System.String)">
+      <summary>
+            Fires the <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanging" /> event.
+            </summary>
+      <param name="obj">The object on which the theme is going to be changed.</param>
+      <param name="themeName">The name of the theme that will be applied to <paramref name="obj" />.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.OnObjectThemeChanged(System.Object,System.String)">
+      <summary>
+            Fires the <see cref="E:C1.Win.C1Themes.C1ThemeController.ThemeChanged" /> event.
+            </summary>
+      <param name="obj">The object on which the theme was changed.</param>
+      <param name="themeName">The name of the theme that was applied to <paramref name="obj" />.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.OnObjectThemeApplying(System.Object,System.String)">
+      <summary>
+            Fires the <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplying" /> event.
+            </summary>
+      <param name="obj">The object to which the theme is going to be applied.</param>
+      <param name="themeName">The name of the theme that will be applied to <paramref name="obj" />.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.OnObjectThemeApplied(System.Object,System.String)">
+      <summary>
+            Fires the <see cref="E:C1.Win.C1Themes.C1ThemeController.ThemeChanged" /> event.
+            </summary>
+      <param name="obj">The object to which the theme was applied.</param>
+      <param name="themeName">The name of the theme that was applied to <paramref name="obj" />.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.Dispose(System.Boolean)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="disposing">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.GetThemeByName(System.String,System.Boolean)">
+      <summary>
+            Retrieves a theme registered with the application, by its name.
+            </summary>
+      <param name="themeName">The name of the theme to get.</param>
+      <param name="throwException">Indicates whether an exception should be thrown if the specified theme cannot be found.</param>
+      <returns>The theme with the specified name, or null if a matching theme could not be found
+            while <paramref name="throwException" /> is false.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.GetThemes">
+      <summary>
+            Retrieves the names of all themes registered with the application.
+            </summary>
+      <returns>An array of strings containing names of all registered themes.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.RegisterTheme(System.IO.Stream,C1.Win.C1Themes.C1ThemeFormat)">
+      <summary>
+            Loads a theme from a stream, and registeres it for use by theme controllers
+            in the application.
+            <para>After this method completes, the theme can be set via
+            <see cref="P:C1.Win.C1Themes.C1ThemeController.ApplicationTheme" /> and <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> properties.</para><para>his method throws an exception if a theme with same name has already been registered.</para></summary>
+      <param name="stream">A stream containing the theme to load/register.</param>
+      <param name="format">The theme persitence format to use.</param>
+      <returns>A name of registered theme.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.RegisterTheme(System.IO.Stream)">
+      <summary>
+            Loads a theme from a stream, and registeres it for use by theme controllers
+            in the application.
+            <para>After this method completes, the theme can be set via
+            <see cref="P:C1.Win.C1Themes.C1ThemeController.ApplicationTheme" /> and <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> properties.</para><para>his method throws an exception if a theme with same name has already been registered.</para></summary>
+      <param name="stream">A stream containing the theme to load/register.</param>
+      <returns>A name of registered theme.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.RegisterTheme(System.String)">
+      <summary>
+            Loads a theme from a file, and registeres it for use by theme controllers
+            in the application.
+            <para>After this method completes, the theme can be set via
+            <see cref="P:C1.Win.C1Themes.C1ThemeController.ApplicationTheme" /> and <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> properties.</para><para>his method throws an exception if a theme with same name has already been registered.</para></summary>
+      <param name="fileName">The file containing the theme to load/register.</param>
+      <returns>A name of registered theme.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.RegisterThemes(System.Reflection.Assembly)">
+      <summary>
+            Loads all themes from an assembly, and registeres them for use by theme controllers
+            in the current application.
+            <para>
+            This method scans all resources in the specified assembly, and selects
+            those with names ending in ".c1theme" (case insensitive).
+            If a theme cannot be loaded (e.g. due to a duplicate name or other error),
+            it is skipped (i.e. no exception is thrown).
+            </para></summary>
+      <param name="assembly">The assembly to load/register themes from.</param>
+      <returns>The array of names of all loaded/registered themes.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.UnregisterTheme(System.String)">
+      <summary>
+            Unregisters the theme with a specified name.
+            <para>This method does nothing if a matching theme could not be found.</para><para>An exception is thrown if the specified theme is currently in use.</para></summary>
+      <param name="themeName">The name of the theme to unregister.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.IsThemeRegistered(System.String)">
+      <summary>
+            Checks whether a theme with a specified name has been registered.
+            </summary>
+      <param name="themeName">The name of the theme to check.</param>
+      <returns>True if the theme has been registered, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.IsObjectThemeable(System.Object)">
+      <summary>
+            Checks whether an object supports ComponentOne themes.
+            </summary>
+      <param name="obj">The object to check.</param>
+      <returns>True if the object supports themes, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.ApplyThemeToObject(System.Object,C1.Win.C1Themes.C1Theme)">
+      <summary>
+            Applies a theme to an object.
+            <para>The target object must be either a C1 control supporting themes,
+            or a standard control (such as Button, Label etc)
+            for which basic theming is provided by this library.</para></summary>
+      <param name="obj">The object to apply the theme to.</param>
+      <param name="theme">The theme to apply.</param>
+      <returns>True of the theme was successfully applied, false otherwise (i.e. if the object does not support theming).</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeController.ApplyThemeToControlTree(System.Windows.Forms.Control,C1.Win.C1Themes.C1Theme,System.Predicate{System.Windows.Forms.Control})">
+      <summary>
+            Recursively applies a theme to a control and its children.
+            Controls that do not support themes are ignored (but the theme is applied to their children).
+            </summary>
+      <param name="root">The root control to apply the theme to.</param>
+      <param name="theme">The theme to apply.</param>
+      <param name="applyThemeToSubTree">Predicate which, if specified,
+            allows to break theme application on certain nodes in the tree if it returns false.</param>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeController.Theme">
+      <summary>
+            Gets or sets the name of the default theme for all objects
+            on the form or user control managed by the current theme controller.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ApplicationThemeChanging">
+      <summary>
+            Occurs before a new value is assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.ApplicationTheme" /> property.
+            </summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ApplicationThemeChanged" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ApplicationThemeChanged">
+      <summary>
+            Occurs after a new value has been assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.ApplicationTheme" /> property.
+            </summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ApplicationThemeChanging" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ThemeChanging">
+      <summary>
+            Occurs before a new value is assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> property.
+            </summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ThemeChanged" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ThemeChanged">
+      <summary>
+            Occurs after a new value has been assigned to the <see cref="P:C1.Win.C1Themes.C1ThemeController.Theme" /> property.
+            </summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ThemeChanging" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanging">
+      <summary>
+            Occurs when a theme on an object managed by the current theme controller is about to be changed.
+            <para>See remarks in <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" /> for details.</para></summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanged" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplying" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanged">
+      <summary>
+            Occurs after a theme on an object managed by the current theme controller has been changed.
+            <para>See remarks in <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" /> for details.</para></summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanging" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplying" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplying">
+      <summary>
+            Occurs when a theme is about to be applied to an object managed by the current theme controller.
+            <para>See remarks in <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" /> for details.</para></summary>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanging" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanged" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" />
+    </member>
+    <member name="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied">
+      <summary>
+            Occurs after a theme has been applied to an object managed by the current theme controller.
+            <para>See remarks for details.</para></summary>
+      <remarks>
+            The <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanging" /> and <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanged" /> events occur
+            when the value of the Theme extender property on an object changes.
+            The <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplying" /> and <see cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplied" /> events occur
+            when a new theme is applied to the object - which may happen even without changing the
+            Theme property on the object.
+            For instance, if the object uses the default theme specified for the containing form,
+            and the form's theme is changed the Applying/Applied events on the object
+            will fire but the Changing/Changed events will not.
+            </remarks>
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanging" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeChanged" />
+      <seealso cref="E:C1.Win.C1Themes.C1ThemeController.ObjectThemeApplying" />
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeController.ApplicationTheme">
+      <summary>
+            Gets or sets the application-wide default theme name.
+            <para>All theme controllers which have "(default)" set as Theme property value
+            will use this theme.</para><para>This name is persisted with key "C1ApplicationTheme" in the application config file (app.config).</para></summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ThemeLocator">
+      <summary>
+            Encapsulates a theme location (built-in or external file) and its name,
+            can be represented as a single string.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeLocator.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the ThemeLocator type from a string representing a theme locator.
+            </summary>
+      <param name="themeLocator">The string representing a theme locator, e.g. "builtin:GreenHouse".</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeLocator.#ctor(C1.Win.C1Themes.C1ThemeLocator.LocationType,System.String)">
+      <summary>
+            Initializes a new instance of the ThemeLocator type from a location type and a theme name.
+            </summary>
+      <param name="locationType">The theme location type.</param>
+      <param name="themeName">The theme name, e.g. "GreenHouse".</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeLocator.GetThemeName(C1.Win.C1Themes.C1ThemeLocator.LocationType@)">
+      <summary>
+            Gets the current theme name and location.
+            </summary>
+      <param name="locationType">OUT: the current theme location.</param>
+      <returns>The current theme name.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeLocator.GetTheme">
+      <summary>
+            Gets the current theme.
+            </summary>
+      <returns>The current theme, or null if the theme could not be loaded.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeLocator.ThemesFolder">
+      <summary>
+            Gets or sets the name of the folder containing theme files.
+            <para>Theme files are assumed to be located in the sub-folder of the current application folder
+            with this name.</para><para>The default is "Themes", so e.g. if the path to the current app is
+            "c:\myfolder\myapp.exe", theme files will be searched in "c:\myfolder\Themes".</para><para>Sub-folders are included in the search.</para></summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeLocator.ThemeName">
+      <summary>
+            Gets the current theme name.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeLocator.Location">
+      <summary>
+            Gets the current theme location.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ThemeLocator.LocationType">
+      <summary>
+            Identifies the type of a theme location.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeLocator.LocationType.Empty">
+      <summary>
+            Specifies the empty location. No theme can be located here.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeLocator.LocationType.Builtin">
+      <summary>
+            Specifies that the theme is built into the C1.Win.C1Themes.* assembly.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.C1ThemeLocator.LocationType.ThemesFolder">
+      <summary>
+            Specifies that the theme is located in a file in <see cref="F:C1.Win.C1Themes.C1ThemeLocator.LocationType.ThemesFolder" />.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ThemeVersion">
+      <summary>
+            Represents theme XML format's, and theme assembly's version info.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeVersion.#ctor">
+      <summary>
+            Initializes a new instance of the C1ThemeVersion class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeVersion.#ctor(System.String,System.String)">
+      <summary>
+            Initializes a new instance of the C1ThemeVersion class
+            with the specified theme XML format and theme assembly versions.
+            </summary>
+      <param name="formatVersion">The theme XML format version.</param>
+      <param name="assemblyVersion">The C1.Win.C1Themes assembly version.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeVersion.#ctor(System.Version,System.Version)">
+      <summary>
+            Initializes a new instance of the C1ThemeVersion class
+            with the specified theme XML format and theme assembly versions.
+            </summary>
+      <param name="formatVersion">The theme XML format version.</param>
+      <param name="assemblyVersion">The C1.Win.C1Themes assembly version.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeVersion.ToString">
+      <summary>
+            Overridden. Returns a string that represents the current object.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.C1ThemeVersion.Parse(System.String,System.Boolean,C1.Win.C1Themes.C1ThemeVersion)">
+      <summary>
+            Converts a string to a <see cref="T:C1.Win.C1Themes.C1ThemeVersion" /> object.
+            </summary>
+      <param name="s">The string to convert.</param>
+      <param name="throwException">Indicates whether an exception should be thrown if the specified string cannot be converted.</param>
+      <param name="defaultValue">The default version (used if the version could not be parsed, and <paramref name="throwException" /> is false).</param>
+      <returns>The newly created instance of <see cref="T:C1.Win.C1Themes.C1ThemeVersion" /> type, or null.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeVersion.FormatVersion">
+      <summary>
+            Gets the theme XML format version.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.C1ThemeVersion.AssemblyVersion">
+      <summary>
+            Gets the C1.Win.C1Themes assembly version.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.Strings.C1Theme.ThemeXmlTooOld">
+      <summary>
+            TODO:
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.Strings.C1Theme.ThemeXmlUnsupported">
+      <summary>
+            TODO:
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeBackground">
+      <summary>
+            For internal use.
+            Represents the theme backgroud.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.IThemeItemRefOwner">
+      <summary>
+            For internal use.
+            Common interface for classes that can use references to <see cref="T:C1.Win.C1Themes.ThemeItem" />.
+            Example of such classes are <see cref="T:C1.Win.C1Themes.ThemeBackground" /> descendats, <see cref="T:C1.Win.C1Themes.ThemeColorBlend" />,
+            <see cref="T:C1.Win.C1Themes.ThemeBlend" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.IThemeItemRefOwner.GetReferences(System.Collections.Generic.List{C1.Win.C1Themes.ThemeItem})">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="references">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.IThemeItemRefOwner.ContainsReference(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="r">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.IThemeItemRefOwner.ReplaceReference(C1.Win.C1Themes.ThemeItem,C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="oldRef">
+      </param>
+      <param name="newRef">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.IThemeItemRefOwner.IsStateEqual(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBackground.GetSolidColor">
+      <summary>
+            Returns Color that can be used instead of background when
+            element does not support special background.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="F:C1.Win.C1Themes.LinearGradientMode.Horizontal">
+      <summary>
+            Horizontal gradient (left to right).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LinearGradientMode.Vertical">
+      <summary>
+            Vertical gradient (top to bottom).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LinearGradientMode.DiagonalDown">
+      <summary>
+            Diagonal gradient (left-top to right-bottom).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.LinearGradientMode.DiagonalUp">
+      <summary>
+            Diagonal gradient (left-bottom to right-top).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BackgroundProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeProp`1">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemePropBase">
+      <summary>
+            For internal use.
+            Base class for all nodes returning some value.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemePropBase.GetReference">
+      <summary>
+            Resolves reference for current <see cref="T:C1.Win.C1Themes.ThemePropBase" /> object.
+            </summary>
+      <returns>Returns <see cref="T:C1.Win.C1Themes.RefInfo" /> structure containing information about reference.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemePropBase.GetDefaultValue">
+      <summary>
+            For internal use.
+            Returns <see cref="T:C1.Win.C1Themes.DefaultValue" /> structure
+            representing default value for current <see cref="T:C1.Win.C1Themes.ThemePropBase" /> object.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemePropBase.Value">
+      <summary>
+            Gets or sets value of the node, throws an exception if value of <see cref="T:C1.Win.C1Themes.ThemePropBase" />
+            cannot be determinated.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemePropBase.HasValue">
+      <summary>
+            Gets a value indicating whether value is specified for current <see cref="T:C1.Win.C1Themes.ThemePropBase" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemePropBase.IsValueConst">
+      <summary>
+            Gets a value indicating whether value of current <see cref="T:C1.Win.C1Themes.ThemePropBase" /> specified as constant.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemePropBase.IsValueDefault">
+      <summary>
+            Gets a value indicating whether current <see cref="T:C1.Win.C1Themes.ThemePropBase" /> has a default value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemePropBase.IsEmpty">
+      <summary>
+            Gets a value indicating whether current <see cref="T:C1.Win.C1Themes.ThemePropBase" /> object
+            is empty, i.e. its value is not specified and its <see cref="P:C1.Win.C1Themes.ThemePropBase.Ref" /> is null. 
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemePropBase.Ref">
+      <summary>
+            Gets or sets <see cref="T:C1.Win.C1Themes.ThemePropBase" /> object referenced by this object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeProp`1.IsStateEqual(C1.Win.C1Themes.ThemeItem)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="ti">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeSectionPropBag">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BaseThemePropertiesPropBag">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ProductPropBag">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.StylePropBag">
+      <summary>
+            For internal use.
+            Describes standard style common for all C1 controls.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.NumericProp`1">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.IntProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.DoubleProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.FontSizeProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.EnumProp`1">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BoolProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ColorProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ColorProp.AllowTransparent">
+      <summary>
+            Gets or sets a value indicating whether Color.Transparent can be specified
+            as value of current <see cref="T:C1.Win.C1Themes.ColorProp" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ColorProp.AllowEmpty">
+      <summary>
+            Gets or sets a value indicating whether Color.Empty can be specified
+            as value of current <see cref="T:C1.Win.C1Themes.ColorProp" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ColorProp.EmptyColorCaption">
+      <summary>
+            Gets or sets the caption of empty color in property editor.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.GradientCenterProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.StringProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.FontNameProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeImage">
+      <summary>
+            For internal use.
+            Represents an image property. In addition to a standard image, contains the image source
+            (typically, the file name).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ImageProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.FontProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeContainerProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThicknessProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeBlendItem">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeCollectionItem">
+      <summary>
+            For internal use.
+            Represents an item of <see cref="T:C1.Win.C1Themes.ThemeCollection`1" />.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeBlend">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeCollection`1">
+      <summary>
+            For internal use.
+            Represents base class for collection that can be used
+            as value of <see cref="T:C1.Win.C1Themes.ThemePropBase" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBlend.ToBlend">
+      <summary>
+            Creates <see cref="T:System.Drawing.Drawing2D.Blend" /> object from current <see cref="T:C1.Win.C1Themes.ThemeBlend" /> object.
+            </summary>
+      <returns>The <see cref="T:System.Drawing.Drawing2D.Blend" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBlend.IsBlendEqual(C1.Win.C1Themes.ThemeBlend,C1.Win.C1Themes.ThemeBlend)">
+      <summary>
+            Returns true if two <see cref="T:C1.Win.C1Themes.ThemeBlend" /> objects are equal or both are null.
+            </summary>
+      <param name="v1">First <see cref="T:C1.Win.C1Themes.ThemeBlend" /> object.</param>
+      <param name="v2">Second <see cref="T:C1.Win.C1Themes.ThemeBlend" /> object.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBlend.op_Implicit(C1.Win.C1Themes.ThemeBlend)~System.Drawing.Drawing2D.Blend">
+      <summary>
+            Converts a <see cref="T:C1.Win.C1Themes.ThemeBlend" /> to a <see cref="T:System.Drawing.Drawing2D.Blend" />.
+            </summary>
+      <param name="value">The <see cref="T:C1.Win.C1Themes.ThemeBlend" /> to convert.</param>
+      <returns>The <see cref="T:System.Drawing.Drawing2D.Blend" /> value.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeBlend.op_Implicit(System.Drawing.Drawing2D.Blend)~C1.Win.C1Themes.ThemeBlend">
+      <summary>
+            Converts a <see cref="T:System.Drawing.Drawing2D.Blend" /> to a <see cref="T:C1.Win.C1Themes.ThemeBlend" />.
+            </summary>
+      <param name="value">The <see cref="T:System.Drawing.Drawing2D.Blend" /> to convert.</param>
+      <returns>The <see cref="T:C1.Win.C1Themes.ThemeBlend" /> value.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeBlend.Valid">
+      <summary>
+            Gets a value indicating whether current <see cref="T:C1.Win.C1Themes.ThemeBlend" /> object
+            defines correct not empty <see cref="T:System.Drawing.Drawing2D.Blend" /> object.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.BlendProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ChartStylePropBag">
+      <summary>
+            For internal use.
+            Describes style for C1Chart control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1ChartBorderPropBag">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1TreeViewStylesPropBag">
+      <summary>
+            Describes style for C1TreeView control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1TreeViewColumnHeaderStylePropBag">
+      <summary>
+            Describes style for header of column of C1TreeView control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1TreeViewNodeCellStylePropBag">
+      <summary>
+            Describes style for cell of node of C1TreeView control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1TrueDBGridStylePropBag">
+      <summary>
+            Describes style for C1TrueDBGrid control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1TrueDBGridBordersPropBag">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1FrameworkStateStylePropBag">
+      <summary>
+            For internal use.
+            Provides set of theme properties similar to Style (like Hot, Pressed etc) in C1Framework.
+            All properties are empty by default.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1FrameworkStylePropBag">
+      <summary>
+            Provides set of theme properties similar to Style in C1Framework, in addition to 
+            <see cref="T:C1.Win.C1Themes.C1FrameworkStateStylePropBag" /> base class <see cref="T:C1.Win.C1Themes.C1FrameworkStylePropBag" /> provides:
+            - default properties for all children
+            - declares Hot, Pressed, HotPressed, Disabled elements
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeColorBlendItem">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeColorBlend">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeColorBlend.ToColorBlend">
+      <summary>
+            Creates <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> object from current <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> object.
+            </summary>
+      <returns>The <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeColorBlend.IsBlendEqual(C1.Win.C1Themes.ThemeColorBlend,C1.Win.C1Themes.ThemeColorBlend)">
+      <summary>
+            Returns true if two <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> objects are equal or both are null.
+            </summary>
+      <param name="v1">First <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> object.</param>
+      <param name="v2">Second <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> object.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeColorBlend.op_Implicit(C1.Win.C1Themes.ThemeColorBlend)~System.Drawing.Drawing2D.ColorBlend">
+      <summary>
+            Converts a <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> to a <see cref="T:System.Drawing.Drawing2D.ColorBlend" />.
+            </summary>
+      <param name="value">The <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> to convert.</param>
+      <returns>The <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> value.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeColorBlend.op_Implicit(System.Drawing.Drawing2D.ColorBlend)~C1.Win.C1Themes.ThemeColorBlend">
+      <summary>
+            Converts a <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> to a <see cref="T:C1.Win.C1Themes.ThemeColorBlend" />.
+            </summary>
+      <param name="value">The <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> to convert.</param>
+      <returns>The <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> value.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeColorBlend.Valid">
+      <summary>
+            Gets a value indicating whether current <see cref="T:C1.Win.C1Themes.ThemeColorBlend" /> object
+            defines correct not empty <see cref="T:System.Drawing.Drawing2D.ColorBlend" /> object.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ColorBlendProp">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1FlexGridStylePropBag">
+      <summary>
+            For internal use.
+            Describes style for C1TrueDBGrid control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1FlexGridBorderPropBag">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.C1GanttViewBarStylePropBag">
+      <summary>
+            For internal use.
+            Describes style for C1TrueDBGrid control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeFont">
+      <summary>
+            For internal use.
+            The main purpose of this structure to provide font data storage without
+            creating actual <see cref="T:System.Drawing.Font" /> object, for increase perfomance and minimize usage of resources.
+            <see cref="T:C1.Win.C1Themes.ThemeFont" /> can be directly converted to <see cref="T:System.Drawing.Font" /> or
+            it can be created from <see cref="T:System.Drawing.Font" />, corresponding static operators are defined for this purpose.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.#ctor(System.String,System.Single,System.Drawing.FontStyle)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Themes.ThemeFont" />. 
+            </summary>
+      <param name="name">Value of <see cref="P:C1.Win.C1Themes.ThemeFont.Name" /> property.</param>
+      <param name="size">Value of <see cref="P:C1.Win.C1Themes.ThemeFont.Size" /> property.</param>
+      <param name="style">Value of <see cref="P:C1.Win.C1Themes.ThemeFont.Style" /> property.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.#ctor(System.Drawing.Font)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Themes.ThemeFont" /> from <see cref="T:System.Drawing.Font" /> object.
+            </summary>
+      <param name="font">The <see cref="T:System.Drawing.Font" /> object.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.ToString">
+      <summary>
+            Returns a string that represents the <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure.
+            </summary>
+      <returns>A string that represents the <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.GetHashCode">
+      <summary>
+            Generates a hash code for the current <see cref="T:C1.Win.C1Themes.ThemeFont" />. 
+            </summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.Equals(System.Object)">
+      <summary>
+            Determines whether the value of the specified object is equivalent 
+            to the current <see cref="T:C1.Win.C1Themes.ThemeFont" />. 
+            </summary>
+      <param name="obj">The object to compare to the current <see cref="T:C1.Win.C1Themes.ThemeFont" />.</param>
+      <returns>true if the two <see cref="T:C1.Win.C1Themes.ThemeFont" /> objects are equal; 
+            otherwise, false. </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.op_Equality(C1.Win.C1Themes.ThemeFont,C1.Win.C1Themes.ThemeFont)">
+      <summary>
+            Tests whether two specified <see cref="T:C1.Win.C1Themes.ThemeFont" /> objects are equivalent. 
+            </summary>
+      <param name="t1">A <see cref="T:C1.Win.C1Themes.ThemeFont" /> to test.</param>
+      <param name="t2">A <see cref="T:C1.Win.C1Themes.ThemeFont" /> to test.</param>
+      <returns>true if the two <see cref="T:C1.Win.C1Themes.ThemeFont" /> objects are equal; 
+            otherwise, false. </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.op_Inequality(C1.Win.C1Themes.ThemeFont,C1.Win.C1Themes.ThemeFont)">
+      <summary>
+            Tests whether two specified <see cref="T:C1.Win.C1Themes.ThemeFont" /> objects are not equivalent. 
+            </summary>
+      <param name="t1">A <see cref="T:C1.Win.C1Themes.ThemeFont" /> to test.</param>
+      <param name="t2">A <see cref="T:C1.Win.C1Themes.ThemeFont" /> to test.</param>
+      <returns>True if the two <see cref="T:C1.Win.C1Themes.ThemeFont" /> objects are different; 
+            otherwise, false. </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.ToFont">
+      <summary>
+            Creates <see cref="T:System.Drawing.Font" /> object from current <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure.
+            </summary>
+      <returns>The <see cref="T:System.Drawing.Font" /> object.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.TryParse(System.String,C1.Win.C1Themes.ThemeFont@)">
+      <summary>
+            Converts the string representation of a <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure to actual
+            <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure. A return value indicates whether the conversion succeeded.
+            </summary>
+      <param name="s">A string containing a <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure to convert.</param>
+      <param name="value">When this method returns, contains the <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure equivalent to the structure contained in s, if the conversion succeeded, or <see cref="P:C1.Win.C1Themes.ThemeFont.Empty" /> if the conversion failed.</param>
+      <returns>
+        <b>true</b> if s was converted successfully; otherwise, <b>false</b>.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.op_Implicit(C1.Win.C1Themes.ThemeFont)~System.Drawing.Font">
+      <summary>
+            Converts a <see cref="T:C1.Win.C1Themes.ThemeFont" /> to a <see cref="T:System.Drawing.Font" />.
+            </summary>
+      <param name="value">The <see cref="T:C1.Win.C1Themes.ThemeFont" /> to convert.</param>
+      <returns>The <see cref="T:System.Drawing.Font" /> value.</returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeFont.op_Implicit(System.Drawing.Font)~C1.Win.C1Themes.ThemeFont">
+      <summary>
+            Converts a <see cref="T:System.Drawing.Font" /> to a <see cref="T:C1.Win.C1Themes.ThemeFont" />.
+            </summary>
+      <param name="value">The <see cref="T:System.Drawing.Font" /> to convert.</param>
+      <returns>The <see cref="T:C1.Win.C1Themes.ThemeFont" /> value.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeFont.Empty">
+      <summary>
+            Represents a <see cref="T:C1.Win.C1Themes.ThemeFont" /> structure with its properties left uninitialized.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeItemAttrs">
+      <summary>
+            For internal use.
+            Defines various attributes of <see cref="T:C1.Win.C1Themes.ThemeItem" />.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeItemAttrs.None">
+      <summary>
+            No special attributes.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeItemAttrs.InitChildren">
+      <summary>
+            Indicates that theme item initializes structure of its children.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeItemAttrs.FixedChildren">
+      <summary>
+            Indicates that structure of children nodes is fixed and cannot be changed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeItemAttrs.FixedTree">
+      <summary>
+            Indicates that all nodes in the tree owned by the current node are fixed and cannot be changed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.DefaultValue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ItemState">
+      <summary>
+            For internal use.
+            Provides extended information about value of <see cref="T:C1.Win.C1Themes.ThemeItem" />
+            this information is not "linked" to the theme, i.e. all references represented as strings.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.IValueStateProvider">
+      <summary>
+            For internal use.
+            Common interface for classes that can use references to <see cref="T:C1.Win.C1Themes.ThemeItem" />.
+            Example of such classes are <see cref="T:C1.Win.C1Themes.ThemeBackground" /> descendats, <see cref="T:C1.Win.C1Themes.ThemeColorBlend" />,
+            <see cref="T:C1.Win.C1Themes.ThemeBlend" />.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeItemCollection">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeItemCollection.SortByName">
+      <summary>
+            For internal use.
+            Sorts elements in collection by <see cref="P:C1.Win.C1Themes.ThemeItem.Name" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItemCollection.Item(System.String)">
+      <summary>
+            For internal use.
+            Gets <see cref="T:C1.Win.C1Themes.ThemeItem" /> object with specified name, can be specified name of sub-child node, like:
+            Node n = this["Child\\SubChild"];
+            </summary>
+      <param name="itemName">Relative path to the <see cref="T:C1.Win.C1Themes.ThemeItem" /> object</param>
+      <returns>
+        <see cref="T:C1.Win.C1Themes.ThemeItem" /> object with specified name, throws exception if node with specifed name is not found.</returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItemCollection.Owner">
+      <summary>
+            For internal use.
+            Gets a <see cref="T:C1.Win.C1Themes.ThemeItem" /> object owning this <see cref="T:C1.Win.C1Themes.ThemeItemCollection" /> collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItemCollection.Path">
+      <summary>
+            For internal use.
+            Gets the path to the nodes of this collection in the tree.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeItemCollection.Fixed">
+      <summary>
+            For internal use.
+            Gets a value indicating whether this <see cref="T:C1.Win.C1Themes.ThemeItemCollection" /> collection is fixed and cannot be changed by the user.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.RefType">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RefType.None">
+      <summary>
+            No reference.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RefType.Ref">
+      <summary>
+            Reference for <see cref="T:C1.Win.C1Themes.ThemePropBase" /> specified via <see cref="P:C1.Win.C1Themes.ThemePropBase.Ref" /> property.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.RefType.ParentRef">
+      <summary>
+            Reference for <see cref="T:C1.Win.C1Themes.ThemePropBase" /> calculated via parent reference.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemePropValueNotSpecifiedException">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.RefInfo">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ValueSource">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Themes.ValueSource.DifferentSources">
+      <summary>
+            Used only for containers, indicates that
+            child properties obtain values from different sources.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.PropState">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ContainerPropState">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.SerializerException">
+      <summary>
+            Represents a theme serialization exception.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.Serialization.SerializerException.#ctor(System.String,System.Int32,System.Int32,System.Exception)">
+      <summary>
+            Initializes a new instance of SerializerException class.
+            </summary>
+      <param name="message">The exception message.</param>
+      <param name="lineNumber">The line number.</param>
+      <param name="linePosition">The position in line.</param>
+      <param name="innerException">The inner exception.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.Serialization.SerializerException.#ctor(System.String,System.Int32,System.Int32)">
+      <summary>
+            Initializes a new instance of SerializerException class.
+            </summary>
+      <param name="message">The exception message.</param>
+      <param name="lineNumber">The line number.</param>
+      <param name="linePosition">The position in line.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.Serialization.SerializerException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of SerializerException class.
+            </summary>
+      <param name="message">The exception message.</param>
+    </member>
+    <member name="M:C1.Win.C1Themes.Serialization.SerializerException.#ctor(System.Xml.XmlReader)">
+      <summary>
+            Initializes a new instance of SerializerException class.
+            </summary>
+      <param name="reader">The XmlReader that caused the exception.</param>
+    </member>
+    <member name="P:C1.Win.C1Themes.Serialization.SerializerException.LineNumber">
+      <summary>
+            The line number related to the exception.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.Serialization.SerializerException.LinePosition">
+      <summary>
+            The line position related to the exception.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.ISerializableAsString">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.SetReferenceDelegate">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.ResolveReferenceEventArgs">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.ResolveReferenceDelegate">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.Serializer">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.Serialization.ThemeSerializer">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeValueNotSpecifiedException">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueNotSpecifiedException.#ctor(System.Object)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="themeValue">
+      </param>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValueNotSpecifiedException.ThemeValue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueBase.SerializeReset">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueBase.SerializeReadProp(C1.Win.C1Themes.Serialization.Serializer,System.String,System.Type,System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+      <param name="propName">
+      </param>
+      <param name="type">
+      </param>
+      <param name="objectName">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueBase.SerializeWrite(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueBase.SerializeAfterDeserialization(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueBase.SerializeToString(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+      <param name="value">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValueBase.SerializeFromString(C1.Win.C1Themes.Serialization.Serializer,System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+      <param name="value">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValueBase.Value">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValueBase.HasValue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValueBase.IsValueConst">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValueBase.IsEmpty">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValueBase.Ref">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeValue`1">
+      <summary>
+            For internal use.
+            </summary>
+      <typeparam name="T">
+      </typeparam>
+    </member>
+    <member name="F:C1.Win.C1Themes.ThemeValue`1.m_Value">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeReset">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeReadProp(C1.Win.C1Themes.Serialization.Serializer,System.String,System.Type,System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+      <param name="propName">
+      </param>
+      <param name="type">
+      </param>
+      <param name="objectName">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeWrite(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeReadValue(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeWriteValue(C1.Win.C1Themes.Serialization.Serializer)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="value">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeValueFromString(C1.Win.C1Themes.Serialization.Serializer,System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+      <param name="value">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.SerializeValueToString(C1.Win.C1Themes.Serialization.Serializer,`0)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="serializer">
+      </param>
+      <param name="value">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.ThemeValue`1.TryGetValue(`0@)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="value">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValue`1.Value">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValue`1.IsValueConst">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValue`1.IsEmpty">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Themes.ThemeValue`1.Ref">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeDoubleValue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeFloatValue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeColorValue">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Themes.ThemeEnumValue`1">
+      <summary>
+            For internal use.
+            </summary>
+      <typeparam name="T">
+      </typeparam>
+    </member>
+    <member name="T:C1.Win.C1Themes.Utils.CreateObjectDelegate">
+      <summary>
+            For internal use.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Win.C1Themes.Utils.TypeInfoTable">
+      <summary>
+            For internal use.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.TypeInfoTable.Add(C1.Win.C1Themes.Utils.TypeInfoTable)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="table">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.TypeInfoTable.Register(System.Type,System.String,C1.Win.C1Themes.Utils.CreateObjectDelegate)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="type">
+      </param>
+      <param name="typeName">
+      </param>
+      <param name="createDelegate">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.TypeInfoTable.GetCreateDelegate(System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="typeName">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.TypeInfoTable.GetCreateDelegate(System.Type)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="type">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.TypeInfoTable.GetTypeNameByType(System.Type)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="type">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1Themes.Utils.TypeInfoTable.GetTypeByTypeName(System.String)">
+      <summary>
+            For internal use.
+            </summary>
+      <param name="typeName">
+      </param>
+      <returns>
+      </returns>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,3793 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.Map.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.FlexMap.C1FlexMap">
+      <summary>
+            Internal used. Represents a map which can show tile images and vector elements.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.#ctor">
+      <summary>
+            Initialize a new instance of <see cref="T:C1.FlexMap.C1FlexMap" /> object.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.Distance(C1.Win.Interop.Point,C1.Win.Interop.Point)">
+      <summary>
+            Returns the distance, in meters, between tow geographic coordinates.
+            </summary>
+      <param name="longLat1">The first geographic coordinate.</param>
+      <param name="longLat2">The second geographic coordinate.</param>
+      <returns>The distance, in meters, between the two geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ScreenToGeographic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from screen coordinates to geographic coordinates.
+            </summary>
+      <param name="point">A point in screen coordinates (pixels from the top left corner of this control).</param>
+      <returns>The geographic coordinates currently mapped to the parameter screen coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ScreenToGeographic(C1.Win.Interop.Rect)">
+      <summary>
+            Transforms a rectangle from screen coordinates to geographic coordinates.
+            </summary>
+      <param name="rect">A rectangle in screen coordinates (pixels from the top left corner of this control).</param>
+      <returns>The geographic coordinates currently mapped to the parameter screen coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.GeographicToScreen(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from geographic coordinates to screen coordinates.
+            </summary>
+      <param name="longLat">A point in geographic coordinates.</param>
+      <returns>The screen coordinates currently mapped to the parameter geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.GeographicToScreen(C1.Win.Interop.Rect)">
+      <summary>
+            Transforms a rectangle from geographic coordinates to screen coordinates.
+            </summary>
+      <param name="rect">A rectangle in geographic coordinates.</param>
+      <returns>The screen coordinantes currently mapped to the parameter geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ScreenToLogic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from screen coordinates to logic coordinates.
+            </summary>
+      <remarks>
+            The logic coordinates are the ones used by the <see cref="T:C1.FlexMap.IMapProjection" />.
+            </remarks>
+      <param name="point">A point in screen coordinates (pixels from the top left corner of this control).</param>
+      <returns>The logic coordinates currently mapped to the parameter screen coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ScreenToLogic(C1.Win.Interop.Rect)">
+      <summary>
+            Transforms a rectangle from screen coordinates to logic coordinates.
+            </summary>
+      <remarks>
+            The logic coordinates are the ones used by the <see cref="T:C1.FlexMap.IMapProjection" />.
+            </remarks>
+      <param name="rect">A rectangle in screen coordinates (pixels from the top left corner of this control).</param>
+      <returns>The logic coordinates currently mapped to the parameter screen coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.LogicToScreen(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from logic coordinates to screen coordinates.
+            </summary>
+      <param name="point">A point in logic coordinates.</param>
+      <returns>The screen coordinates currently mapped to the parameter logic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.LogicToScreen(C1.Win.Interop.Rect)">
+      <summary>
+            Transforms a rectanngle from logic coordinates to screen coordinates.
+            </summary>
+      <param name="rect">A rectangle in logic coordinates.</param>
+      <returns>The screen coordinates currently mapped to the parameter logic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.GeographicToLogic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from geographic coordinates to logic coordinates.
+            </summary>
+      <param name="longLat">A point in geographic coordinates.</param>
+      <returns>The logic coordinates currently mapped to the parameter geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.GeographicToLogic(C1.Win.Interop.Rect)">
+      <summary>
+            Transforms a rectangle from geographic coordinates to logic coordinates.
+            </summary>
+      <param name="rect">A rectangle in geographic coordinates.</param>
+      <returns>The logic coordinates currently mapped to the parameter geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.LogicToGeographic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from logic coordinates to geographic coordinates.
+            </summary>
+      <param name="point">A point in logic coordinates.</param>
+      <returns>The geographic coordinates currrently mapped to the parameter logic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.LogicToGeographic(C1.Win.Interop.Rect)">
+      <summary>
+            Transforms a rectangle from logic coordinates to geographic coordinates.
+            </summary>
+      <param name="rect">A rectangle in logic coordinates.</param>
+      <returns>The geographic coordinates currrently mapped to the parameter logic coordinates.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.Translate(System.Double,System.Double)">
+      <summary>
+            Translates the map with the specified offsets, in screen coordinates.
+            </summary>
+      <param name="offsetX">The longitude offset in screen coordinates.</param>
+      <param name="offsetY">The latitude offset in screen coordinates.</param>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ZoomDelta(System.Double)">
+      <summary>
+            Zoom the map with specified delta.
+            </summary>
+      <param name="delta">The zoom delta.</param>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ZoomDelta(System.Double,C1.Win.Interop.Point)">
+      <summary>
+            Zoom the map at the specified point.
+            </summary>
+      <param name="delta">The zoom delta.</param>
+      <param name="zoomPoint">The point at which to zoom, in screen coordinates.</param>
+      <remarks>
+            The zoom point will keep the same place before and after zooming.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.HitTest(C1.FlexMap.IMapDevice,C1.Win.Interop.Point)">
+      <summary>
+            Returns information about the map at a specified point on the map viewport.
+            </summary>
+      <param name="device">The map device used to render the map.</param>
+      <param name="point">The point being tested, in pixels.</param>
+      <returns>A <see cref="T:C1.FlexMap.HitTestInfo" /> object contains info about the point.</returns>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.Render(C1.FlexMap.IMapDevice)">
+      <summary>
+            Render this map to the specified device.
+            </summary>
+      <param name="device">The map device used to render the map.</param>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.Render(C1.FlexMap.IMapDevice,System.Collections.Generic.IEnumerable{C1.FlexMap.IMapLayer})">
+      <summary>
+            Render map layers to the specified device.
+            </summary>
+      <param name="device">The map device used to render the map.</param>
+      <param name="layers">The layers to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.ResetRenderer">
+      <summary>
+            Resets the render for this map.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.SetFullRepaint">
+      <summary>
+            Sets the flag that the map needs full repaint on the next rendering.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.C1FlexMap.SetFullRepaint(C1.FlexMap.IMapLayer)">
+      <summary>
+            Sets the flag that the layer needs full repaint on the next rendering.
+            </summary>
+      <param name="layer">The layer which needs full repaint.</param>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.ViewportBounds">
+      <summary>
+            Gets or sets the bounds of the viewport in screen coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.ClipBounds">
+      <summary>
+            Gets or sets the clipping bounds used for the <see cref="T:C1.FlexMap.VectorLayer" />.
+            </summary>
+      <remarks>
+            The clipping bounds is used to cache the contents of the map. 
+            Must be greater than the <see cref="P:C1.FlexMap.C1FlexMap.ViewportBounds" />.
+            Empty rectangle means no clipping.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.Center">
+      <summary>
+            Gets or sets the center of this map in geograhic coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.Zoom">
+      <summary>
+            Gets or sets the zoom factor of this map..
+            </summary>
+      <remarks>
+            The minimum zoom factor is 0. An increment of 1 in the zoom factor doubles the map resolution.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.MaxZoom">
+      <summary>
+            Gets or sets the maximum zoom of this map.
+            </summary>
+      <remarks>
+            The minimum zoom factor is 0 and the maximum value is 20.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.MinZoom">
+      <summary>
+            Gets or sets the minimum zoom of this map.
+            </summary>
+      <remarks>
+            The minimum zoom factor is 0 and the maximum value is 20.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.MaxLong">
+      <summary>
+            Gets or sets the maximum longitude of this map.
+            </summary>
+      <remarks>
+            For <see cref="T:C1.FlexMap.GeographicCoordinateSystem" />, the minimum value is -180 and maximum value is 180.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.MinLong">
+      <summary>
+            Gets or sets the minimum longitude of this map.
+            </summary>
+      <remarks>
+            For <see cref="T:C1.FlexMap.GeographicCoordinateSystem" />, the minimum value is -180 and the maximum value is 180.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.MaxLat">
+      <summary>
+            Gets or sets the maximum latitude of this map.
+            </summary>
+      <remarks>
+            For <see cref="T:C1.FlexMap.GeographicCoordinateSystem" />, the minimum value is -90 and the maximum value is 90.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.MinLat">
+      <summary>
+            Gets or sets the minimum latitude of this map.
+            </summary>
+      <remarks>
+            For <see cref="T:C1.FlexMap.GeographicCoordinateSystem" />, the minimum value is -90 and the maximum value is 90.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.CoordinateSystem">
+      <summary>
+            Gets or sets the coordinates system of this map.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.DistanceScale">
+      <summary>
+            Gets the object for distance scale.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.Layers">
+      <summary>
+            Gets the collection of layers of this map.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.ViewportWidth">
+      <summary>
+            Gets the visible width of the map in logic coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.C1FlexMap.ViewportHeight">
+      <summary>
+            Gets the visible height of the map in logic coordinates.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.HitTestInfo">
+      <summary>
+            Internal used. Represents the infomation for hit test.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.HitTestInfo.Layer">
+      <summary>
+            Gets the layer at the point being tested.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.HitTestInfo.Vector">
+      <summary>
+            Gets the vector item at the point being tested.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.HitTestInfo.Point">
+      <summary>
+            Gets the point on the map viewport, in pixels.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.INotify">
+      <summary>
+            For internal use.
+            Notification interface for class who receives the notification.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.INotify.NotifyChanges">
+      <summary>
+            For internal use.
+            Called when changes need be notified.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.INotifier">
+      <summary>
+            For internal used.
+            Notification interface for class who raises the notification.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.INotifier.SetNotify(C1.FlexMap.INotify)">
+      <summary>
+            For internal use.
+            Set the object who receives the notification.
+            </summary>
+      <param name="notify">
+      </param>
+    </member>
+    <member name="T:C1.FlexMap.CartesianCoordinateSystem">
+      <summary>
+            A <see cref="T:C1.FlexMap.ICoordinateSystem" /> implementation for the cartesian coordinate system.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.ICoordinateSystem">
+      <summary>
+            Represents the coordinate system used for the <see cref="T:C1.FlexMap.C1FlexMap" />.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.IMapProjection">
+      <summary>
+            Represents the projection used for <see cref="T:C1.FlexMap.C1FlexMap" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.IMapProjection.Project(C1.Win.Interop.Point)">
+      <summary>
+            Projects a geographic coordinate to logical coordinate.
+            </summary>
+      <param name="longLat">The geographic coordinate to project.</param>
+      <returns>The logical coordinate corresponding to the geographic coordinate.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapProjection.Unproject(C1.Win.Interop.Point)">
+      <summary>
+            Inverse of <see cref="M:C1.FlexMap.IMapProjection.Project(C1.Win.Interop.Point)" />. Unprojects a logical coordinate to a geographic coordinate.
+            </summary>
+      <param name="point">The logical coordinate to apply the inverse projection.</param>
+      <returns>The geographic coordinate corresponding to the logical coordinate.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapProjection.IsParallelCurved">
+      <summary>
+            Indicates whether the parallel lines are curved.
+            </summary>
+      <remarks>
+            true if the parallel lines are curved; otherwise, false.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexMap.IMapProjection.IsMeridianCurved">
+      <summary>
+            Indicates whether the meridian lines are curved.
+            </summary>
+      <returns>
+            true if the meridian lines are curved; otherwise, false.
+            </returns>
+    </member>
+    <member name="M:C1.FlexMap.ICoordinateSystem.Distance(C1.Win.Interop.Point,C1.Win.Interop.Point)">
+      <summary>
+            Gets the distance, in meters, between two points in the unit of this coordinate system.
+            </summary>
+      <param name="longLat1">The first point.</param>
+      <param name="longLat2">The second point.</param>
+      <returns>The meters between the given two points.</returns>
+    </member>
+    <member name="P:C1.FlexMap.ICoordinateSystem.LimitBounds">
+      <summary>
+            Gets the limit bounds that this coordinate system supports.
+            </summary>
+    </member>
+    <member name="E:C1.FlexMap.ICoordinateSystem.ValueChanged">
+      <summary>
+            Occurs when the property of this coordinate system is changed.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.CartesianCoordinateSystem.Distance(C1.Win.Interop.Point,C1.Win.Interop.Point)">
+      <summary>
+            Gets the distance, in meters, between two points in the unit of this coordinate system.
+            </summary>
+      <param name="longLat1">The first point.</param>
+      <param name="longLat2">The second point.</param>
+      <returns>The meters between the given two points.</returns>
+    </member>
+    <member name="M:C1.FlexMap.CartesianCoordinateSystem.IsParallelCurved">
+      <summary>
+            Indicates whether the parallel lines are curved.
+            </summary>
+      <remarks>
+            true if the parallel lines are curved; otherwise, false.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexMap.CartesianCoordinateSystem.IsMeridianCurved">
+      <summary>
+            Indicates whether the meridian lines are curved.
+            </summary>
+      <returns>
+            true if the meridian lines are curved; otherwise, false.
+            </returns>
+    </member>
+    <member name="M:C1.FlexMap.CartesianCoordinateSystem.Project(C1.Win.Interop.Point)">
+      <summary>
+            Projects a geometry coordinate to logical coordinate.
+            </summary>
+      <param name="longLat">The geometry coordinate to project.</param>
+      <returns>The logical coordinate corresponding to the geometry coordinate.</returns>
+    </member>
+    <member name="M:C1.FlexMap.CartesianCoordinateSystem.Unproject(C1.Win.Interop.Point)">
+      <summary>
+            Inverse of <see cref="M:C1.FlexMap.CartesianCoordinateSystem.Project(C1.Win.Interop.Point)" />. Unprojects a logical coordinate to a geometry coordinate.
+            </summary>
+      <param name="point">The logical coordinate to apply the inverse projection.</param>
+      <returns>The geometry coordinate corresponding to the logical coordinate.</returns>
+    </member>
+    <member name="E:C1.FlexMap.CartesianCoordinateSystem.ValueChanged">
+      <summary>
+            Occurs when the <see cref="P:C1.FlexMap.CartesianCoordinateSystem.Unit" /> property is changed.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.CartesianCoordinateSystem.LimitBounds">
+      <summary>
+            Gets or sets the limit bounds that this coordinate system supports.
+            </summary>
+      <remarks>
+            Empty means automatically detect the bounds.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.CartesianCoordinateSystem.Unit">
+      <summary>
+            Gets or sets the unit used by this coordinate system.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeographicCoordinateSystem">
+      <summary>
+            A <see cref="T:C1.FlexMap.ICoordinateSystem" /> implementation for the geographic coordinate system.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeographicCoordinateSystem.IsParallelCurved">
+      <summary>
+            Indicates whether the parallel lines are curved.
+            </summary>
+      <remarks>
+            true if the parallel lines are curved; otherwise, false.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexMap.GeographicCoordinateSystem.IsMeridianCurved">
+      <summary>
+            Indicates whether the meridian lines are curved.
+            </summary>
+      <returns>
+            true if the meridian lines are curved; otherwise, false.
+            </returns>
+    </member>
+    <member name="M:C1.FlexMap.GeographicCoordinateSystem.Project(C1.Win.Interop.Point)">
+      <summary>
+            Projects a geographic coordinate to logical coordinate.
+            </summary>
+      <param name="longLat">The geographic coordinate to project.</param>
+      <returns>The logical coordinate corresponding to the geographic coordinate.</returns>
+    </member>
+    <member name="M:C1.FlexMap.GeographicCoordinateSystem.Unproject(C1.Win.Interop.Point)">
+      <summary>
+            Inverse of <see cref="M:C1.FlexMap.GeographicCoordinateSystem.Project(C1.Win.Interop.Point)" />. Unprojects a logical coordinate to a geographic coordinate.
+            </summary>
+      <param name="point">The logical coordinate to apply the inverse projection.</param>
+      <returns>The geographic coordinate corresponding to the logical coordinate.</returns>
+    </member>
+    <member name="M:C1.FlexMap.GeographicCoordinateSystem.Distance(C1.Win.Interop.Point,C1.Win.Interop.Point)">
+      <summary>
+            Returns the distance, in meters, between two geographic coordinates.
+            </summary>
+      <param name="longLat1">The first geographic coordinate.</param>
+      <param name="longLat2">The second geographic coordinate.</param>
+      <returns>The distance, in meters, between the two geographic coordinates.</returns>
+    </member>
+    <member name="E:C1.FlexMap.GeographicCoordinateSystem.ValueChanged">
+      <summary>
+            Occurs when the <see cref="P:C1.FlexMap.GeographicCoordinateSystem.Projection" /> property is changed.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeographicCoordinateSystem.Projection">
+      <summary>
+            Gets or sets the <see cref="T:C1.FlexMap.IMapProjection" /> used for this coordinate system.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeographicCoordinateSystem.LimitBounds">
+      <summary>
+            Gets the limit bounds that this coordinate system supports.
+            </summary>
+      <remarks>
+            Returns the bounds of longitude from -180 to 180 and latitude from -90 to 90.
+            </remarks>
+    </member>
+    <member name="T:C1.FlexMap.IMapUnit">
+      <summary>
+            Represents the unit used by <see cref="T:C1.FlexMap.CartesianCoordinateSystem" />.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IMapUnit.Name">
+      <summary>
+            Gets the full name of the unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IMapUnit.Abbreviation">
+      <summary>
+            Gets the abbreviation name of the unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IMapUnit.MetersPerUnit">
+      <summary>
+            Gets the number of meters per unit.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapUnit">
+      <summary>
+            Represents a unit used by <see cref="T:C1.FlexMap.CartesianCoordinateSystem" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.MapUnit.#ctor(System.String,System.String,System.Double)">
+      <summary>
+            Creates a new instance of <see cref="T:C1.FlexMap.MapUnit" />.
+            </summary>
+      <param name="name">The full name of the unit.</param>
+      <param name="abbr">The abbreviation name of the unit.</param>
+      <param name="metersPerUnit">The number of meters per unit.</param>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Millimeter">
+      <summary>
+            The millimeter (mm) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Centimeter">
+      <summary>
+            The centimeter (cm) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Decimeter">
+      <summary>
+            The decimeter (dm) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Meter">
+      <summary>
+            The meter (m) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Kilometer">
+      <summary>
+            The kilometer (km) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Inch">
+      <summary>
+            The inch (in) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Foot">
+      <summary>
+            The foot (ft) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Yard">
+      <summary>
+            The yard (yd) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Fath">
+      <summary>
+            The fath (fa) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Furlong">
+      <summary>
+            The furlong (fu) unit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapUnit.Mile">
+      <summary>
+            The mile (mi) unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapUnit.Name">
+      <summary>
+            Gets the full name of the unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapUnit.Abbreviation">
+      <summary>
+            Gets the abbreviation name of the unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapUnit.MetersPerUnit">
+      <summary>
+            Gets the number of meters per unit.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MercatorProjection">
+      <summary>
+            A <see cref="T:C1.FlexMap.IMapProjection" /> implementation for the Mercator projection.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.MercatorProjection.#ctor">
+      <summary>
+            Initializes a new <see cref="T:C1.FlexMap.MercatorProjection" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.MercatorProjection.#ctor(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Initializes a new <see cref="T:C1.FlexMap.MercatorProjection" />.
+            </summary>
+      <param name="scaleX">Scale applied to the x coordinate after the projection.</param>
+      <param name="scaleY">Scale applied to the y coordinate after the projection.</param>
+      <param name="offsetX">Offset added to the x coordinate after the projection and after scaling.</param>
+      <param name="offsetY">Offset added to the y coordinate after the projection and after scaling.</param>
+    </member>
+    <member name="M:C1.FlexMap.MercatorProjection.IsParallelCurved">
+      <summary>
+            Indicates whether the parallel lines are curved.
+            </summary>
+      <remarks>
+            true if the parallel lines are curved; otherwise, false.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexMap.MercatorProjection.IsMeridianCurved">
+      <summary>
+            Indicates whether the meridian lines are curved.
+            </summary>
+      <returns>
+            true if the meridian lines are curved; otherwise, false.
+            </returns>
+    </member>
+    <member name="M:C1.FlexMap.MercatorProjection.Project(C1.Win.Interop.Point)">
+      <summary>
+            Projects a geographic coordinate to logical coordinate.
+            </summary>
+      <param name="longLat">The geographic coordinate to project.</param>
+      <returns>The logical coordinate corresponding to the geographic coordinate.</returns>
+    </member>
+    <member name="M:C1.FlexMap.MercatorProjection.Unproject(C1.Win.Interop.Point)">
+      <summary>
+            Inverse of <see cref="M:C1.FlexMap.MercatorProjection.Project(C1.Win.Interop.Point)" />. Unprojects a logical coordinate to a geographic coordinate.
+            </summary>
+      <param name="point">The logical coordinate to apply the inverse projection.</param>
+      <returns>The geographic coordinate corresponding to the logical coordinate.</returns>
+    </member>
+    <member name="T:C1.FlexMap.DistanceScale">
+      <summary>
+            Internal used. Represents the distance scale settings for the map.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.DistanceScale.UpdateScale">
+      <summary>
+            Update the distance scale value.
+            </summary>
+      <remarks>
+            The scale value is affect by map's <see cref="P:C1.FlexMap.C1FlexMap.Center" />, 
+            <see cref="P:C1.FlexMap.C1FlexMap.Zoom" />, <see cref="P:C1.FlexMap.C1FlexMap.ViewportBounds" />, 
+            and <see cref="P:C1.FlexMap.C1FlexMap.CoordinateSystem" />.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.DistanceScale.MinPixels">
+      <summary>
+            Gets or sets the minimum pixels length for the distance scale.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.DistanceScale.MaxPixels">
+      <summary>
+            Gets or sets the maximum pixels length for the distance scale.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.DistanceScale.MetricPixels">
+      <summary>
+            Gets the scale pixels length in metric unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.DistanceScale.ImperialPixels">
+      <summary>
+            Gets the scale pixels length in imperial unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.DistanceScale.MetricLabel">
+      <summary>
+            Gets the scale label in metric unit.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.DistanceScale.ImperialLabel">
+      <summary>
+            Gets the scale label in imperial unit.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoGeometryRecordFieldType">
+      <summary>
+            Specifies the data type of the field.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.String">
+      <summary>
+            Fields values are String.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.Boolean">
+      <summary>
+            Field values are Boolean.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.DateTime">
+      <summary>
+            Fields values are DateTime.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.Integer">
+      <summary>
+            Fields values are Integer.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.Long">
+      <summary>
+            Fields values are Long.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.Float">
+      <summary>
+            Fields values are Float.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.Double">
+      <summary>
+            Fields values are Double.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryRecordFieldType.Decimal">
+      <summary>
+            Fields values are Decimal.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoGeometryRecord">
+      <summary>
+            Represents a record contains geospatial data.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoGeometryRecord.#ctor(C1.FlexMap.GeoGeometry,C1.FlexMap.IGeoGeometryRecordData)">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.FlexMap.GeoGeometryRecord" /> object.
+            </summary>
+      <param name="geometry">The geospatial data.</param>
+      <param name="data">The attributes data.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometryRecord.Geometry">
+      <summary>
+            Gets or sets the geospatial data.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometryRecord.Data">
+      <summary>
+            Gets or sets the attributes data.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.IGeoGeometryRecordData">
+      <summary>
+            Represents the attribute data.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IGeoGeometryRecordData.Item(System.String)">
+      <summary>
+            Gets the attribute value with the specified name.
+            </summary>
+      <param name="name">The name of the attribute.</param>
+      <returns>The value of the attribute  with the give name.</returns>
+    </member>
+    <member name="P:C1.FlexMap.IGeoGeometryRecordData.Fields">
+      <summary>
+            Gets a collection of attribute fields.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.IGeoGeometryRecordField">
+      <summary>
+            Represents the attribute field.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IGeoGeometryRecordField.Name">
+      <summary>
+            Gets the name of the field.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IGeoGeometryRecordField.Type">
+      <summary>
+            Gets the data type of the field.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoRssReader">
+      <summary>
+            Represents the reader to read GeoRss data file.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoRssReader.Read(System.IO.Stream)">
+      <summary>
+            Read GeoRSS data from the specified stream.
+            </summary>
+      <param name="stream">Stream with GeoRSS data.</param>
+      <returns>The collection of geometry records.</returns>
+    </member>
+    <member name="T:C1.FlexMap.KmlReader">
+      <summary>
+            Contains methods for importing KML and KMZ files.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.KmlReader.ItemName">
+      <summary>
+            The record attribute name for item name.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.KmlReader.StyleFillColor">
+      <summary>
+            The record attribute name for fill color style.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.KmlReader.StyleStrokeColor">
+      <summary>
+            The record attribute name for stroke color style.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.KmlReader.Read(System.IO.Stream)">
+      <summary>
+            Reads spatial data from kml stream.
+            </summary>
+      <param name="stream">Stream that contains KML data.</param>
+      <returns>The collection of geometry records.</returns>
+      <remarks>
+            The record data contains the following attributes.
+            <list type="bullet"><item>name: the item name.</item><item>style-fillcolor: the fill color style with format "aabbggrr".</item><item>style-strokecolor: the stroke color style with format "aabbggrr".</item><item>&lt;SimpleField-Name&gt;: the attribute defined in &lt;SimpleField&gt; node.</item></list></remarks>
+    </member>
+    <member name="T:C1.FlexMap.ShapeReader">
+      <summary>
+            Provides parsing capabilities for ESRI shapefile format.
+            http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.ShapeReader.Read(System.IO.Stream,System.IO.Stream)">
+      <summary>
+            Reads spatial data from ESRI shape stream.
+            </summary>
+      <param name="shpStream">The geospatial data at raw ESRI shapefile representation.</param>
+      <param name="dbfStream">The columnar attributes for each shape, in dBase IV format.</param>
+      <returns>The collection of geometry records.</returns>
+      <remarks>
+            The record data contains the attributes from the corresponding ".dbf" file.
+            </remarks>
+    </member>
+    <member name="T:C1.FlexMap.WkCoder">
+      <summary>
+            Provides parsing capabilities for WellKnownBinary format.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.FromString(System.String)">
+      <summary>
+            Converts the provided string to geometry shape.
+            </summary>
+      <param name="shapeString">The string representation of the geometry shape.</param>
+      <returns>Parsed geometry shape.</returns>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.ToString(C1.FlexMap.GeoGeometry)">
+      <summary>
+            Converts the provided geometry shape into string representation.
+            </summary>
+      <param name="shape">The geometry shape.</param>
+      <returns>The string representation for the geometry shape.</returns>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.ToString(C1.FlexMap.GeoGeometry,System.String)">
+      <summary>
+            Converts the provided geometry shape into string representation.
+            </summary>
+      <param name="shape">The geometry shape.</param>
+      <param name="format">The format string to apply to point values.</param>
+      <returns>The string representation for the geometry shape.</returns>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.FromByteArray(System.Byte[])">
+      <summary>
+            Converts the provided WKB binary data to geometry shape.
+            </summary>
+      <param name="wkb">The WKB binary data.</param>
+      <returns>Parsed geometry shape.</returns>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.FromBase64String(System.String)">
+      <summary>
+            Converts the provided WKB base64 string encoded data to geometry shape.
+            </summary>
+      <param name="wkb">The WKB base64 encoded data.</param>
+      <returns>Parsed geometry shape.</returns>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.ToByteArray(C1.FlexMap.GeoGeometry,C1.FlexMap.WkCoder.WkbByteOrder)">
+      <summary>
+            Converts the provided geometry shape to WKB byte array.
+            </summary>
+      <param name="shape">The geometry shape.</param>
+      <param name="byteOrder">The byte order.</param>
+      <returns>Byte array with encoded data.</returns>
+    </member>
+    <member name="M:C1.FlexMap.WkCoder.ToBase64String(C1.FlexMap.GeoGeometry,C1.FlexMap.WkCoder.WkbByteOrder)">
+      <summary>
+            Converts the provided geometry shape to WKB base64 encoded string.
+            </summary>
+      <param name="shape">The geometry shape.</param>
+      <param name="byteOrder">The byteOrder.</param>
+      <returns>Base64 encoded string with encoded data.</returns>
+    </member>
+    <member name="T:C1.FlexMap.WkCoder.WkbByteOrder">
+      <summary>
+            Indicates the byte order of the WKB byte array data.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.WkCoder.WkbByteOrder.BigEndian">
+      <summary>
+            Most significant byte is on the left end of a word.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.WkCoder.WkbByteOrder.LittleEndian">
+      <summary>
+            Most significant byte is on the right end of a word.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoCurve">
+      <summary>
+            Represents the base type for geospatial curve.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoGeometry">
+      <summary>
+            Represents the base class of geospatial geometries.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.Type">
+      <summary>
+            Gets the geometry type.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.IsEmpty">
+      <summary>
+            Returns the value indicating whether the geometry is empty geometry.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.Is3D">
+      <summary>
+            Returns <c>true</c> if the geometry has z-coordinate values.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.IsMeasured">
+      <summary>
+            Returns <c>true</c> if the geometry has m-coordinate values.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.PointsCount">
+      <summary>
+            Returns the number of points used in a geometry.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.Center">
+      <summary>
+            Gets the centroid of the geometry.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometry.Bounds">
+      <summary>
+            Returns the bounds of the geometry.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoGeometryType">
+      <summary>
+            Specifies the type of the geometry according to OGC Simple Access specification.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Geometry">
+      <summary>
+            Common geometry.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Point">
+      <summary>
+            0-dimensional geometric object and represents a single location in coordinate space.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.LineString">
+      <summary>
+            Curve with linear interpolation between Points.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Polygon">
+      <summary>
+            Planar Surface defined by 1 exterior boundary and 0 or more interior boundaries.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.MultiPoint">
+      <summary>
+            0-dimensional GeometryCollection.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.MultiLineString">
+      <summary>
+            MultiCurve whose elements are LineStrings.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.MultiPolygon">
+      <summary>
+            MultiSurface whose elements are Polygons.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.GeometryCollection">
+      <summary>
+            Geometric object that is a collection of some number of geometric objects.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.CircularString">
+      <summary>
+            Reserved.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.CompoundCurve">
+      <summary>
+            Reserved.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.CurvePolygon">
+      <summary>
+            Reserved.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.MultiCurve">
+      <summary>
+            1-dimensional GeometryCollection whose elements are Curves.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.MultiSurface">
+      <summary>
+            2-dimensional GeometryCollection whose elements are Surfaces.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Curve">
+      <summary>
+            1-dimensional geometric object usually stored as a sequence of Points.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Surface">
+      <summary>
+            2-dimensional geometric object.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.PolyhedralSurface">
+      <summary>
+            Contiguous collection of Polygons, which share common boundary segments.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Tin">
+      <summary>
+            Contiguous collection of Triangles, which share common boundary segments.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.GeoGeometryType.Triangle">
+      <summary>
+            Special tringle Polygon.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoGeometryCollection">
+      <summary>
+            Represents the collection of geospatial geometries.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoGeometryCollection.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoGeometry})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoGeometryCollection" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoGeometryCollection.Geometries">
+      <summary>
+            Gets the inner geometries.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoLine">
+      <summary>
+            Represents the geospatial line.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoLineString">
+      <summary>
+            Represents the geospatial line.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoLineString.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPoint})">
+      <summary>
+            Initializes new instance of <see cref="T:C1.FlexMap.GeoLineString" />.
+            </summary>
+      <param name="points">The line points.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoLineString.Points">
+      <summary>
+            Gets the line points.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoLine.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPoint})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoLine" /> class.
+            </summary>
+      <param name="points">The points.</param>
+    </member>
+    <member name="T:C1.FlexMap.GeoLinearRing">
+      <summary>
+            Represents the geospatial ring for the line.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoLinearRing.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPoint})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoLinearRing" /> class.
+            </summary>
+      <param name="points">The points.</param>
+    </member>
+    <member name="T:C1.FlexMap.GeoMultiCurve">
+      <summary>
+            Represents the multi geospatial curve.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoMultiCurve.Curves">
+      <summary>
+            Gets the curve geometries.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoMultiLineString">
+      <summary>
+            Represents the multi geospatial line.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoMultiLineString.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoLineString})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoMultiLineString" /> class.
+            </summary>
+      <param name="lines">The line string.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoMultiLineString.Lines">
+      <summary>
+            Gets the line geometries.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoMultiPoint">
+      <summary>
+            Represents the geospatial multi point.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoMultiPoint.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPoint})">
+      <summary>
+            Initializes new instance of <see cref="T:C1.FlexMap.GeoMultiPoint" />.
+            </summary>
+      <param name="points">The inner points.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoMultiPoint.Points">
+      <summary>
+            Gets the inner points geometies.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoMultiPolygon">
+      <summary>
+            Represents the multi geospatial polygon.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoMultiSurface">
+      <summary>
+            Represents the multi geospatial surface.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoMultiSurface.Surfaces">
+      <summary>
+            Gets the surface geometries.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoMultiPolygon.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPolygon})">
+      <summary>
+            Initializes new instance of <see cref="T:C1.FlexMap.GeoMultiPolygon" />.
+            </summary>
+      <param name="polygons">The inner polygon geometries.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoMultiPolygon.Polygons">
+      <summary>
+            Gets the inner polygon geometries.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoPoint">
+      <summary>
+            Represents the geospatial point.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoPoint.#ctor(System.Double,System.Double)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoPoint" /> class.
+            </summary>
+      <param name="x">The x-coordinate.</param>
+      <param name="y">The y-coordinate.</param>
+    </member>
+    <member name="M:C1.FlexMap.GeoPoint.#ctor(System.Double,System.Double,System.Nullable{System.Double},System.Nullable{System.Double})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoPoint" /> class.
+            </summary>
+      <param name="x">The x-coordinate.</param>
+      <param name="y">The y-coordinate.</param>
+      <param name="z">The z-coordinate.</param>
+      <param name="m">The m-coordinate.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoPoint.X">
+      <summary>
+            Gets or sets the x-coordinate.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoPoint.Y">
+      <summary>
+            Gets or sets the y-coordinate.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoPoint.Location">
+      <summary>
+            Gets the x and y coordintes.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoPoint.Z">
+      <summary>
+            Gets or sets the z-coordinate.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.GeoPoint.M">
+      <summary>
+            Gets or sets the m-coordinate.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoPolygon">
+      <summary>
+            Represents the geospatial polygon.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoSurface">
+      <summary>
+            Represents the base class for geospatial surface.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoPolygon.#ctor(C1.FlexMap.GeoGeometryType,System.Collections.Generic.IEnumerable{C1.FlexMap.GeoLinearRing})">
+      <summary>
+            Initializes new instance of <see cref="T:C1.FlexMap.GeoPolygon" />.
+            </summary>
+      <param name="type">The polygon geometry type.</param>
+      <param name="rings">The polygon rings.</param>
+    </member>
+    <member name="M:C1.FlexMap.GeoPolygon.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoLinearRing})">
+      <summary>
+            Initializes new instance of <see cref="T:C1.FlexMap.GeoPolygon" />.
+            </summary>
+      <param name="rings">The polygon rings.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoPolygon.Rings">
+      <summary>
+            Gets the polygon rings.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoPolyhedralSurface">
+      <summary>
+            Represents the geospatial polyhedral surface.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoPolyhedralSurface.#ctor(C1.FlexMap.GeoGeometryType,System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPolygon})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoPolyhedralSurface" /> class.
+            </summary>
+      <param name="type">The type.</param>
+      <param name="polygons">The polygons.</param>
+    </member>
+    <member name="M:C1.FlexMap.GeoPolyhedralSurface.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoPolygon})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoPolyhedralSurface" /> class.
+            </summary>
+      <param name="polygons">The polygons.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoPolyhedralSurface.Polygons">
+      <summary>
+            Gets the surface polygons.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoTin">
+      <summary>
+            Represents the geospatial triangulated irregular network.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoTin.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoTriangle})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.FlexMap.GeoTin" /> class.
+            </summary>
+      <param name="triangles">The triangles.</param>
+    </member>
+    <member name="P:C1.FlexMap.GeoTin.Triangles">
+      <summary>
+            Gets the tin triangles.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.GeoTriangle">
+      <summary>
+            Represents the geospatial triangle shape.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.GeoTriangle.#ctor(System.Collections.Generic.IEnumerable{C1.FlexMap.GeoLinearRing})">
+      <summary>
+            Initializes new instance of <see cref="T:C1.FlexMap.GeoTriangle" />.
+            </summary>
+      <param name="rings">The triangle rings.</param>
+    </member>
+    <member name="T:C1.FlexMap.IMapLayer">
+      <summary>
+            Internal used. Represents a layer that will be added to a <see cref="T:C1.FlexMap.C1FlexMap" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.IMapLayer.HitTest(C1.FlexMap.IMapDevice,C1.Win.Interop.Point)">
+      <summary>
+            Returns information about the layer at a specified point.
+            </summary>
+      <param name="device">The map device used to render the map.</param>
+      <param name="point">The point being tested, in pixels.</param>
+      <returns>A <see cref="T:C1.FlexMap.HitTestInfo" /> object contains info about the point.</returns>
+    </member>
+    <member name="P:C1.FlexMap.IMapLayer.ParentMap">
+      <summary>
+            Gets the parent <see cref="T:C1.FlexMap.C1FlexMap" /> for this layer.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IMapLayer.Lod">
+      <summary>
+            Gets or sets the level of details of this layer.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IMapLayer.Visible">
+      <summary>
+            Gets or sets the visibility of this layer.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.IMapLayer.Tag">
+      <summary>
+            Gets or sets arbitrary user-defined data.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapLegend">
+      <summary>
+            Internal used. Represents a map legend.
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:C1.FlexMap.MapLegend.Measure(C1.FlexMap.IMapDevice,C1.Win.Interop.Size)" -->
+    <member name="M:C1.FlexMap.MapLegend.Render(C1.FlexMap.IMapDevice,C1.Win.Interop.Rect)">
+      <summary>
+            Render this legend to the specified device.
+            </summary>
+      <param name="device">The map device used to render the legend.</param>
+      <param name="bounds">The bounding rectangle to render the legend.</param>
+    </member>
+    <member name="M:C1.FlexMap.MapLegend.SetFullRepaint">
+      <summary>
+            Sets the legend needs full repaint on the next rendering.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegend.Visible">
+      <summary>
+            Gets or sets the visibility of the legend.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegend.Layout">
+      <summary>
+            Gets or sets the arrangement of legend items within the legend.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegend.Items">
+      <summary>
+            Gets the collection of legend items.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapLegendItem">
+      <summary>
+            Internal used. Represents the legend item displayed in the map legend.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegendItem.Kind">
+      <summary>
+            Gets or sets the kind of the legend item.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegendItem.Label">
+      <summary>
+            Gets or sets the caption of the legend item.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegendItem.Marker">
+      <summary>
+            Gets or sets the marker definition for this legend item.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLegendItem.Style">
+      <summary>
+            Gets or sets the style definition for this legend item.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapLegendItemKind">
+      <summary>
+            Specifies the kind of marker of the legend item.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendItemKind.None">
+      <summary>
+            Has no marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendItemKind.Marker">
+      <summary>
+            Display a marker which is defined by marker shape.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendItemKind.Line">
+      <summary>
+            Display a line.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendItemKind.Rectangle">
+      <summary>
+            Display a rectangle wich background.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapLegendLayout">
+      <summary>
+            Specifies the arrangement of legend items within the legend.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendLayout.AutoTable">
+      <summary>
+            Auto arrange items to fit.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendLayout.Column">
+      <summary>
+            Arrange items in a column.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendLayout.Row">
+      <summary>
+            Arrange items in a row.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendLayout.WideTable">
+      <summary>
+            Arrange items in a wide table.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MapLegendLayout.TallTable">
+      <summary>
+            Arrange items in a tall table.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.LOD">
+      <summary>
+            The LOD (Level Of Detail) structure associates element visibility 
+            with the map scale (zoom and size).
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.LOD.#ctor(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Initializes a new instance of an <see cref="T:C1.FlexMap.LOD" /> structure.
+            </summary>
+      <param name="minSize">The minimum pixel size.</param>
+      <param name="maxSize">The maximum pixel size.</param>
+      <param name="minZoom">The minimum zoom.</param>
+      <param name="maxZoom">The maximum zoom.</param>
+    </member>
+    <member name="P:C1.FlexMap.LOD.MinSize">
+      <summary>
+            When the pixel size of element is less than MinSize the element is not visible.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.LOD.MaxSize">
+      <summary>
+            When the pixel size of element is greater than MaxSize the element is not visible.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.LOD.MinZoom">
+      <summary>
+            When the map zoom is less than MinZoom the element is not visible.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.LOD.MaxZoom">
+      <summary>
+            When the map zoom is greater than MaxZoom the element is not visible.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapLayer">
+      <summary>
+            Internal used. Represents a layer that will be added to a <see cref="T:C1.FlexMap.C1FlexMap" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.MapLayer.HitTest(C1.FlexMap.IMapDevice,C1.Win.Interop.Point)">
+      <summary>
+            Returns information about the layer at a specified point.
+            </summary>
+      <param name="device">The map device used to render the map.</param>
+      <param name="point">The point being tested, in pixels.</param>
+      <returns>A <see cref="T:C1.FlexMap.HitTestInfo" /> object contains info about the point.</returns>
+    </member>
+    <member name="P:C1.FlexMap.MapLayer.ParentMap">
+      <summary>
+            Gets the parent <see cref="T:C1.FlexMap.C1FlexMap" /> for this layer.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLayer.Lod">
+      <summary>
+            Gets or sets the level of details of this layer.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLayer.Visible">
+      <summary>
+            Gets or sets the visibility of this layer.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapLayer.Tag">
+      <summary>
+            Gets or sets arbitrary user-defined data.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.IMapDevice">
+      <summary>
+            Internal used. Repsents the device used to rendering the <see cref="T:C1.FlexMap.C1FlexMap" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.CanScaleOnZooming(C1.FlexMap.VectorLayer)">
+      <summary>
+            Whether can scale the vector layer on zooming.
+            </summary>
+      <param name="layer">The vector layer on rendering.</param>
+      <returns>true if can scale the layer on zooming; otherwise, false.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.ShouldRemoveLabelsOnZooming(C1.FlexMap.VectorLayer)">
+      <summary>
+            Whether should remove the vector layer labels on zooming.
+            </summary>
+      <param name="layer">The vector layer on rendering.</param>
+      <returns>true if should remove vector layer labels on zooming; otherise, false.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RemoveLabels(C1.FlexMap.VectorLayer)">
+      <summary>
+            Remove the labels from the layer.
+            </summary>
+      <param name="layer">The vector layer on rendering.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.SetLimitClip(C1.Win.Interop.Rect)">
+      <summary>
+            Set the clip when the limitation bounds is set.
+            </summary>
+      <param name="clip">The clipping rectangle, in pixels, for limitation bounds.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.SetLimitClip(System.Collections.Generic.IEnumerable{C1.Win.Interop.Point})">
+      <summary>
+            Set the clip when the limitation bounds is set.
+            </summary>
+      <param name="points">The sequence of points, in pixels, for limitation bounds.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.ResetMap(C1.FlexMap.C1FlexMap)">
+      <summary>
+            Invoked when the map status is reset.
+            </summary>
+      <param name="map">The map to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.ResetLayer(C1.FlexMap.IMapLayer)">
+      <summary>
+            Invoked when the layer status is reset.
+            </summary>
+      <param name="layer">The layer to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.SetLayerTransformation(C1.FlexMap.IMapLayer,System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Sets the transformation of the map layer.
+            </summary>
+      <param name="layer">The layer to be rendered.</param>
+      <param name="scaleX">The scale in horizontal.</param>
+      <param name="scaleY">The scale in vertical.</param>
+      <param name="offsetX">The offset in horizontal.</param>
+      <param name="offsetY">The offset in vertical.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.SetLayerVisible(C1.FlexMap.IMapLayer,System.Boolean)">
+      <summary>
+            Sets the visibility of the map layer.
+            </summary>
+      <param name="layer">The layer to be rendered.</param>
+      <param name="visible">The visibility of the layer.</param>
+      <remarks>
+            The visibility of the layer is affect by <see cref="P:C1.FlexMap.IMapLayer.Visible" /> 
+            and <see cref="P:C1.FlexMap.IMapLayer.Lod" />.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.BeforeRenderMap(C1.FlexMap.C1FlexMap)">
+      <summary>
+            Invoked before rendering a map.
+            </summary>
+      <param name="map">The map to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.AfterRenderMap(C1.FlexMap.C1FlexMap)">
+      <summary>
+            Invoked after renndering a map.
+            </summary>
+      <param name="map">The map to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.BeforeRenderLayer(C1.FlexMap.IMapLayer)">
+      <summary>
+            Invoked before rendering a map layer.
+            </summary>
+      <param name="layer">The layer to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.AfterRenderLayer(C1.FlexMap.IMapLayer)">
+      <summary>
+            Invoked after rendering a map layer.
+            </summary>
+      <param name="layer">The layer to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.BeforeRenderVector(C1.FlexMap.VectorItem)">
+      <summary>
+            Invoked before rendering a vector item.
+            </summary>
+      <param name="item">The vector item to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.AfterRenderVector(C1.FlexMap.VectorItem)">
+      <summary>
+            Invoked after rendering a vector item.
+            </summary>
+      <param name="item">The vector item to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.BeforeRenderLegend(C1.FlexMap.MapLegend)">
+      <summary>
+            Invoked before rendering a map legend.
+            </summary>
+      <param name="legend">The map legend to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.AfterRenderLegend(C1.FlexMap.MapLegend)">
+      <summary>
+            Invoked after rendering a map legend.
+            </summary>
+      <param name="legend">The map legennd to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RenderTiles(System.Collections.Generic.IList{C1.FlexMap.TileItem})">
+      <summary>
+            Renders the tile items.
+            </summary>
+      <param name="tiles">The list of tile items which are visible in the viewport.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RenderPolygon(C1.FlexMap.VectorPolygon)">
+      <summary>
+            Renders the polygon element.
+            </summary>
+      <param name="vectorPolygon">The polygon element to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RenderPolyline(C1.FlexMap.VectorPolyline)">
+      <summary>
+            Renders the polyline element.
+            </summary>
+      <param name="vectorPolyline">The polyline element to be rendered.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RenderPlacemarkMarker(C1.FlexMap.VectorPlacemark,System.Int32)">
+      <summary>
+            Renders the marker of the placemark element.
+            </summary>
+      <param name="vectorPlacemark">The placemark element to be rendered.</param>
+      <param name="pointIndex">The index of the point to render.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RenderPlacemarkLabel(C1.FlexMap.VectorPlacemark,System.Int32)">
+      <summary>
+            Renders the label of the placemark element.
+            </summary>
+      <param name="vectorPlacemark">The placemark element to be rendered.</param>
+      <param name="pointIndex">The index of the point to render.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.RenderLegendMarker(C1.FlexMap.MapLegendItem,C1.Win.Interop.Rect)">
+      <summary>
+            Renders the marker of the legend item.
+            </summary>
+      <param name="legendItem">The legend item to be rendered.</param>
+      <param name="bounds">The bounds to render the marker.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.DrawString(System.String,C1.FlexMap.IMapStyle,C1.Win.Interop.Rect)">
+      <summary>
+            Draws the string in the specified rectangle with specified style.
+            </summary>
+      <param name="s">The string to draw.</param>
+      <param name="style">The style used to draw the string.</param>
+      <param name="bounds">The bounds to draw the string.</param>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.GetPlacemarkShapeBounds(C1.FlexMap.VectorPlacemark,C1.Win.Interop.Rect)">
+      <summary>
+            Gets the bounds of marker shape of the placemark element.
+            </summary>
+      <param name="vectorPlacemark">The placemark element to be rendered.</param>
+      <param name="markerBounds">The bounds of the marker.</param>
+      <returns>The bounds of the marker shape.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.GetPlacemarkLabelSize(C1.FlexMap.VectorPlacemark)">
+      <summary>
+            Gets the label size of the placemark element.
+            </summary>
+      <param name="vectorPlacemark">The placemark element to be rendered.</param>
+      <returns>The pixels size of the placemark.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.GetLegendMarkerSize(C1.FlexMap.MapLegendItem)">
+      <summary>
+            Gets the size of the marker of the legend item.
+            </summary>
+      <param name="legendItem">The legend item to be rendered.</param>
+      <returns>The pixels size of the marker of the legend item.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.MeasureString(System.String,System.Double,C1.FlexMap.IMapStyle)">
+      <summary>
+            Gets the size of the string.
+            </summary>
+      <param name="text">The string to be measured.</param>
+      <param name="width">The maxinum width.</param>
+      <param name="style">The style used to measure.</param>
+      <returns>The pixels size the the content, using the specified style.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.GetPolylineWidth(C1.FlexMap.VectorPolyline)">
+      <summary>
+            Gets the width of the polyline.
+            </summary>
+      <param name="polyline">The polyline element.</param>
+      <returns>The width of the polyline in pixels.</returns>
+    </member>
+    <member name="M:C1.FlexMap.IMapDevice.HitTestPlacemark(C1.FlexMap.VectorPlacemark,C1.Win.Interop.Point)">
+      <summary>
+            Tests whether a point is hit on the placemark.
+            </summary>
+      <param name="placemark">The placemark to be tested.</param>
+      <param name="point">The point being tested, in pixels.</param>
+      <returns>True if the point is hitted on the placemark; otherwise, false.</returns>
+    </member>
+    <member name="P:C1.FlexMap.IMapDevice.IsZooming">
+      <summary>
+            Whether the map is under scaling.
+            </summary>
+      <remarks>
+            The current zoom is a transitional value. It will be changed to target zoom later.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.IMapDevice.IsCentering">
+      <summary>
+            Whether the map is under translating.
+            </summary>
+      <remarks>
+            The current center is a transitional value. It will be changd to target center later.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.IMapDevice.RightToLeft">
+      <summary>
+            Gets or sets a value indicating whether right-to-left mirror placement is turned on.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.TileItem">
+      <summary>
+            Internal used. Represents the tile item for one tile image.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.TileItem.ToWorldPos">
+      <summary>
+            Gets tile's center longitude and latitude.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.FlexMap.TileItem.ToQuadKey">
+      <summary>
+            Calculates the quad key (unique identifier) for provided x, y and level of detail values.
+            </summary>
+      <returns>Quad key.</returns>
+    </member>
+    <member name="P:C1.FlexMap.TileItem.Col">
+      <summary>
+            Gets the column index of the tile.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.TileItem.Row">
+      <summary>
+            Gets the row index  of the tile.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.TileItem.Bounds">
+      <summary>
+            Gets the bounds (in screen coordinates) of the tile.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.TileItem.ZoomLevel">
+      <summary>
+            Gets the base zoom level of this tile.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.TileItem.Uri">
+      <summary>
+            Gets the uri of this tile.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.TileItem.Image">
+      <summary>
+            Gets the image of this tile.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.ITileSource">
+      <summary>
+            Represents the tile source for the <see cref="T:C1.FlexMap.TileLayer" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.ITileSource.GetTile(System.Int32,System.Int32,System.Int32,System.String@,System.Object@)">
+      <summary>
+            Gets the uri for the specified tile.
+            </summary>
+      <param name="level">The zoom level of the tile.</param>
+      <param name="x">The row index of the tile.</param>
+      <param name="y">The column index of the tile.</param>
+      <param name="uri">The uri of the tile.</param>
+      <param name="image">The image of the tile. The uri is ignored if the tile image is returned.</param>
+    </member>
+    <member name="P:C1.FlexMap.ITileSource.TileWidth">
+      <summary>
+            The pixels width of the tile image.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.ITileSource.TileHeight">
+      <summary>
+            The pixels height of the tile image.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.TileLayer">
+      <summary>
+            Internal used. Represents a map layer to show the tile images.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.TileLayer.#ctor(C1.FlexMap.C1FlexMap)">
+      <summary>
+            Initializes a new intance of <see cref="T:C1.FlexMap.TileLayer" /> object.
+            </summary>
+      <param name="map">The parent map of this layer.</param>
+    </member>
+    <member name="P:C1.FlexMap.TileLayer.TileSource">
+      <summary>
+            Gets or sets the tile source for this <see cref="T:C1.FlexMap.TileLayer" />.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.LabelPosition">
+      <summary>
+            Specifies label position relatively to the corresponding element.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelPosition.Center">
+      <summary>
+            Label is centered.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelPosition.Left">
+      <summary>
+            Label is at the left.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelPosition.Right">
+      <summary>
+            Label is at the right.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelPosition.Top">
+      <summary>
+            Label is at the top. 
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelPosition.Bottom">
+      <summary>
+            Label is at the bottom.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.LabelVisibility">
+      <summary>
+            Specifies label visibility.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelVisibility.AutoHide">
+      <summary>
+            Overlapped labels are automatically hidden.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelVisibility.Hidden">
+      <summary>
+            Labels are not visible.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.LabelVisibility.Visible">
+      <summary>
+            All labels are visible.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MapMarker">
+      <summary>
+            Internal used. Represents the marker of the placemark element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapMarker.Size">
+      <summary>
+            Gets or sets the size of the marker.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapMarker.MarkerShape">
+      <summary>
+            Gets or sets the shape style of the marker.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.MapMarker.CustomShape">
+      <summary>
+            Gets or sets the custom shape style of the marker.
+            </summary>
+      <remarks>
+            Available when <see cref="P:C1.FlexMap.MapMarker.MarkerShape" /> is <see cref="F:C1.FlexMap.MarkerShape.Custom" />.
+            </remarks>
+    </member>
+    <member name="T:C1.FlexMap.IMapStyle">
+      <summary>
+            Internal used. Represents the style of the vector element.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.MarkerShape">
+      <summary>
+            Specifies the shape of the placemark marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.None">
+      <summary>
+            No marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.Circle">
+      <summary>
+            A circle marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.Triangle">
+      <summary>
+            A triangle marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.Square">
+      <summary>
+            A trapezoid marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.Diamond">
+      <summary>
+            A diamond marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.Star">
+      <summary>
+            A star marker.
+            </summary>
+    </member>
+    <member name="F:C1.FlexMap.MarkerShape.Custom">
+      <summary>
+            A marker with custom defined element.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.VectorItem">
+      <summary>
+            Internal used. Represents the base of vector elements.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.VectorItem.GetBounds">
+      <summary>
+            Gets the bounds of this vector element, in the unit of <see cref="P:C1.FlexMap.C1FlexMap.CoordinateSystem" />.
+            </summary>
+      <returns>The bounds of this vector element.</returns>
+    </member>
+    <member name="M:C1.FlexMap.VectorItem.GetScreenBounds(C1.FlexMap.C1FlexMap)">
+      <summary>
+            Gets the bounds of this vector element, in the unit of screen (pixels).
+            </summary>
+      <param name="map">The <see cref="T:C1.FlexMap.C1FlexMap" /> which this vector element belongs to.</param>
+      <returns>The screen bounds of this vector element.</returns>
+    </member>
+    <member name="M:C1.FlexMap.VectorItem.GetScreenBounds">
+      <summary>
+            Gets the bounds of this vector element, in the unit of screen (pixels).
+            </summary>
+      <returns>The screen bounds of this vector element.</returns>
+    </member>
+    <member name="M:C1.FlexMap.VectorItem.SetScreenBounds(C1.Win.Interop.Rect)">
+      <summary>
+            Sets the bounds of this vectro element, in the unit of screen (pixels).
+            </summary>
+      <param name="bounds">The screen bounds of the vector element.</param>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Geometry">
+      <summary>
+            Gets or sets the geometry of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Style">
+      <summary>
+            Gets or sets the style of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Lod">
+      <summary>
+            Gets or sets the level of details of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Track">
+      <summary>
+            Gets or sets a value indicates whether should be used to auto center and zoom.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Opacity">
+      <summary>
+            Gets or sets the opacity of this vector element.
+            </summary>
+      <remarks>
+            Valid value is from 1 (opaque; default) to 0 (transparent).
+            </remarks>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Visible">
+      <summary>
+            Gets or sets the visibility of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorItem.Tag">
+      <summary>
+            Gets or sets arbitrary user-defined data.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.VectorLayer">
+      <summary>
+            Internal used. Represents a map layer to show vector elements.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.VectorLayer.#ctor(C1.FlexMap.C1FlexMap)">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.FlexMap.VectorLayer" /> object.
+            </summary>
+      <param name="map">The parent map of the layer.</param>
+    </member>
+    <member name="M:C1.FlexMap.VectorLayer.HitTest(C1.FlexMap.IMapDevice,C1.Win.Interop.Point)">
+      <summary>
+            Returns information about the layer at a specified point.
+            </summary>
+      <param name="device">The map device used to render the map.</param>
+      <param name="point">The point being tested, in pixels.</param>
+      <returns>A <see cref="T:C1.FlexMap.HitTestInfo" /> object contains info about the point.</returns>
+    </member>
+    <member name="P:C1.FlexMap.VectorLayer.Track">
+      <summary>
+            Gets or sets a value indicates whether should be used to auto center and zoom.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorLayer.Opacity">
+      <summary>
+            Gets or sets the opacity of the layer, from 1 (opaque; default) to 0 (transparent).
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorLayer.LabelVisibility">
+      <summary>
+            Gets or sets the visibility of the placemark labels.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorLayer.MinSize">
+      <summary>
+            Gets or sets the minimal size at which element becomes visible.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorLayer.Items">
+      <summary>
+            Gets the collection of vector elements.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.VectorPlacemark">
+      <summary>
+            Internal used. Represents the placemark vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.Label">
+      <summary>
+            Gets or sets the label object for this placemark.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.ShowLabel">
+      <summary>
+            Gets or sets whether show the label.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.LabelPosition">
+      <summary>
+            Gets or sets the label position relatively to the associated geographical coordinates 
+            which is specified by <see cref="P:C1.FlexMap.VectorItem.Geometry" /> property.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.LabelWidth">
+      <summary>
+            Gets or sets the maximum width of the label. Zero or negative value to auto width.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.LabelStyle">
+      <summary>
+            Gets or sets the style for label.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.Marker">
+      <summary>
+            Gets or sets the marker of this placemark.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPlacemark.Points">
+      <summary>
+            Gets the collection of points of the placemark, the location is in screen coordinates.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.VectorPoint">
+      <summary>
+            Internal used. Represents a visible point in the <see cref="T:C1.FlexMap.VectorPlacemark" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexMap.VectorPoint.#ctor(C1.Win.Interop.Point)">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.FlexMap.VectorPoint" /> object.
+            </summary>
+      <param name="location">The location of the point.</param>
+    </member>
+    <member name="P:C1.FlexMap.VectorPoint.Location">
+      <summary>
+            Gets or sets the loacation of the point.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPoint.LabelVisible">
+      <summary>
+            Gets or sets the dynamic visibility of the label.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPoint.LabelBounds">
+      <summary>
+            Gets or sets the bounds of the label.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPoint.MarkerBounds">
+      <summary>
+            Gets or sets bounds of the marker.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPoint.ShapeBounds">
+      <summary>
+            Gets or sets the bounds of the shape.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.VectorPolygon">
+      <summary>
+            Internal used. Represents the polygon vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPolygon.PolygonPoints">
+      <summary>
+            Gets the collection of vertex points of this polygon element, in screen coordinates.
+            </summary>
+    </member>
+    <member name="T:C1.FlexMap.VectorPolyline">
+      <summary>
+            Internal used. Represents the polyline vector element.
+            </summary>
+    </member>
+    <member name="P:C1.FlexMap.VectorPolyline.LinePoints">
+      <summary>
+            Gets the collection of vertex points of this polyline element, in screen coordinates.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.CustomShape">
+      <summary>
+            Represents a custom marker shape.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.NotifyObject">
+      <summary>
+            Represents the object which will notify the changes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CustomShape.Draw(System.Drawing.Graphics,System.Drawing.RectangleF,C1.Win.Map.Style)">
+      <summary>
+            Draws the custom shape at specified bounds.
+            </summary>
+      <param name="g">The graphics used to paint.</param>
+      <param name="bounds">The location and size to draw the shape.</param>
+      <param name="style">The style used to draw the shape.</param>
+    </member>
+    <member name="M:C1.Win.Map.CustomShape.GetDrawingBounds(System.Drawing.Graphics,System.Drawing.RectangleF,C1.Win.Map.Style)">
+      <summary>
+            Gets the drawing bounds of the shape.
+            </summary>
+      <param name="g">The graphics used to paint.</param>
+      <param name="bounds">The origin location and size to draw the shape.</param>
+      <param name="style">The sytle used to draw the shape.</param>
+      <returns>The actual drawing bounds of the shape.</returns>
+    </member>
+    <member name="M:C1.Win.Map.CustomShape.IsVisible(System.Drawing.Graphics,System.Drawing.RectangleF,System.Drawing.PointF,C1.Win.Map.Style)">
+      <summary>
+            Checks whether the specified point is visible in the custom shape.
+            </summary>
+      <param name="g">The graphics used to paint.</param>
+      <param name="bounds">The loaction and size to draw the shape.</param>
+      <param name="point">The point to check.</param>
+      <param name="style">The sytle used to draw the shape.</param>
+      <returns>
+        <code>true</code> if the point is visible in the custom shape; otherwise, false.</returns>
+    </member>
+    <member name="T:C1.Win.Map.MarkerImageShape">
+      <summary>
+            Represents a custom marker shape which is an image.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MarkerImageShape.GetDrawingBounds(System.Drawing.Graphics,System.Drawing.RectangleF,C1.Win.Map.Style)">
+      <summary>
+            Gets the drawing bounds of the shape.
+            </summary>
+      <param name="g">The graphics used to paint.</param>
+      <param name="bounds">The origin location and size to draw the shape.</param>
+      <param name="style">The sytle used to draw the shape.</param>
+      <returns>The actual drawing bounds of the shape.</returns>
+    </member>
+    <member name="M:C1.Win.Map.MarkerImageShape.Draw(System.Drawing.Graphics,System.Drawing.RectangleF,C1.Win.Map.Style)">
+      <summary>
+            Draws the custom shape at specified bounds.
+            </summary>
+      <param name="g">The graphics used to paint.</param>
+      <param name="bounds">The location and size to draw the shape.</param>
+      <param name="style">The style used to draw the shape.</param>
+    </member>
+    <member name="P:C1.Win.Map.MarkerImageShape.Image">
+      <summary>
+            Gets or sets the image of the shape.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MarkerImageShape.PinPoint">
+      <summary>
+            Gets or sets a point indicating the pin point of the image.
+            </summary>
+      <remarks>
+            Default is (0.5, 0.5), means anchor in the center.
+            The valid range is from (0, 0) to (1, 1).
+            It does not take affect for the marker in legend.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.Map.HitTestType">
+      <summary>
+            Specifies the type of the hit tested object.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.HitTestType.None">
+      <summary>
+            No item is hit tested.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.HitTestType.MapItem">
+      <summary>
+            The <see cref="T:C1.Win.Map.MapVisualItem" /> is hit tested.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.HitTestType.VectorItem">
+      <summary>
+            The <see cref="F:C1.Win.Map.HitTestType.VectorItem" /> in the viewport is hit tested.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.HitTestInfo">
+      <summary>
+            Represents the infomation for hit test.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.HitTestInfo.Type">
+      <summary>
+            Gets the type of object at the point being tested.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.HitTestInfo.MapItem">
+      <summary>
+            Gets the map item at the point being tested.
+            </summary>
+      <remarks>
+            Valid for <see cref="F:C1.Win.Map.HitTestType.MapItem" />.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.HitTestInfo.Layer">
+      <summary>
+            Gets the layer at the point being tested.
+            </summary>
+      <remarks>
+            Valid for <see cref="F:C1.Win.Map.HitTestType.VectorItem" />.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.HitTestInfo.Vector">
+      <summary>
+            Gets the vector item at the point being tested.
+            </summary>
+      <remarks>
+            Valid for <see cref="F:C1.Win.Map.HitTestType.VectorItem" />.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.HitTestInfo.Point">
+      <summary>
+            Gets the point on the map viewport, in pixels.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VirtualLayer">
+      <summary>
+            Represents a layer that displays its items positioned grographically and only shows the items actually in view.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorLayerBase">
+      <summary>
+            The base class for vector layers.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapLayer">
+      <summary>
+            Represents the layer displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLayer.ParentMap">
+      <summary>
+            Gets or sets the parent map which contains this layer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLayer.Visible">
+      <summary>
+            Gets or sets the visibility of this layer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLayer.MinZoom">
+      <summary>
+            Gets or sets the minimum zoom which can show this layer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLayer.MaxZoom">
+      <summary>
+            Gets or sets the maxinum zoom which can show this layer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLayer.Name">
+      <summary>
+            Gets or sets the  name of this layer.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.VectorLayerBase.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.VectorLayerBase" /> object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.VectorLayerBase.BeginUpdate">
+      <summary>
+            Starts batch update.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.VectorLayerBase.EndUpdate">
+      <summary>
+            Finishes batch update.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorLayerBase.Opacity">
+      <summary>
+            Gets or sets the opacity of the layer, from 1 (opaque; default) to 0 (transparent).
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorLayerBase.Track">
+      <summary>
+            Gets or sets a value indicates whether should be used to auto center and zoom.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorLayerBase.LabelVisibility">
+      <summary>
+            Gets or sets the visibility of the placemark labels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorLayerBase.Style">
+      <summary>
+            Gets the default style for this vector layer items.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorLayerBase.LabelStyle">
+      <summary>
+            Gets the default style for labels in this vector layer items.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.VirtualLayer.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.VirtualLayer" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VirtualLayer.Slices">
+      <summary>
+            Gets the <see cref="T:C1.Win.Map.MapSlicesCollection" /> specifying how the layer is partitioned for virtualizaiton.
+            </summary>
+      <remarks>
+            Each <see cref="T:C1.Win.Map.MapSlice" /> defines a set of regions this virtual layer will get items for when needed.
+            The minimum zoom of a MapSlice is the value of its <see cref="P:C1.Win.Map.MapSlice.Zoom" /> property, while the 
+            maximum zoom is the value from the <see cref="P:C1.Win.Map.MapSlice.Zoom" /> property of the next slice.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.VirtualLayer.ItemsSource">
+      <summary>
+            Gets or sets the current <see cref="T:C1.Win.Map.IMapVirtualSource" /> for this virtual layer.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.IMapVirtualSource">
+      <summary>
+            Represents the items source for a <see cref="T:C1.Win.Map.VirtualLayer" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.IMapVirtualSource.Request(System.Double,System.Double,C1.Win.Interop.Point,C1.Win.Interop.Point)">
+      <summary>
+            Called from <see cref="T:C1.Win.Map.VirtualLayer" /> when new items are needed for a map region.
+            </summary>
+      <param name="minZoom">The minimum zoom of the region.</param>
+      <param name="maxZoom">The maximum zoom of the region.</param>
+      <param name="lowerLeft">The lower left coordinate of the region, in geographic coordinates.</param>
+      <param name="upperRight">The upper right coordinate of the region, in geographic coordinates.</param>
+      <returns>The items in the region.</returns>
+    </member>
+    <member name="T:C1.Win.Map.MapSlice">
+      <summary>
+            Represents a map slice as used in <see cref="T:C1.Win.Map.VirtualLayer" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MapSlice.#ctor(System.Double,System.Int32,System.Int32)">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.MapSlice" /> object.
+            </summary>
+      <param name="zoom">The minimum zoom of this slice.</param>
+      <param name="latSlices">The number of latitude divisions for this slice.</param>
+      <param name="longSlices">The number of longitude divisions for this slice.</param>
+    </member>
+    <member name="P:C1.Win.Map.MapSlice.Zoom">
+      <summary>
+            Gets the minimum zoom of this slice.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSlice.LatSlices">
+      <summary>
+            Gets the number of latitude divisions for this slice.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSlice.LongSlices">
+      <summary>
+            Gets the number of longitude divisions for this slice.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapSlicesCollection">
+      <summary>
+            Represents the collection of map slices.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapCollectionBase`1">
+      <summary>
+            Represents the collection of map objects.
+            </summary>
+      <typeparam name="T">The type of elements in the collection.</typeparam>
+    </member>
+    <member name="T:C1.Win.Map.IEditingNotify">
+      <summary>
+            For internal use. Represents the interface for editing notification.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.IEditingNotify.OnEditing">
+      <summary>
+            Gets or sets whether the object is under editing.
+            </summary>
+      <remarks>
+            Use it for design time support, prevent the notify of property changed.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.InternalAdd(`0)">
+      <summary>
+            Internal used only. Adds an existing item to the collection.
+            </summary>
+      <param name="item">The item to add.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.InternalInsert(System.Int32,`0)">
+      <summary>
+            Internal used only. Inserts an item ot the collection at the specified index.
+            </summary>
+      <param name="index">The zero-based index at which item should be inserted.</param>
+      <param name="item">The object to insert into the collection.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.InternalClear">
+      <summary>
+            Internal used only. Removes all items from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.InternalRemoveAt(System.Int32)">
+      <summary>
+            Internal used only. Removes the item at the specified index.
+            </summary>
+      <param name="index">The index of the item to remove.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.Add(`0)">
+      <summary>
+            Adds an existing item to the collection.
+            </summary>
+      <param name="item">The item to add.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.AddNew">
+      <summary>
+            Adds a new item to the collection.
+            </summary>
+      <returns>The newly added item.</returns>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.Insert(System.Int32,`0)">
+      <summary>
+            Inserts an item ot the collection at the specified index.
+            </summary>
+      <param name="index">The zero-based index at which item should be inserted.</param>
+      <param name="item">The object to insert into the collection.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.RemoveAt(System.Int32)">
+      <summary>
+            Removes the item at the specified index.
+            </summary>
+      <param name="index">The index of the item to remove.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.Remove(`0)">
+      <summary>
+            Removes an existing item from the collection.
+            </summary>
+      <param name="item">The item to remove.</param>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.Clear">
+      <summary>
+            Removes all items from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.Contains(`0)">
+      <summary>
+            Determines whether the collection contains a specific item.
+            </summary>
+      <param name="item">The item to check.</param>
+      <returns>True if the collection contains specified item; false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.Map.MapCollectionBase`1.IndexOf(`0)">
+      <summary>
+            Gets the index of the element.
+            </summary>
+      <param name="item">The element.</param>
+      <returns>The zero-based index of element or -1 if element does not exist in the collection.</returns>
+    </member>
+    <member name="P:C1.Win.Map.MapCollectionBase`1.Item(System.Int32)">
+      <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+      <param name="index">The zero-based index of the element to get.</param>
+      <returns>The element at specified index.</returns>
+    </member>
+    <member name="P:C1.Win.Map.MapCollectionBase`1.Count">
+      <summary>
+            Gets the number of elements in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.C1Map">
+      <summary>
+            Represents a map with tiles and vectors.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.C1Map.MinZoomValue">
+      <summary>
+            The minimum zoom of a C1Map.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.C1Map.MaxZoomValue">
+      <summary>
+            The maximum zoom of a C1Map.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.Map.C1Map" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.ResetToDefaultStyle">
+      <summary>
+            Resets the map styles to default.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.GetMetafile(System.Boolean)">
+      <summary>
+            Obtains an metafile of the current C1Map display.
+            </summary>
+      <param name="loadTileAsync">Whether load the tile asynchronous.</param>
+      <returns>Metafile of the current C1Map display.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.GetBitmap(System.Boolean)">
+      <summary>
+            Obtains an bitmap image of the current C1Map display.
+            </summary>
+      <param name="loadTileAsync">Whether load the tile asynchronous.</param>
+      <returns>Bitmap image of the current C1Map display.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.BeginUpdate">
+      <summary>
+            Begins the batch updating, suspend the frequent repainting.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.EndUpdate">
+      <summary>
+            Ends the batch updating, force a repainting.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.EndUpdate(System.Boolean)">
+      <summary>
+            Ends the batch updating.
+            </summary>
+      <param name="repaint">Indicates whether force a repainting.</param>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.HitTest(System.Drawing.Point)">
+      <summary>
+            Returns information about the map at a specified point on the map boundary.
+            </summary>
+      <param name="point">The point being tested, in pixels.</param>
+      <returns>A <see cref="T:C1.Win.Map.HitTestInfo" /> object contains info about the point.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.CalculateAutoZoomCenter(System.Double@,C1.Win.Interop.Point@)">
+      <summary>
+            Calcuates the suitable zoom and center which can show all the vector items.
+            </summary>
+      <param name="zoom">The suitable zoom.</param>
+      <param name="center">The suitable center.</param>
+      <returns>
+        <code>false</code>, if there are no items to track; otherwise, <code>true</code>.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.Translate(System.Single,System.Single)">
+      <summary>
+            Moves the map with the specified offsets.
+            </summary>
+      <remarks>Valid only after the map is rendered.</remarks>
+      <param name="dx">The offset pixels in horizontal.</param>
+      <param name="dy">The offset pixels in vertical.</param>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.CenterTo(System.Drawing.Point)">
+      <summary>
+            Makes the specified position as the center of the map.
+            </summary>
+      <remarks>Valid only after the map is rendered.</remarks>
+      <param name="position">The position in map's client area.</param>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.ZoomAt(System.Double,System.Drawing.Point)">
+      <summary>
+            Zooms the map with the specified delta, at the specified position.
+            </summary>
+      <remarks>Valid only after the map is rendered.</remarks>
+      <param name="zoomDelta">The delta of the zoom value.</param>
+      <param name="position">The position in map's client area.</param>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.SetZoomCenter(System.Double,C1.Win.Interop.Point)">
+      <summary>
+            Sets the zoom and center of the map.
+            </summary>
+      <remarks>Valid only after the map is rendered.</remarks>
+      <param name="zoom">The new zoom of the map.</param>
+      <param name="center">The new center of the map, in geography unit.</param>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.ScreenToGeographic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from screen coordinates to geographic coordinates.
+            </summary>
+      <param name="point">A point in screen coordinates (pixels from the top left corner of this control).</param>
+      <returns>The geographic coordinates currently mapped to the parameter screen coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.GeographicToScreen(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from geographic coordinates to screen coordinates.
+            </summary>
+      <param name="longLat">A point in geographic coordinates.</param>
+      <returns>The screen coordinates currently mapped to the parameter geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.ScreenToLogic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from screen coordinates to logic coordinates.
+            </summary>
+      <remarks>
+            The logic coordinates are the ones used by the <see cref="T:C1.FlexMap.IMapProjection" />.
+            </remarks>
+      <param name="point">A point in screen coordinates (pixels from the top left corner of this control).</param>
+      <returns>The logic coordinates currently mapped to the parameter screen coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.LogicToScreen(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from logic coordinates to screen coordinates.
+            </summary>
+      <param name="point">A point in logic coordinates.</param>
+      <returns>The screen coordinates currently mapped to the parameter logic coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.GeographicToLogic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from geographic coordinates to logic coordinates.
+            </summary>
+      <param name="longLat">A point in geographic coordinates.</param>
+      <returns>The logic coordinates currently mapped to the parameter geographic coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.LogicToGeographic(C1.Win.Interop.Point)">
+      <summary>
+            Transforms a point from logic coordinates to geographic coordinates.
+            </summary>
+      <param name="point">A point in logic coordinates.</param>
+      <returns>The geographic coordinates currrently mapped to the parameter logic coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Map.C1Map.Dispose(System.Boolean)">
+      <summary>
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.AllowZooming">
+      <summary>
+            Gets or sets whether allow change the zoom by user action.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.AllowTranslating">
+      <summary>
+            Gets or sets whether allow translate the map by user action.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.UseAntiAliasedGraphics">
+      <summary>
+            Gets or sets a value indicating whether to use anti-aliasing while rendering map graphics.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.CoordinateSystem">
+      <summary>
+            Gets or sets the coordinate system used by this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.Viewport">
+      <summary>
+            Gets the the viewport settings for this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.TileLayer">
+      <summary>
+            Gets the tile layer settings for this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.Layers">
+      <summary>
+            Gets the collection of map layers displayed in this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.Legends">
+      <summary>
+            Gets the collection of legends displayed in this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.DistanceScale">
+      <summary>
+            Gets the distance scale settings for this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.PanTool">
+      <summary>
+            Gets the pan tool settings for this C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.C1Map.ZoomTool">
+      <summary>
+            Gets the zoom tool settings for this C1Map.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Map.C1Map.TileLoaded">
+      <summary>
+            Occurs when the tile image is downloaded.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Map.C1Map.ZoomChanged">
+      <summary>
+            Occurs when the zoom of the map is changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Map.C1Map.CenterChanged">
+      <summary>
+            Occurs when the center of the map is changed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.DashStyle">
+      <summary>
+            Specifies the style of dashed lines.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.DashStyle.Solid">
+      <summary>
+            Specifies a solid line.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.DashStyle.Dash">
+      <summary>
+            Specifies a line consisting of dashes.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.DashStyle.Dot">
+      <summary>
+            Specifies a line consisting of dots.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.DashStyle.DashDot">
+      <summary>
+            Specifies a line consisting of a repeating pattern of dash-dot.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.DashStyle.DashDotDot">
+      <summary>
+            Specifies a line consisting of a repeating pattern of dash-dot-dot.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.GradientStyle">
+      <summary>
+            Specifies the gradient style of the brush.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.None">
+      <summary>
+            No gradient filling.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.Horizontal">
+      <summary>
+            From left (first color) to right (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.HorizontalCenter">
+      <summary>
+            From center (first color) to left and right (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.Vertical">
+      <summary>
+            From top (first color) to bottom (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.VerticalCenter">
+      <summary>
+            From center (first color) to top and bottom (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.Diagonal">
+      <summary>
+            From left-bottom (first color) to right-top (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.DiagonalCenter">
+      <summary>
+            From center (first color) to left-bottom and right-top (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.DiagonalBack">
+      <summary>
+            From left-top (first color) to right-bottom (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.DiagonalBackCenter">
+      <summary>
+            From center (first color) to left-top and right-bottom (second color).
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.Radial">
+      <summary>
+            From center (first color) to corners (second color) in radial direction.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.GradientStyle.FromCenter">
+      <summary>
+            From center (first color) to corners (second color).
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapDistanceScale">
+      <summary>
+            Represents the distance scale tool for the C1Map.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapSubItem">
+      <summary>
+            Reprents the sub item displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapVisualItem">
+      <summary>
+            Represents the visual item displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MapVisualItem.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.MapVisualItem" /> object;
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapVisualItem.Style">
+      <summary>
+            Gets the style for this element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapVisualItem.Padding">
+      <summary>
+            Gets or sets the padding space for this element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapVisualItem.Margin">
+      <summary>
+            Gets or sets the margin space for this element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSubItem.Bounds">
+      <summary>
+            Gets or sets the bounds of this element.
+            </summary>
+      <remarks>
+        <p>Specifies an empty rectangle to make it auto positioned and sized.</p>
+        <p>The size includes the margin space and padding space.</p>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.Map.MapSubItem.Alignment">
+      <summary>
+            Gets or sets the alignment of this item relative to its parent area.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSubItem.Visible">
+      <summary>
+            Gets or sets the visibility of this element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSubItem.ZOrder">
+      <summary>
+            Gets or sets the z-index of this element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapDistanceScale.BarStyle">
+      <summary>
+            Gets or sets the style of the scale bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapDistanceScale.BarWidth">
+      <summary>
+            Gets or sets the width of the scale bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapDistanceScale.ShowImperial">
+      <summary>
+            Gets or sets a value indicating whether show the scale bar which has imperial unit.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapDistanceScale.ShowMetric">
+      <summary>
+            Gets or sets a value indicating whether show the scale bar which has metric unit.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapLayersCollection">
+      <summary>
+            Represents the collection of vector layers.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapLegend">
+      <summary>
+            Represetns the legend displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MapLegend.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.MapLegend" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegend.Title">
+      <summary>
+            Gets the title of this legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegend.Layout">
+      <summary>
+            Gets or sets the layout method of legend items.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegend.Items">
+      <summary>
+            Gets the collection of legend items.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapLegendsCollection">
+      <summary>
+            Represents the collection of map legends.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapLegendItem">
+      <summary>
+            Represents the legend item displayed in the MapLegend.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.MapLegendItem.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.MapLegendItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegendItem.Style">
+      <summary>
+            Gets the style for this legend item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegendItem.Kind">
+      <summary>
+            Gets or sets the graphic kind of this legend item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegendItem.Label">
+      <summary>
+            Gets or sets the caption of this legend item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegendItem.Shape">
+      <summary>
+            Gets or sets the shape for marker legend item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegendItem.CustomShape">
+      <summary>
+            Gets or sets the custom shape if <see cref="P:C1.Win.Map.MapLegendItem.Shape" /> property is <see cref="F:C1.FlexMap.MarkerShape.Custom" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapLegendItem.Size">
+      <summary>
+            Gets or sets the size of this legend item.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapLegendItemsCollection">
+      <summary>
+            Represents the collection of map legend items.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapPanTool">
+      <summary>
+            Represents the pan tool displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapPanTool.Speed">
+      <summary>
+            Gets or sets the moving speed of the pan action.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapPanTool.PanStyle">
+      <summary>
+            Gets or sets the style of the pan panel.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapPanTool.MarkerStyle">
+      <summary>
+            Gets or sets the style of the marker.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapSubItemTitle">
+      <summary>
+            Represents the title for the sub item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSubItemTitle.Position">
+      <summary>
+            Gets or sets the position of this item relative to its parent area.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapSubItemTitle.Caption">
+      <summary>
+            Gets or sets the caption of the tile.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapViewport">
+      <summary>
+            Represents the viewport settings for the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapViewport.Center">
+      <summary>
+            Gets or sets the center point of the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapViewport.ZoomSize">
+      <summary>
+            Gets or sets the size for the whole coordinate system limit bounds when zoom level is 0.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapViewport.Zoom">
+      <summary>
+            Gets or sets the zoom level of the C1Map.
+            </summary>
+      <remarks>
+            The minimum zoom level is 0. An increment of 1 in the zoom level doubles the map resolution.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.MapViewport.MaxZoom">
+      <summary>
+            Gets or sets the limit maximum zoom level.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapViewport.MinZoom">
+      <summary>
+            Gets or sets the limit minimum zoom level.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapViewport.Limits">
+      <summary>
+            Gets the viewport limit bounds.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.MapViewportLimits">
+      <summary>
+            Represents the map limit bounds.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapViewportLimits.MaxLong">
+      <summary>
+            Gets or sets the limit maximum X coordinate in coordinate system unit.
+            </summary>
+      <remarks>
+            Default is NaN, means no limits.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.MapViewportLimits.MaxLat">
+      <summary>
+            Gets or sets the limit maximum Y coordinate in coordinate system unit.
+            </summary>
+      <remarks>
+            Default is NaN, means no limits.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.MapViewportLimits.MinLong">
+      <summary>
+            Gets or sets the limit minimum X coordinate in coordinate system unit.
+            </summary>
+      <remarks>
+            Default is NaN, means no limits.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.MapViewportLimits.MinLat">
+      <summary>
+            Gets or sets the limit minimum Y coordinate in coordinate system unit.
+            </summary>
+      <remarks>
+            Default is NaN, means no limits.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.Map.MapZoomTool">
+      <summary>
+            Represents the zoom tool displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapZoomTool.Orientation">
+      <summary>
+            Gets or sets the orientation of the zoom tool.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapZoomTool.ButtonStyle">
+      <summary>
+            Gets or sets the style of the increase and decrease buttons.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapZoomTool.TrackStyle">
+      <summary>
+            Gets or sets the style of the track bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.MapZoomTool.ThumbStyle">
+      <summary>
+            Gets or sets the style of the thumb button.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.Marker">
+      <summary>
+            Represents the marker displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Marker.Caption">
+      <summary>
+            Gets or sets the caption of this marker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Marker.Shape">
+      <summary>
+            Gets or sets the shape of this marker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Marker.CustomShape">
+      <summary>
+            Gets or sets the custom shape if <see cref="P:C1.Win.Map.Marker.Shape" /> property is <see cref="F:C1.FlexMap.MarkerShape.Custom" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Marker.LabelPosition">
+      <summary>
+            Gets or sets the label position relatively to the marker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Marker.Size">
+      <summary>
+            Gets or sets the size of the marker shape.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.StyleObject">
+      <summary>
+            Represetns the object for map style settings.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.Style">
+      <summary>
+            Represents the appearance of map elements.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.#ctor(C1.Win.Map.Style)">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.Style" /> object.
+            </summary>
+      <param name="parentStyle">The parent style which this style inherits form.</param>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeAlignment">
+      <summary>
+            Returns false if Alignment is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetAlignment">
+      <summary>
+            Resets the Alignment to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeBackColor">
+      <summary>
+            Returns false if BackColor is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetBackColor">
+      <summary>
+            Resets the BackColor to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeBackColor2">
+      <summary>
+            Returns false if BackColor2 is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetBackColor2">
+      <summary>
+            Resets the BackColor2 to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeGradientStyle">
+      <summary>
+            Returns false if GradientStyle is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetGradientStyle">
+      <summary>
+            Resets the GradientStyle to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeFont">
+      <summary>
+            Returns false if Font is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetFont">
+      <summary>
+            Resets the Font to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeForeColor">
+      <summary>
+            Returns false if ForeColor is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetForeColor">
+      <summary>
+            Resets the ForeColor to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeBorder">
+      <summary>
+            Returns false if Border is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetBorder">
+      <summary>
+            Resets the Border to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ShouldSerializeStroke">
+      <summary>
+            Returns false if Stroke is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Style.ResetStroke">
+      <summary>
+            Resets the Stroke to default state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.Alignment">
+      <summary>
+            Gets or sets the alignment of the content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.BackColor">
+      <summary>
+            Gets or sets the background color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.BackColor2">
+      <summary>
+            Gets or sets the second gradient background color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.GradientStyle">
+      <summary>
+            Gets or sets the type of gradient background filling.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.Font">
+      <summary>
+            Gets or sets the font object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.ForeColor">
+      <summary>
+            Gets or sets the foreground color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.Border">
+      <summary>
+            Gets the border object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Style.Stroke">
+      <summary>
+            Gets the line object for stroke line.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.Border">
+      <summary>
+            Represents the border appearance for various map elements.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeStyle">
+      <summary>
+            Returns false if Style is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetStyle">
+      <summary>
+            Resets the Style to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeWidth">
+      <summary>
+            Returns false if Width is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetWidth">
+      <summary>
+            Resets the Width to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeColor">
+      <summary>
+            Returns false if Color is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetColor">
+      <summary>
+            Resets the Color to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeLeft">
+      <summary>
+            Returns false if Left is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetLeft">
+      <summary>
+            Resets the Left to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeTop">
+      <summary>
+            Returns false if Top is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetTop">
+      <summary>
+            Resets the Top to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeRight">
+      <summary>
+            Returns false if Right is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetRight">
+      <summary>
+            Resets the Right to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeBottom">
+      <summary>
+            Returns false if Bottom is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetBottom">
+      <summary>
+            Resets the Bottom to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ShouldSerializeRoundRadius">
+      <summary>
+            Returns false if RoundRadius is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Border.ResetRoundRadius">
+      <summary>
+            Resets the RoundRadius to default state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Border.Style">
+      <summary>
+            Gets or sets the dash style of all sides of the border.
+            </summary>
+      <remarks>
+            If different sides of the border have different dash styles, gets null.
+            Setting this property to null does not have any effect..
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.Border.Width">
+      <summary>
+            Gets or sets the width of all sides of the border.
+            </summary>
+      <remarks>
+            If different sides of the border have different widths, gets null.
+            Setting this property to null does not have any effect.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.Border.Color">
+      <summary>
+            Gets or sets the color of all sides of the border.
+            </summary>
+      <remarks>
+            If different sides of the border have different colors, gets Color.Empty.
+            Settings this property to Color.Empty does not have any effect.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.Border.Left">
+      <summary>
+            Gets or sets the left border line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Border.Top">
+      <summary>
+            Gets or sets the top border line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Border.Right">
+      <summary>
+            Gets or sets the right border line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Border.Bottom">
+      <summary>
+            Gets or sets the bottom border line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Border.RoundRadius">
+      <summary>
+            Gets or sets the round radius of each corner.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.CornerRadius">
+      <summary>
+            Represents the corner radius of the border.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ShouldSerializeAll">
+      <summary>
+            Returns false if All is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ResetAll">
+      <summary>
+            Resets the All to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ShouldSerializeTopLeft">
+      <summary>
+            Returns false if TopLeft is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ResetTopLeft">
+      <summary>
+            Resets the TopLeft to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ShouldSerializeTopRight">
+      <summary>
+            Returns false if TopRight is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ResetTopRight">
+      <summary>
+            Resets the TopRight to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ShouldSerializeBottomLeft">
+      <summary>
+            Returns false if BottomLeft is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ResetBottomLeft">
+      <summary>
+            Resets the BottomLeft to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ShouldSerializeBottomRight">
+      <summary>
+            Returns false if BottomRight is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.CornerRadius.ResetBottomRight">
+      <summary>
+            Resets the BottomRight to default state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.CornerRadius.All">
+      <summary>
+            Gets or sets the radius of all corners.
+            </summary>
+      <remarks>
+            If different corners has different radius, gets -1.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.CornerRadius.TopLeft">
+      <summary>
+            Gets or sets the radius of top left corner.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.CornerRadius.TopRight">
+      <summary>
+            Gets or sets the radius of top right corner.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.CornerRadius.BottomLeft">
+      <summary>
+            Gets or sets the radius of bottom left corner.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.CornerRadius.BottomRight">
+      <summary>
+            Gets or sets the radius of bottom right corner.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.Line">
+      <summary>
+            Represents the line appearance for various map elements.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Line.ShouldSerializeStyle">
+      <summary>
+            Returns false if Style is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Line.ResetStyle">
+      <summary>
+            Resets the Style to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Line.ShouldSerializeWidth">
+      <summary>
+            Returns false if Width is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Line.ResetWidth">
+      <summary>
+            Resets the Width to default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Line.ShouldSerializeColor">
+      <summary>
+            Returns false if Color is in default state.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.Line.ResetColor">
+      <summary>
+            Resets the Color to default state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Line.Style">
+      <summary>
+            Gets or sets the style of the dashed line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Line.Width">
+      <summary>
+            Gets or sets the width of the line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.Line.Color">
+      <summary>
+            Gets or sets the color of the line.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.TileLayer">
+      <summary>
+            Represents the tile layer displayed in the C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.TileLayer.Timeout">
+      <summary>
+            Gets or sets the length of time, in milliseconds, before the requests times out.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.TileLayer.TileSource">
+      <summary>
+            Gets or sets the tile source for this layer.
+            </summary>
+      <remarks>
+            Sets to null to make the tile layer disabled.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.Map.VirtualEarthSource">
+      <summary>
+            Represents the base tile source accessing Microsoft's Virtual Earth.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VirtualEarthSource.UriFormat">
+      <summary>
+            Gets the uri template for the tile image.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VirtualEarthSource.Culture">
+      <summary>
+            Gets or sets the culture for this tile source.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VirtualEarthAerialSource">
+      <summary>
+            Represents the tile source accessing Microsoft's Virtual Earth aerial tiles.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VirtualEarthRoadSource">
+      <summary>
+            Represents the tile source accessing Microsoft's Virtual Earth road tiles.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VirtualEarthHybridSource">
+      <summary>
+            Represents the tile source accessing Microsoft's Virtual Earth hybrid tiles.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorLayer">
+      <summary>
+            Represents the vector layer displayed in C1Map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorLayer.Items">
+      <summary>
+            Gets the collection of vector items displayed in this layer.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorType">
+      <summary>
+            Specifies type of the vector element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.VectorType.Placemark">
+      <summary>
+            The placemark element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.VectorType.Polyline">
+      <summary>
+            The polyline element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Map.VectorType.Polygon">
+      <summary>
+            The polygon element.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorItem">
+      <summary>
+            Represents the base class of vector element.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.VectorItem.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.VectorItem" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorItem.Type">
+      <summary>
+            Gets the type of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorItem.Tag">
+      <summary>
+            Gets or sets arbitrary user-defined data.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorItem.Geometry">
+      <summary>
+            Gets or sets the geometry for this vector element.
+            </summary>
+      <remarks>
+            Different vector type has specific types of geometry.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Map.VectorItem.Visible">
+      <summary>
+            Gets or sets the visibility of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorItem.Track">
+      <summary>
+            Gets or sets a value indicates whether should be used to auto center and zoom.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorItem.Style">
+      <summary>
+            Gets the style for this vector element.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorPlacemark">
+      <summary>
+            Represents the placemark vector element.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Map.VectorPlacemark.#ctor">
+      <summary>
+            Initializes a new instance of <see cref="T:C1.Win.Map.VectorPlacemark" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPlacemark.Type">
+      <summary>
+            Gets the type (<see cref="F:C1.Win.Map.VectorType.Placemark" />) of this vector element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPlacemark.LabelWidth">
+      <summary>
+            Gets or sets the maximum width of the label. Zero or negative value to auto determing.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPlacemark.LabelStyle">
+      <summary>
+            Gets or sets the style for label.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPlacemark.Marker">
+      <summary>
+            Gets or sets the marker for this placemark.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPlacemark.Lod">
+      <summary>
+            Gets or sets the level of details of this placemark.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorPolyline">
+      <summary>
+            Represents the polyline vector element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPolyline.Type">
+      <summary>
+            Gets the type (<see cref="F:C1.Win.Map.VectorType.Polyline" />) of this vector element.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorPolygon">
+      <summary>
+            Represents the polygon vector element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Map.VectorPolygon.Type">
+      <summary>
+            Gets the type (<see cref="F:C1.Win.Map.VectorType.Polygon" />) of this vector element.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.VectorItemsCollection">
+      <summary>
+            Represents the collection of vector items.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Map.Strings">
+      <summary>
+            Static class containing UI strings used by the designer.
+            </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,1600 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.FlexReport.CustomFields.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.C1Mapper">
+      <summary>
+            Provides functionality that allows to use the C1.Win.Map.C1Map control
+            to generate maps in reports.
+            </summary>
+      <remarks>
+            TODO:
+            - allow to specify keys for tile sources that require it (CloudMadeMapsSource);
+            - ?
+            </remarks>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.HideShowTools" -->
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.DoCenterAndZoom">
+      <summary>
+            Centers and zooms the map based on owner settings (including auto zoom/center).
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.GetImage(System.Boolean,System.Double,System.Double)">
+      <summary>
+            Gets a System.Drawing.Image representing the current map.
+            </summary>
+      <param name="designTime">Specifies whether we are in design time or runtime.</param>
+      <param name="dpiX">The horizontal resolution of the image.</param>
+      <param name="dpiY">The vertical resolution of the image.</param>
+      <returns>The image (metafile).</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.RefreshImage(System.Boolean)">
+      <summary>
+            Gets image representing the current map, with the previous data.
+            </summary>
+      <param name="designTime">Specifies whether we are in design time or runtime.</param>
+      <returns>The image (metafile).</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.UpdateKmlLayer(System.String,System.IO.Stream,C1.Win.FlexReport.CustomFields.Maps.AddingKmlItemDelegate)">
+      <summary>
+            Adds a layer created from the specified KML stream.
+            </summary>
+      <param name="kml">The source KML stream.</param>
+      <param name="name">The new layer name (must be a valid alphanumeric name).</param>
+      <param name="addingItemProc">The callback to invoke for each KML item as it is being loaded.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.ClearMarks">
+      <summary>
+            Clears all previously added marks and lines. (Does not affect KML layers.)
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.DistancePix(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Calculates screen distance (in 96dpi pixels) between two points.
+            </summary>
+      <param name="longitude1">
+      </param>
+      <param name="latitude1">
+      </param>
+      <param name="longitude2">
+      </param>
+      <param name="latitude2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.DrawPoint(System.String,System.Double,System.Double,System.String,System.Drawing.Font,System.Drawing.Color,C1.Win.FlexReport.CustomFields.Maps.MarkerShape,System.Double,System.Drawing.Color,System.Drawing.Color)">
+      <summary>
+            Adds a point.
+            </summary>
+      <param name="layerKey">
+      </param>
+      <param name="longitude">
+      </param>
+      <param name="latitude">
+      </param>
+      <param name="caption">
+      </param>
+      <param name="font">
+      </param>
+      <param name="markShape">
+      </param>
+      <param name="size">
+      </param>
+      <param name="stroke">
+      </param>
+      <param name="fill">
+      </param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.DrawLine(System.String,System.Double,System.Double,System.Double,System.Double,System.Drawing.Color,C1.Win.FlexReport.CustomFields.Maps.DashStyle,System.Double)">
+      <summary>
+            Adds a line to the lines layer.
+            </summary>
+      <param name="longitude1">
+      </param>
+      <param name="latitude1">
+      </param>
+      <param name="longitude2">
+      </param>
+      <param name="latitude2">
+      </param>
+      <param name="stroke">
+      </param>
+      <param name="dashStyle">
+      </param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.DrawLine(System.String,System.Double,System.Double,System.Double,System.Double,System.Drawing.Color,System.Drawing.Color,C1.Win.FlexReport.CustomFields.Maps.DashStyle,System.Double)">
+      <summary>
+            Adds a line to the lines layer.
+            </summary>
+      <param name="layerKey">
+      </param>
+      <param name="longitude1">
+      </param>
+      <param name="latitude1">
+      </param>
+      <param name="longitude2">
+      </param>
+      <param name="latitude2">
+      </param>
+      <param name="stroke">
+      </param>
+      <param name="fill">
+      </param>
+      <param name="dashStyle">
+      </param>
+      <param name="thickness">
+      </param>
+    </member>
+    <member name="E:C1.Win.FlexReport.CustomFields.Maps.C1Mapper.TileLoaded">
+      <summary>
+            Occurs when the tile images is downloaded.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogle">
+      <summary>
+            Geocoder that uses Google geocoding services.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase">
+      <summary>
+            Abstract base class used for the GeocoderGoogle and GeocoderBing classes.
+            </summary>
+      <remarks>
+            This class manages a file-based location cache. The actual geocoding must be performed
+            on derived classes that implement the GetLocation method.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of a <see cref="!:CachedGeoCoder" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase.GetLocation(System.String)">
+      <summary>
+            Gets the location of a given object.
+            </summary>
+      <param name="address">Address to be located.</param>
+      <returns>A <see cref="!:Point" /> that represents the location of the given address.</returns>
+      <remarks>
+            The X and Y values of the point returned represent the longitude and latitude of the address.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase.GeoLocateAddress(System.String)">
+      <summary>
+            Call geocoding service to retrieve the location of an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="!:Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase.LoadCache">
+      <summary>
+            Loads the location cache from the default cache file..
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase.SaveCache">
+      <summary>
+            Saves the current location cache to the default cache file.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBase.UrlEncode(System.String)">
+      <summary>
+            Same as HttpUtility.UrlEncode, but without taking a dependency on System.Web.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogle.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogle" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogle.GeoLocateAddress(System.String)">
+      <summary>
+            Call Google to geocode an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="!:Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogleOld">
+      <summary>
+            As of Jan 2015, this does not work anymore.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogleOld.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogle" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogleOld.GeoLocateAddress(System.String)">
+      <summary>
+            Call Google to geocode an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="!:Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderBing">
+      <summary>
+            Geocoder that uses Bing geocoding services.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBing.#ctor(System.String,System.Boolean,System.String)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.GeocoderGoogle" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+      <param name="bingKey">Bing license key used to access Bing services.</param>
+      <remarks>
+            You can create Bing license keys here: http://www.bingmapsportal.com/.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GeocoderBing.GeoLocateAddress(System.String)">
+      <summary>
+            Call Bing to geocode an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="!:Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyle">
+      <summary>
+            Represents a style used to render KML items on a map.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MapStyleBase">
+      <summary>
+            Abstract base class for layer style types used in maps.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MapOwnedKeyedItem">
+      <summary>
+            Represents a map item with a unique immutable key.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MapOwnedItemBase">
+      <summary>
+            Abstract base class for types owned by a Map field.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MapOwnedItemBase.BaseName">
+      <summary>
+            Gets a one word description of the item type (e.g. "Layer").
+            Also used to automatically generate new items' names.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MapOwnedItemBase.Name">
+      <summary>
+            Gets or sets the name of the item. If specified, and the item is contained in a collection,
+            this name can be used in script expressions to reference the item by name rather than by index.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MapOwnedKeyedItem.Key">
+      <summary>
+            Unique string identifying the layer.
+            May be used as the layer's name in C1Maps so should be a valid id
+            (alpha-numeric starting with a letter).
+            <para>
+            NOTE: the set accessor is for serialization ONLY. This property must NOT be changed.
+            </para></summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.ILegendItem">
+      <summary>
+            Interface that should be implemented by objects which may be represented in a legend.
+            It exposes properties that enable the legend to draw a representation of the object
+            (such as a layer or a style).
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemKind">
+      <summary>
+            Gets the kind of legend item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemCaption">
+      <summary>
+            Gets the legend item's caption.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemVisible">
+      <summary>
+            Gets the legend item's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemTextColor">
+      <summary>
+            Gets the legend item's text color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemFont">
+      <summary>
+            Gets the legend item's font.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemStrokeColor">
+      <summary>
+            Gets the legend item graphic's stroke color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemFillColor">
+      <summary>
+            Gets the legend item graphic's fill color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemMarkerShape">
+      <summary>
+            Gets the legend item graphic's shape (for point marker item kind).
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemDashStyle">
+      <summary>
+            Gets the legend item graphic's dash style (for line item kind).
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemLineThickness">
+      <summary>
+            Gets the legend item graphic's line thickness in 96dpi pixels (for line item kind). Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILegendItem.LegendItemMarkerSize">
+      <summary>
+            Gets the legend item graphic's marker size in 96dpi pixels (for point marker item kind). Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.ILayerReferencedItem">
+      <summary>
+            Indicates a map item which is belonged to a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.LayerBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.ILayerReferencedItem.Layer">
+      <summary>
+            Gets or sets the layer which this item is belonged to.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MapStyleBase.Layer">
+      <summary>
+            Gets the layer which this style is belonged to.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyle.ItemNameExpr">
+      <summary>
+            Gets or sets an expression specifying the name (caption) associated with the KML item. Set to an empty string ("") to suppress printing of item captions.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke color of markers placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyle.FillColor">
+      <summary>
+            Gets or sets the fill color of markers placed on the map.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.InlineKmlItemStyle">
+      <summary>
+            Represents a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyle" /> built into a KML layer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.InlineKmlItemStyle.Name">
+      <summary>
+            Suppress showing the name in the property editor, as referencing inline styles
+            in expressions is not possible.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyleCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.FlexReport.CustomFields.Maps.KmlItemStyle" /> elements.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MapOwnedCollectionBase`1">
+      <summary>
+            Represents a collection of elements derived from <see cref="T:C1.Win.FlexReport.CustomFields.Maps.MapOwnedItemBase" />.
+            </summary>
+      <typeparam name="T">
+      </typeparam>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.IMapOwnedCloneable">
+      <summary>
+            Interface for cloneable objects owned by a Map field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.MapOwnedCollectionBase`1.Serializer">
+      <summary>
+            Must be initialized in the static ctor.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MapOwnedCollectionEditor`1">
+      <summary>
+            Represents an editor for a collection derived from MapOwnedCollectionBase.
+            </summary>
+      <typeparam name="TColl">
+      </typeparam>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.KmlLayer">
+      <summary>
+            Represents a map layer containing KML spatial data.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LayerBase">
+      <summary>
+            Abstract base class for map layer classes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.PointsLocationExpressions">
+      <summary>
+            Gets the list of lists of location expressions.
+            The outer list corresponds to the point or points associated
+            with each record of the layer - i.e. for a points layer, that list
+            will contain one element, for lines - two etc.
+            The inner list for each point is the collection of location
+            expressions. E.g. it can be Country, City, Address.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.Visible">
+      <summary>
+            Gets or sets the current layer's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.Track">
+      <summary>
+            Gets or sets a value indicating whether spatial data from the current layer should be used to auto center/zoom the map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.Opacity">
+      <summary>
+            Gets or sets the opacity factor applied to the layer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.Caption">
+      <summary>
+            Gets or sets the current layer's caption.
+            Used to represent the layer in legends.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.RecordSource">
+      <summary>
+            Gets or sets an SQL statement used to retrieve data for the layer.
+            </summary>
+      <remarks>
+        <para>Obsoleted. Please use <see cref="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.DataSource" /> property.</para>
+            If provided, data is retrieved using the parent report's ConnectionString. 
+            If omitted, data is retrieved directly from the parent report. 
+            In this latter case, the data is automatically filtered according 
+            to the current grouping scope (e.g. a layer in a 'Category' 
+            group header would contain data only for the current category).
+            </remarks>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.DataSource">
+      <summary>
+            Gets or sets the name of the data source used to retrieve data for the layer.
+            </summary>
+      <remarks>
+            The name must match a name of a data source in the report's DataSources collection.
+            Empty string indicates that the main data source will be used.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LayerBase.DataSourceFilterExpr">
+      <summary>
+            Gets or sets the data source filter expression (only available when a non-default data source is used).
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.varItemName">
+      <summary>
+            The string "kmlItemName" used in KmlLayer's expressions will be replaced with
+            the actual quoted KML item name at runtime prior to expression's evaluation.
+            E.g. the following expression could be used to check for the country:
+            <code>Country=kmlItemName</code> (note the absense of quotes around kmlName).
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.Caption">
+      <summary>
+            Hides Caption as KML layers cannot be represented in legends.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.KmlFileName">
+      <summary>
+            Gets or sets the KML/KMZ file name or network URL.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.KmlFileNameXml">
+      <summary>
+            Used to persist <see cref="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.KmlFileName" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.EmbedKmlFile">
+      <summary>
+            Gets or sets a value indicating whether to embed KML data loaded from <see cref="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.KmlFileName" /> in the report definition file itself.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.KmlFileData">
+      <summary>
+            Gets or sets the KML file data.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemFilterExpr">
+      <summary>
+            Gets or sets a filter string applied to the layer's data.
+            When KML data is loaded into the layer, for each item being loaded this filter
+            is applied to the layer data, and item expressions
+            (<see cref="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemTrackExpr" />, <see cref="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemVisibleExpr" />, <see cref="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemStyleExpr" />)
+            are evaluated in the context of the first data row matching the filter.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemTrackExpr">
+      <summary>
+            Gets or sets an expression that determines whether a KML item's
+            coordinates are used when calculating auto center/zoom.
+            If this property is not specified, true is assumed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemVisibleExpr">
+      <summary>
+            Gets or sets an expression that determines whether a KML item is visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemStyleExpr">
+      <summary>
+            Gets or sets an expression that should evaluate to an index or a name of a style in the KmlItemStyles collection
+            that will be applied to the item. The name may refer to a style in another Map object within the report.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.ItemStyle">
+      <summary>
+            Gets the default item style.
+            <para>Note: the set accessor is for serialization only, and should not be used directly.</para></summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.KmlLayer.KmlFileEditor">
+      <summary>
+            Specialized editor for specifying KML/KMZ files.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LayerCollection">
+      <summary>
+            Represents a collection of map layers.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LayerCollection.LayerCollectionEditor">
+      <summary>
+            The layer collection editor.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.Legend">
+      <summary>
+            Represents a map legend - an area on a <see cref="T:C1.Win.FlexReport.CustomFields.Map" /> containing
+            a list of items derived from <see cref="T:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase" />.
+            The following item types are supported:
+            <list type="bullet"><item><term><see cref="T:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem" /></term><description>Represents a map layer or layer style. Shows the layer's marker or line, and a descriptive text (the layer's caption by default).</description></item><item><term><see cref="T:C1.Win.FlexReport.CustomFields.Maps.LegendColorSwatchItem" /></term><description>Shows a color swatch, and a descriptive text.</description></item><item><term><see cref="T:C1.Win.FlexReport.CustomFields.Maps.LegendTextItem" /></term><description>Shows an arbitrary text.</description></item></list></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Automatic">
+      <summary>
+            Gets or sets a value indicating whether the current legend's items are
+            automatically generated at runtime from the map's layers.
+            If true, the <see cref="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Items" /> collection is ignored.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Caption">
+      <summary>
+            Gets or sets the legend's caption.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.LegendAlignment">
+      <summary>
+            Gets or sets the alignment of the legend within the map bounds.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.BackColor">
+      <summary>
+            Gets or sets the legend's background color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.TextColor">
+      <summary>
+            Gets or sets the legend's text color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Font">
+      <summary>
+            Gets or sets the legend text font.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Items">
+      <summary>
+            Gets the collection of legend items. If <see cref="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Automatic" /> is true, this collection is ignored.
+            <para>Note: the set accessor is for serialization only.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Margin">
+      <summary>
+            Gets or sets the margin (spacing) between the legend and map edges.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Padding">
+      <summary>
+            Gets or sets the padding between the legend and items within.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.BorderThickness">
+      <summary>
+            Gets or sets the thickness of borders around the legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Orientation">
+      <summary>
+            Gets or sets the orientation of items within the legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.Legend.Visible">
+      <summary>
+            Gets or sets the legend's visibility.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendCollection">
+      <summary>
+            Represents a collection of map legends (<see cref="T:C1.Win.FlexReport.CustomFields.Maps.Legend" />).
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase">
+      <summary>
+            Abstract base class for types representing items in a map legend.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.OnItemSelectedInEditor">
+      <summary>
+            Called by design time editor when item is selected.
+            Allows to update readonly-ness of properties depending on values etc.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.Visible">
+      <summary>
+            Gets or sets the item's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.Caption">
+      <summary>
+            Gets or sets the text representing the current item in the legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.Font">
+      <summary>
+            Gets or sets the font used to draw the current item's <see cref="P:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.Caption" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.TextColor">
+      <summary>
+            Gets or sets the color used to draw the current item's <see cref="P:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase.Caption" />.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem">
+      <summary>
+            Represents a legend item describing a map layer or a layer style.
+            <para>
+            The layer may belong to a different map in the report. This may be used
+            to place a legend outside the map's bounds for instance.
+            </para><para>
+            If no layer or style is associated with the legend item, arbitrary markers, colors
+            etc may be selected.
+            </para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.LayerStyle">
+      <summary>
+            Gets or sets the layer or style associated with the current legend item.
+            The layer or style may belong to a different <see cref="T:C1.Win.FlexReport.CustomFields.Map" /> in the report.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.TargetKey">
+      <summary>
+            Gets or sets the key identifying the layer or style associated with this legend item.
+            May be null or empty, in which case the item is not associated with any layer or style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.Caption">
+      <summary>
+            Gets or sets the caption of this legend item.
+            May be empty, in which case the caption is retrieved from the associated layer if possible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.GraphicKind">
+      <summary>
+            Gets or sets the kind of graphic shown by the current legend item.
+            If a layer or style is associated with this item, the value of this property is determined by
+            it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.Stroke">
+      <summary>
+            Gets or sets the stroke color used to draw the graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.Fill">
+      <summary>
+            Gets or sets the fill color used to draw the graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.MarkerShape">
+      <summary>
+            Gets or sets the marker shape used to draw point kind graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.DashStyle">
+      <summary>
+            Gets or sets the line dash style used to draw line kind graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.LineThickness">
+      <summary>
+            Gets or sets the line thickness used to draw line kind graphic shown by this legend item.
+            Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.MarkerSize">
+      <summary>
+            Gets or sets the marker size used to draw point kind graphic shown by this legend item.
+            Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.GraphicKindEnum">
+      <summary>
+            Specifies the kind of graphic shown by a legend item.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.GraphicKindEnum.Point">
+      <summary>
+            The graphic is a point marker.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.LegendLayerStyleItem.GraphicKindEnum.Line">
+      <summary>
+            The graphic is a line.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendColorSwatchItem">
+      <summary>
+            Represents a color swatch legend item.
+            Shows a colored swatch along with some descriptive text.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendTextItem">
+      <summary>
+            Represents a text only legend item.
+            Shows arbitrary text.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendItemCollection">
+      <summary>
+            Represents a collection of map legend items
+            (types derived from <see cref="T:C1.Win.FlexReport.CustomFields.Maps.LegendItemBase" />).
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LinesLayer">
+      <summary>
+            Represents a map layer containing lines,
+            where each line connects two points on the map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.MapLocation1">
+      <summary>
+            Gets or sets a string containing one or more semicolon-delimited fields which may be used
+            to determine the location of an entity using an external service such as Google.
+            Typically these would be the fields specifying the address, e.g. "Address;City;PostalCode;Country".
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.MapLocation2">
+      <summary>
+            Gets or sets a string containing one or more semicolon-delimited fields which may be used
+            to determine the location of an entity using an external service such as Google.
+            Typically these would be the fields specifying the address, e.g. "Address;City;PostalCode;Country".
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.Longitude1">
+      <summary>
+            Gets or sets the name of a field specifying the longitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.Latitude1">
+      <summary>
+            Gets or sets the name of a field specifying the latitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.Longitude2">
+      <summary>
+            Gets or sets the name of a field specifying the longitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.Latitude2">
+      <summary>
+            Gets or sets the name of a field specifying the latitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.LineVisibleExpr">
+      <summary>
+            Gets or sets expression determining whether a line is visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.LineStyleExpr">
+      <summary>
+            Gets or sets an expression that should evaluate to an index or a name of a style in the LineStyles collection
+            that will be used to draw the line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LinesLayer.LineStyle">
+      <summary>
+            Gets the default line style.
+            <para>Note: the set accessor is for serialization only, and should not be used directly.</para></summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LineStyle">
+      <summary>
+            Represents a style used to render lines on a map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LineStyle.ThicknessExpr">
+      <summary>
+            Gets or sets the thickness of lines on the map, in 96 DPI pixels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LineStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.LineStyle.DashStyle">
+      <summary>
+            Gets or sets the fill brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.InlineLineStyle">
+      <summary>
+            Represents a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.LineStyle" /> built into a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.LinesLayer" />.
+            Hides the style's Name as it cannot be used to reference an inline style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.InlineLineStyle.Name">
+      <summary>
+            Hide the name from properties window.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LineStyleCollection">
+      <summary>
+            Represents a collection of line styles (elements of type <see cref="T:C1.Win.FlexReport.CustomFields.Maps.LineStyle" />).
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Map">
+      <summary>
+            Represents a map showing spatial and analytical data in the report.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner">
+      <summary>
+            Allows the mapper to pull relevant map properties.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ImageType">
+      <summary>
+            The image type to generate.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.UseAntiAliasedGraphics">
+      <summary>
+            Indicates whether to use anti-aliasing while rendering map graphics.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ActualRightToLeft">
+      <summary>
+            Gets the actual right-to-left value that is being used.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.BackColor">
+      <summary>
+            The background color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ToolsColor">
+      <summary>
+            Tools' (scale etc) background color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.TileSource">
+      <summary>
+            Tile source.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ActualTileSource">
+      <summary>
+            The real tile source used.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ShowZoomTool">
+      <summary>
+            Whether to show the zoom scale.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ShowPanTool">
+      <summary>
+            Whether to show the pan tool.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ShowScale">
+      <summary>
+            Whether to show the scale.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.AutoZoom">
+      <summary>
+            Whether to auto-zoom to enclose all marks.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.MaxAutoZoom">
+      <summary>
+            Gets the maximum auto zoom level. 0 means there's no limitation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.RoundAutoZoom">
+      <summary>
+            If true, automatic zoom will be rounded down to next integer.
+            This may improve performance with some net based tile sources.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.AutoZoomPadLon">
+      <summary>
+            Auto zoom longitude padding, in percent.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.AutoZoomPadLat">
+      <summary>
+            Auto zoom latitude padding, in percent.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.ZoomLevel">
+      <summary>
+            The zoom level, 0 being no zoom, 1 - x2 zoom and so on.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.AutoCenter">
+      <summary>
+            Whether to auto-center to enclose all marks.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.CenterLatitude">
+      <summary>
+            The center latitude. Ignored if <see cref="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.AutoCenter" /> is true.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.CenterLongitude">
+      <summary>
+            The center longitude. Ignored if <see cref="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.AutoCenter" /> is true.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.Legends">
+      <summary>
+            The collection of legends.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.Layers">
+      <summary>
+            The collection of layers.
+            </summary>
+    </member>
+    <member name="E:C1.Win.FlexReport.CustomFields.Maps.IMapperOwner.LayersChanged">
+      <summary>
+            Event fired when the collection of layers changes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.#ctor">
+      <summary>
+            Initializes a new instance of the Map class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean@,System.Boolean)">
+      <summary>
+            Assigns the map image that will be rendered by the field.
+            </summary>
+      <param name="value">The field text (ignored unless map creation failed).</param>
+      <param name="img">The map image.</param>
+      <param name="disposeImage">Indicates that image should be disposed after using.</param>
+      <param name="designTime">Specifies whether we are in design time or runtime.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.OnPropertyChanged">
+      <summary>
+            Overridden. Disposes the cached map image if any, and calls the base implementation.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.OnSerializeAdded">
+      <summary>
+            Overriden. Post action after the Map is added to the parent report's fields collection.
+            </summary>
+      <remarks>
+            The ParentReport is not null on calling this method.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.Load(System.Xml.XmlNodeList)">
+      <summary>
+            Overridden. Loads map specific collections.
+            </summary>
+      <param name="properties">The source XML data.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.Save(System.Xml.XmlWriter)">
+      <summary>
+            Overridden. Saves map specific collections.
+            </summary>
+      <param name="properties">Writer used to save data.</param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Map.AssignFrom(C1.Win.FlexReport.ReportObject,System.Boolean)">
+      <summary>
+            Copies properties from another object into this object.
+            </summary>
+      <param name="source">The source object, properties of which are copied.</param>
+      <param name="assignName">Indicates whether the name of the object should be copied.</param>
+    </member>
+    <member name="E:C1.Win.FlexReport.CustomFields.Map.LayersChanged">
+      <summary>
+            Fired when the Layers collection is set.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.GeoCachePath">
+      <summary>
+            Gets or sets the path to the file used to cache spatial coordinates (longitude/latitude) specified as
+            MapLocation rather than actual Longitude/Latitude values. The coordinates in such cases are retrieved
+            using an online service such as Google, and caching them significantly imporoves performance when the
+            same location is encountered multiple times.
+            <para>The path is relative to the application startup path.</para><para>The default is "geocache.xml".</para><para>Clear this value to disable caching (not recommended).</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.Layers">
+      <summary>
+            Gets the collection of layers containing markers, lines and KML data rendered on the map.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.Legends">
+      <summary>
+            Gets the collection of legends rendered on the map.
+            Legends may represent layers or arbitrary information (such as captions).
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.MarkerStyles">
+      <summary>
+            Gets the collection of styles used to render markers on the map.
+            Styles allow markers in different layers or even in different maps to use common visual properties.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.LineStyles">
+      <summary>
+            Gets the collection of styles used to render lines on the map.
+            Styles allow lines in different layers or even in different maps to use common visual properties.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.KmlItemStyles">
+      <summary>
+            Gets the collection of styles used to render KML/KMZ items on the map.
+            Styles allow KML items in different layers or even in different maps to use common visual properties.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ToolsColor">
+      <summary>
+            Gets or sets the background color of the map scale and other tools.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ShowZoomTool">
+      <summary>
+            Gets or sets a value indicating whether to show the zoom scale.
+            <para>The default is false.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ShowPanTool">
+      <summary>
+            Gets or sets a value indicating whether to show the pan tool.
+            <para>The default is false.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ShowScale">
+      <summary>
+            Gets or sets a value indicating whether to show the map scale.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.TileSource">
+      <summary>
+            Gets or sets the map tile source.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.GenericTileSource">
+      <summary>
+            Gets the generic tile source when the <see cref="P:C1.Win.FlexReport.CustomFields.Map.TileSource" /> is <see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.Generic" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.CustomTileSource">
+      <summary>
+            Gets or sets the custom tile source used by this map.
+            </summary>
+      <remarks>
+        <para>
+            It will be actual tile source if it is not null. 
+            If it is null, the actual tile source is determined by the <see cref="P:C1.Win.FlexReport.CustomFields.Map.TileSource" /> property.
+            </para>
+        <para>
+            Please set this property at run time. It will not be saved into the report defination file.
+            </para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ActualTileSource">
+      <summary>
+            Gets the actual tile source used by the Map.
+            </summary>
+      <remarks>
+            The tile source is used as following:
+            <list type="bullet"><item><term>Custom</term><description>The <see cref="P:C1.Win.FlexReport.CustomFields.Map.CustomTileSource" /> property is used if it's not null.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.None" /></term><description>No tile source is specified.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.VirtualEarthRoad" /></term><description>The <see cref="T:C1.Win.Map.VirtualEarthRoadSource" /> is used.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.VirtualEarthAerial" /></term><description>The <see cref="T:C1.Win.Map.VirtualEarthAerialSource" /> is used.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.VirtualEarthHybrid" /></term><description>The <see cref="T:C1.Win.Map.VirtualEarthHybridSource" /> is used.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.OpenStreet" /></term><description>The <see cref="T:C1.Win.FlexReport.CustomFields.Maps.OpenStreetMapTileSource" /> is used.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.CloudMade" /></term><description>Obsolted. No tile source is specified.</description></item><item><term><see cref="F:C1.Win.FlexReport.CustomFields.Maps.TileSource.Generic" /></term><description>The <see cref="P:C1.Win.FlexReport.CustomFields.Map.GenericTileSource" /> property is used.</description></item></list></remarks>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.AutoZoom">
+      <summary>
+            Gets or sets a value indicating whether the map should automatically zoom in to just include all spatial data.
+            Ignored (considered to be false) if AutoCenter is false.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.AutoCenter">
+      <summary>
+            Gets or sets a value indicating whether to automatically center the map around the spatial data.
+            Note that setting this property to false effectively turns off AutoZoom.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.AutoZoomPadLon">
+      <summary>
+            Gets or sets auto zoom longitude padding, in percent relative to the viewport width.
+            <para>The default is 10%.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.AutoZoomPadLat">
+      <summary>
+            Gets or sets auto zoom latitude padding, in percent relative to the viewport height.
+            <para>The default is 10%.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ZoomLevel">
+      <summary>
+            Gets or sets the zoom level value. 0 is no zoom, 1 - x2 zoom and so on.
+            Valid values are from 0 to 20.
+            <para>The default is 0.</para>
+            Ignored if <see cref="P:C1.Win.FlexReport.CustomFields.Map.AutoZoom" /> is true.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.MaxAutoZoom">
+      <summary>
+            Gets or sets the maximum zoom level value for auto zooming.
+            Valid values are from 0 to 20.
+            0 (the default) disables auto zoom limiting.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.RoundAutoZoom">
+      <summary>
+            Gets or sets a value indicating whether to round automatically calculated
+            zoom levels down to next integer.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.CenterLongitude">
+      <summary>
+            Gets or sets the map center longitude. Ignored if AutoCenter is true.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.CenterLatitude">
+      <summary>
+            Gets or sets the map center latitude. Ignored if AutoCenter is true.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.TargetDpi">
+      <summary>
+            Obsoleted. Gets or sets the target image resolution (dpi).
+            <para>The default is 200 dpi.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.ImageType">
+      <summary>
+            Gets or sets the type of image generated by the map.
+            </summary>
+      <remarks>Because of GDI+ limitation, this conversion does not support transparency.</remarks>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Map.UseAntiAliasedGraphics">
+      <summary>
+            Gets or sets a value indicating whether to use anti-aliasing while rendering map graphics.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Map.ImageTypeEnum">
+      <summary>
+            Specifies the type of image to generate.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Map.ImageTypeEnum.Emf">
+      <summary>
+            Enhanced Windows metafile image format (EMF).
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Map.ImageTypeEnum.Png">
+      <summary>
+            W3C Portable Network Graphics (PNG) image format.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Map.ImageTypeEnum.Gif">
+      <summary>
+            Graphics Interchange Format (GIF) image format.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Map.ImageTypeEnum.Jpeg">
+      <summary>
+            Joint Photographic Experts Group (JPEG) image format.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Map.ImageTypeEnum.Bmp">
+      <summary>
+            Bitmap image format (BMP).
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Map.GeoCacheFileEditor">
+      <summary>
+            Design time editor for the geocache file name.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.AddingKmlItemDelegate">
+      <summary>
+            Delegate called for each KML item as it is loaded from the KML file into the map.
+            </summary>
+      <param name="record">The geometry record.</param>
+      <returns>The vector item which should be added into the kml layer.</returns>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LegendItemKind">
+      <summary>
+            Specifies the kind of a legend item.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.TileSource">
+      <summary>
+            Enumerates the possible map tile sources.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.DashStyle">
+      <summary>
+            Enumerates the line dash styles.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MarkerShape">
+      <summary>
+            Enumerates the marker shapes.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.ScaleType">
+      <summary>
+            Specifies a scale type.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.ScaleType.Linear">
+      <summary>
+            Linear scale.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.ScaleType.Logarithmic">
+      <summary>
+            Logarithmic scale.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.LonLat`1">
+      <summary>
+            Represents a longitude/latitude pair.
+            </summary>
+      <typeparam name="T">The type used to represent longitude and latitude.</typeparam>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.Util">
+      <summary>
+            Miscellaneous map utility functions.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.IsNumericType(System.Type)">
+      <summary>
+            Tests whether the type is a numeric one.
+            </summary>
+      <param name="t">The type to test.</param>
+      <returns>True if the type is numeric, false otherwise.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetColor(System.Object)">
+      <summary>
+            Converts an object to a System.Drawing.Color value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted color, or null if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetDouble(System.Object)">
+      <summary>
+            Converts an object to a double value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted value, or double.NaN if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetDouble(System.Object,System.Double)">
+      <summary>
+            Converts an object to a double value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="defaultValue">The default value.</param>
+      <returns>The converted value, or <paramref name="defaultValue" /> if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetBool(System.Object,System.Boolean)">
+      <summary>
+            Converts an object to a boolean value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="defaultValue">The default value.</param>
+      <returns>The converted value, or <paramref name="defaultValue" /> if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetInt(System.Object)">
+      <summary>
+            Converts an object to an integer value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted value, or 0 if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetInt(System.Object,System.Int32)">
+      <summary>
+            Converts an object to an integer value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="defaultValue">The default value.</param>
+      <returns>The converted value, or <paramref name="defaultValue" /> if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetString(System.Object)">
+      <summary>
+            Converts an object to a string value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted value, or empty string if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GetIndex(System.Object,System.Int32@)">
+      <summary>
+            Converts an object to an integer or a string that can be used as an index in a collection.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="integer">OUT: the integer index if <paramref name="value" /> could be converted to an integer, -1 otherwise.</param>
+      <returns>The string index (use only if <paramref name="integer" /> is -1).</returns>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.SetReadOnlyAttribute(System.ComponentModel.PropertyDescriptor,System.Boolean)">
+      <summary>
+            NOTE: Property MUST HAVE [ReadOnly(...)] specified already (in source)!!! otherwise this blows things up majorly.
+            </summary>
+      <param name="prop">
+      </param>
+      <param name="isReadOnly">
+      </param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.SetBrowsableAttribute(System.ComponentModel.PropertyDescriptor,System.Boolean)">
+      <summary>
+            NOTE: Property MUST HAVE [Browsable(...)] specified already (in source)!!! otherwise this blows things up majorly.
+            </summary>
+      <param name="prop">
+      </param>
+      <param name="isBrowsable">
+      </param>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.Util.GenerateId">
+      <summary>
+            Generates a unique sequence of 16 hex digits.
+            </summary>
+      <returns>
+      </returns>
+      <remarks>
+            Source: http://madskristensen.net/post/Generate-unique-strings-and-numbers-in-C.aspx
+            </remarks>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle">
+      <summary>
+            Represents a style used to render point markers on a map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.CaptionExpr">
+      <summary>
+            Gets or sets the name of a field specifying the caption.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.Shape">
+      <summary>
+            Gets or sets the shape of a mark.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.SizeExpr">
+      <summary>
+            Gets or sets the size of marks placed on the map, in 96 DPI pixels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.FillColor">
+      <summary>
+            Gets or sets the fill brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.Font">
+      <summary>
+            Gets or sets the font used to draw mark captions.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle.TextColor">
+      <summary>
+            Gets or sets the text color of mark captions.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.InlineMarkerStyle">
+      <summary>
+            Represents a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle" /> built into a <see cref="T:C1.Win.FlexReport.CustomFields.Maps.PointsLayer" />.
+            Hides the style's Name as it cannot be used to reference an inline style.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.MarkerStyleCollection">
+      <summary>
+            Represents a collection of marker styles (elements of type <see cref="T:C1.Win.FlexReport.CustomFields.Maps.MarkerStyle" />).
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.MarkerStyleCollection.Layer">
+      <summary>
+            Gets the layer which this collection is belonged to.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.PointsLayer">
+      <summary>
+            Represents a map layer containing point markers.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.MapLocation">
+      <summary>
+            Gets or sets a string containing one or more semicolon-delimited fields which may be used
+            to determine the location of an object using an external service such as Google.
+            Typically these would be the fields specifying the address, e.g. "Address;City;PostalCode;Country".
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.Longitude">
+      <summary>
+            Gets or sets an expression specifying the longitude of a marker.
+            Ignored if <see cref="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.Latitude">
+      <summary>
+            Gets or sets an expression specifying the latitude of a marker.
+            Ignored if <see cref="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.MarkerVisibleExpr">
+      <summary>
+            Gets or sets an expression determining whether a marker is visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.MarkerStyleExpr">
+      <summary>
+            Gets or sets an expression that should evaluate to an index or a name of a style in the MarkerStyles collection
+            that will be used to draw the marker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.MarkerStyle">
+      <summary>
+            Gets the default marker style.
+            <para>Note: the set accessor is for serialization only, and should not be used directly.</para></summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.ClusterDistance">
+      <summary>
+            Gets or sets the maximum distance (in 96dpi pixels) between markers that should be grouped into clusters.
+            Default (0) disables clustering.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.ClusterDistribution">
+      <summary>
+            Gets or sets the type of cluster styles distribution.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.PointsLayer.ClusterStyles">
+      <summary>
+            Gets or sets the collection of cluster styles.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.OpenStreetMapTileSource">
+      <summary>
+            Represents the tile source of OpenStreetMap.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource">
+      <summary>
+            Represents the generic tile source which provides the pattern of the tile uri.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.XmlName">
+      <summary>
+            The name of the xml node on saveing the object into the xml file.
+            </summary>
+    </member>
+    <member name="F:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.Serializer">
+      <summary>
+            The serializer used to serialize this class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.#ctor">
+      <summary>
+            For internal used. Initializes a new instance of the <see cref="T:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource" /> object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.#ctor(C1.Win.FlexReport.CustomFields.Map)">
+      <summary>
+            Initalizes a new instance of the <see cref="T:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource" /> object.
+            </summary>
+      <param name="owner">The owner <see cref="T:C1.Win.FlexReport.CustomFields.Map" />.</param>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.Subdomains">
+      <summary>
+            Gets or sets a semicolon delimited list of subdomains of the tile server.
+            </summary>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.TileUriPattern">
+      <summary>
+            Gets or sets the uri pattern of the tile image.
+            </summary>
+      <remarks>
+            The pattern accepts the following keywords:
+            <list type="bullet"><item><term>{subdomain}</term><description>The subdomain which is selected from the <see cref="P:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.Subdomains" /> randomly.</description></item><item><term>{level}</term><description>The zoom level for tiles.</description></item><item><term>{x}</term><description>The column index of the tile.</description></item><item><term>{y}</term><description>The row index of the tile.</description></item><item><item><term>{quadkey}</term><description>
+            The uniquely indentifies a single tile at a particular level of detail. 
+            Refer https://msdn.microsoft.com/en-us/library/bb259689.aspx.
+            </description></item><term>{cx}</term><descriptin>&gt;The longitude of the tile center point.</descriptin></item><item><term>{cy}</term><description>The latitude of the tile center point.</description></item><item><term>{width}</term><description>The width (in pixels) of the tile image. Always 256.</description></item><item><term>{height}</term><decription>The height (in pixels) of the tile image. Always 256.</decription></item></list></remarks>
+    </member>
+    <member name="P:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.LevelBase">
+      <summary>
+            Gets or sets the zoom value for the {level} token in <see cref="P:C1.Win.FlexReport.CustomFields.Maps.GenericTileSource.TileUriPattern" /> when <see cref="P:C1.Win.FlexReport.CustomFields.Map.ZoomLevel" /> is 0.
+            </summary>
+    </member>
+    <member name="T:C1.Win.FlexReport.CustomFields.SuperLabel">
+      <summary>
+            Inherits from <see cref="T:C1.Win.FlexReport.Field" /> and uses an instance of
+            <b>C1.Win.C1SuperTooltip.C1SuperLabel</b> component to draw HTML content.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.SuperLabel.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.FlexReport.CustomFields.SuperLabel" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.FlexReport.CustomFields.SuperLabel.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean@,System.Boolean)">
+      <summary>
+            Renders HTML content using the <b>C1SuperLabel</b> component.
+            </summary>
+      <param name="value">Field text.</param>
+      <param name="img">Field image.</param>
+      <param name="disposeImage">Indicates that image should be disposed after using.</param>
+      <param name="designTime">Whether we in design time or runtime.</param>
+    </member>
+  </members>
+</doc>

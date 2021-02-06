@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.FinancialChart.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Chart.Finance.FinancialChartType">
+      <summary>
+            Specifies the type of financial chart.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Column">
+      <summary>
+            Shows vertical bars and allows you to compare values of items across categories.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Scatter">
+      <summary>
+            Uses X and Y coordinates to show patterns within the data.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Line">
+      <summary>
+            Shows trends over a period of time or across categories.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.LineSymbols">
+      <summary>
+            Shows line chart with a symbol on each data point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Area">
+      <summary>
+            Shows line chart with area below the line filled with color.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Candlestick">
+      <summary>
+            Presents items with high, low, open, and close values.
+            The size of the wick line is determined by the High and Low values, while
+            the size of the bar is determined by the Open and Close values. The bar is
+            displayed using different colors, depending on whether the close value is
+            higher or lower than the open value. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "highProperty, lowProperty, openProperty, closeProperty".
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.HighLowOpenClose">
+      <summary>
+            Displays the same information as a candlestick chart, except that opening
+            values are displayed using lines to the left, while lines to the right
+            indicate closing values. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "highProperty, lowProperty, openProperty, closeProperty".
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.HeikinAshi">
+      <summary>
+            Derived from the candlestick chart and uses information from the current and
+            prior period in order to filter out the noise. These charts cannot be combined
+            with any other series objects. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "highProperty, lowProperty, openProperty, closeProperty".
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.LineBreak">
+      <summary>
+            Filters out noise by focusing exclusively on price changes. These charts cannot
+            be combined with any other series objects. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "highProperty, lowProperty, openProperty, closeProperty".
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Renko">
+      <summary>
+            Ignores time and focuses on price changes that meet a specified amount. These
+            charts cannot be combined with any other series objects. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "highProperty, lowProperty, openProperty, closeProperty".
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.Kagi">
+      <summary>
+            Ignores time and focuses on price action. These charts cannot be combined with
+            any other series objects. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "highProperty, lowProperty, openProperty, closeProperty".
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.ColumnVolume">
+      <summary>
+            Identical to the standard Column chart, except that the width of each bar is
+            determined by the Volume value. The data for this chart type can be defined using the
+            FinancialChart or FinancialSeries binding property as a comma separated value in the
+            following format: "yProperty, volumeProperty". This chart type can only be used at
+            the FinancialChart level, and should not be applied on
+            FinancialSeries objects. Only one set of volume data is currently supported
+            per FinancialChart.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.EquiVolume">
+      <summary>
+            Similar to the Candlestick chart, but shows the high and low values only.
+            In addition, the width of each bar is determined by Volume value. The data for
+            this chart type can be defined using the FinancialChart or FinancialSeries
+            binding property as a comma separated value in the following format:
+            "highProperty, lowProperty, openProperty, closeProperty, volumeProperty".
+            This chart type can only be used at the FinancialChart level, and should not
+            be applied on FinancialSeries objects. Only one set of volume data is currently
+            supported per FinancialChart.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.CandleVolume">
+      <summary>
+            Identical to the standard Candlestick chart, except that the width of each
+            bar is determined by Volume value. The data for
+            this chart type can be defined using the FinancialChart or FinancialSeries
+            binding property as a comma separated value in the following format:
+            "highProperty, lowProperty, openProperty, closeProperty, volumeProperty".
+            This chart type can only be used at the FinancialChart level, and should not
+            be applied on FinancialSeries objects. Only one set of volume data is currently
+            supported per FinancialChart.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.FinancialChartType.ArmsCandleVolume">
+      <summary>
+            Created by Richard Arms, this chart is a combination of EquiVolume and
+            CandleVolume chart types. The data for
+            this chart type can be defined using the FinancialChart or FinancialSeries
+            binding property as a comma separated value in the following format:
+            "highProperty, lowProperty, openProperty, closeProperty, volumeProperty".
+            This chart type can only be used at the FinancialChart level, and should not
+            be applied on FinancialSeries objects. Only one set of volume data is currently
+            supported per FinancialChart.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Finance.DataFields">
+      <summary>
+            Specifies which fields are to be used for calculation. Applies to Renko and Kagi chart types.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.Close">
+      <summary>
+            Close values are used for calculations.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.High">
+      <summary>
+            High values are used for calculations.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.Low">
+      <summary>
+            Low values are used for calculations.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.Open">
+      <summary>
+            Open values are used for calculations.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.HighLow">
+      <summary>
+            High-Low method is used for calculations. DataFields.HighLow is currently not
+            supported with Renko chart types.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.HL2">
+      <summary>
+            Average of high and low values is used for calculations.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.HLC3">
+      <summary>
+            Average of high, low, and close values is used for calculations.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.DataFields.HLOC4">
+      <summary>
+            Average of high, low, open, and close values is used for calculations.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Finance.RangeMode">
+      <summary>
+            Specifies the unit for Kagi and Renko chart types.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.RangeMode.Fixed">
+      <summary>
+            Uses a fixed, positive number for the Kagi chart's reversal amount
+            or Renko chart's box size.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.RangeMode.ATR">
+      <summary>
+            Uses the current Average True Range value for Kagi chart's reversal amount
+            or Renko chart's box size. When ATR is used, the reversal amount or box size
+            option of these charts must be an integer and will be used as the period for 
+            the ATR calculation.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Finance.RangeMode.Percentage">
+      <summary>
+            Uses a percentage for the Kagi chart's reversal amount. RangeMode.Percentage
+            is currently not supported with Renko chart types.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.FinancialChart">
+      <summary>
+            Represents financial charting control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.FinancialChart.#ctor">
+      <summary>
+            Creates an instance of FinancialChart class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.FinancialChart.Series_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary>
+            Fires when collection was changed.
+            </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.FinancialChart.Dispose(System.Boolean)">
+      <summary>
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChart.ChartType">
+      <summary>
+            Gets or sets the financial chart type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChart.Options">
+      <summary>
+            Gets various chart options.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.FinancialChartOptions">
+      <summary>
+            Represents options for FinancialChart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChartOptions.NewLineBreaks">
+      <summary>
+            Gets or sets the number of previous
+            boxes that must be compared before a new box is drawn in
+            Line Break charts. The default value is 3.
+            </summary>
+      <remarks>
+            Only positive value is valid.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChartOptions.BoxSize">
+      <summary>
+            Specifies the box size for the Renko chart. The default value is 14.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChartOptions.RangeMode">
+      <summary>
+            Specifies the <see cref="P:C1.Win.Chart.Finance.FinancialChartOptions.RangeMode" />RangeMode for the Kagi and Renko charts. The default value is RangeMode.Fixed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChartOptions.DataFields">
+      <summary>
+            Specifies the <see cref="P:C1.Win.Chart.Finance.FinancialChartOptions.DataFields" />DataFields used for the Kagi and Renko charts. The default value is DataFields.Close.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialChartOptions.ReversalAmount">
+      <summary>
+            Specifies the reversal amount for the Kagi chart. The default value is 14.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.MovingAverage">
+      <summary>
+            Represents a moving average trendline for FinancialChart.
+            </summary>
+      <remarks>
+            It is a calculation to analyze data points by creating a series of averages of
+            different subsets of the full data set. You may define a different type on each
+            MovingAverage object by setting the type property on the MovingAverage itself.
+            The MovingAverage class has a period property that allows you to set the number of
+            periods for computing the average value.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.FinancialSeries">
+      <summary>
+            Represents a series of data points to display in the chart.
+            </summary>
+      <remarks>
+            The FinancialSeries class supports all basic chart types. You may define
+            a different chart type on each FinancialSeries object that you add to the
+            FinancialChart series collection. This overrides the FinancialChart.ChartType
+            property set on the chart that is the default for all FinancialSeries objects
+            in its collection.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.FinancialSeries.ChartType">
+      <summary>
+            Gets or sets the chart type for the series.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.MovingAverage.#ctor">
+      <summary>
+            Creates an instance of MovingAverage class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.MovingAverage.GetValues(System.Int32)">
+      <summary>
+            Gets the array of data values.
+            </summary>
+      <param name="dim">Dimension.</param>
+      <returns>Array of data values.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.MovingAverage.OnDataSourceChanged">
+      <summary>
+            Fires when data source was changes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.MovingAverage.ChartType">
+      <summary>
+            Gets the series type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.MovingAverage.Type">
+      <summary>
+            Gets or sets the moving average type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.MovingAverage.Period">
+      <summary>
+            Gets or sets the period of the moving average series.
+            It should be set to integer value greater than 1. 
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.IndicatorBase">
+      <summary>
+            Represents indicator base class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.IndicatorBase.OnDataSourceChanged">
+      <summary>
+            Fires when data source was changes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.IndicatorBase.GetValues(System.Int32)">
+      <summary>
+            Gets the array of data values.
+            </summary>
+      <param name="dim">Dimension.</param>
+      <returns>Array of data values.</returns>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.IndicatorBase.ChartType">
+      <summary>
+            Gets the series type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Finance.IndicatorBase.Period">
+      <summary>
+            Gets or sets the period.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.ATR">
+      <summary>
+            Represents an Average True Range indicator series for the FinancialChart.
+            </summary>
+      <remarks>
+            Average true range is used to measure the volatility of an asset. Average true range
+            does not provide any indication of the price's trend, but rather the degree of price
+            volatility.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.ATR.#ctor">
+      <summary>
+            Creates an instance of ATR class.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.RSI">
+      <summary>
+            Represents a Relative Strength Index indicator series for the FinancialChart.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.RSI.#ctor">
+      <summary>
+            Creates an instance of RSI class.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.CCI">
+      <summary>
+            Represents a Commodity Channel Index indicator series for the FinancialChart.
+            </summary>
+      <remarks>
+            The commodity channel index is an oscillator that measures an asset's current price
+            level relative to an average price level over a specified period of time.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.CCI.#ctor">
+      <summary>
+            Creates an instance of CCI class.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Finance.WilliamsR">
+      <summary>
+            Represents a Willaims %R indicator series for the FinancialChart.
+            </summary>
+      <remarks>
+            Williams %R is a momentum indicator that is the inverse of a fast stochastic
+            oscillator. The Williams %R indicator is designed to
+            tell whether an asset is trading near the high or low of its trading range.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.Chart.Finance.WilliamsR.#ctor">
+      <summary>
+            Creates an instance of WilliamsR class.
+            </summary>
+    </member>
+  </members>
+</doc>

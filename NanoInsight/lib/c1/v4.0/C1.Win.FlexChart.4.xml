@@ -1,0 +1,4475 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.FlexChart.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Chart.Annotation.AnnotationAttachment">
+      <summary>
+            Specifies the attachment of the annotation.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationAttachment.DataIndex">
+      <summary>
+            Coordinates of the annotation point are defined by the data series index and 
+            the data point index.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationAttachment.DataCoordinate">
+      <summary>
+            Annotation point is specified in data coordinates.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationAttachment.Relative">
+      <summary>
+            Annotation point is specified as a relative position inside the control where
+            (0,0) is the top left corner and (1,1) is the bottom right corner.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationAttachment.Absolute">
+      <summary>
+            The annotation point is specified in control's pixel coordinates.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.AnnotationPosition">
+      <summary>
+            Specifies the position of the annotation.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationPosition.Center">
+      <summary>
+            The annotation appears at the Center of the target point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationPosition.Top">
+      <summary>
+            The annotation appears at the Top of the target point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationPosition.Bottom">
+      <summary>
+            The annotation appears at the Bottom of the target point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationPosition.Left">
+      <summary>
+            The annotation appears at the Left of the target point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Annotation.AnnotationPosition.Right">
+      <summary>
+            The annotation appears at the Right of the target point.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IAnnotationBase">
+      <summary>
+            IBaseAnnotation interface.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IStyleProvider">
+      <summary>
+            IStyle provider interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IStyleProvider.GetStyle(System.String)">
+      <summary>
+            Gets the style by name.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IStyleProvider.SetStyle(C1.Chart._Style,System.String)">
+      <summary>
+            Sets style with specified name.
+            </summary>
+      <param name="style">
+      </param>
+      <param name="name">
+      </param>
+    </member>
+    <member name="M:C1.Chart.Annotation.IAnnotationBase.GetSize">
+      <summary>
+            Gets the size of the annotation.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationBase.Attachment">
+      <summary>
+            Gets or sets the attachment of the annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationBase.Position">
+      <summary>
+            Gets or sets the position of annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationBase.Location">
+      <summary>
+            Gets or sets the location of annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationBase.PointIndex">
+      <summary>
+            Gets or sets the data point index of the annotation.
+            Applies only when the <see cref="P:C1.Chart.Annotation.IAnnotationBase.Attachment" /> property is set to DataIndex.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationBase.SeriesIndex">
+      <summary>
+            Gets or sets the data series index of the annotation.
+            Applies only when the <see cref="P:C1.Chart.Annotation.IAnnotationBase.Attachment" /> is set to DataIndex.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationBase.TooltipText">
+      <summary>
+            Gets or sets the tooltip of the annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IAnnotationLayer">
+      <summary>
+            Annotation layer interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IAnnotationLayer.Annotations">
+      <summary>
+            Gets the annotation collection.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.ICircle">
+      <summary>
+            ICircle interface.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IShape">
+      <summary>
+            IShape interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IShape.Content">
+      <summary>
+            Gets or sets the text of shape annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.ICircle.Radius">
+      <summary>
+            Gets or sets the radius of circle annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IEllipse">
+      <summary>
+            IEllipse interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IEllipse.Width">
+      <summary>
+            Gets or sets the width of ellipse annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IEllipse.Height">
+      <summary>
+            Gets or sets the height of ellipse annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IImage">
+      <summary>
+            IImage interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IImage.SourceImage">
+      <summary>
+            Gets or sets the source of image annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IImage.Width">
+      <summary>
+            Gets or sets the width of image annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IImage.Height">
+      <summary>
+            Gets or sets the height of image annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.ILine">
+      <summary>
+            ILine interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.ILine.Start">
+      <summary>
+            Gets or sets the start point of line annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.ILine.End">
+      <summary>
+            Gets or sets the end point of line annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IPolygon">
+      <summary>
+            IPolygon interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IPolygon.Points">
+      <summary>
+            Gets the collection of points of the polygon annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IRectangle">
+      <summary>
+            IRectangle interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IRectangle.Width">
+      <summary>
+            Gets or sets the width of rectangle annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IRectangle.Height">
+      <summary>
+            Gets or sets the height of rectangle annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.ISquare">
+      <summary>
+            ISquare interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.ISquare.Length">
+      <summary>
+            Gets or sets the length of the square annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Annotation.IText">
+      <summary>
+            IText interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.Annotation.IText.Content">
+      <summary>
+            Gets or sets the text of the annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.BaseRenderEventArgs">
+      <summary>
+            Base render event arguments.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.BaseRenderEventArgs.Engine">
+      <summary>
+            Gets the rendering engine.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IDataLabel">
+      <summary>
+            IDataLabel interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IDataLabel.Content">
+      <summary>
+            Gets or sets the label content.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IDataLabel.Position">
+      <summary>
+            Gets or sets the label position.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IDataLabel.Border">
+      <summary>
+            Gets or sets a value indicating whether data labels have border.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IDataLabel.ConnectingLine">
+      <summary>
+            Gets or sets a value indicating whether data labels have connecting lines.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IDataLabel.Offset">
+      <summary>
+            Gets or sets the offset of data label.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IPieDataLabel">
+      <summary>
+            IPieDataLabel interface.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IPieDataLabel.Content">
+      <summary>
+            Gets or sets the label content.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IPieDataLabel.Position">
+      <summary>
+            Gets or sets the label position.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IPieDataLabel.Border">
+      <summary>
+            Gets or sets a value indicating whether data labels have border.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IPieDataLabel.ConnectingLine">
+      <summary>
+            Gets or sets a value indicating whether data labels have connecting lines.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IPieDataLabel.Offset">
+      <summary>
+            Gets or sets the offset of data label.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.SeriesBase">
+      <summary>
+            Base class for data series.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ISeries">
+      <summary>
+            ISeries interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.ISeries.GetValues(System.Int32)">
+      <summary>
+            Gets the data values.
+            </summary>
+      <param name="dim">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ISeries.GetDataType(System.Int32)">
+      <summary>
+            Gets the data type.
+            </summary>
+      <param name="dim">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ISeries.GetItem(System.Int32)">
+      <summary>
+            Gets the data item by index. 
+            </summary>
+      <param name="i">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ISeries.OnSymbolRendering(C1.Chart.IRenderEngine,System.Int32,System.Double,System.Double)">
+      <summary>
+            Called before rendering symbol. 
+            </summary>
+      <param name="engine">Render engine,</param>
+      <param name="i">Index of data point.</param>
+      <param name="x">X pixel coordinate.</param>
+      <param name="y">Y pixel coordinate.</param>
+      <returns>Whether to perform default symbol rendering.</returns>
+    </member>
+    <member name="M:C1.Chart.ISeries.OnSymbolRendered(C1.Chart.IRenderEngine,System.Int32,System.Double,System.Double)">
+      <summary>
+            Called after rendering symbol. 
+            </summary>
+      <param name="engine">Render engine,</param>
+      <param name="i">Index of data point.</param>
+      <param name="x">X pixel coordinate.</param>
+      <param name="y">Y pixel coordinate.</param>
+    </member>
+    <member name="P:C1.Chart.ISeries.ChartType">
+      <summary>
+            Gets or sets the chart type.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.Visibility">
+      <summary>
+            Gets or sets the series visibility.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.Name">
+      <summary>
+            Gets or sets the series name.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.AxisX">
+      <summary>
+            Gets or sets the series x-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.AxisY">
+      <summary>
+            Gets or sets the series y-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.Chart">
+      <summary>
+            Gets or sets the chart.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.SymbolSize">
+      <summary>
+            Gets the series symbol size.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.SymbolMarker">
+      <summary>
+            Gets the series symbol marker.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.HasCustomSymbol">
+      <summary>
+            Whether the series has custom symbol rendering.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.DataSource">
+      <summary>
+            Gets or sets data source.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.Binding">
+      <summary>
+            Gets or sets the binding.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ISeries.BindingX">
+      <summary>
+            Gets or sets the x-binding.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesBase._axisX">
+      <summary>
+            X-axis.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesBase._axisY">
+      <summary>
+            Y-axis.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesBase._binding">
+      <summary>
+            Binding property name.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesBase._bindingX">
+      <summary>
+            X-binding property name.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesBase._itemsSource">
+      <summary>
+            Items source.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.OnVisibilityChanged">
+      <summary>
+            Called when visibility changes.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.GetStyle(System.String)">
+      <summary>
+            Gets the style by name.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.GetItem(System.Int32)">
+      <summary>
+            Gets the data item.
+            </summary>
+      <param name="i">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.GetValues(System.Int32)">
+      <summary>
+            Gets the data values.
+            </summary>
+      <param name="dim">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.GetDataType(System.Int32)">
+      <summary>
+            Gets the data type.
+            </summary>
+      <param name="dim">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.OnSymbolRendering(C1.Chart.IRenderEngine,System.Int32,System.Double,System.Double)">
+      <summary>
+            Called when symbol is rendering.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="i">
+      </param>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.OnSymbolRendered(C1.Chart.IRenderEngine,System.Int32,System.Double,System.Double)">
+      <summary>
+            Called after symbol was rendered.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="i">
+      </param>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.Invalidate">
+      <summary>
+            Invalidates series.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.GetChartType">
+      <summary>
+            Gets the chart type.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.SeriesBase.SetStyle(C1.Chart._Style,System.String)">
+      <summary>
+            Sets the series style.
+            </summary>
+      <param name="style">Style</param>
+      <param name="name">Name of the style.</param>
+    </member>
+    <member name="P:C1.Chart.SeriesBase.ChartType">
+      <summary>
+            Gets or sets the series chart type.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.SeriesBase.Visibility">
+      <summary>
+            Gets or sets the series visibility.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.SeriesBase.Name">
+      <summary>
+            Gets or sets the series display name.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.SeriesBase.SymbolSize">
+      <summary>
+            Gets or sets the size(in pixels) of the symbols used to render this Series.
+            Applies to Scatter, LineSymbols, and SplineSymbols chart types.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.SeriesBase.SymbolMarker">
+      <summary>
+            Gets or sets the shape of marker to use for each data point in the series.
+            Applies to Scatter, LineSymbols, and SplineSymbols chart types.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.SeriesBase.HasCustomSymbol">
+      <summary>
+            Whether the custom symbol rendering is used.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ChartType">
+      <summary>
+            Specifies the chart type.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Column">
+      <summary>
+            Shows vertical bars.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Bar">
+      <summary>
+            Shows horizontal bars.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Line">
+      <summary>
+            Shows trends over a period of time or across categories.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Scatter">
+      <summary>
+            Shows patterns within the data using X and Y coordinates.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.LineSymbols">
+      <summary>
+            Shows line chart with a symbol on each data point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Area">
+      <summary>
+            Shows line chart with the area below the line filled with color.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Spline">
+      <summary>
+            Displays line chart that plots curves rather than angled lines through the data points.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.SplineSymbols">
+      <summary>
+            Displays spline chart with symbols on each data point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.SplineArea">
+      <summary>
+            Displays spline chart with the area below the line filled with color.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Bubble">
+      <summary>
+            Shows Scatter chart with a third data value that determines the size of the symbol.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.Candlestick">
+      <summary>
+            Presents items with high, low, open, and close values.
+            The size of the wick line is determined by the High and Low values, 
+            while the size of the bar is determined by the Open and Close values. 
+            The bar is displayed using different colors, depending on 
+            whether the close value is higher or lower than the open value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartType.HighLowOpenClose">
+      <summary>
+            Displays the same information as a candlestick chart, except that opening 
+            values are displayed using lines to the left, while lines to the right
+            indicate closing values.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Stacking">
+      <summary>
+            Specifies whether and how to stack the chart's data values.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Stacking.None">
+      <summary>
+            No stacking. Each series object is plotted independently.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Stacking.Stacked">
+      <summary>
+            Stacked charts show how each value contributes to the total.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Stacking.Stacked100pc">
+      <summary>
+            100% stacked charts show how each value contributes to the total with the relative size of
+            each series representing its contribution to the total.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.SeriesVisibility">
+      <summary>
+            Specifies whether and where the Series is visible.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesVisibility.Visible">
+      <summary>
+            The series is visible on the plot and in the legend.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesVisibility.Plot">
+      <summary>
+            The series is visible only on the plot.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesVisibility.Legend">
+      <summary>
+            The series is visible only in the legend.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SeriesVisibility.Hidden">
+      <summary>
+            The series is hidden.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.DataType">
+      <summary>
+            Specifies chart data type
+            </summary>
+    </member>
+    <member name="F:C1.Chart.DataType.Number">
+      <summary>
+            Numeric data.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.DataType.Date">
+      <summary>
+            Date or time data.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ChartElement">
+      <summary>
+            Specifies chart element that may be found by the HitTest method.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.PlotArea">
+      <summary>
+            The area within the axes.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.AxisX">
+      <summary>
+            X-axis.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.AxisY">
+      <summary>
+            Y-axis.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.ChartArea">
+      <summary>
+            The area within the control but outside the axes.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.Legend">
+      <summary>
+            The chart legend.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.Header">
+      <summary>
+            The chart header.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.Footer">
+      <summary>
+            The chart footer.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.Series">
+      <summary>
+            A chart series.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.SeriesSymbol">
+      <summary>
+            A chart series symbol.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.DataLabel">
+      <summary>
+            A data label.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartElement.None">
+      <summary>
+            No chart element.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.LabelPosition">
+      <summary>
+            Specifies chart data label position.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.LabelPosition.None">
+      <summary>
+            No data labels appear.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.LabelPosition.Left">
+      <summary>
+            The labels appear to the left of the data points.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.LabelPosition.Top">
+      <summary>
+            The labels appear above the data points.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.LabelPosition.Right">
+      <summary>
+            The labels appear to the right of the data points.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.LabelPosition.Bottom">
+      <summary>
+            The labels appear below the data points.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.LabelPosition.Center">
+      <summary>
+            The labels appear centered on the data points.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.PieLabelPosition">
+      <summary>
+            Specifies the position of data labels on the pie chart.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.PieLabelPosition.None">
+      <summary>
+            No data labels.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.PieLabelPosition.Inside">
+      <summary>
+            The label appears inside the pie slice.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.PieLabelPosition.Center">
+      <summary>
+            The item appears at the center of the pie slice.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.PieLabelPosition.Outside">
+      <summary>
+            The item appears outside the pie slice.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ChartSelectionMode">
+      <summary>
+            Available selection modes.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartSelectionMode.None">
+      <summary>
+            Selection is disabled.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartSelectionMode.Series">
+      <summary>
+            Series selection.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ChartSelectionMode.Point">
+      <summary>
+            Point selection.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ElementSizeType">
+      <summary>
+            Specifies the size type for ElementSize object.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ElementSizeType.Percentage">
+      <summary>
+            Size specified in perecents from available space.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.ElementSizeType.Absolute">
+      <summary>
+            Size specified in pixels.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.SymbolMarker">
+      <summary>
+            Specifies the type of marker to use for the SymbolMarker property.
+            Applies to Scatter, LineSymbols, and SplineSymbols chart types.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SymbolMarker.Dot">
+      <summary>
+            Uses a circle to mark each data point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.SymbolMarker.Box">
+      <summary>
+            Uses a square to mark each data point.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ElementSize">
+      <summary>
+            Represents element size.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.ElementSize.op_Equality(C1.Chart.ElementSize,C1.Chart.ElementSize)">
+      <summary>
+      </summary>
+      <param name="size1">
+      </param>
+      <param name="size2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ElementSize.op_Inequality(C1.Chart.ElementSize,C1.Chart.ElementSize)">
+      <summary>
+      </summary>
+      <param name="size1">
+      </param>
+      <param name="size2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ElementSize.Equals(System.Object)">
+      <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ElementSize.GetHashCode">
+      <summary>
+            Returns hash code of the instance.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.ElementSize.SizeType">
+      <summary>
+            Gets or sets the size type.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ElementSize.Value">
+      <summary>
+            Gets or sets the value.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.OverlappingLabels">
+      <summary>
+            Specifies how to handle overlapping labels.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.OverlappingLabels.Auto">
+      <summary>
+            Hide overlapping labels.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.OverlappingLabels.Show">
+      <summary>
+            Show all labels, including overlapping ones.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.MeasureOption">
+      <summary>
+            Specifies measuring direction.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MeasureOption.X">
+      <summary>
+            By X-axis.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MeasureOption.Y">
+      <summary>
+            By Y-axis.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MeasureOption.XY">
+      <summary>
+            Both X- and Y- axes.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.FitType">
+      <summary>
+            Specifies fit type for trend line.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.Linear">
+      <summary>
+            Regression fit to the equation Y(x) = C0 + C1*x.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.Polynom">
+      <summary>
+            Regression fit to the equation Y(x) = C0 + C1*x + C2*x2 + : + Cn-1*xn-1, where n - number of terms.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.Exponent">
+      <summary>
+            Regression fit to the equation Y(x) = C0 * exp( C1*x)
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.Logarithmic">
+      <summary>
+            Regression fit to the equation Y(x) = C0 * ln(C1*x)
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.Power">
+      <summary>
+            Regression fit to the equation Y(x) = C0 * pow(x, C1)
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.Fourier">
+      <summary>
+            Regression fit to the equation Y(x) = C0 + C1 * cos(x) + C2 * sin(x) + C3 * cos(2*x) + C4 * sin(2*x) + ...
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.MinX">
+      <summary>
+            Minimal X-value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.MinY">
+      <summary>
+            Minimal Y-value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.MaxX">
+      <summary>
+            Maximum X-value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.MaxY">
+      <summary>
+            Maximum Y-value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.AverageX">
+      <summary>
+            Average X-value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.FitType.AverageY">
+      <summary>
+            Average Y-value.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.MovingAverageType">
+      <summary>
+            Specifies the type of MovingAverage Series. 
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MovingAverageType.Simple">
+      <summary>
+            An average of the last n values.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MovingAverageType.Weighted">
+      <summary>
+            Weighted average of the last n values, where the weightage decreases by 1 with each previous value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MovingAverageType.Exponential">
+      <summary>
+            Weighted average of the last n values, where the weightage decreases exponentially with each previous value.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.MovingAverageType.Triangular">
+      <summary>
+            Weighted average of the last n values, whose result is equivalent to a double smoothed simple moving average.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Orientation">
+      <summary>
+            Specifies the orientation of chart element.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Orientation.Auto">
+      <summary>
+            Orientation is selected automatically.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Orientation.Horizontal">
+      <summary>
+            Horizontal orientation.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Orientation.Vertical">
+      <summary>
+            Vertical orientation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.RadarChartType">
+      <summary>
+            Specifies the chart type for FlexRadar control.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.RadarChartType.Line">
+      <summary>
+            Shows trends over a period of time or across categories.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.RadarChartType.Scatter">
+      <summary>
+            Shows patterns within the data using X and Y coordinates.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.RadarChartType.LineSymbols">
+      <summary>
+            Shows line chart with a symbol on each data point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.RadarChartType.Area">
+      <summary>
+            Shows line chart with the area below the line filled with color.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.HitTestInfo">
+      <summary>
+            Contains information about a part of a FlexChart control at
+            a specified coordinate.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.HitTestInfo.Format(System.String)">
+      <summary>
+            Formats the string.
+            </summary>
+      <param name="s">An input string.</param>
+      <returns>Formatted string.</returns>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.Series">
+      <summary>
+             Gets the chart series at the specified coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.PointIndex">
+      <summary>
+            Gets the data point index at the specified coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.ChartElement">
+      <summary>
+            Gets the chart element at the specified coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.Distance">
+      <summary>
+            Gets the distance from the closest data point.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.Item">
+      <summary>
+            Gets the data object that corresponds to the closest data point.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.X">
+      <summary>
+            Gets the x-value of the closest data point.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.HitTestInfo.Y">
+      <summary>
+            Gets the y-value of the closest data point.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Position">
+      <summary>
+            Specifies the position of chart element on the chart.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Position.Left">
+      <summary>
+            The element appears to the left.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Position.Right">
+      <summary>
+            The element appears to the right.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Position.Top">
+      <summary>
+            The item appears above.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Position.Bottom">
+      <summary>
+            The item appears below.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Position.Auto">
+      <summary>
+            The element is positioned automatically.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Position.None">
+      <summary>
+            The element is not visible.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.AxisType">
+      <summary>
+            Specifies axis type. 
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisType.X">
+      <summary>
+            X-axis, horizontal.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisType.Y">
+      <summary>
+            Y-axis, vertical.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.TickMark">
+      <summary>
+            Specifies whether and where the axis tick marks appear.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.TickMark.None">
+      <summary>
+            No tick marks appear.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.TickMark.Outside">
+      <summary>
+            Tick marks appear outside the plot area.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.TickMark.Inside">
+      <summary>
+            Tick marks appear inside the plot area.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.TickMark.Cross">
+      <summary>
+            Tick marks cross the axis.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.AxisLabelAlignment">
+      <summary>
+            Specifies axis label position.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisLabelAlignment.Center">
+      <summary>
+            At the center.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisLabelAlignment.Left">
+      <summary>
+            At the left.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisLabelAlignment.Right">
+      <summary>
+            At the right.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisLabelAlignment.Top">
+      <summary>
+            At the top.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.AxisLabelAlignment.Bottom">
+      <summary>
+            At the bottom.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IAxis">
+      <summary>
+            IAxis interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IAxis.Convert(System.Double)">
+      <summary>
+            Converts from data to pixel coordinate.
+            </summary>
+      <param name="val">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IAxis.ConvertBack(System.Double)">
+      <summary>
+            Converts from pixel to data coordinate.
+            </summary>
+      <param name="val">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IAxis.GetMin">
+      <summary>
+            Gets the actual minimum.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IAxis.GetMax">
+      <summary>
+            Gets the actual maximum.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IAxis.GetHeight(C1.Chart.IRenderEngine,System.Double)">
+      <summary>
+            Gets the axis height.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="maxWidth">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IAxis.Layout(C1.Chart._Rect,C1.Chart._Rect)">
+      <summary>
+            Perfomes axis layout.
+            </summary>
+      <param name="axisRect">
+      </param>
+      <param name="plotRect">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IAxis.Render(C1.Chart.IRenderEngine)">
+      <summary>
+            Renders the axis.
+            </summary>
+      <param name="engine">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IAxis.RenderPolar(C1.Chart.IRenderEngine,C1.Chart.IRadarChart)">
+      <summary>
+            Renders polar or radar axis.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="radarChart">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IAxis.UpdateActualLimits(System.Nullable{C1.Chart.DataType},System.Double,System.Double,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Double})">
+      <summary>
+            Updates axis limits.
+            </summary>
+      <param name="dataType">
+      </param>
+      <param name="dataMin">
+      </param>
+      <param name="dataMax">
+      </param>
+      <param name="labels">
+      </param>
+      <param name="values">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IAxis.FormatValue(System.Double)">
+      <summary>
+            Formats specified value.
+            </summary>
+      <param name="value">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IAxis.SetCustomConversion(System.Func{System.Double,System.Double,System.Double,System.Double},System.Func{System.Double,System.Double,System.Double,System.Double})">
+      <summary>
+            Set custom conversion.
+            </summary>
+      <param name="convert">
+      </param>
+      <param name="convertBack">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IAxis.GetValues">
+      <summary>
+            Gets label values.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.IAxis.Position">
+      <summary>
+            Gets the axis position.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.AxisType">
+      <summary>
+            Gets the axis type.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Origin">
+      <summary>
+            Gets the axis origin.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Reversed">
+      <summary>
+            Whether the axis is reversed.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Labels">
+      <summary>
+            Whether to draw labels.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.MajorTickMarks">
+      <summary>
+            Gets the position of major tick marks.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.MajorGrid">
+      <summary>
+            Whether to draw major grid.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.MajorUnit">
+      <summary>
+            Gets the major unit.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.MinorTickMarks">
+      <summary>
+            Gets the position of major tick marks.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.MinorGrid">
+      <summary>
+            Whether to draw major grid.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.MinorUnit">
+      <summary>
+            Gets the major unit.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.LogBase">
+      <summary>
+            Gets the logarithmic base.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.AxisLine">
+      <summary>
+            Whether to draw axis line.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.LabelAlignment">
+      <summary>
+            Gets the label alignment.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.LabelAngle">
+      <summary>
+            Gets the label rotation angle.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Min">
+      <summary>
+            Gets the axis minimum.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Max">
+      <summary>
+            Gets the axis maximum.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Format">
+      <summary>
+            Gets the format of axis labels.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Title">
+      <summary>
+            Gets the axis title. 
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.OverlappingLabels">
+      <summary>
+            Gets or sets a value indicating how to handle the overlapping axis labels.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.AnnoSize">
+      <summary>
+            Gets or sets annotation label size.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.HasOrigin">
+      <summary>
+            Whether the origin is set.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.DesiredSize">
+      <summary>
+            Gets or sets the axis desired size.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Chart">
+      <summary>
+            Gets or sets the parent chart.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.Rect">
+      <summary>
+            Gets the axis rectangle.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IAxis.CustomLabels">
+      <summary>
+            Gets or sets custom axis labels.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IBrushConverter">
+      <summary>
+            Brush converter interface
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IBrushConverter.Convert(System.Object)">
+      <summary>
+            Converts brush to string.
+            </summary>
+      <param name="brush">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IBrushConverter.ConvertBack(System.String)">
+      <summary>
+            Converts string to brush.
+            </summary>
+      <param name="s">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Chart.IChartBase">
+      <summary>
+            IChartBase interface.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IPalette">
+      <summary>
+            IPalette interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IPalette.GetColor(System.Int32)">
+      <summary>
+            Gets the palette color by index.
+            </summary>
+      <param name="i">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChartBase.OnRendering(C1.Chart.IRenderEngine,System.Double,System.Double)">
+      <summary>
+            Invoked before chart starts rendering.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IChartBase.OnRendered(C1.Chart.IRenderEngine,System.Double,System.Double)">
+      <summary>
+            Invoked after chart finishes rendering.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IChartBase.GetMargin">
+      <summary>
+            Gets the plot margin.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.IChartBase.Legend">
+      <summary>
+            Gets the chart legend.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChartBase.Header">
+      <summary>
+            Gets the chart header.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChartBase.Footer">
+      <summary>
+            Gets the chart footer,
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChartBase.SelectedIndex">
+      <summary>
+            Gets the selected index.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChartBase.SelectionMode">
+      <summary>
+            Gets the selection mode.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IChart">
+      <summary>
+            IChart interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IChart.GetAxes">
+      <summary>
+            Gets the chart axes.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChart.GetPlotRect">
+      <summary>
+            Gets the plot rectangle.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChart.GetPlotMargin">
+      <summary>
+            Gets the plot margin.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChart.IsRotated">
+      <summary>
+            Gets a value indicating whether the chart is rotated.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChart.GetXItems">
+      <summary>
+            Gets the list of x-axis items.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChart.GetOption(System.String)">
+      <summary>
+            Gets the chart option.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IChart.OnRenderingData(C1.Chart.IRenderEngine)">
+      <summary>
+            Invoked before chart data starts rendering.
+            </summary>
+      <param name="engine">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IChart.CreateSeries">
+      <summary>
+            Creates an instance of series.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.IChart.ChartType">
+      <summary>
+            Gets the chart type.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChart.Stacking">
+      <summary>
+            Gets the chart stacking.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChart.AxisX">
+      <summary>
+            Gets the main x-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChart.AxisY">
+      <summary>
+            Gets the main y-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChart.DataLabel">
+      <summary>
+            Gets the chart data label.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChart.Series">
+      <summary>
+            Gets the series list.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IChart.SelectedSeries">
+      <summary>
+            Gets the selected series.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ISupportCustomRenderEngine">
+      <summary>
+            Support of external render engines.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.ISupportCustomRenderEngine.Attach(C1.Chart.ICustomRenderEngine)">
+      <summary>
+            Attaches external render engine.
+            </summary>
+      <param name="engine">
+      </param>
+    </member>
+    <member name="M:C1.Chart.ISupportCustomRenderEngine.Render(C1.Chart.IRenderEngine,System.Int32,System.Int32)">
+      <summary>
+            Render the chart to external render engine.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+    </member>
+    <member name="M:C1.Chart.ISupportCustomRenderEngine.Detach">
+      <summary>
+            Detaches external render engine.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ICustomRenderEngine">
+      <summary>
+            External render engine interface.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IRenderEngine">
+      <summary>
+            Render engine.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetStroke(System.Object)">
+      <summary>
+            Sets the current stroke brush.
+            </summary>
+      <param name="brush">Native brush or argb color as integer.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetStrokeThickness(System.Double)">
+      <summary>
+            Sets the stroke thickness.
+            </summary>
+      <param name="thickness">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetStrokePattern(System.Double[])">
+      <summary>
+            Sets the stroke pattern.
+            </summary>
+      <param name="pattern">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetFill(System.Object)">
+      <summary>
+            Sets the fill brush.
+            </summary>
+      <param name="brush">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetOpacity(System.Object,System.Double)">
+      <summary>
+            Changes the brush opacity.
+            </summary>
+      <param name="brush">Brush object</param>
+      <param name="opacity">Opacity</param>
+      <returns>Brush object</returns>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetFont(System.Object)">
+      <summary>
+            Sets the font.
+            </summary>
+      <param name="font">Native font object.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawLine(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Draw line between two points using current stroke attributes.
+            </summary>
+      <param name="x1">x-coordinate of first point.</param>
+      <param name="y1">y-coordinate of first point.</param>
+      <param name="x2">x-coordinate of second point.</param>
+      <param name="y2">y-coordinate of second point.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawLines(System.Double[],System.Double[])">
+      <summary>
+            Draw lines using specified coordinates.
+            </summary>
+      <param name="xs">Array of x-coordinates.</param>
+      <param name="ys">Array of y-coordinates.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawRect(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Draw rectangle with currect stroke and fill.
+            </summary>
+      <param name="x">x-coordinate of rectangle.</param>
+      <param name="y">y-coordinate of rectangle.</param>
+      <param name="w">Rectangle width.</param>
+      <param name="h">Rectangle height.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawPolygon(System.Double[],System.Double[])">
+      <summary>
+            Draw polygon with currect stroke and fill.
+            </summary>
+      <param name="xs">Array of x-coordinates.</param>
+      <param name="ys">Array of y-coordinates.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawEllipse(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Draw ellipse with currect stroke and fill.
+            </summary>
+      <param name="cx">X-coordinate of ellipse center.</param>
+      <param name="cy">Y-coordinate of ellipse center.</param>
+      <param name="rx">x-radius.</param>
+      <param name="ry">y-radius.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawImage(System.Object,System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Draw image using special source.
+            </summary>
+      <param name="source">the source of image.</param>
+      <param name="x">x-coordinate of image.</param>
+      <param name="y">y-coordinate of image.</param>
+      <param name="w">Image width.</param>
+      <param name="h">Image height.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.MeasureString(System.String)">
+      <summary>
+            Measures size of string.
+            </summary>
+      <param name="s">String to measure.</param>
+      <returns>Size.</returns>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawString(System.String,C1.Chart._Point)">
+      <summary>
+            Draw string at specified position.
+            </summary>
+      <param name="s">String to draw.</param>
+      <param name="pos">Position.</param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.DrawStringRotated(System.String,C1.Chart._Point,C1.Chart._Point,System.Double)">
+      <summary>
+            Draw rotated string at specified position.
+            </summary>
+      <param name="s">
+      </param>
+      <param name="pos">
+      </param>
+      <param name="center">
+      </param>
+      <param name="angle">
+      </param>
+    </member>
+    <member name="M:C1.Chart.IRenderEngine.SetClipRect(System.Nullable{C1.Chart._Rect})">
+      <summary>
+            Sets clip rectangle.
+            </summary>
+      <param name="rect">Clip rectangle. Null clear clipping rectangle.</param>
+    </member>
+    <member name="M:C1.Chart.ICustomRenderEngine.Attach(C1.Chart.IChart)">
+      <summary>
+            Attach render engine to the chart.
+            </summary>
+      <param name="chart">
+      </param>
+    </member>
+    <member name="M:C1.Chart.ICustomRenderEngine.Detach">
+      <summary>
+            Detach render engine from chart.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IRadarChart">
+      <summary>
+            Radar chart interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IRadarChart.Convert(C1.Chart._Point)">
+      <summary>
+            Converts the point.
+            </summary>
+      <param name="pt">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IRadarChart.ConvertAngle(System.Double)">
+      <summary>
+            Converts the angle.
+            </summary>
+      <param name="val">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.IRadarChart.Center">
+      <summary>
+            Gets the center.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IRadarChart.Radius">
+      <summary>
+            Gets the radius.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IRadarChart.StartAngle">
+      <summary>
+            Gets or sets the starting angle.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IRadarChart.Reversed">
+      <summary>
+            Whether the chart is reversed.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IRadarChart.IsPolar">
+      <summary>
+            Whether the chart is polar.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.ILegend">
+      <summary>
+            ILegend interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.ILegend.GetPosition(System.Double,System.Double)">
+      <summary>
+            Gets the automatic position.
+            </summary>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ILegend.GetDesiredSize(C1.Chart.IRenderEngine,System.Double,System.Double)">
+      <summary>
+            Gets the desired legend size.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.ILegend.Render(C1.Chart.IRenderEngine,C1.Chart.Position,C1.Chart._Rect)">
+      <summary>
+            Render the legend.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="pos">
+      </param>
+      <param name="rect">
+      </param>
+    </member>
+    <member name="M:C1.Chart.ILegend.HitTest(System.Double,System.Double)">
+      <summary>
+            Hit testing.
+            </summary>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.ILegend.Position">
+      <summary>
+            Gets or sets the legend position.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ILegend.Title">
+      <summary>
+            Gets the legend title.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.ILegend.Orientation">
+      <summary>
+            Gets the legend orientation.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.IWaterfall">
+      <summary>
+            IWaterfall interface.
+            </summary>
+    </member>
+    <member name="M:C1.Chart.IWaterfall.GetYValues">
+      <summary>
+            Gets the list of y axis values.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IWaterfall.IsIntermediateTotal(System.Int32)">
+      <summary>
+            Checks whether the item is intermediate total or not.
+            </summary>
+      <param name="index">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IWaterfall.UpdateXItems(System.Collections.Generic.List{System.Object})">
+      <summary>
+            Updates the list of x axis items.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IWaterfall.GetLegendItemsCount">
+      <summary>
+            Gets the count of legend items.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IWaterfall.GetLegendItemName(System.Int32)">
+      <summary>
+            Gets the name of legend item.
+            </summary>
+      <param name="index">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart.IWaterfall.GetLegendStyles(System.Int32)">
+      <summary>
+            Gets the style of legend item.
+            </summary>
+      <param name="index">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.ConnectorLines">
+      <summary>
+            Gets or sets a value that determines whether to show connector lines.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.IntermediateTotalLabels">
+      <summary>
+            Gets or sets the value of the property that contains the label of the intermediate total bar, it should be an array or a string.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.IntermediateTotalPositions">
+      <summary>
+            Gets or sets the value of the property that contains the index for positions of the intermediate total bar.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.RelativeData">
+      <summary>
+            Gets or sets a value that determines whether the given data is relative.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.ShowIntermediateTotal">
+      <summary>
+            Gets or sets a value that determines whether to show the intermediate total bar.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.ShowTotal">
+      <summary>
+            Gets or sets a value that determines whether show total bar.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.Start">
+      <summary>
+            Gets or sets a value that determines the value of the start bar.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.StartLabel">
+      <summary>
+            Identifies the Start dependency property.
+            </summary>
+    </member>
+    <member name="P:C1.Chart.IWaterfall.TotalLabel">
+      <summary>
+            Gets or sets the label of the total bar.
+            </summary>
+    </member>
+    <member name="T:C1.Chart.Palette">
+      <summary>
+            Specifies chart palette.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Standard">
+      <summary>
+            Standard.
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Cocoa">
+      <summary>
+            Cocoa
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Coral">
+      <summary>
+            Coral
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Dark">
+      <summary>
+            Dark
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Highcontrast">
+      <summary>
+            Highcontrast
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Light">
+      <summary>
+            Light
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Midnight">
+      <summary>
+            Midnight
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Modern">
+      <summary>
+            Modern
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Organic">
+      <summary>
+            Organic
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Slate">
+      <summary>
+            Slate
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Zen">
+      <summary>
+            Zen
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Cyborg">
+      <summary>
+            Cyborg
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Superhero">
+      <summary>
+            Superhero
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Flatly">
+      <summary>
+            Flatly
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Darkly">
+      <summary>
+            Darkly
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Cerulean">
+      <summary>
+            Cerulean
+            </summary>
+    </member>
+    <member name="F:C1.Chart.Palette.Custom">
+      <summary>
+            Custom palette.
+            </summary>
+    </member>
+    <member name="T:C1.Chart._Rect">
+      <summary>
+            Represents rectangle.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Rect.Left">
+      <summary>
+            Left coordinate.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Rect.Top">
+      <summary>
+            Top coordinate.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Rect.Width">
+      <summary>
+            Width of rectangle.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Rect.Height">
+      <summary>
+            Height of rectangle.
+            </summary>
+    </member>
+    <member name="M:C1.Chart._Rect.#ctor(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Create an instance of rectangle.
+            </summary>
+      <param name="l">
+      </param>
+      <param name="t">
+      </param>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+    </member>
+    <member name="M:C1.Chart._Rect.Contains(System.Double,System.Double)">
+      <summary>
+            Returns whether the point specified by coordinates is inside rectangle.
+            </summary>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="F:C1.Chart._Rect.Empty">
+      <summary>
+            Empty rectangle.
+            </summary>
+    </member>
+    <member name="M:C1.Chart._Rect.op_Equality(C1.Chart._Rect,C1.Chart._Rect)">
+      <summary>
+            Equality operator. 
+            </summary>
+      <param name="rect1">
+      </param>
+      <param name="rect2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart._Rect.op_Inequality(C1.Chart._Rect,C1.Chart._Rect)">
+      <summary>
+            Non-equality operator.
+            </summary>
+      <param name="rect1">
+      </param>
+      <param name="rect2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart._Rect.Equals(System.Object)">
+      <summary>
+            Determines whether the specified object is equal to this instance. 
+            </summary>
+      <param name="obj">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart._Rect.GetHashCode">
+      <summary>
+            Returns the hash code of the instance.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Chart._Rect.Intersect(C1.Chart._Rect)">
+      <summary>
+            Returns a value indicating whether the rectangle intersects with the specified rectangle.
+            </summary>
+      <param name="rect">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart._Rect.Right">
+      <summary>
+            Gets the right coordinate of rectangle.
+            </summary>
+    </member>
+    <member name="P:C1.Chart._Rect.Bottom">
+      <summary>
+            Gets the bottom coordinate of rectangle.
+            </summary>
+    </member>
+    <member name="T:C1.Chart._Size">
+      <summary>
+            Represents size.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Size.Width">
+      <summary>
+            Width.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Size.Height">
+      <summary>
+            Height
+            </summary>
+    </member>
+    <member name="M:C1.Chart._Size.#ctor(System.Double,System.Double)">
+      <summary>
+            Creates am instance of _Size.
+            </summary>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+    </member>
+    <member name="T:C1.Chart._Margin">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:C1.Chart._Margin.Left">
+      <summary>
+            Left margin.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Margin.Right">
+      <summary>
+            Right margin.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Margin.Top">
+      <summary>
+            Top margin.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Margin.Bottom">
+      <summary>
+            Bottom margin.
+            </summary>
+    </member>
+    <member name="M:C1.Chart._Margin.Apply(C1.Chart._Rect)">
+      <summary>
+            Applies margin to specified rectangle.
+            </summary>
+      <param name="rect">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Chart._Point">
+      <summary>
+            Represents point.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Point.X">
+      <summary>
+            X-coordinate.
+            </summary>
+    </member>
+    <member name="F:C1.Chart._Point.Y">
+      <summary>
+            Y-coordinate.
+            </summary>
+    </member>
+    <member name="M:C1.Chart._Point.#ctor(System.Double,System.Double)">
+      <summary>
+            Creates an instance of _Point.
+            </summary>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+    </member>
+    <member name="M:C1.Chart._Point.Clone">
+      <summary>
+            Clones the specified point.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Chart._Style">
+      <summary>
+            Represent style.
+            </summary>
+    </member>
+    <member name="M:C1.Chart._Style.Combine(C1.Chart._Style)">
+      <summary>
+            Combines styles.
+            </summary>
+      <param name="parentStyle">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Chart._Style.Stroke">
+      <summary>
+            Gets or sets the stroke object.
+            </summary>
+    </member>
+    <member name="P:C1.Chart._Style.StrokeThickness">
+      <summary>
+            Gets or sets the stroke thickness.
+            </summary>
+    </member>
+    <member name="P:C1.Chart._Style.StrokePattern">
+      <summary>
+            Gets or sets the stroke pattern.
+            </summary>
+    </member>
+    <member name="P:C1.Chart._Style.Fill">
+      <summary>
+            Gets or sets the fill object.
+            </summary>
+    </member>
+    <member name="P:C1.Chart._Style.Font">
+      <summary>
+            Gets or sets the font object.
+            </summary>
+    </member>
+    <member name="P:C1.Chart._Style.HAlign">
+      <summary>
+            Gets or sets horizontal alignment.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.AnnotationBase">
+      <summary>
+            Represents the base class of annotations for the <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.AnnotationBase.#ctor">
+      <summary>
+            Create an instance of BaseAnnotation.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.AnnotationBase.OnPropertyChanged(System.String)">
+      <summary>
+            Called when property value changes.
+            </summary>
+      <param name="propertyName">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.AnnotationBase.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.Attachment">
+      <summary>
+            Gets or sets the attachment of the annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.Position">
+      <summary>
+            Gets or sets the position of annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.Location">
+      <summary>
+            Gets or sets the location of annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.PointIndex">
+      <summary>
+            Gets or sets the data point index of the annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.SeriesIndex">
+      <summary>
+            Gets or sets the data series index of the annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.TooltipText">
+      <summary>
+            Gets or sets the tooltip of the annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.ContentStyle">
+      <summary>
+            Gets or sets the shape style of annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationBase.Style">
+      <summary>
+            Gets or sets the style of annotation.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Annotation.AnnotationBase.PropertyChanged">
+      <summary>
+            Notifies that a property of annotation value has changed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.AnnotationLayer">
+      <summary>
+            Represents an annotation layer for <see cref="T:C1.Win.Chart.FlexChart" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.AnnotationLayer.#ctor(C1.Win.Chart.FlexChart)">
+      <summary>
+            Create an instance of AnnotationLayer.
+            </summary>
+      <param name="chart">
+      </param>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.AnnotationLayer.Annotations">
+      <summary>
+            Gets the collection of annotation elements in the <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Circle">
+      <summary>
+            Represents a circle annotation for <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Shape">
+      <summary>
+            Represents a base class of shape annotations for the <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Shape.#ctor">
+      <summary>
+            Create an instance of Shape.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Shape.#ctor(System.String)">
+      <summary>
+            Create an instance of Shape.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Shape.Content">
+      <summary>
+            Gets or sets the text of the annotation.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Circle.#ctor">
+      <summary>
+            Create an instance of Circle.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Circle.#ctor(System.String)">
+      <summary>
+            Create an instance of Circle.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Circle.#ctor(System.String,System.Int32)">
+      <summary>
+            Create an instance of Circle.
+            </summary>
+      <param name="content">
+      </param>
+      <param name="radius">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Circle.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Circle.Radius">
+      <summary>
+            Gets or sets the radius of circle annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Ellipse">
+      <summary>
+            Represents an ellipse annotation for <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Ellipse.#ctor">
+      <summary>
+            Create an instance of Ellipse.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Ellipse.#ctor(System.String)">
+      <summary>
+            Create an instance of Ellipse.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Ellipse.#ctor(System.String,System.Int32,System.Int32)">
+      <summary>
+            Create an instance of Ellipse.
+            </summary>
+      <param name="content">
+      </param>
+      <param name="width">
+      </param>
+      <param name="height">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Ellipse.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Ellipse.Width">
+      <summary>
+            Gets or sets the width of ellipse annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Ellipse.Height">
+      <summary>
+            Gets or sets the height of ellipse annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Image">
+      <summary>
+            Represents an image annotation for the <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Image.#ctor">
+      <summary>
+            Create an instance of Image.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Image.#ctor(System.Drawing.Image)">
+      <summary>
+            Create an instance of Image.
+            </summary>
+      <param name="sourceImage">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Image.#ctor(System.Drawing.Image,System.Int32,System.Int32)">
+      <summary>
+            Create an instance of Image.
+            </summary>
+      <param name="sourceImage">
+      </param>
+      <param name="width">
+      </param>
+      <param name="height">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Image.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Image.SourceImage">
+      <summary>
+            Gets or sets the source image of image annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Image.Width">
+      <summary>
+            Gets or sets the width of image annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Image.Height">
+      <summary>
+            Gets or sets the height of image annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Line">
+      <summary>
+            Represents a line annotation for <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Line.#ctor">
+      <summary>
+            Create an instance of Line.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Line.#ctor(System.String)">
+      <summary>
+            Create an instance of Line.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Line.#ctor(System.String,System.Drawing.PointF,System.Drawing.PointF)">
+      <summary>
+            Create an instance of Line.
+            </summary>
+      <param name="content">
+      </param>
+      <param name="start">
+      </param>
+      <param name="end">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Line.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Line.Content">
+      <summary>
+            Gets or sets the element content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Line.Start">
+      <summary>
+            Gets or sets the start point of line annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Line.End">
+      <summary>
+            Gets or sets the end point of line annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Polygon">
+      <summary>
+            Represents a polygon annotation for <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Polygon.#ctor">
+      <summary>
+            Create an instance of Polygon.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Polygon.#ctor(System.String)">
+      <summary>
+            Create an instance of Polygon.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Polygon.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Polygon.Points">
+      <summary>
+            Gets the collection of points of the polygon annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Rectangle">
+      <summary>
+            Represents a rectangle annotation for <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Rectangle.#ctor">
+      <summary>
+            Create an instance of Rectangle.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Rectangle.#ctor(System.String)">
+      <summary>
+            Create an instance of Rectangle.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Rectangle.#ctor(System.String,System.Int32,System.Int32)">
+      <summary>
+            Create an instance of Rectangle.
+            </summary>
+      <param name="content">
+      </param>
+      <param name="width">
+      </param>
+      <param name="height">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Rectangle.GetSize">
+      <summary>
+            Gets the element size
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Rectangle.Width">
+      <summary>
+            Gets or sets the width of rectangle annotation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Rectangle.Height">
+      <summary>
+            Gets or sets the height of rectangle annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Square">
+      <summary>
+            Represents a square annotation for the <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Square.#ctor">
+      <summary>
+            Create an instance of Square.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Square.#ctor(System.String)">
+      <summary>
+            Create an instance of Square.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Square.#ctor(System.String,System.Int32)">
+      <summary>
+            Create an instance of Square.
+            </summary>
+      <param name="content">
+      </param>
+      <param name="length">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Square.GetSize">
+      <summary>
+            Gets the element size.
+            </summary>
+      <returns>Size of the element.</returns>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Square.Length">
+      <summary>
+            Gets or sets the length of the square annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Annotation.Text">
+      <summary>
+            Represents a text annotation for the <see cref="T:C1.Win.Chart.Annotation.AnnotationLayer" /></summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Text.#ctor">
+      <summary>
+            Create an instance of Text.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Annotation.Text.#ctor(System.String)">
+      <summary>
+            Create an instance of Text.
+            </summary>
+      <param name="content">
+      </param>
+    </member>
+    <member name="P:C1.Win.Chart.Annotation.Text.Content">
+      <summary>
+            Gets or sets the text of the annotation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Axis">
+      <summary>
+            Represents an axis in the chart.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Axis.#ctor">
+      <summary>
+            Creates a new instance of an Axis object.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Axis.Convert(System.Double)">
+      <summary>
+            Converts the specified value from data to pixel coordinates.
+            </summary>
+      <param name="val">The data value to convert.</param>
+      <returns>The value in control's pixel coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.Axis.ConvertBack(System.Double)">
+      <summary>
+            Converts the specified value from pixel to data coordinates.
+            </summary>
+      <param name="val">The pixel coordinate to convert back.</param>
+      <returns>The value in data coordinates.</returns>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Position">
+      <summary>
+            Gets or sets the axis position.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.AxisType">
+      <summary>
+            Gets or sets the axis type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Origin">
+      <summary>
+            Gets or sets the value at which an axis crosses the perpendicular axis.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Reversed">
+      <summary>
+            Gets or sets a value indicating whether the axis is reversed (top to bottom or right to left).
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Labels">
+      <summary>
+            Gets or sets a value indicating whether the axis labels are visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.LabelAngle">
+      <summary>
+            Gets or sets the rotation angle of the axis labels.
+            </summary>
+      <remarks>The angle is measured in degrees with valid values ranging from -90 to 90.</remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Format">
+      <summary>
+            Gets or sets the format string used for the axis labels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Title">
+      <summary>
+            Gets or sets the title text shown next to the axis.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.TitleStyle">
+      <summary>
+            Gets the axis title style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MajorTickMarks">
+      <summary>
+            Gets or sets the location of the axis tick marks.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MajorGrid">
+      <summary>
+            Gets or sets a value indicating whether the axis includes grid lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MajorGridStyle">
+      <summary>
+            Gets the major grid style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MajorUnit">
+      <summary>
+            Gets or sets the number of units between axis labels.
+            </summary>
+      <remarks>If the axis contains date values, then the units are expressed in days.</remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MinorTickMarks">
+      <summary>
+            Gets or sets the location of the axis minor tick marks.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MinorGrid">
+      <summary>
+            Gets or sets a value indicating whether the axis includes minor grid lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MinorGridStyle">
+      <summary>
+            Gets the minor grid style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.MinorUnit">
+      <summary>
+            Gets or sets the number of units between minor ticks and grid lines.
+            </summary>
+      <remarks>If the axis contains date values, then the units are expressed in days.</remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.LogBase">
+      <summary>
+            Gets or sets the logarithmic base of the axis.
+            </summary>
+      <remarks>If the base is equal to NaN(default value) the axis uses a linear scale.</remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.AxisLine">
+      <summary>
+            Gets or sets a value indicating whether the axis line is visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.LabelAlignment">
+      <summary>
+            Gets or sets the alignment of axis labels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Min">
+      <summary>
+            Gets or sets the minimum value shown on the axis.
+            </summary>
+      <remarks>
+            If the minimum is equal to NaN(default value) the minimum is calculated automatically.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Max">
+      <summary>
+            Gets or sets the maximum value shown on the axis.
+            </summary>
+      <remarks>
+            If the maximum is equal to NaN(default value) the maximum is calculated automatically.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.Style">
+      <summary>
+            Gets the axis style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.ActualMin">
+      <summary>
+            Gets the current axis minimum.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.ActualMax">
+      <summary>
+            Gets the current axis maximum.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Axis.OverlappingLabels">
+      <summary>
+            Gets or sets a value indicating how to handle the overlapping axis labels.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ChartOptions">
+      <summary>
+            Specifies chart options.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.ChartOptions.Invalidate">
+      <summary>
+            Invalidates the chart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartOptions.InterpolateNulls">
+      <summary>
+            Gets or sets a value indicating how to interpret missing values.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartOptions.ClusterSize">
+      <summary>
+            Gets or sets the cluster size for column and bar charts.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartOptions.BubbleMinSize">
+      <summary>
+            Gets or sets the minimal symbol size for bubble chart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartOptions.BubbleMaxSize">
+      <summary>
+            Gets or sets the maximum symbol size for bubble chart.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ChartStyle">
+      <summary>
+            Specifies visual style for chart elements.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.ChartStyle.#ctor">
+      <summary>
+            Creates an instance of ChartStyle class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.Stroke">
+      <summary>
+            Gets or sets the stroke brush of element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.Fill">
+      <summary>
+            Gets or sets the fill brush of element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.FillColor">
+      <summary>
+            Gets or sets the fill color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.StrokeWidth">
+      <summary>
+            Gets or sets the stroke width.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.StrokeDashPattern">
+      <summary>
+            Gets or sets the stroke dash pattern.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartStyle.Font">
+      <summary>
+            Gets or sets the font of the chart element.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.ChartStyle.PropertyChanged">
+      <summary>
+            Fires when property value has changed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ChartStyleConverter">
+      <summary>
+            ChartStyle type converter.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.ChartStyleConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+      <summary>
+            Gets a collection of properties for the type.
+            </summary>
+      <param name="context">
+      </param>
+      <param name="value">
+      </param>
+      <param name="attributes">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:C1.Win.Chart.DataLabelBase">
+      <summary>
+            Base class for data label.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.DataLabelBase.Invalidate">
+      <summary>
+            Invalidates the chart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabelBase.Content">
+      <summary>
+            Gets or sets the content of data labels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabelBase.Border">
+      <summary>
+            Gets or sets a value indicating whether the label has border.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabelBase.ConnectingLine">
+      <summary>
+            Gets or sets a value indicating whether the data labels have a line connecting them with corresponding data point. 
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabelBase.Offset">
+      <summary>
+            Gets or sets the offset of data label from corresponding data point.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabelBase.Style">
+      <summary>
+            Gets the style of data labels.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabelBase.BorderStyle">
+      <summary>
+            Gets the border style of data labels.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.DataLabel">
+      <summary>
+            Represents a label associated with data point.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.DataLabel.Position">
+      <summary>
+            Gets or sets the position of data labels.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.PieDataLabel">
+      <summary>
+            Represents a data label for FlexPie.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.PieDataLabel.Position">
+      <summary>
+            Gets or sets the position of data labels.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ImageFormat">
+      <summary>
+            Specifies image format.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.ImageFormat.Png">
+      <summary>
+            Png image.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.ImageFormat.Jpg">
+      <summary>
+            Jpeg image
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.ImageFormat.Svg">
+      <summary>
+            SVG image.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.RenderMode">
+      <summary>
+            Specifies chart render mode.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.RenderMode.Default">
+      <summary>
+            Default render mode.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.RenderMode.DirectX">
+      <summary>
+            High performance DirectX rendering.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ChartSmoothingMode">
+      <summary>
+            Specifies smoothing modes.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.ChartSmoothingMode.Auto">
+      <summary>
+            Automatic selection.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.ChartSmoothingMode.HighQuality">
+      <summary>
+            Anti-aliasing is enabled.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.ChartSmoothingMode.HighSpeed">
+      <summary>
+            Anti-aliasing is disabled.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.RenderEventArgs">
+      <summary>
+            Render event arguments.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.RenderEventArgs.Graphics">
+      <summary>
+            Gets the graphics.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.RenderSymbolEventArgs">
+      <summary>
+            Render symbol event arguments.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.RenderSymbolEventArgs.Point">
+      <summary>
+            Gets the symbol point in control pixel coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.RenderSymbolEventArgs.Index">
+      <summary>
+            Gets the data point index.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.RenderSymbolEventArgs.Item">
+      <summary>
+            Gets the data item.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.FlexChartBase">
+      <summary>
+            Base class for chart controls.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChartBase.BeginUpdate">
+      <summary>
+            Suspends notifications until the next call to EndUpdate.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChartBase.EndUpdate">
+      <summary>
+            Resumes notifications suspended by calls to BeginUpdate.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChartBase.HitTest(System.Drawing.Point)">
+      <summary>
+            Gets a HitTestInfo object with information about the specified point.
+            </summary>
+      <param name="pt">Point in control coordinates.</param>
+      <returns>A HitTestInfo object with information about the point.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChartBase.GetStyle(System.String)">
+      <summary>
+            Gets the style by name.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChartBase.OnSelectionChanged(System.EventArgs)">
+      <summary>
+            Raises SelectionChanged event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChartBase.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Raises MouseMove event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.Legend">
+      <summary>
+            Gets the chart legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.Palette">
+      <summary>
+            Gets or sets the chart palette.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.Header">
+      <summary>
+            Gets the chart header.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.Footer">
+      <summary>
+            Gets the chart footer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.ToolTip">
+      <summary>
+            Gets the chart tooltip.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.SelectionMode">
+      <summary>
+            Gets or sets the chart selection mode.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.SelectedIndex">
+      <summary>
+            Gets or sets the index of chart selected element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.SelectionStyle">
+      <summary>
+            Gets the style of selected element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.PlotStyle">
+      <summary>
+            Gets the style of plot area(area inside axes).
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.CustomPalette">
+      <summary>
+            Gets or sets the custom palette.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.SmoothingMode">
+      <summary>
+            Gets or sets chart smoothing mode.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.FlexChartBase.Rendering">
+      <summary>
+            Fires before chart starts rendering.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.FlexChartBase.Rendered">
+      <summary>
+            Fires after chart finishes rendering.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.FlexChartBase.SelectionChanged">
+      <summary>
+            Fires after selected element was changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChartBase.DefaultSize">
+      <summary>
+            Gets the default control's size.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.FlexPie">
+      <summary>
+            Pie chart control.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.FlexPie._dirty">
+      <summary>
+            Whether the data cache is dirty.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPie.#ctor">
+      <summary>
+            Creates an instance of FlexChart class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPie.HitTest(System.Drawing.Point)">
+      <summary>
+            Gets a HitTestInfo object with information about the specified point.
+            </summary>
+      <param name="pt">Point in control coordinates.</param>
+      <returns>A HitTestInfo object with information about the point.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPie.OnPaint(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Raises the Paint event.
+            </summary>
+      <param name="pe">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPie.OnSizeChanged(System.EventArgs)">
+      <summary>
+            Raises the SizeChanged event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPie.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Raises the MouseClicked event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPie.Bind">
+      <summary>
+            Performs data binding.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.DataSource">
+      <summary>
+            Gets or sets the collection of objects that contains the data for the pie chart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.DataMember">
+      <summary>
+            Gets or sets the name of the DataMember, if any, for the DataSource.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.Binding">
+      <summary>
+            Gets or sets the name of the property that contains numeric values for the pie slices.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.BindingName">
+      <summary>
+            Gets or sets the name of the property that contains label for the pie slices and legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.StartAngle">
+      <summary>
+            Gets or sets the starting angle for the pie slices, in degrees.
+            </summary>
+      <remarks>
+            Angles are measured clockwise, starting at the 9 o'clock position.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.InnerRadius">
+      <summary>
+            Gets or sets the size of the pie's inner radius.
+            </summary>
+      <remarks>
+            The inner radius is measured as a fraction of the pie radius.
+            The default value for this property is zero, which creates a pie. 
+            Setting this property to values greater than zero creates pies
+            with a hole in the middle, also known as doughnut charts.                                          
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.Offset">
+      <summary>
+            Gets or sets the offset of the slices from the pie center.
+            </summary>
+      <remarks>
+            The offset is measured as a fraction of the pie radius.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.Reversed">
+      <summary>
+            Gets or sets a value that determines whether angles are reversed (counter-clockwise).                                            
+            </summary>
+      <remarks>
+            The default value is false, which causes angles to be measured in the clockwise direction.                                         
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.SelectedItemPosition">
+      <summary>
+            Gets or sets the position of the selected slice.
+            </summary>
+      <remarks>
+            Setting this property to a value other than 'None' causes the pie to rotate when an item is selected.               
+            Note that in order to select slices by clicking the chart, you must set the SelectionMode property to "Point".  
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.SelectedItemOffset">
+      <summary>
+            Gets or sets the offset of the selected slice from the pie center.
+            </summary>
+      <remarks>
+            Offsets are measured as a fraction of the pie radius.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPie.DataLabel">
+      <summary>
+            Gets the chart data label.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.FlexPieSlice">
+      <summary>
+            Represents slice in pie chart.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexPieSlice.#ctor(System.Double,System.String)">
+      <summary>
+            Creates an instance of FlexPieSlice class.
+            </summary>
+      <param name="value">
+      </param>
+      <param name="name">
+      </param>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPieSlice.Name">
+      <summary>
+            Gets or sets the name.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexPieSlice.Value">
+      <summary>
+            Gets or sets the value.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.FlexRadar">
+      <summary>
+            Charting control for radar and polar charts.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.FlexChart">
+      <summary>
+            The FlexChart controls provides a powerful and flexible way to visualize data. 
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.#ctor">
+      <summary>
+            Creates an instance of FlexChart control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.Rebind">
+      <summary>
+            Performs data binding.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.HitTest(System.Drawing.Point)">
+      <summary>
+            Gets a HitTestInfo object with information about the specified point.
+            </summary>
+      <param name="pt">Point in control coordinates.</param>
+      <returns>A HitTestInfo object with information about the point.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.HitTest(System.Drawing.Point,C1.Chart.MeasureOption,System.Int32)">
+      <summary>
+            Gets a HitTestInfo object with information about the specified point.
+            </summary>
+      <param name="pt">Point in control coordinates.</param>
+      <param name="options">Measure options.</param>
+      <param name="seriesIndex">Optional Series index. If index is specified the method returns 
+            information about the closest data point of the specified series.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.PointToData(System.Drawing.PointF)">
+      <summary>
+            Converts a Point from control coordinates to chart data coordinates.
+            </summary>
+      <param name="pt">Point in control coordinates.</param>
+      <returns>The point in chart data coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.DataToPoint(System.Drawing.PointF)">
+      <summary>
+            Converts a Point from data coordinates to control coordinates.
+            </summary>
+      <param name="pt">Point in data coordinates.</param>
+      <returns>Point in control coordinates.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.SaveImage(System.IO.Stream,C1.Win.Chart.ImageFormat,System.Int32,System.Int32)">
+      <summary>
+            Saves chart as image with to the specified stream.
+            </summary>
+      <param name="stream">Stream</param>
+      <param name="fmt">Image format.</param>
+      <param name="w">Width of image.</param>
+      <param name="h">Height of image.</param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.Render(C1.Chart.IRenderEngine,System.Int32,System.Int32)">
+      <summary>
+            Renders the chart.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="w">
+      </param>
+      <param name="h">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.OnPaint(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Raises Paint event.
+            </summary>
+      <param name="pe">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Paints the background of the control.
+            </summary>
+      <param name="pevent">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.OnPaintChart(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Paints the chart.
+            </summary>
+      <param name="pe">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.OnSizeChanged(System.EventArgs)">
+      <summary>
+            Raises the SizeChanged event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.Series_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary>
+            CollectionChanged event handler.
+            </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Raises the MouseClick event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.FlexChart.Dispose(System.Boolean)">
+      <summary>
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.Binding">
+      <summary>
+            Gets or sets the name of the property that contains Y values for the series.
+            </summary>
+      <remarks>
+            For complex chart types it may contain several names separated by commas.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.BindingX">
+      <summary>
+            Gets or sets the name of the property that contains X values for the series.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.DataMember">
+      <summary>
+            Gets or sets the name of the DataMember, if any, for the DataSource.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.DataSource">
+      <summary>
+            Gets or sets the collection of objects that contains the series data.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.BindingMode">
+      <summary>
+            Gets or sets the binding mode.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.AxisX">
+      <summary>
+            Gets the main chart x-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.AxisY">
+      <summary>
+            Gets the main chart y-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.Series">
+      <summary>
+            Gets the list of the series.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.Stacking">
+      <summary>
+            Gets or sets the data stacking.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.ChartType">
+      <summary>
+            Gets or sets the chart type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.RenderMode">
+      <summary>
+            Gets or sets the render mode.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.Rotated">
+      <summary>
+            Gets or sets a value indicating whether to flip the axes so that
+            X is vertical and Y is horizontal.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.LegendToggle">
+      <summary>
+            Gets or sets a value indicating whether clicking legend items toggles
+            the series visibility in the chart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.DataLabel">
+      <summary>
+            Gets the chart data label.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.Options">
+      <summary>
+            Gets various chart options.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.PlotMargin">
+      <summary>
+            Gets or sets the plot area margin.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.PlotRect">
+      <summary>
+            Returns plot area rectangle (rectangle inside chart axes).
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexChart.SelectedSeries">
+      <summary>
+            Gets or set the selected series.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.FlexChart.SeriesVisibilityChanged">
+      <summary>
+            Fires when chart series visibility was changed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexRadar.ChartType">
+      <summary>
+            Gets or sets chart type.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexRadar.StartAngle">
+      <summary>
+            Gets or set the starting angle.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.FlexRadar.Reversed">
+      <summary>
+            Gets or sets a value indicating direction of plotting.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Interaction.AxisScrollbar">
+      <summary>
+            Represents a FlexChart axis scroll bar control supporting additional visual styles.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.AxisScrollbar.OnValueChanged(System.EventArgs)">
+      <summary>
+            This method is for internal use only.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.AxisScrollbar.OnOrientationChanged(System.EventArgs)">
+      <summary>
+            This method is for internal use only.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.AxisScrollbar.#ctor(C1.Win.Chart.Axis)">
+      <summary>
+            Creates an instance of AxisScrollbar class and attaches it to the specified axis.
+            </summary>
+      <param name="axis">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.AxisScrollbar.Remove">
+      <summary>
+            Removes itself from parent control
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.AxisScrollbar.Dispose(System.Boolean)">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.AxisScrollbar.LowerValue">
+      <summary>
+            Gets or sets the current lower magnitude of the range control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.AxisScrollbar.UpperValue">
+      <summary>
+            Gets or sets the current upper magnitude of the range control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.AxisScrollbar.Minimum">
+      <summary>
+            Gets or sets the minimum possible value of the range element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.AxisScrollbar.Maximum">
+      <summary>
+            Gets or sets the maximum possible value of the range element.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.AxisScrollbar.ScrollButtonsVisible">
+      <summary>
+            Gets or sets a value that indicates whether scroll buttons should be displayed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.AxisScrollbar.Orientation">
+      <summary>
+            Gets or sets a value indicating the horizontal or vertical orientation of the C1RangeSlider.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Interaction.AxisScrollbar.ValueChanged">
+      <summary>
+            Fires when any of the properties: LowerValue or UpperValue changes.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Interaction.AxisScrollbar.OrientationChanged">
+      <summary>
+            Fires when the <see cref="P:C1.Win.Chart.Interaction.AxisScrollbar.Orientation" /> property changes.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.LineMarker.Remove">
+      <summary>
+            Removes itself from parent control
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Interaction">
+      <summary>
+            Gets or sets the interaction mode of the LineMarker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Lines">
+      <summary>
+            Gets or sets the visibility of the LineMarker lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Alignment">
+      <summary>
+            Gets or sets the alignment of the LineMarker content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Content">
+      <summary>
+            Gets or sets the content function that allows you to customize the text content of the LineMarker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.LineColor">
+      <summary>
+            Gets or sets color of lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.X">
+      <summary>
+            Gets the current x-value as chart data coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Y">
+      <summary>
+            Gets the current y-value as chart data coordinates.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.DragContent">
+      <summary>
+            Gets or sets a value indicating whether the content of the marker is draggable when the interaction mode is "Drag."
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.DragLines">
+      <summary>
+            Gets or sets a value indicating whether the lines are linked when the horizontal or vertical line is dragged when the interaction mode is "Drag."
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.DragThreshold">
+      <summary>
+            Gets or sets the maximum distance from the horizontal or vertical line that the marker can be dragged.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Visible">
+      <summary>
+            Gets or sets the visibility of the LineMarker.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.Font">
+      <summary>
+            Gets or sets font of content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.BackColor">
+      <summary>
+            Gets or sets background color of content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.ForeColor">
+      <summary>
+            Gets or sets font color of content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Interaction.LineMarker.LineWidth">
+      <summary>
+            Gets or sets width of lines
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Interaction.LineMarker.PositionChanged">
+      <summary>
+            Fires when marker position was changed, allows to update content.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Interaction.LineMarker.Paint">
+      <summary>
+            Custom drawing.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Interaction.RangeSelector">
+      <summary>
+            Represents a FlexChart range slider control supporting additional visual styles.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.RangeSelector.#ctor(C1.Win.Chart.FlexChart)">
+      <summary>
+            Creates an instance of RangeSlider class and attaches it to the specified chart.
+            </summary>
+      <param name="chart">Chart control.</param>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.RangeSelector.OnValueChanged(System.EventArgs)">
+      <summary>
+            Called when values change.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.RangeSelector.OnPaint(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Called when control paints.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.RangeSelector.Remove">
+      <summary>
+            Removes itself from parent control
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Interaction.RangeSelector.Dispose(System.Boolean)">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="T:C1.Win.Chart.Legend">
+      <summary>
+            Represents chart legend.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Legend.Position">
+      <summary>
+            Gets or sets the legend position.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Legend.Style">
+      <summary>
+            Gets the legend style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Legend.TitleStyle">
+      <summary>
+            Gets the legend title style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Legend.Title">
+      <summary>
+            Gets or sets the legend title.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Legend.Orientation">
+      <summary>
+            Gets or sets the legend orientation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.RadarSeries">
+      <summary>
+            Represents series in FlexRadar control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Series">
+      <summary>
+            Represents a series of data points to display in the chart.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.#ctor">
+      <summary>
+            Creates an instance of series class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.Finalize">
+      <summary>
+            Releases resources.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.Dispose">
+      <summary>
+            Releases resources.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.Dispose(System.Boolean)">
+      <summary>
+      </summary>
+      <param name="disposing">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Series.OnDataSourceChanged">
+      <summary>
+            Called when data source was changed.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.GetStyle(System.String)">
+      <summary>
+            Gets the style by name.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.Series.SetStyle(C1.Chart._Style,System.String)">
+      <summary>
+            Sets the series style.
+            </summary>
+      <param name="style">Style</param>
+      <param name="name">Name of the style.</param>
+    </member>
+    <member name="M:C1.Win.Chart.Series.Invalidate">
+      <summary>
+            Invalidates the series.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.GetDataType(System.Int32)">
+      <summary>
+            Gets the data type.
+            </summary>
+      <param name="dim">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.Series.LoadBoundData">
+      <summary>
+            Forces bound data to be loaded into internal chart arrays.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.Rebind">
+      <summary>
+            Forces all data in ItemsSource to be evaluated and redraw the chart.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.SetData(System.Double[],System.Double[][])">
+      <summary>
+            Sets the point data to be charted.
+            </summary>
+      <param name="XValues">Specifies the array of XValues.</param>
+      <param name="YValues">Specifies the array(s) of YValues.</param>
+    </member>
+    <member name="M:C1.Win.Chart.Series.ClearData">
+      <summary>
+            Removes all point data from the series added with SetData.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Series.GetItem(System.Int32)">
+      <summary>
+            Gets the data item.
+            </summary>
+      <param name="i">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.Series.OnSymbolRendering(C1.Chart.IRenderEngine,System.Int32,System.Double,System.Double)">
+      <summary>
+            Called when symbol is rendering.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="i">
+      </param>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.Series.OnSymbolRendered(C1.Chart.IRenderEngine,System.Int32,System.Double,System.Double)">
+      <summary>
+            Called after symbol was rendered.
+            </summary>
+      <param name="engine">
+      </param>
+      <param name="i">
+      </param>
+      <param name="x">
+      </param>
+      <param name="y">
+      </param>
+    </member>
+    <member name="M:C1.Win.Chart.Series.OnVisibilityChanged">
+      <summary>
+            Called when visibility changes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.Binding">
+      <summary>
+            Gets or sets the name of the property that contains Y values for the series.
+            </summary>
+      <remarks>
+            For complex chart types it may contain several names separated by commas.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.Chart.Series.BindingX">
+      <summary>
+            Gets or sets the name of the property that contains X values for the series.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.DataMember">
+      <summary>
+            Gets or sets the name of the DataMember, if any, for the DataSource.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.DataSource">
+      <summary>
+            Gets or sets the collection of objects that contains the series data.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.BindingMode">
+      <summary>
+            Gets or sets the binding mode.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.Style">
+      <summary>
+            Gets or sets the series style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.SymbolStyle">
+      <summary>
+            Gets or sets the series symbol style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.AltStyle">
+      <summary>
+            Gets or sets the series alternatve style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.AxisX">
+      <summary>
+            Gets or sets the series x-axis.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.AxisY">
+      <summary>
+            Gets or sets the series y-axis.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Series.SymbolRendering">
+      <summary>
+            Fires before rendering symbol.
+            </summary>
+    </member>
+    <member name="E:C1.Win.Chart.Series.SymbolRendered">
+      <summary>
+            Fires after rendering symbol.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.ActualBinding">
+      <summary>
+            Gets actual binding.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.ActualBindingX">
+      <summary>
+            Gets actual x-binding.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.ActualDataMember">
+      <summary>
+            Gets actual data member.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.ActualItemsSource">
+      <summary>
+            Gets actual items source.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.Chart">
+      <summary>
+            Gets the parent chart.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Series.HasCustomSymbol">
+      <summary>
+            Whether the custom symbol rendering is used.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.RadarSeries.GetChartType">
+      <summary>
+            Gets the chart type.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.RadarSeries.ChartType">
+      <summary>
+            Gets or sets the chart type.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.BindingMode">
+      <summary>
+            Specifies binding mode.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.BindingMode.NotSet">
+      <summary>
+            Default.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.BindingMode.CurrencyManager">
+      <summary>
+            Uses currency manager.
+            </summary>
+    </member>
+    <member name="F:C1.Win.Chart.BindingMode.Direct">
+      <summary>
+            Direct binding.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.SeriesEventArgs">
+      <summary>
+            Provides arguments for series-related event.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.SeriesEventArgs.Series">
+      <summary>
+            Gets the chart series.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Sunburst">
+      <summary>
+            Sunburst chart control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Sunburst.Bind">
+      <summary>
+            Performs data binding.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Sunburst.ChildItemsPath">
+      <summary>
+            Gets or sets the name of the property (or properties) used to generate child items in hierarchical data.
+            Set this property to a string to specify the name of the property that contains an item's child items (e.g. <code>Items</code>).
+            If items at different levels child items with different names, then set this property to an array containing the names of the properties.
+            that contains child items at each level.
+            (e.g. <code>"accounts,checks,earnings"</code>)
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ChartTitle">
+      <summary>
+            Represents chart title(header or footer).
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartTitle.Content">
+      <summary>
+            Gets or sets the title content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartTitle.Border">
+      <summary>
+            Gets or sets a value indicating whether the title has border.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartTitle.HorizontalAlignment">
+      <summary>
+            Gets or sets the horizontal alignment of the title.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartTitle.Style">
+      <summary>
+            Gets the title style.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartTitle.BorderStyle">
+      <summary>
+            Gets the title border style.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.ChartToolTip">
+      <summary>
+            Represents chart tootip.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.ChartToolTip.Content">
+      <summary>
+            Gets or sets the content of chart tooltip. 
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.TrendLine">
+      <summary>
+            Represents a trend line for FlexChart and FinancialChart.
+            </summary>
+      <remarks>
+            A trendline is a line superimposed on a chart revealing the overall direction
+            of data.
+            You may define a different fit type for each @see:TrendLine object that you 
+            add to the @see:FlexChart series collection by setting the fitType property.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.Chart.TrendLine.#ctor">
+      <summary>
+            Creates an instance of TrendLine class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.TrendLine.GetValues(System.Int32)">
+      <summary>
+            Gets the array of data values.
+            </summary>
+      <param name="dim">Dimension.</param>
+      <returns>Array of data values.</returns>
+    </member>
+    <member name="M:C1.Win.Chart.TrendLine.OnDataSourceChanged">
+      <summary>
+            Fires when data source was changed.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.TrendLine.GetChartType">
+      <summary>
+            Gets the chart type.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:C1.Win.Chart.TrendLine.FitType">
+      <summary>
+            Gets or sets the fit type of trend line.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.TrendLine.Order">
+      <summary>
+            Gets or sets the order of trend line. The order defines number of
+            terms in polynom equation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.TrendLine.SampleCount">
+      <summary>
+            Gets or sets the sample count for function calculation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.TrendLine.MinX">
+      <summary>
+            Gets or sets the minimal x-value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.TrendLine.MaxX">
+      <summary>
+            Gets or sets the maximal x-value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.TrendLine.Coefficients">
+      <summary>
+            Gets the coefficients of equation.
+            </summary>
+    </member>
+    <member name="T:C1.Win.Chart.Waterfall">
+      <summary>
+            Represents a Waterfall series for FlexChart.
+            </summary>
+      <remarks>
+            The <see cref="T:C1.Win.Chart.Waterfall" /> series is normally used to demonstrate 
+            how the starting position either increases or decreases through a series of changes.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.Chart.Waterfall.#ctor">
+      <summary>
+            Create an instance of Waterfall.
+            </summary>
+    </member>
+    <member name="M:C1.Win.Chart.Waterfall.GetStyle(System.String)">
+      <summary>
+            Gets the style by specified name.
+            </summary>
+      <param name="name">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.Chart.Waterfall.SetStyle(C1.Chart._Style,System.String)">
+      <summary>
+            Sets the named style.
+            </summary>
+      <param name="style">Style.</param>
+      <param name="name">The name of style.</param>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.ConnectorLines">
+      <summary>
+            Gets or sets a value that determines whether to show connector lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.IntermediateTotalLabels">
+      <summary>
+            Gets or sets the list of the text labels of the intermediate total bars.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.IntermediateTotalPositions">
+      <summary>
+            Gets or sets the list of the positions of the intermediate total bars.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.RelativeData">
+      <summary>
+            Gets or sets a value that determines whether the given data is relative.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.ShowIntermediateTotal">
+      <summary>
+            Gets or sets a value that determines whether to show the intermediate total bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.ShowTotal">
+      <summary>
+            Gets or sets a value that determines whether show total bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.Start">
+      <summary>
+            Gets or sets the starting data value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.StartLabel">
+      <summary>
+            Gets or sets the text label for starting data point.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.TotalLabel">
+      <summary>
+            Gets or sets the text label for data point representing total value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.StartStyle">
+      <summary>
+            Gets the style for the data points representing starting values.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.TotalStyle">
+      <summary>
+            Gets the style for the data points representing total values.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.RisingStyle">
+      <summary>
+            Gets the style for the data points representing rising values.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.FallingStyle">
+      <summary>
+            Gets the style for the data points representing falling values.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.IntermediateTotalStyle">
+      <summary>
+            Gets the style for the data points representing intermediate total values.
+            </summary>
+    </member>
+    <member name="P:C1.Win.Chart.Waterfall.ConnectorLineStyle">
+      <summary>
+            Gets the style of connector lines.
+            </summary>
+    </member>
+  </members>
+</doc>

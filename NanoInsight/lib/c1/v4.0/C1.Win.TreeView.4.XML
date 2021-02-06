@@ -1,0 +1,1500 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.TreeView.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.TreeView.C1TreeViewEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.TreeView.C1TreeView.CheckStateChanged" />, <see cref="E:C1.Win.TreeView.C1TreeView.Collapsed" />, <see cref="E:C1.Win.TreeView.C1TreeView.Expanded" />, and <see cref="E:C1.Win.TreeView.C1TreeView.SelectionChanged" /> events of a <see cref="T:C1.Win.TreeView.C1TreeView" /> control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewEventArgs.Node">
+      <summary>
+            Gets the tree node that has been checked, expanded, collapsed, or selected.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewItemDragEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.TreeView.C1TreeView.ItemDrag" /> event of a <see cref="T:C1.Win.TreeView.C1TreeView" /> control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewItemDragEventArgs.Node">
+      <summary>
+            Gets the tree node that has been dragged.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewItemDragEventArgs.DraggedData">
+      <summary>
+            Gets the data that has been dragged.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewNodeStylesEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.TreeView.C1TreeView.ApplyNodeStyles" /> event of a <see cref="T:C1.Win.TreeView.C1TreeView" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewNodeStylesEventArgs.Node">
+      <summary>
+            Gets the tree node of TreeView control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewNodeStylesEventArgs.NodeStyles">
+      <summary>
+            Gets the tree node styles of TreeView control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.HeaderStyle">
+      <summary>
+            Defines style of header of <see cref="T:C1.Win.TreeView.C1TreeNode" />.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.NodeCellStyle">
+      <summary>
+            Defines style of cell of <see cref="T:C1.Win.TreeView.C1TreeNode" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.NodeCellStyle.#ctor">
+      <summary>
+            Initializes new instance of cell's style of <see cref="T:C1.Win.TreeView.C1TreeNode" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.NodeCellStyle.ToString">
+      <summary>Returns a string that represents the current NodeCellStyle.</summary>
+      <returns>A string that represents the current NodeCellStyle.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:C1.Win.TreeView.NodeCellStyle.Equals(System.Object)">
+      <summary>Determines whether the specified <see cref="T:C1.Win.TreeView.NodeCellStyle" /> is equal to the current <see cref="T:C1.Win.TreeView.NodeCellStyle" />.</summary>
+      <returns>true if the specified <see cref="T:C1.Win.TreeView.NodeCellStyle" /> is equal to the current <see cref="T:C1.Win.TreeView.NodeCellStyle" />; otherwise, false.</returns>
+      <param name="obj">The object to compare with the current NodeCellStyle. </param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:C1.Win.TreeView.NodeCellStyle.GetHashCode">
+      <summary>Serves as a hash function for a particular type. </summary>
+      <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="P:C1.Win.TreeView.NodeCellStyle.BackColor">
+      <summary>
+            Gets or sets the background color.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.NodeCellStyle.ForeColor">
+      <summary>
+            Gets or sets the foreground color.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.HeaderStyle.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.HeaderStyle" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.HeaderStyle.Equals(System.Object)">
+      <summary>Determines whether the specified <see cref="T:C1.Win.TreeView.HeaderStyle" /> is equal to the current <see cref="T:C1.Win.TreeView.HeaderStyle" />.</summary>
+      <returns>true if the specified <see cref="T:C1.Win.TreeView.HeaderStyle" /> is equal to the current <see cref="T:C1.Win.TreeView.HeaderStyle" />; otherwise, false.</returns>
+      <param name="obj">The object to compare with the current HeaderStyle. </param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:C1.Win.TreeView.HeaderStyle.GetHashCode">
+      <summary>Serves as a hash function for a particular type. </summary>
+      <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:C1.Win.TreeView.HeaderStyle.ToString">
+      <summary>Returns a string that represents the current HeaderStyle.</summary>
+      <returns>A string that represents the current HeaderStyle.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="P:C1.Win.TreeView.HeaderStyle.Font">
+      <summary>
+            Gets or sets the font.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.HeaderStyle.HorizontalAlign">
+      <summary>
+            Gets or sets the horizontal alignment.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.HeaderStyle.VerticalAlign">
+      <summary>
+            Gets or sets the vertical alignment.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.HeaderStyle.WordWrap">
+      <summary>
+            Gets or sets whether text should be allowed to wrap.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.TreeNodeCellStyles">
+      <summary>
+            Defines styles of cell of <see cref="T:C1.Win.TreeView.C1TreeNode" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeNodeCellStyles.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.TreeNodeCellStyles" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeNodeCellStyles.OnStyleChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:StyleChanged" /> event.
+            </summary>
+      <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeNodeCellStyles.Style_PropertyChanged(System.Object,System.EventArgs)">
+      <summary>
+            Handles the PropertyChanged event of the styles.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The <see cref="T:System.EventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.Default">
+      <summary>
+            Gets the default styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.Selected">
+      <summary>
+            Gets the selected styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.Hot">
+      <summary>
+            Gets the hot styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.HotSelected">
+      <summary>
+            Gets the hot selected styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.UnfocusedSelected">
+      <summary>
+            Gets the unfocused selected styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.Editor">
+      <summary>
+            Gets the editor styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.Disabled">
+      <summary>
+            Gets the disabled styles.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.Font">
+      <summary>
+            Gets or sets the font.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.HorizontalAlign">
+      <summary>
+            Gets or sets the horizontal alignment.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.VerticalAlign">
+      <summary>
+            Gets or sets the vertical alignment.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeNodeCellStyles.WordWrap">
+      <summary>
+            Gets or sets whether text should be allowed to wrap.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.TreeColumnStyles">
+      <summary>
+            Represents the styles of column.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeColumnStyles.#ctor">
+      <summary>
+            Initializes a new instance of the column's styles.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeColumnStyles.ToString">
+      <summary>Returns a string that represents the current TreeColumnStyles.</summary>
+      <returns>A string that represents the current TreeColumnStyles.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeColumnStyles.ColumnHeader">
+      <summary>
+            Gets the styles of column header.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.TreeViewStyles">
+      <summary>
+            Represents the styles of treeview.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeViewStyles.#ctor">
+      <summary>
+            Initializes a new instance of the treeview's styles.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.TreeViewStyles.ToString">
+      <summary>Returns a string that represents the current TreeViewStyles.</summary>
+      <returns>A string that represents the current TreeViewStyles.</returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.CheckBoxStyle">
+      <summary>
+            Gets or sets style of checkboxes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.ExpandButtonStyle">
+      <summary>
+            Gets or sets style of expand buttons.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.BorderStyle">
+      <summary>
+            Gets or sets style of border.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.Border">
+      <summary>
+            Gets or sets thickness of border.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.BorderColor">
+      <summary>
+            Gets or sets color of border.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.LinesWidth">
+      <summary>
+            Gets or sets width of lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.ShowLines">
+      <summary>
+            Gets or sets a value indicating displays lines or not.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.TreeViewStyles.LinesColor">
+      <summary>
+            Gets or sets color of lines.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.CheckBoxStyle">
+      <summary>
+            Determines the view of a checkbox.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.System">
+      <summary>
+            Standard system view.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2007Black">
+      <summary>
+            Like a MS Office 2007 Black.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2007Blue">
+      <summary>
+            Like a MS Office 2007 Blue.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2007Silver">
+      <summary>
+            Like a MS Office 2007 Silver.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2010Black">
+      <summary>
+            Like a MS Office 2010 Black.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2010Blue">
+      <summary>
+            Like a MS Office 2010 Blue.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2010Silver">
+      <summary>
+            Like a MS Office 2010 Silver.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Office2013">
+      <summary>
+            Like a MS Office 2013.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.CheckBoxStyle.Windows10">
+      <summary>
+            Like a Windows 10.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.ExpandButtonStyle">
+      <summary>
+            Determines the view of a expand button.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.ExpandButtonStyle.System">
+      <summary>
+            Standard system view.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.ExpandButtonStyle.VS2015">
+      <summary>
+            Like a Visual Studio 2015.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.ExpandButtonStyle.Windows10">
+      <summary>
+            Like a Windows 10.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.DragDropPosition">
+      <summary>
+            Defines the position for drop of <see cref="T:C1.Win.TreeView.C1TreeNode" />.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.DragDropPosition.After">
+      <summary>
+            Node dropped after current node.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.DragDropPosition.Before">
+      <summary>
+            Node dropped before current node.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.DragDropPosition.Inner">
+      <summary>
+            Node dropped into current node.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.DragDropPosition.None">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewSelectionMode">
+      <summary>
+            Defines the selection behavior for a <see cref="T:C1.Win.TreeView.C1TreeView" />.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewSelectionMode.Single">
+      <summary>
+            Only one node can be selected.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewSelectionMode.Multi">
+      <summary>
+            You can select multiple nodes from all nodes.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewSelectionMode.MultiSibling">
+      <summary>
+            You can select multiple only sibling nodes with the same parent node.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewSelectionMode.None">
+      <summary>
+            Any node can not be selected.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewBorderStyle">
+      <summary>
+            Specifies how to show the borders of cells in <see cref="T:C1.Win.TreeView.C1TreeView" /> control
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewBorderStyle.ColumnsHeaderOnly">
+      <summary>
+            Borders are shown only for headers of columns.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewBorderStyle.None">
+      <summary>
+            No borders.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewBorderStyle.ColumnsLineOnly">
+      <summary>
+            Only left and right borders of columns are shown.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewBorderStyle.Full">
+      <summary>
+            Borders are shown for all cells.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewEditorType">
+      <summary>
+            Determines the appearance of cells in <see cref="T:C1.Win.TreeView.C1TreeView" /> before editing.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditorType.Text">
+      <summary>
+            Like a TextBox
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditorType.ComboBox">
+      <summary>
+            Like a ComboBox
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditorType.CheckBox">
+      <summary>
+            Like a CheckBox
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewEditMode">
+      <summary>
+            Specifies how a user starts cell editing in the <see cref="T:C1.Win.TreeView.C1TreeView" /> control.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditMode.EditOnEnter">
+      <summary>
+            Editing begins when the cell receives focus. This mode is useful when pressing the TAB key to enter values across a row, or when pressing the ENTER key to enter values down a column.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditMode.EditOnF2">
+      <summary>
+            Editing begins when F2 is pressed while the cell has focus. This mode places the selection point at the end of the cell contents.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditMode.EditOnKeystroke">
+      <summary>
+            Editing begins when any alphanumeric key is pressed while the cell has focus.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditMode.EditOnKeystrokeOrF2">
+      <summary>
+            Editing begins when any alphanumeric key or F2 is pressed while the cell has focus.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.C1TreeViewEditMode.EditProgrammatically">
+      <summary>
+            Editing begins only when the <see cref="M:C1.Win.TreeView.C1TreeView.BeginEdit" /> method is called.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.BindingMode">
+      <summary>
+            Specifies type of the bound mode.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.BindingMode.OneWay">
+      <summary>
+            The bound data source will not update after tree view hierarchy change.
+            </summary>
+    </member>
+    <member name="F:C1.Win.TreeView.BindingMode.TwoWay">
+      <summary>
+            The bound data source will update after tree view hierarchy change.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.IC1TreeEditor">
+      <summary>
+            Interface implemented by editors and used by the treeview to host edit controls 
+            on cells.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.IC1TreeEditor.C1EditorValueIsValid">
+      <summary>
+            Gets a value that determines if the editor's current contents are valid.
+            </summary>
+      <returns>True if the editor currently has valid content.
+            </returns>
+    </member>
+    <member name="M:C1.Win.TreeView.IC1TreeEditor.C1EditorUpdateBounds(System.Drawing.Rectangle)">
+      <summary>
+            Called to update the editor's size and position.
+            </summary>
+      <param name="rc">The bounds of the cell being edited, in client coordinates.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.IC1TreeEditor.C1EditorKeyDownFinishEdit(System.Windows.Forms.KeyEventArgs)">
+      <summary>
+            Gets a value that determines whether a given key should finalize editing.
+            </summary>
+      <param name="e">Key to be tested.</param>
+      <returns>True if the key should finish the edits and close the editor.</returns>
+    </member>
+    <member name="M:C1.Win.TreeView.IC1TreeEditor.C1EditorInitialize(System.Object,System.Collections.IDictionary)">
+      <summary>
+            Called to initialize the editor content.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.IC1TreeEditor.C1EditorGetValue">
+      <summary>
+            Gets the current value of the editor.
+            </summary>
+      <returns>The current value of the editor (any data type).</returns>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeColumn">
+      <summary>
+            Represents a column of a <see cref="T:C1.Win.TreeView.C1TreeView" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.C1TreeColumn" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.C1TreeColumn" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.#ctor(System.String,System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.C1TreeColumn" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.ResetStyles">
+      <summary>
+            Resets the Styles property to its default value.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnEditorTypeChanged(System.EventArgs)">
+      <summary>
+            Fires the OnEditorTypeChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnAutoWidthChanged(System.EventArgs)">
+      <summary>
+            Fires the AutoWidthChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnWidthChanged(System.EventArgs)">
+      <summary>
+            Fires the WidthChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnVisibleChanged(System.EventArgs)">
+      <summary>
+            Fires the VisibleChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnDisplayFieldNameChanged(System.EventArgs)">
+      <summary>
+            Fires the DisplayFieldNameChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnHeaderTextChanged(System.EventArgs)">
+      <summary>
+            Fires the HeaderTextChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumn.OnStylesChanged(System.EventArgs)">
+      <summary>
+            Fires the StylesChanged event.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.AutoWidth">
+      <summary>
+            Gets or sets a value indicating whether the column width should be set automatically by content width.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.Name">
+      <summary>
+            Gets or sets the name of the column of tree in the C1TreeView control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.HeaderText">
+      <summary>
+            Gets or sets the text of header of the column of tree in the C1TreeView control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.Visible">
+      <summary>
+            Gets or sets a value indicating whether the tree node is in the visible state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.DisplayFieldName">
+      <summary>
+            Gets or sets the list of fields to be displayed in the column depending on the level of the node.
+            </summary>
+      <remarks>
+            Last field name sets the field to be displayed in the column on all of the following levels.
+            </remarks>
+      <example>[First]\\[Second]\\[etc]</example>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.Width">
+      <summary>
+            Gets or sets the width of the TreeColumn.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.Styles">
+      <summary>
+            Gets or sets the styles of the TreeColumn.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.EditorType">
+      <summary>
+            Gets or sets the type of node editor.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumn.Editor">
+      <summary>
+            Gets or sets the custom editor of node.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.EditorTypeChanged">
+      <summary>
+            Occurs when the column EditorType changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.AutoWidthChanged">
+      <summary>
+            Occurs when the column AutoWidth changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.WidthChanged">
+      <summary>
+            Occurs when the column width changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.VisibleChanged">
+      <summary>
+            Occurs when the column visible changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.DisplayFieldNameChanged">
+      <summary>
+            Occurs when the list of fields to be displayed in the column changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.HeaderTextChanged">
+      <summary>
+            Occurs when the text of header of the column changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeColumn.StylesChanged">
+      <summary>
+            Occurs when the column styles changed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeColumnCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.TreeView.C1TreeColumn" /> objects.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.IndexOf(C1.Win.TreeView.C1TreeColumn)">
+      <summary>
+            Searches for the specified column and returns the zero-based index of the first occurrence within the entire <see cref="T:C1.Win.TreeView.C1TreeColumnCollection" />.
+            </summary>
+      <param name="column">The column to locate in the collection.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.Contains(C1.Win.TreeView.C1TreeColumn)">
+      <summary>
+            Determines whether an element is in the <see cref="T:C1.Win.TreeView.C1TreeColumnCollection" />.
+            </summary>
+      <param name="item">The column to locate in the collection.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.GetEnumerator">
+      <summary>
+            Returns an enumerator that iterates through the <see cref="T:C1.Win.TreeView.C1TreeColumnCollection" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.Add(C1.Win.TreeView.C1TreeColumn)">
+      <summary>
+            Adds the new column of tree to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.Add(System.String)">
+      <summary>
+            Adds the new column of tree with specified name to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.Add(System.String,System.String)">
+      <summary>
+            Adds the new column of tree to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.RemoveAt(System.Int32)">
+      <summary>
+            Removes the column of tree at the specified index of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.Remove(C1.Win.TreeView.C1TreeColumn)">
+      <summary>
+            Removes the first occurrence of a specified column of tree from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.Clear">
+      <summary>
+            Removes all columns of tree from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeColumnCollection.CopyTo(System.Array,System.Int32)">
+      <summary>
+            Copies the entire C1.Win.TreeView.C1TreeColumnCollection to a one-dimensional array, starting at the specified index of the target array.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumnCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the column of tree at the specified index.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumnCollection.Count">
+      <summary>
+            Gets the number of columns of tree contained in the <see cref="T:C1.Win.TreeView.C1TreeColumnCollection" /> instance.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumnCollection.IsSynchronized">
+      <summary>
+            Gets a value indicating whether access to the System.Collections.ICollection is synchronized (thread safe).
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeColumnCollection.SyncRoot">
+      <summary>
+            Gets an object that can be used to synchronize access to the System.Collections.ICollection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeNodeCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.TreeView.C1TreeNode" /> objects.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Add(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Adds an item to the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" />.
+            </summary>
+      <param name="treeNode">The <see cref="T:C1.Win.TreeView.C1TreeNode" /> to add to the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" />.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Add(System.Object)">
+      <summary>
+            Adds the new tree node with specified value to the collection.
+            </summary>
+      <param name="value">The value of new <see cref="T:C1.Win.TreeView.C1TreeNode" /> which to add to the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" />.</param>
+      <returns>The <see cref="T:C1.Win.TreeView.C1TreeNode" /> that is added to the collection.</returns>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Clear">
+      <summary>
+            Removes all tree nodes from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.IndexOf(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Searches for the specified tree node and returns the zero-based index.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Contains(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Determines whether an element is in the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" />.
+            </summary>
+      <param name="item">The column to locate in the collection.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.GetEnumerator">
+      <summary>
+            Returns an enumerator that iterates through the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Remove(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Removes the first occurrence of a specified tree node from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.RemoveAt(System.Int32)">
+      <summary>
+            Removes the tree node at the specified index of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Insert(System.Int32,C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Inserts treeview node into the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" /> at the specified index.
+            </summary>
+      <param name="nodeIndex">Index of the node.</param>
+      <param name="node">The node.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNodeCollection.Move(System.Int32,System.Int32)">
+      <summary>
+            Moves the node of tree at the specified index to a new location in the collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNodeCollection.Count">
+      <summary>
+            Gets the number of tree nodes contained in the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" /> instance.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNodeCollection.IsReadOnly">
+      <summary>
+            Gets a value indicating whether the <see cref="T:C1.Win.TreeView.C1TreeNodeCollection" /> is read-only.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNodeCollection.Parent">
+      <summary>
+            Gets a parent node of this collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNodeCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the tree node at the specified index.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeView">
+      <summary>
+            Control which manages the hierarchical data structures and displays them in a tree structure that has items that can expand and collapse.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.TreeView.C1TreeView" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.WriteXml(System.String,System.Boolean,System.Boolean)">
+      <summary>
+            Saves the treeview contents to an Xml document.
+            </summary>
+      <param name="fileName">Name of the file to save, including the path.</param>
+      <param name="saveStyles">Save styles of treeview.</param>
+      <param name="saveExpandedState">Save treeview in expanded/collapsed state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.WriteXml(System.IO.TextWriter,System.Boolean,System.Boolean)">
+      <summary>
+            Saves the treeview contents to an Xml document.
+            </summary>
+      <param name="tw">The <see cref="T:System.IO.TextWriter" /> where the document is saved.</param>
+      <param name="saveStyles">Save styles of treeview.</param>
+      <param name="saveExpandedState">Save treeview in expanded/collapsed state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.WriteXml(System.IO.Stream,System.Boolean,System.Boolean)">
+      <summary>
+            Saves the treeview contents to an Xml document.
+            </summary>
+      <param name="stream">The <see cref="T:System.IO.Stream" /> where the document is saved.</param>
+      <param name="saveStyles">Save styles of treeview.</param>
+      <param name="saveExpandedState">Save treeview in expanded/collapsed state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.WriteXml(System.Xml.XmlTextWriter,System.Boolean,System.Boolean)">
+      <summary>
+            Saves the treeview contents to an Xml document.
+            </summary>
+      <param name="w">The <see cref="T:System.Xml.XmlTextWriter" /> where the document is saved.</param>
+      <param name="saveStyles">Save styles of treeview.</param>
+      <param name="saveExpandedState">Save treeview in expanded/collapsed state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ReadXml(System.String)">
+      <summary>
+            Loads the treview from an Xml document.
+            </summary>
+      <param name="fileName">Name of the file to load, including the path.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ReadXml(System.IO.TextReader)">
+      <summary>
+            Loads the treview from an Xml document.
+            </summary>
+      <param name="tr">
+        <see cref="T:System.IO.TextReader" /> object to use for loading the treeview.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ReadXml(System.IO.Stream)">
+      <summary>
+            Loads the treview from an Xml document.
+            </summary>
+      <param name="stream">
+        <see cref="T:System.IO.Stream" /> object to use for loading the treeview.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ReadXml(System.Xml.XmlReader)">
+      <summary>
+            Loads the treview from an Xml document.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> object to use for loading the treeview.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ReadXml(System.Xml.XmlDocument)">
+      <summary>
+            Loads the treview from an Xml document.
+            </summary>
+      <param name="doc">
+        <see cref="T:System.Xml.XmlDocument" /> object to use for loading the treeview.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ReadXml(System.Xml.XmlNode)">
+      <summary>
+            Loads the treview from an Xml document.
+            </summary>
+      <param name="node">
+        <see cref="T:System.Xml.XmlNode" /> object to use for loading the treeview.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.BeginUpdate">
+      <summary>
+            Suspends painting during long update operations.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.EndUpdate">
+      <summary>
+            Restores painting after long update operations.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.Dispose(System.Boolean)">
+      <summary>
+            Clean up any resources being used.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnLostFocus(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.LostFocus" /> event.</summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnGotFocus(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.GotFocus" /> event. 
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnMouseDoubleClick(System.Windows.Forms.MouseEventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.MouseDoubleClick" /> event.</summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.MouseDown" /> event. 
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.MouseUp" /> event. 
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.KeyDown" /> event. 
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.KeyEventArgs" /> 
+            that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnPreviewKeyDown(System.Windows.Forms.PreviewKeyDownEventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.PreviewKeyDown" /> event.</summary>
+      <param name="e">A <see cref="T:System.Windows.Forms.PreviewKeyDownEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnRightToLeftChanged(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.RightToLeftChanged" /> event.</summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.MouseMove" /> event.</summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnCursorChanged(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.CursorChanged" /> event.</summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnSizeChanged(System.EventArgs)">
+      <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnSizeChanged(System.EventArgs)" />.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnDragEnter(System.Windows.Forms.DragEventArgs)">
+      <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnDragEnter(System.Windows.Forms.DragEventArgs)" />.
+            </summary>
+      <param name="drgevent">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnDragDrop(System.Windows.Forms.DragEventArgs)">
+      <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnDragDrop(System.Windows.Forms.DragEventArgs)" />.
+            </summary>
+      <param name="drgevent">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnDragOver(System.Windows.Forms.DragEventArgs)">
+      <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnDragOver(System.Windows.Forms.DragEventArgs)" />.
+            </summary>
+      <param name="drgevent">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnDragLeave(System.EventArgs)">
+      <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnDragLeave(System.EventArgs)" />.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnEnabledChanged(System.EventArgs)">
+      <summary>
+            This member overrides <see cref="M:System.Windows.Forms.Control.OnEnabledChanged(System.EventArgs)" />.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.GetNodeAtPoint(System.Drawing.Point)">
+      <summary>
+            Gets the node located at the specified point of client area.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.BeginEdit">
+      <summary>
+            Begins the edit of treeview cell.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.EndEdit(System.Boolean)">
+      <summary>
+            Ends the edit of treeview cell.
+            </summary>
+      <param name="cancelEdit">if set to true then revert all changes.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ShowAboutBox">
+      <summary>
+            Shows the About Box for an instance of C1TreeView.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ResetStyles">
+      <summary>
+            Resets the Styles property to its default value.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ScrollToNode(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Scroll C1TreeView to specific node.
+            </summary>
+      <param name="node">The node to which will be scrolled C1TreeView.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.RaiseApplyNodeStyles(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Raises the ApplyNodeStyles event.
+            </summary>
+      <param name="node">The node on which event will be raised.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.RaiseApplyNodeCellStyles(C1.Win.TreeView.C1TreeNode,System.Int32)">
+      <summary>
+            Raises the ApplyNodeCellStyles event.
+            </summary>
+      <param name="node">The node on which event will be raised.</param>
+      <param name="columnIndex">Index of the node column.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ResetNodeStyles(C1.Win.TreeView.C1TreeNode)">
+      <summary>
+            Resets the node styles.
+            </summary>
+      <param name="node">The node.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ResetNodeCellStyles(C1.Win.TreeView.C1TreeNode,System.Int32)">
+      <summary>
+            Resets the node cell styles.
+            </summary>
+      <param name="node">The node.</param>
+      <param name="columnIndex">Index of the node column.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.CheckAll">
+      <summary>
+            Checks all nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.UncheckAll">
+      <summary>
+            Unchecks all nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.ExpandAll">
+      <summary>
+            Expands all nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.CollapseAll">
+      <summary>
+            Collapses all the nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnItemDrag(C1.Win.TreeView.C1TreeViewItemDragEventArgs)">
+      <summary>
+            Fires the ItemDrag event.
+            </summary>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnApplyNodeCellStyles(C1.Win.TreeView.C1TreeViewNodeCellStylesEventArgs)">
+      <summary>
+            Fires the ApplyNodeCellStyles event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnApplyNodeStyles(C1.Win.TreeView.C1TreeViewNodeStylesEventArgs)">
+      <summary>
+            Fires the ApplyNodeStyles event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnStylesChanged(System.EventArgs)">
+      <summary>
+            Fires the StylesChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnExpanding(C1.Win.TreeView.C1TreeViewCancelEventArgs)">
+      <summary>
+            Fires the Expanding event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnExpanded(C1.Win.TreeView.C1TreeViewEventArgs)">
+      <summary>
+            Fires the Expanded event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnCollapsing(C1.Win.TreeView.C1TreeViewCancelEventArgs)">
+      <summary>
+            Fires the Collapsing event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnCollapsed(C1.Win.TreeView.C1TreeViewEventArgs)">
+      <summary>
+            Fires the Collapsed event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnCheckStateChanging(C1.Win.TreeView.C1TreeViewCancelEventArgs)">
+      <summary>
+            Fires the CheckStateChanging event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnCheckStateChanged(C1.Win.TreeView.C1TreeViewEventArgs)">
+      <summary>
+            Fires the CheckStateChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnSelectionChanging(C1.Win.TreeView.C1TreeViewCancelEventArgs)">
+      <summary>
+            Fires the SelectionChanging event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnSelectionChanged(C1.Win.TreeView.C1TreeViewEventArgs)">
+      <summary>
+            Fires the SelectionChanged event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeView.OnDataBindingComplete(System.EventArgs)">
+      <summary>
+            Fires the DataBindingComplete event.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.ToStringPlaceHolder">
+      <summary>
+            Gets a value of placeholder for display value of ToString method of node value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.DefaultSize">
+      <summary>
+            Gets the default size of the control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.ScrollBars">
+      <summary>
+            Gets or sets which scroll bars should appear on the <see cref="T:C1.Win.TreeView.C1TreeView" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.ShowColumnHeaders">
+      <summary>
+            Gets or sets a value indicating whether column headers are shown in the tree view control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.BindingMode">
+      <summary>
+            Gets or sets a value indicating type of the bound mode.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.EnableDragDrop">
+      <summary>
+            Gets or sets a value indicating whether a simple drag and drop in the tree should be enable or not.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.AllowUserToResizeColumns">
+      <summary>
+            Gets or sets whether the user is allowed to resize columns of treeview control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.AllowEditing">
+      <summary>
+            Gets or sets whether the user is allowed to edit treeview contents.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.EditMode">
+      <summary>
+            Gets or sets a value specifying how a user starts cell editing in the <see cref="T:C1.Win.TreeView.C1TreeView" /> control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.AutoGenerateColumns">
+      <summary>
+            Gets or sets a value indicating whether bound fields are automatically created for each field in the data source.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.CheckBoxes">
+      <summary>
+            Gets or sets a value indicating whether check boxes should be visible or not.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.ImageList">
+      <summary>
+            Gets or sets the image list used to provide images to show on the tree nodes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.Styles">
+      <summary>
+            Gets or sets the style of TreeView.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.SelectionMode">
+      <summary>
+            Gets or sets a value indicating selection method of nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.DataSource">
+      <summary>
+            Gets or sets the object used as the data source for the current tree view control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.DataMember">
+      <summary>
+            Gets or sets a name of a specific record set within the DataSource.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.ParentKeyField">
+      <summary>
+            Gets or sets a value representing the data source field identifying the parent record in this data source.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.KeyField">
+      <summary>
+            Gets or sets a value specifying the key field of the data source bound to the tree view control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.Nodes">
+      <summary>
+            The root nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeView.Columns">
+      <summary>
+            The columns for display data of nodes in the tree view control.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.ItemDrag">
+      <summary>
+            Occurs when the node is dragged.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.ApplyNodeCellStyles">
+      <summary>
+            Occurs when the user can apply styles to a cell of node.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.ApplyNodeStyles">
+      <summary>
+            Occurs when the user can apply styles to a node.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.StylesChanged">
+      <summary>
+            Occurs when the tree styles changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.Expanding">
+      <summary>
+            Occurs before the tree node is expanded. Allows to cancel the change.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.Expanded">
+      <summary>
+            Occurs after the tree node is expanded.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.Collapsing">
+      <summary>
+            Occurs before the tree node is collapsed. Allows to cancel the change.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.Collapsed">
+      <summary>
+            Occurs after the tree node is collapsed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.CheckStateChanging">
+      <summary>
+            Occurs before the tree node checkbox is checked. Allows to cancel the change.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.CheckStateChanged">
+      <summary>
+            Occurs after the tree node checkbox is checked.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.SelectionChanging">
+      <summary>
+            Occurs when the tree node is being changed selected state. Allows to cancel the change.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.SelectionChanged">
+      <summary>
+            Occurs when tree node changed selected state.
+            </summary>
+    </member>
+    <member name="E:C1.Win.TreeView.C1TreeView.DataBindingComplete">
+      <summary>
+            Occurs after a data-binding operation has finished.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeNode">
+      <summary>
+            Represents a node of a <see cref="T:C1.Win.TreeView.C1TreeView" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.C1TreeNode" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.#ctor(System.Object)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.TreeView.C1TreeNode" /> class.
+            </summary>
+      <param name="value">The value of the new tree node.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.SetValue(System.Object)">
+      <summary>
+            Sets the value of the tree node.
+            </summary>
+      <remarks>Use only for unbound mode.</remarks>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.SetValue(System.Object,System.Int32)">
+      <summary>
+            Sets the value of the tree node at the specified column.
+            </summary>
+      <remarks>Column must have <see cref="P:C1.Win.TreeView.C1TreeColumn.DisplayFieldName" /> value.</remarks>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.GetValue(System.Int32)">
+      <summary>
+            Gets the value of the tree node at the specified column.
+            </summary>
+      <remarks>Column must have <see cref="P:C1.Win.TreeView.C1TreeColumn.DisplayFieldName" /> value.</remarks>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.GetValue">
+      <summary>
+            Gets the value of the tree node.
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.Collapse(System.Boolean)">
+      <summary>
+            Sets the tree node to the collapsed state.
+            </summary>
+      <param name="allChildrens">If true then sets all child nodes to the collapsed state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.Expand(System.Boolean)">
+      <summary>
+            Sets the tree node to the expanded state.
+            </summary>
+      <param name="allChildrens">If true then sets all child nodes to the expanded state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.Uncheck(System.Boolean)">
+      <summary>
+            Sets the checkbox of tree node to the unchecked state.
+            </summary>
+      <param name="allChildrens">If true then sets all checkbox of child nodes to the unchecked state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.Check(System.Boolean)">
+      <summary>
+            Sets the checkbox of tree node to the checked state.
+            </summary>
+      <param name="allChildrens">If true then sets all checkbox of child nodes to the checked state.</param>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.ResetCellStyles(System.Int32)">
+      <summary>
+            Reset styles of node cell
+            </summary>
+    </member>
+    <member name="M:C1.Win.TreeView.C1TreeNode.ResetStyles">
+      <summary>
+            Reset styles of node 
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.ParentCollection">
+      <summary>
+            Gets the parent C1TreeNodeCollection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Item(System.Int32)">
+      <summary>
+            Gets or sets the value at the specified index.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Level">
+      <summary>
+            Gets the zero-based depth of the tree node in the C1TreeView control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Expanded">
+      <summary>
+            Gets or sets a value indicating whether the tree node is in the expanded state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Checked">
+      <summary>
+            Gets or sets a value indicating whether the tree node checkbox is in the checked state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.CheckState">
+      <summary>
+            Gets or sets the state of the tree node checkbox.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Selected">
+      <summary>
+            Gets or sets a value indicating whether the tree node is in the selected state.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Nodes">
+      <summary>
+            Gets the collection of nodes of tree.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.HasChildren">
+      <summary>
+            Returns true if tree node has child nodes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeNode.Images">
+      <summary>
+            Gets the collection of images indices which displayed in node.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewNodeCellStylesEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.TreeView.C1TreeView.ApplyNodeCellStyles" /> event of a <see cref="T:C1.Win.TreeView.C1TreeView" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewNodeCellStylesEventArgs.ColumnIndex">
+      <summary>
+            Gets the tree column index of TreeView control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewNodeCellStylesEventArgs.Node">
+      <summary>
+            Gets the tree node of TreeView control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewNodeCellStylesEventArgs.NodeCellStyles">
+      <summary>
+            Gets the tree node styles of TreeView control.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.Localization.Strings">
+      <summary>
+            The <see cref="T:C1.Win.TreeView.Localization.Strings" /> class contains static properties used for localization.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.Localization.Strings.ResourceManager">
+      <summary>
+            The <see cref="P:C1.Win.TreeView.Localization.Strings.ResourceManager" /> object used for lookup resources.
+            </summary>
+      <remarks>Set this property to the valid value if 
+            you define resources in a Custom Control assembly.</remarks>
+    </member>
+    <member name="P:C1.Win.TreeView.Localization.Strings.UICulture">
+      <summary>
+            Returns default <see cref="T:System.Globalization.CultureInfo" /> object used as fallback culture.
+            </summary>
+    </member>
+    <member name="T:C1.Win.TreeView.C1TreeViewCancelEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.TreeView.C1TreeView.CheckStateChanging" />, <see cref="E:C1.Win.TreeView.C1TreeView.Collapsing" />, <see cref="E:C1.Win.TreeView.C1TreeView.Expanding" />, and <see cref="E:C1.Win.TreeView.C1TreeView.SelectionChanging" /> events of a <see cref="T:C1.Win.TreeView.C1TreeView" /> control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.TreeView.C1TreeViewCancelEventArgs.Node">
+      <summary>
+            Gets the tree node that has been checked, expanded, collapsed, or selected.
+            </summary>
+    </member>
+  </members>
+</doc>

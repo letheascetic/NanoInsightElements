@@ -1,0 +1,2157 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.C1Win7Pack.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.C1Win7Pack.C1CustomButton">
+      <summary>
+            Represents a button or a command link that can be hosted in a task dialog.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1CustomButton.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1CustomButton.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1CustomButton.Name">
+      <summary>
+            Gets or sets a name associated with the <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1CustomButton.Text">
+      <summary>
+            Gets or sets the button text or the command link's command text.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1CustomButton.Note">
+      <summary>
+            Gets or sets the command link's note (explanation).
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1CustomButton.Enabled">
+      <summary>
+            Gets or sets a value that indicates whether the button is enabled.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1CustomButton.ShowElevationIcon">
+      <summary>
+            Gets or sets a value that controls whether the elevation icon is displayed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1JumpItem">
+      <summary>
+            Represents an item in the Jump List (either <see cref="T:C1.Win.C1Win7Pack.C1JumpPath" /> or <see cref="T:C1.Win.C1Win7Pack.C1JumpLink" />).
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpItem.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1JumpList" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpItem.CustomCategory">
+      <summary>
+            Gets or sets the name of the category the <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> is grouped with in the Jump List.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1JumpLink">
+      <summary>
+            Represents a shortcut to an application in the Windows 7 taskbar Jump List.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpLink.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1JumpLink" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.ApplicationPath">
+      <summary>
+            Gets or sets the path to the application.
+            </summary>
+      <remarks>
+            If the ApplicationPath property is not specified, then the path of the current
+            running process is implied. An application can contain links for executables
+            other than itself.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.ShowCommand">
+      <summary>
+            Gets or sets the show command for a Shell link object.
+            </summary>
+      <remarks>
+            The show command sets the initial show state of the window.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.WorkingDirectory">
+      <summary>
+            Gets or sets the working directory of the application on startup.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.Arguments">
+      <summary>
+            Gets or sets the arguments passed to the application on startup.
+            </summary>
+      <remarks>
+            Adding links with no arguments is not supported by Shell.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.Title">
+      <summary>
+            Gets or sets the text displayed for the link in the Jump List.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.Tooltip">
+      <summary>
+            Gets or sets the custom tooltip for the link in the Jump List.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.IconPath">
+      <summary>
+            Gets or sets the path to a resource that contains the icon to display in the Jump List.
+            </summary>
+      <remarks>
+            An empty path references the executable file that started the application.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpLink.IconIndex">
+      <summary>
+            Gets or sets the zero-based index of an icon embedded in a resource.
+            </summary>
+      <remarks>
+            If no icon resource is specified, or if the specified icon is not found,
+            the standard system icon is displayed.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1JumpList">
+      <summary>
+            Represents a list of items and tasks displayed as a menu on a Windows 7 taskbar button.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.AddToRecentCategory(System.String)">
+      <summary>
+            Adds the specified file path to the Recent category of the Jump List.
+            </summary>
+      <remarks>
+            The contents of the Recent category are managed by the Windows shell. If your application
+            is not registered to handle the file type of the item, it will not appear in the Recent
+            list and calls to AddToRecentCategory(String) will fail silently.
+            </remarks>
+      <param name="filePath">The path to add to the Jump List.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.AddToRecentCategory(C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Adds the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpPath" /> or <see cref="T:C1.Win.C1Win7Pack.C1JumpLink" /> to the Recent category of the Jump List.
+            </summary>
+      <remarks>
+            The contents of the Recent category are managed by the Windows shell. If your application
+            is not registered to handle the file type of the item, it will not appear in the Recent
+            list and calls to AddToRecentCategory(C1JumpPath) will fail silently.
+            </remarks>
+      <param name="jumpItem">The <see cref="T:C1.Win.C1Win7Pack.C1JumpPath" /> or <see cref="T:C1.Win.C1Win7Pack.C1JumpLink" /> to add to the Jump List.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.GetKnownCategoryItems(C1.Win.C1Win7Pack.JumpListKnownCategory)">
+      <summary>
+            Retrieves the destinations listed in the Recent or Frequent category in a Jump List.
+            </summary>
+      <remarks>
+            If a user pins an item in the Recent or Frequent categories, the item is no longer
+            shown in its original category to avoid duplication in the Jump List. However,
+            the item will still be returned by this method.
+            </remarks>
+      <param name="knownCategory">Specifies from which category the list of destinations should be retrieved.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.RemoveFromKnownCategories(C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Removes a single <see cref="T:C1.Win.C1Win7Pack.C1JumpPath" /> or <see cref="T:C1.Win.C1Win7Pack.C1JumpLink" /> from the Recent and Frequent categories in a Jump List.
+            </summary>
+      <remarks>
+            If the item is pinned to the list by the user, it is not removed but its usage data is cleared.
+            </remarks>
+      <param name="jumpItem">The <see cref="T:C1.Win.C1Win7Pack.C1JumpPath" /> or <see cref="T:C1.Win.C1Win7Pack.C1JumpLink" /> that represents the destination to remove.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.ClearKnownCategories">
+      <summary>
+            Clears all destination entries from the Recent and Frequent categories in an application's Jump List.
+            </summary>
+      <remarks>
+            This method does not remove items that the user has pinned to the Jump List. Those items
+            cannot be removed programmatically; only the user can remove them. However, it does remove
+            usage data for those pinned items.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.ClearTasksAndCustomCategories">
+      <summary>
+            Deletes a custom Jump List for the current application.
+            </summary>
+      <remarks>
+            This method should not be called when an application is updating a custom destination list.
+            It is used only to completely clear the list during an uninstall operation, or if the
+            application provides an option for the user to turn off the list.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpList.Apply">
+      <summary>
+            Applies the pending Jump List changes and refreshes the taskbar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.MaxSlots">
+      <summary>
+            Gets the maximum number of items that will be shown in the Jump List.
+            </summary>
+      <remarks>
+            The returned value corresponds to the "Number of recent items to display
+            in Jump Lists" option in the "Taskbar and Start Menu Properties" -
+            "Customize Start Menu" window. More items can be added to the <see cref="P:C1.Win.C1Win7Pack.C1JumpList.Items" />
+            collection, but they will not be shown in the UI.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.Modified">
+      <summary>
+            Gets the value that indicates whether the Jump List was modified since the last
+            call to the <see cref="M:C1.Win.C1Win7Pack.C1JumpList.Apply" /> method.
+            </summary>
+      <remarks>
+            This property doesn't affect anything. It is for information purpose only.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.RefreshOnStartup">
+      <summary>
+            Gets or sets a value that indicates whether the Jump List should be refreshed when the program starts up.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.Items">
+      <summary>
+            Gets the collection of <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> objects that are displayed in the Jump List.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.Tasks">
+      <summary>
+            Gets the collection of shortcuts (tasks) in the taskbar Jump List.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.KnownCategory">
+      <summary>
+            Gets or sets the type of a known category to display.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpList.KnownCategoryPosition">
+      <summary>
+            Gets or sets the known category location relative to the custom category collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1JumpPath">
+      <summary>
+            Represents a link to a file that is displayed in a Windows 7 taskbar Jump List.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpPath.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1JumpPath" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpPath.Path">
+      <summary>
+            Gets or sets the path to the file to be included in the Jump List.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1JumpTask">
+      <summary>
+            Represents a task in the Windows 7 taskbar Jump List.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1JumpTask.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1JumpList" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.ApplicationPath">
+      <summary>
+            Gets or sets the path to the application.
+            </summary>
+      <remarks>
+            If the ApplicationPath property is not specified, then the path of the current
+            running process is implied. An application can contain tasks for executables
+            other than itself.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.ShowCommand">
+      <summary>
+            Gets or sets the show command for a Shell link object.
+            </summary>
+      <remarks>
+            The show command sets the initial show state of the window.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.WorkingDirectory">
+      <summary>
+            Gets or sets the working directory of the application on startup.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.Arguments">
+      <summary>
+            Gets or sets the arguments passed to the application on startup.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.Title">
+      <summary>
+            Gets or sets the text displayed for the task in the Jump List.
+            </summary>
+      <remarks>
+            You can visually separate items in a Jump List by creating a <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />
+            that does not have a Title specified. This empty <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> will be
+            displayed as a horizontal line in the Jump List. In this case, other
+            properties can be set, but they will not have any effect.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.Tooltip">
+      <summary>
+            Gets or sets the custom tooltip for the task in the Jump List.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.IconPath">
+      <summary>
+            Gets or sets the path to a resource that contains the icon to display in the Jump List.
+            </summary>
+      <remarks>
+            An empty path references the executable file that started the application.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1JumpTask.IconIndex">
+      <summary>
+            Gets or sets the zero-based index of an icon embedded in a resource.
+            </summary>
+      <remarks>
+            If no icon resource is specified, or if the specified icon is not found,
+            the standard system icon is displayed.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1ProgressIndicator">
+      <summary>
+            Displays a progress indicator on a taskbar button of the owner form 
+            to show the specific percentage completed of the full operation.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1ProgressIndicator.Show">
+      <summary>
+            Shows the progress indicator on a taskbar button.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1ProgressIndicator.Hide">
+      <summary>
+            Removes the progress indicator from a taskbar button.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ProgressIndicator.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ProgressIndicator.Visible">
+      <summary>
+            Indicates whether the progress indicator is visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ProgressIndicator.State">
+      <summary>
+            Gets or sets the type and state of the progress indicator.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ProgressIndicator.Value">
+      <summary>
+            Gets or sets the current value of the progress indicator.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ProgressIndicator.Maximum">
+      <summary>
+            Gets or sets the value that the progress indicator will have when the operation is complete.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1RadioButton">
+      <summary>
+            Defines a radio button that can be hosted in a task dialog.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1RadioButton.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1RadioButton.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1RadioButton.Name">
+      <summary>
+            Gets or sets a name associated with the <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1RadioButton.Text">
+      <summary>
+            Gets or sets the radio button text.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1RadioButton.Enabled">
+      <summary>
+            Gets or sets a value that indicates whether the radio button is enabled.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1TaskbarButton">
+      <summary>
+            Represents a taskbar button of the application form.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" /> component.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.#ctor(System.ComponentModel.IContainer)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" /> component.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.#ctor(System.Windows.Forms.Form)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" /> component.
+            </summary>
+      <param name="ownerForm">The owner form whose button appears on the taskbar.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.Dispose(System.Boolean)">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.OnApplyingJumpListChanges(System.ComponentModel.CancelEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.ApplyingJumpListChanges" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.OnJumpItemsRejected(C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRejected" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.OnJumpItemsRemovedByUser(C1.Win.C1Win7Pack.JumpItemsRemovedEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRemovedByUser" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.OnThumbButtonClick(C1.Win.C1Win7Pack.ThumbButtonEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.ThumbButtonClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.FlashIfNotActive(System.Int32)">
+      <summary>
+            Flashes the window caption and taskbar button until the window comes to the foreground.
+            </summary>
+      <param name="count">The number of times to flash the window; 0 causes infinite flashing.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.RegisterFileAssociations(System.String,System.String,System.String,System.String[])">
+      <summary>
+            Registers file associations for the current application.
+            </summary>
+      <param name="friendlyName">A friendly name for the data format, suitable to display to a user.</param>
+      <param name="defaultIcon">The path to the default icon, such as, "%systemroot%\system32\imageres.dll,15".</param>
+      <param name="openWithCmd">The command and arguments to be used when opening a shortcut to a document, such as,
+            '"C:\Program Files\Paint.NET\PaintDotNet.exe" "%1"'.</param>
+      <param name="extensions">The extensions to register, such as '.png'.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.RegisterFileAssociations(System.Boolean,System.String,System.String,System.String,System.String[])">
+      <summary>
+            Registers file associations for the current application.
+            </summary>
+      <param name="forCurrentUser">Specifies whether the file associations should be registered in HKEY_CURRENT_USER, not in HKEY_CLASSES_ROOT which requires elevated privileges.</param>
+      <param name="friendlyName">A friendly name for the data format, suitable to display to a user.</param>
+      <param name="defaultIcon">The path to the default icon, such as, "%systemroot%\system32\imageres.dll,15".</param>
+      <param name="openWithCmd">The command and arguments to be used when opening a shortcut to a document, such as,
+            '"C:\Program Files\Paint.NET\PaintDotNet.exe" "%1"'.</param>
+      <param name="extensions">The extensions to register, such as '.png'.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.UnregisterFileAssociations(System.String[])">
+      <summary>
+            Unregisters file associations for the application.
+            </summary>
+      <param name="extensions">The extensions to unregister.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.UnregisterFileAssociations(System.Boolean,System.String[])">
+      <summary>
+            Unregisters file associations for the application.
+            </summary>
+      <param name="forCurrentUser">Specifies whether the file associations should be unregistered from HKEY_CURRENT_USER, not from HKEY_CLASSES_ROOT.</param>
+      <param name="extensions">The extensions to unregister.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.CheckFileAssociations(System.String[])">
+      <summary>
+            Checks whether the given file extensions are associated with current application.
+            </summary>
+      <param name="extensions">The file extensions to check, such as ".txt".</param>
+      <returns>Returns True if there is a registered file association for each of the given extensions.</returns>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.ShortcutExistsInStartMenu(System.String)">
+      <summary>
+            Gets a value indicating if the shortcut is created on the user's Start Menu.
+            </summary>
+      <param name="appName">The application name as it appears on the Start Menu.</param>
+      <returns>True, if the shortcut is created on the Start Menu.</returns>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.RemoveShortcutFromStartMenu(System.String)">
+      <summary>
+            Removes the shortcut from the user's Start Menu.
+            </summary>
+      <param name="appName">The application name as it appears on the Start Menu.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskbarButton.AddShortcutToStartMenu(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+      <summary>
+            Creates a shortcut on the user's Start Menu.
+            </summary>
+      <param name="appName">The application name as it appears on the Start Menu.</param>
+      <param name="description">The description (comment) for a shortcut.</param>
+      <param name="executablePath">The path and file name for the target of a shortcut.</param>
+      <param name="arguments">The command-line arguments for a shortcut.</param>
+      <param name="startupPath">The name of the working directory for a shortcut.</param>
+      <param name="iconPath">The path of the file containing the shortcut icon.</param>
+      <param name="iconIndex">The index of the icon.</param>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.IsPlatformSupported">
+      <summary>
+            Indicates whether the <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" />'s capabilities
+            are supported on the current platform.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.ProcessAppID">
+      <summary>
+            Gets or sets the current process' explicit application user model ID.
+            </summary>
+      <remarks>
+            An application must set this property during an application's initial
+            startup routine before the application presents any UI or makes any
+            manipulation of its Jump Lists.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.Site">
+      <summary>
+            Gets or sets the ISite of the Component.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.Tag">
+      <summary>
+            Gets or sets an object that contains additional data about the <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.ContainerForm">
+      <summary>
+            Gets or sets the parent form whose button appears on the taskbar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.RegistryProgID">
+      <summary>
+            Gets or sets the ProgID of the registered application.
+            </summary>
+      <remarks>
+            If this property contains an empty string, the application
+            user model ID is used as a ProgID.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.WindowAppID">
+      <summary>
+            Gets or sets the application user model ID for an individual window.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.JumpList">
+      <summary>
+            Represents a list of items and tasks displayed as a menu on a Windows 7 taskbar button.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.ProgressIndicator">
+      <summary>
+            Adjusts the progress indicator hosted in a taskbar button of the owner form 
+            to show the specific percentage completed of the full operation.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.Thumbnail">
+      <summary>
+            Adjusts the thumbnail image of a window in a taskbar button flyout.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.OverlayIcon">
+      <summary>
+            Gets or sets an icon to use as the overlay. This should be a small icon, measuring 16x16 pixels at 96 dpi.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskbarButton.OverlayAccessibilityText">
+      <summary>
+            Gets or sets a string that provides an alt text version of the information conveyed by the overlay, for accessibility purposes.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskbarButton.ApplyingJumpListChanges">
+      <summary>
+            Occurs before applying the pending Jump List changes.
+            </summary>
+      <remarks>
+            Use this event to ensure the file associations are registered
+            for the current application.
+            </remarks>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRejected">
+      <summary>
+            Occurs when jump items are not successfully added to the Jump List by the Windows shell.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRemovedByUser">
+      <summary>
+            Occurs when jump items previously in the Jump List are removed from the list by the user.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskbarButton.ThumbButtonClick">
+      <summary>
+            Occurs when a thumbnail button item is clicked.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1TaskDialog">
+      <summary>
+            A powerful successor to the MessageBox dialog window.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" /> component.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.#ctor(System.ComponentModel.IContainer)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" /> component.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.Dispose(System.Boolean)">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnInitialized(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.Initialized" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnRefreshed(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.Refreshed" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnExpandedChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedChanged" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnCheckBoxClick(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.CheckBoxClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnRadioButtonClick(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.RadioButtonClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnButtonClick(C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.ButtonClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnHelpRequested(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.HelpRequested" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnHyperlinkClick(C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.HyperlinkClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.OnTimerTick(C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.TimerTick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.BeginUpdate">
+      <summary>
+            Maintains performance while multiple settings are being changed for a visible task dialog.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.EndUpdate">
+      <summary>
+            Resumes processing after it has been suspended by a call to <see cref="M:C1.Win.C1Win7Pack.C1TaskDialog.BeginUpdate" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.SetDefaultButton(C1.Win.C1Win7Pack.TaskDialogCommonButtons)">
+      <summary>
+            Sets the default button for the task dialog.
+            </summary>
+      <param name="commonButton">A single common button that will be selected by default.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.SetDefaultButton(C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Sets the default button for the task dialog.
+            </summary>
+      <param name="customButton">A custom button that will be selected by default.</param>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.SetDefaultRadioButton(C1.Win.C1Win7Pack.C1RadioButton)">
+      <summary>
+            Sets a radio button that will be selected by default.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.SetDefaultRadioButton(C1.Win.C1Win7Pack.C1RadioButton,System.Boolean)">
+      <summary>
+            Sets a radio button that will be selected by default.
+            </summary>
+      <remarks>
+            Passing True in the firstButtonDefault parameter forces the task
+            dialog to select the first radio button by default.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.SetDefaultRadioIndex(System.Int32)">
+      <summary>
+            Sets the index of a radio button that will be selected by default.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.Show">
+      <summary>
+            Creates and shows a task dialog with a default owner.
+            </summary>
+      <returns>The task dialog result (see also the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.DialogResult" /> property).</returns>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.Show(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Creates and shows a task dialog.
+            </summary>
+      <param name="owner">An implementation of IWin32Window that will own the task dialog.</param>
+      <returns>The task dialog result (see also the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.DialogResult" /> property).</returns>
+      <remarks>
+            You can use the owner parameter to specify a particular object, which implements the
+            IWin32Window interface, that will serve as the dialog box's top-level window and owner.
+            A task dialog is a modal dialog box, which means no input (keyboard or mouse click) can
+            occur except to objects on the modal form. The program must hide or close a modal form
+            (typically in response to some user action) before input to another form can occur.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.Show(System.Boolean)">
+      <summary>
+            Creates and shows a task dialog.
+            </summary>
+      <param name="dialogOwnedByActiveWindow">If True, the active window attached to the calling
+            thread's message queue will be the owner for the task dialog.</param>
+      <returns>The task dialog result (see also the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.DialogResult" /> property).</returns>
+      <remarks>You can pass False to this method to show the task dialog as an autonomous window.</remarks>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.ClickButton(C1.Win.C1Win7Pack.TaskDialogCommonButtons)">
+      <summary>
+            Closes the task dialog by simulating a click on the specified common button.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.ClickButton(C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Closes the task dialog by simulating a click on the specified <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1TaskDialog.Close">
+      <summary>
+            Closes the task dialog by simulating a click on the Cancel button.
+            </summary>
+      <remarks>
+            If the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.AllowCancel" /> property is set to False and there is no Cancel
+            button in the dialog, the method simulates a click on the Close button.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.IsPlatformSupported">
+      <summary>
+            Indicates whether the <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />'s capabilities
+            are supported on the current platform.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.Visible">
+      <summary>
+            Gets a value that indicates whether the task dialog is currently visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.Expanded">
+      <summary>
+            Gets a value that indicates whether the expanded information is currently visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.SelectedRadioButton">
+      <summary>
+            Gets or sets a radio button that is currently selected in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.SelectedRadioIndex">
+      <summary>
+            Gets or sets the zero-based index of a radio button that is currently selected.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CheckBoxChecked">
+      <summary>
+            Gets or sets whether the verification check box is checked in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.DialogResult">
+      <summary>
+            Gets a value that was returned from the last call to the <see cref="M:C1.Win.C1Win7Pack.C1TaskDialog.Show" /> method.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.ClickedCustomButton">
+      <summary>
+            Gets the button or the command link that was clicked in the task dialog and closed it.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.Tag">
+      <summary>
+            Gets or sets an object that contains additional data about the <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CommonButtons">
+      <summary>
+            Gets or sets the common push buttons displayed in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CustomButtons">
+      <summary>
+            Gets the collection of custom buttons displayed in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.RadioButtons">
+      <summary>
+            Gets the collection of radio buttons displayed in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableHyperlinks">
+      <summary>
+            Enables hyperlink processing for the dialog strings.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.AllowCancel">
+      <summary>
+            Indicates that the dialog should be able to be closed using Alt-F4,
+            Escape, and the title bar's close button.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.NoIconOnCommandLinks">
+      <summary>
+            Gets or sets whether the command links should appear without the default glyph.
+            It doesn't affect whether or not the elevation icons should appear.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.UseCommandLinks">
+      <summary>
+            Indicates that the buttons specified in the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.CustomButtons" /> collection should be displayed as command links.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.ExpandFooterArea">
+      <summary>
+            Indicates that the string specified by the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedInformation" /> property is displayed
+            at the bottom of the dialog's footer area instead of immediately after the dialog's content.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedByDefault">
+      <summary>
+            Indicates that the string specified by the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedInformation" /> property
+            is visible when the dialog is initially displayed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CheckedByDefault">
+      <summary>
+            Gets or sets whether the verification check box is checked by default.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableCheckBox">
+      <summary>
+            Gets or sets whether the verification check box is enabled.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableTimer">
+      <summary>
+            Gets or sets whether the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.TimerTick" /> event is fired approximately every 200 milliseconds.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.StartPosition">
+      <summary>
+            Gets or sets the initial position of the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.RightToLeft">
+      <summary>
+            Gets or sets whether the task dialog should draw right-to-left for RTL languages.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CanBeMinimized">
+      <summary>
+            Gets or sets whether the task dialog can be minimized.
+            </summary>
+      <remarks>
+            The Minimize button can appear in the caption of the task dialog
+            if you pass false in the 'dialogOwnedByActiveWindow' parameter
+            to the <see cref="M:C1.Win.C1Win7Pack.C1TaskDialog.Show(System.Boolean)" /> method.
+            It will not appear if the task dialog is owned by the other window.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.SizeToContent">
+      <summary>
+            Gets or sets whether the width of the task dialog is determined by the width of its content area.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.Width">
+      <summary>
+            The width of the task dialog's client area. If 0, the task dialog manager will calculate the ideal width.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.ProgressBar">
+      <summary>
+            Adjusts the progress bar control hosted in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.MainCommonIcon">
+      <summary>
+            Gets or sets the predefined icon to be displayed in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.MainCustomIcon">
+      <summary>
+            Gets or sets the custom Icon to be displayed in the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.FooterCommonIcon">
+      <summary>
+            Gets or sets the predefined icon to be displayed in the footer of the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.FooterCustomIcon">
+      <summary>
+            Gets or sets the custom Icon to be displayed in the footer area of the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.WindowTitle">
+      <summary>
+            Gets or sets the string to be used for the task dialog title.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.MainInstruction">
+      <summary>
+            Gets or sets the string to be used for the main instruction.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.Content">
+      <summary>
+            Gets or sets the string to be used for the dialog's primary content.
+            </summary>
+      <remarks>
+            If the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableHyperlinks" /> property contains True, then this string may contain
+            hyperlinks in the form: &lt;A HREF="url"&gt;Hyperlink Text&lt;/A&gt;.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CollapsedControlText">
+      <summary>
+            Gets or sets the string to be used to label the button for expanding the expandable information.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedControlText">
+      <summary>
+            Gets or sets the string to be used to label the button for collapsing the expandable information.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedInformation">
+      <summary>
+            Gets or sets the string to be used for displaying additional information.
+            </summary>
+      <remarks>
+            If the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableHyperlinks" /> property contains True, then this string may contain
+            hyperlinks in the form: &lt;A HREF="url"&gt;Hyperlink Text&lt;/A&gt;.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.CheckBoxText">
+      <summary>
+            Gets or sets the string that is used to label the verification check box.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.FooterText">
+      <summary>
+            Gets or sets the string displayed in the footer area of the task dialog.
+            </summary>
+      <remarks>
+            If the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableHyperlinks" /> property contains True, then this string may contain
+            hyperlinks in the form: &lt;A HREF="url"&gt;Hyperlink Text&lt;/A&gt;.
+            </remarks>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.Initialized">
+      <summary>
+            Occurs before the task dialog is shown.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.Refreshed">
+      <summary>
+            Occurs after the task dialog is fully refreshed.
+            </summary>
+      <remarks>
+            It is not possible to update some properties without reconstructing
+            the task dialog. This operation resets the timer counter.
+            </remarks>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.ExpandedChanged">
+      <summary>
+            Occurs when a user expands or collapses the task dialog.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.CheckBoxClick">
+      <summary>
+            Occurs after changing the state of the verification check box.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.RadioButtonClick">
+      <summary>
+            Occurs after changing the selected radio button in the task dialog.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.ButtonClick">
+      <summary>
+            Occurs when a button or a command link is clicked in the task dialog.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.HelpRequested">
+      <summary>
+            Occurs when the user presses F1 on the keyboard while the task dialog has focus.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.HyperlinkClick">
+      <summary>
+            Occurs when a user clicks a hyperlink.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1Win7Pack.C1TaskDialog.TimerTick">
+      <summary>
+            Occurs approximately every 200 milliseconds (while the dialog is visible) if
+            the <see cref="P:C1.Win.C1Win7Pack.C1TaskDialog.EnableTimer" /> property is set to True.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar">
+      <summary>
+            Displays a progress bar on a task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar.Visible">
+      <summary>
+            Gets or sets whether the progress bar should appear on the task dialog.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar.State">
+      <summary>
+            Gets or sets the type and state of the progress bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar.Value">
+      <summary>
+            Gets or sets the current value of the progress bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar.Maximum">
+      <summary>
+            Gets or sets the maximum value of the progress bar.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1TaskDialog.C1ProgressBar.MarqueeUpdateInterval">
+      <summary>
+            Gets or sets the time, in milliseconds, between marquee animation updates.
+            </summary>
+      <remarks>
+            If this parameter is zero, the marquee animation is updated every 30 milliseconds.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1ThumbButton">
+      <summary>
+            Represents a taskbar thumbnail button in the thumbnail toolbar.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.C1ThumbButton.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1Thumbnail" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Name">
+      <summary>
+            Gets or sets a name associated with the <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Tooltip">
+      <summary>
+            Gets or sets a tooltip associated with the <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Visible">
+      <summary>
+            Gets or sets the thumbnail button's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Enabled">
+      <summary>
+            Gets or sets the thumbnail button's enabled state. If the button is disabled, it is present, 
+            but has a visual state that indicates that it will not respond to user action.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Interactive">
+      <summary>
+            Gets or sets the property that describes whether the button is interactive with the user.
+            </summary>
+      <remarks>
+            Non-interactive buttons don't display any hover behavior nor do they raise click events.
+            They are intended to be used as status icons. This is mostly similar to being not Enabled, 
+            but the image is not desaturated.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.DismissOnClick">
+      <summary>
+            Gets or sets the property that describes the behavior when the button is clicked. 
+            If set to true, the taskbar button's flyout will close immediately.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.NoBackground">
+      <summary>
+            If set to true, do not draw a button border, use only the image.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.Icon">
+      <summary>
+            Gets or sets the button icon, measuring 16x16 pixels at 96 dpi.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.ImageIndex">
+      <summary>
+            Gets or sets the index of an image in the ImageList.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1ThumbButton.ImageKey">
+      <summary>
+            Gets or sets the image key in the ImageList.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.C1Thumbnail">
+      <summary>
+            Adjusts the thumbnail image of a window in a taskbar button flyout.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1Thumbnail.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskbarButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1Thumbnail.Buttons">
+      <summary>
+            Gets the collection of thumbnail buttons in a taskbar button flyout.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1Thumbnail.ImageList">
+      <summary>
+            Gets or sets the ImageList that contains the images to display on thumbnail buttons.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1Thumbnail.Tooltip">
+      <summary>
+            Gets or sets a tooltip associated with the thumbnail image.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.C1Thumbnail.ClipControl">
+      <summary>
+            Restricts a portion of a window's client area to display as that window's thumbnail in the taskbar.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpItemRejectionReason">
+      <summary>
+            Describes why a <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> could not be added to the Jump List by the Windows shell. 
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpItemRejectionReason.CustomCategoriesDisabled">
+      <summary>
+            Custom categories cannot be added while recent documents tracking is turned off.
+            </summary>
+      <remarks>
+            The recent documents tracking can be changed via:
+            1. Group Policy “Do not keep history of recently opened documents”.
+            2. Via the user setting “Store and display recently opened items in 
+            the Start menu and the taskbar” in the Start menu property dialog.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpItemRejectionReason.InvalidItem">
+      <summary>
+            The <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> contains incorrect data, for example,
+            references an invalid file path or has no title.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpItemRejectionReason.NoCustomCategory">
+      <summary>
+            The <see cref="P:C1.Win.C1Win7Pack.C1JumpItem.CustomCategory" /> was not specified.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpItemRejectionReason.NoRegisteredHandler">
+      <summary>
+            The application is not registered to handle the file name extension of the <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />. 
+            </summary>
+      <remarks>
+            You can use the C1TaskbarButton.RegisterFileAssociations method to register the file associations for an application.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpItemRejectionReason.RemovedByUser">
+      <summary>
+            The item was previously in the Jump List but was removed by the user.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpListKnownCategory">
+      <summary>
+            Known category to display in the Jump List.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpListKnownCategory.Neither">
+      <summary>
+            Don't display either known category. You must have at least one
+            user task or custom category link in order to not see the
+            default 'Recent' known category.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpListKnownCategory.Recent">
+      <summary>
+            Display the 'Recent' known category.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.JumpListKnownCategory.Frequent">
+      <summary>
+            Display the 'Frequent' known category.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.KnownCategoryPosition">
+      <summary>
+            The known category location relative to the custom category collection.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.KnownCategoryPosition.BeforeCustomCategories">
+      <summary>
+            The known category appears before all custom categories.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.KnownCategoryPosition.AfterCustomCategories">
+      <summary>
+            The known category appears after all custom categories.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.ShellLinkShowCommand">
+      <summary>
+            The show command sets the initial show state of the window.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.ShellLinkShowCommand.ShowNormal">
+      <summary>
+            Activates and displays a window.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.ShellLinkShowCommand.ShowMaximized">
+      <summary>
+            Activates the window and displays it as a maximized window.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.ShellLinkShowCommand.ShowMinNoActive">
+      <summary>
+            Displays the window in its minimized state, leaving the currently active window as active.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskbarProgressState">
+      <summary>
+            Represents the state of the thumbnail progress indicator.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskbarProgressState.Indeterminate">
+      <summary>
+            The progress is indeterminate (marquee).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskbarProgressState.Normal">
+      <summary>
+            Normal progress is displayed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskbarProgressState.Error">
+      <summary>
+            An error occurred (red).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskbarProgressState.Paused">
+      <summary>
+            The operation is paused (yellow).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogCommonButtons">
+      <summary>
+            A combination of flags to identify one or several standard buttons
+            that can be displayed at the bottom of a task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.None">
+      <summary>
+            No buttons on the dialog.
+            </summary>
+      <remarks>
+            If no common and custom buttons are specified, the task dialog
+            will contain the OK button by default.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.Ok">
+      <summary>
+            An "OK" button.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.Yes">
+      <summary>
+            A "Yes" button.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.No">
+      <summary>
+            A "No" button.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.Cancel">
+      <summary>
+            A "Cancel" button.
+            </summary>
+      <remarks>
+            If this button is specified, the task dialog will respond to typical
+            cancel actions (Alt-F4 and Escape).
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.Retry">
+      <summary>
+            A "Retry" button.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonButtons.Close">
+      <summary>
+            A "Close" button.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogCommonIcon">
+      <summary>
+            Specifies the predefined icon displayed in a task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.None">
+      <summary>
+            Displays no icons.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.Error">
+      <summary>
+            A stop-sign icon appears in the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.Warning">
+      <summary>
+            An exclamation-point icon appears in the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.Information">
+      <summary>
+            An icon consisting of a lowercase letter i in a circle appears in the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.Shield">
+      <summary>
+            A shield icon appears in the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.ShieldError">
+      <summary>
+            A shield with stop-sign icon appears in the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.ShieldWarning">
+      <summary>
+            A shield with exclamation-point icon appears in the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogCommonIcon.ShieldOK">
+      <summary>
+            A shield with check-mark icon appears in the task dialog.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogProgressBarState">
+      <summary>
+            Sets the state of a task dialog progress bar.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogProgressBarState.Indeterminate">
+      <summary>
+            The progress is indeterminate (marquee).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogProgressBarState.Normal">
+      <summary>
+            Normal state.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogProgressBarState.Error">
+      <summary>
+            An error occurred.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogProgressBarState.Paused">
+      <summary>
+            The progress is paused.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogResult">
+      <summary>
+            Specifies the possible return values of the <see cref="M:C1.Win.C1Win7Pack.C1TaskDialog.Show" /> method.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.None">
+      <summary>
+            No button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.Ok">
+      <summary>
+            "OK" button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.Cancel">
+      <summary>
+            "Cancel" button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.Retry">
+      <summary>
+            "Retry" button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.Yes">
+      <summary>
+            "Yes" button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.No">
+      <summary>
+            "No" button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.Close">
+      <summary>
+            "Close" button was clicked.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogResult.Custom">
+      <summary>
+            A custom button was clicked.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogStartPosition">
+      <summary>
+            Specifies the initial position of the task dialog.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogStartPosition.CenterScreen">
+      <summary>
+            The task dialog is centered on the current display.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1Win7Pack.TaskDialogStartPosition.CenterOwner">
+      <summary>
+            The task dialog is centered relative to the owner window.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpItemsRejectedEventHandler">
+      <summary>
+            Represents a method that handles the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRejected" /> event.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A <see cref="T:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRejected" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs.#ctor(System.Collections.Generic.List{C1.Win.C1Win7Pack.C1JumpItem},System.Collections.Generic.List{C1.Win.C1Win7Pack.JumpItemRejectionReason})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs.FilterByReason(C1.Win.C1Win7Pack.JumpItemRejectionReason)">
+      <summary>
+            Retrieves a list of <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />s those rejection reason equals to the given value.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs.RejectedItems">
+      <summary>
+            Gets the list of Jump List items that could not be added to the Jump List by the Windows shell.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpItemsRejectedEventArgs.RejectionReasons">
+      <summary>
+            Gets the list of reasons why the rejected Jump List items could not be added to the Jump List.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpItemsRemovedEventHandler">
+      <summary>
+            Represents a method that handles the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRemovedByUser" /> event.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A <see cref="T:C1.Win.C1Win7Pack.JumpItemsRemovedEventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpItemsRemovedEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.C1Win7Pack.C1TaskbarButton.JumpItemsRemovedByUser" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemsRemovedEventArgs.#ctor(System.Collections.Generic.List{C1.Win.C1Win7Pack.C1JumpItem})">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1Win7Pack.JumpItemsRemovedEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpItemsRemovedEventArgs.RemovedItems">
+      <summary>
+            Gets the list of Jump List items that have been removed by the user since the <see cref="M:C1.Win.C1Win7Pack.C1JumpList.Apply" /> method was last called.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogButtonClickEventHandler">
+      <summary>
+            Represents a method that handles the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.ButtonClick" /> event.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A <see cref="T:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.ButtonClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs.#ctor(C1.Win.C1Win7Pack.TaskDialogResult,C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs.DialogResult">
+      <summary>
+            Gets the proposed dialog result.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs.CustomButton">
+      <summary>
+            Gets the custom button if the <see cref="P:C1.Win.C1Win7Pack.TaskDialogButtonClickEventArgs.DialogResult" /> is equal to 'Custom'.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventHandler">
+      <summary>
+            Represents a method that handles the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.HyperlinkClick" /> event.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A <see cref="T:C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.HyperlinkClick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventArgs.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.TaskDialogHyperlinkClickEventArgs.Url">
+      <summary>
+            Gets a string containing the URL of the hyperlink.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogTimerTickEventHandler">
+      <summary>
+            Represents a method that handles the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.TimerTick" /> event.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A <see cref="T:C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs">
+      <summary>
+            Provides data for the <see cref="E:C1.Win.C1Win7Pack.C1TaskDialog.TimerTick" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs.#ctor(System.Int32)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs.Ticks">
+      <summary>
+            Gets the number of milliseconds since the dialog was created or since resetting the timer.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.TaskDialogTimerTickEventArgs.ResetTimer">
+      <summary>
+            Gets or sets whether the timer should be reset.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.ThumbButtonEventHandler">
+      <summary>
+            Represents a method that handles events occuring for the thumbnail buttons.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A ThumbButtonEventArgs object that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.ThumbButtonEventArgs">
+      <summary>
+            Provides data for events occuring for the thumbnail buttons.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonEventArgs.#ctor(C1.Win.C1Win7Pack.C1ThumbButton,System.Int32)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1Win7Pack.ThumbButtonEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.ThumbButtonEventArgs.Button">
+      <summary>
+            Gets the thumbnail button causing the event.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.ThumbButtonEventArgs.ButtonIndex">
+      <summary>
+            Gets a zero-based index of a thumbnail button in the Buttons collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.CustomButtonCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />s.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.Contains(C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Determines whether this collection contains the specified <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.Contains(System.String)">
+      <summary>
+            Determines whether this collection contains an <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> with the specified name.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.IndexOf(C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Determines the index of a specific <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.IndexOf(System.String)">
+      <summary>
+            Determines index of the first <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> with the specified name in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.Add(C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Adds the specified <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.AddRange(C1.Win.C1Win7Pack.C1CustomButton[])">
+      <summary>
+            Adds a group of <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> objects to the end of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.Insert(System.Int32,C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Inserts the specified <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> into this collection at the given index.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.Remove(C1.Win.C1Win7Pack.C1CustomButton)">
+      <summary>
+            Removes the specified <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.Remove(System.String)">
+      <summary>
+            Removes the first occurrence of the <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> with the specified name from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.OnInsertComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after inserting a <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />
+            into the <see cref="T:C1.Win.C1Win7Pack.CustomButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.OnRemoveComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after removing a <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />
+            from the <see cref="T:C1.Win.C1Win7Pack.CustomButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+      <summary>
+            Performs additional custom processes after setting a <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" />
+            in the <see cref="T:C1.Win.C1Win7Pack.CustomButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.OnClear">
+      <summary>
+            Performs additional custom processes when clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.CustomButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.OnClearComplete">
+      <summary>
+            Performs additional custom processes after clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.CustomButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.CustomButtonCollection.OnValidate(System.Object)">
+      <summary>
+            Checks whather the type of the value argument is allowable for this collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.CustomButtonCollection.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.CustomButtonCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> at the specified position in the collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.CustomButtonCollection.Item(System.String)">
+      <summary>
+            Gets the first <see cref="T:C1.Win.C1Win7Pack.C1CustomButton" /> with the specified name in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpItemCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />s.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.Contains(C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Determines whether this collection contains the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.IndexOf(C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Determines the index of a specific <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.Add(C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Adds the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.AddRange(C1.Win.C1Win7Pack.C1JumpItem[])">
+      <summary>
+            Adds a group of <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> objects to the end of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.Insert(System.Int32,C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Inserts the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> into this collection at the given index.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.Remove(C1.Win.C1Win7Pack.C1JumpItem)">
+      <summary>
+            Removes the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.OnInsertComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after inserting a <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />
+            into the <see cref="T:C1.Win.C1Win7Pack.JumpItemCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.OnRemoveComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after removing a <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />
+            from the <see cref="T:C1.Win.C1Win7Pack.JumpItemCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+      <summary>
+            Performs additional custom processes after setting a <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" />
+            in the <see cref="T:C1.Win.C1Win7Pack.JumpItemCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.OnClear">
+      <summary>
+            Performs additional custom processes when clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.JumpItemCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.OnClearComplete">
+      <summary>
+            Performs additional custom processes after clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.JumpItemCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpItemCollection.OnValidate(System.Object)">
+      <summary>
+            Checks whather the type of the value argument is allowable for this collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpItemCollection.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1JumpList" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpItemCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the <see cref="T:C1.Win.C1Win7Pack.C1JumpItem" /> at the specified position in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.JumpTaskCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />s.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.Contains(C1.Win.C1Win7Pack.C1JumpTask)">
+      <summary>
+            Determines whether this collection contains the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.Contains(System.String)">
+      <summary>
+            Determines whether this collection contains an <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> with the specified title.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.IndexOf(C1.Win.C1Win7Pack.C1JumpTask)">
+      <summary>
+            Determines the index of a specific <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.IndexOf(System.String)">
+      <summary>
+            Determines index of the first <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> with the specified title in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.Add(C1.Win.C1Win7Pack.C1JumpTask)">
+      <summary>
+            Adds the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.AddRange(C1.Win.C1Win7Pack.C1JumpTask[])">
+      <summary>
+            Adds a group of <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> objects to the end of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.Insert(System.Int32,C1.Win.C1Win7Pack.C1JumpTask)">
+      <summary>
+            Inserts the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> into this collection at the given index.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.Remove(C1.Win.C1Win7Pack.C1JumpTask)">
+      <summary>
+            Removes the specified <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.Remove(System.String)">
+      <summary>
+            Removes the first occurrence of the <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> with the specified title from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.OnInsertComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after inserting a <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />
+            into the <see cref="T:C1.Win.C1Win7Pack.JumpTaskCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.OnRemoveComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after removing a <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />
+            from the <see cref="T:C1.Win.C1Win7Pack.JumpTaskCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+      <summary>
+            Performs additional custom processes after setting a <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" />
+            in the <see cref="T:C1.Win.C1Win7Pack.JumpTaskCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.OnClear">
+      <summary>
+            Performs additional custom processes when clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.JumpTaskCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.OnClearComplete">
+      <summary>
+            Performs additional custom processes after clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.JumpTaskCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.JumpTaskCollection.OnValidate(System.Object)">
+      <summary>
+            Checks whather the type of the value argument is allowable for this collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpTaskCollection.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1JumpList" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpTaskCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> at the specified position in the collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.JumpTaskCollection.Item(System.String)">
+      <summary>
+            Gets the first <see cref="T:C1.Win.C1Win7Pack.C1JumpTask" /> with the specified title in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.RadioButtonCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />s.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.Contains(C1.Win.C1Win7Pack.C1RadioButton)">
+      <summary>
+            Determines whether this collection contains the specified <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.Contains(System.String)">
+      <summary>
+            Determines whether this collection contains an <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> with the specified name.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.IndexOf(C1.Win.C1Win7Pack.C1RadioButton)">
+      <summary>
+            Determines the index of a specific <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.IndexOf(System.String)">
+      <summary>
+            Determines index of the first <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> with the specified name in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.Add(C1.Win.C1Win7Pack.C1RadioButton)">
+      <summary>
+            Adds the specified <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.AddRange(C1.Win.C1Win7Pack.C1RadioButton[])">
+      <summary>
+            Adds a group of <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> objects to the end of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.Insert(System.Int32,C1.Win.C1Win7Pack.C1RadioButton)">
+      <summary>
+            Inserts the specified <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> into this collection at the given index.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.Remove(C1.Win.C1Win7Pack.C1RadioButton)">
+      <summary>
+            Removes the specified <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.Remove(System.String)">
+      <summary>
+            Removes the first occurrence of the <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> with the specified name from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.OnInsertComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after inserting a <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />
+            into the <see cref="T:C1.Win.C1Win7Pack.RadioButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.OnRemoveComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after removing a <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />
+            from the <see cref="T:C1.Win.C1Win7Pack.RadioButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+      <summary>
+            Performs additional custom processes after setting a <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" />
+            in the <see cref="T:C1.Win.C1Win7Pack.RadioButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.OnClear">
+      <summary>
+            Performs additional custom processes when clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.RadioButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.OnClearComplete">
+      <summary>
+            Performs additional custom processes after clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.RadioButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.RadioButtonCollection.OnValidate(System.Object)">
+      <summary>
+            Checks whather the type of the value argument is allowable for this collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.RadioButtonCollection.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1TaskDialog" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.RadioButtonCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> at the specified position in the collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.RadioButtonCollection.Item(System.String)">
+      <summary>
+            Gets the first <see cref="T:C1.Win.C1Win7Pack.C1RadioButton" /> with the specified name in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.ThumbButtonCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />s.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.BeginUpdate">
+      <summary>
+            Maintains performance while buttons are added or being changed.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.EndUpdate">
+      <summary>
+            Resumes processing after it has been suspended by a call to <see cref="M:C1.Win.C1Win7Pack.ThumbButtonCollection.BeginUpdate" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.Contains(C1.Win.C1Win7Pack.C1ThumbButton)">
+      <summary>
+            Determines whether this collection contains the specified <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.Contains(System.String)">
+      <summary>
+            Determines whether this collection contains an <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> with the specified name.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.IndexOf(C1.Win.C1Win7Pack.C1ThumbButton)">
+      <summary>
+            Determines the index of a specific <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.IndexOf(System.String)">
+      <summary>
+            Determines index of the first <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> with the specified name in the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.Add(C1.Win.C1Win7Pack.C1ThumbButton)">
+      <summary>
+            Adds the specified <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> to the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.AddRange(C1.Win.C1Win7Pack.C1ThumbButton[])">
+      <summary>
+            Adds a group of <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> objects to the end of the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.Insert(System.Int32,C1.Win.C1Win7Pack.C1ThumbButton)">
+      <summary>
+            Inserts the specified <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> into this collection at the given index.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.Remove(C1.Win.C1Win7Pack.C1ThumbButton)">
+      <summary>
+            Removes the specified <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.Remove(System.String)">
+      <summary>
+            Removes the first occurrence of the <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> with the specified name from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.OnInsertComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after inserting a <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />
+            into the <see cref="T:C1.Win.C1Win7Pack.ThumbButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.OnRemoveComplete(System.Int32,System.Object)">
+      <summary>
+            Performs additional custom processes after removing a <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />
+            from the <see cref="T:C1.Win.C1Win7Pack.ThumbButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+      <summary>
+            Performs additional custom processes after setting a <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" />
+            in the <see cref="T:C1.Win.C1Win7Pack.ThumbButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.OnClear">
+      <summary>
+            Performs additional custom processes when clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.ThumbButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.OnClearComplete">
+      <summary>
+            Performs additional custom processes after clearing the contents of
+            the <see cref="T:C1.Win.C1Win7Pack.ThumbButtonCollection" /> instance.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1Win7Pack.ThumbButtonCollection.OnValidate(System.Object)">
+      <summary>
+            Checks whather the type of the value argument is allowable for this collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.ThumbButtonCollection.Owner">
+      <summary>
+            Gets the owner <see cref="T:C1.Win.C1Win7Pack.C1Thumbnail" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.ThumbButtonCollection.Item(System.Int32)">
+      <summary>
+            Gets or sets the <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> at the specified position in the collection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.ThumbButtonCollection.Item(System.String)">
+      <summary>
+            Gets the first <see cref="T:C1.Win.C1Win7Pack.C1ThumbButton" /> with the specified name in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1Win7Pack.Localization.Strings">
+      <summary>
+            The <see cref="T:C1.Win.C1Win7Pack.Localization.Strings" /> class contains static properties used for localization.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.Localization.Strings.ResourceManager">
+      <summary>
+            The <see cref="P:C1.Win.C1Win7Pack.Localization.Strings.ResourceManager" /> object used for lookup resources.
+            </summary>
+      <remarks>Set this property to the valid value if 
+            you define resources in a Custom Control assembly.</remarks>
+    </member>
+    <member name="P:C1.Win.C1Win7Pack.Localization.Strings.UICulture">
+      <summary>
+            Returns default <see cref="T:System.Globalization.CultureInfo" /> object used as fallback culture.
+            </summary>
+    </member>
+  </members>
+</doc>

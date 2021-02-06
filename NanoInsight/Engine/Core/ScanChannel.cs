@@ -4,7 +4,40 @@ using System.Drawing;
 
 namespace NanoInsight.Engine.Core
 {
+    /// <summary>
+    /// 通道增益更新事件委托
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelGainChangedEventHandler(ScanChannel channel);
 
+    /// <summary>
+    /// 通道偏置更新事件委托
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelOffsetChangedEventHandler(ScanChannel channel);
+
+    /// <summary>
+    /// 通道功率更新事件委托
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelPowerChangedEventHandler(ScanChannel channel);
+
+    /// <summary>
+    /// 通道激活状态更新事件委托
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelActivateChangedEventHandler(ScanChannel channel);
+
+    /// <summary>
+    /// PinHole更新事件
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelPinHoleChangedEventHandler(ScanChannel channel);
 
     /// <summary>
     /// 扫描通道

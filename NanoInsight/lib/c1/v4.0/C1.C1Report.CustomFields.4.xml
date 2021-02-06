@@ -1,0 +1,2921 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.C1Report.CustomFields.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.C1Report.CustomFields.Chart">
+      <summary>
+            The Chart Class inherits from <see cref="T:C1.C1Report.Field" /> and uses the 
+            <see cref="T:C1.Win.C1Chart.C1Chart" /> control to embed data bound charts in reports.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.#ctor">
+      <summary>
+            Initializes a new instance of the <b>C1Chart</b> class.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.Clone">
+      <summary>
+            Overridden to clone the inner C1Chart control in the field so the 
+            clone doesn't reference the original field's chart.
+            </summary>
+      <returns>A deep clone of the <see cref="T:C1.C1Report.CustomFields.Chart" /> field.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean)">
+      <summary>
+            Selects the text or image that will be rendered by the field.
+            </summary>
+      <param name="value">Field text.</param>
+      <param name="img">Chart image.</param>
+      <param name="designTime">Whether we in design time or runtime.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.OnPropertyChanged">
+      <summary>
+            Marks the owner report as dirty so it will clear the internal 
+            cache and render again (useful for implementing custom fields).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Radar">
+      <summary>
+            Gets or sets options for Radar chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Polar">
+      <summary>
+            Gets or sets options for Polar chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Histogram">
+      <summary>
+            Gets or sets options for Histogram chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ChartType">
+      <summary>
+            Gets or sets the chart type. Available types are Area, Bar, Pie, Scatter, Line and Column.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.RadialLabels">
+      <summary>
+            This property only applies to Pie charts. 
+            It causes the field to add radial labels attached to the pie slices 
+            instead of a legend.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ShowPercentages">
+      <summary>
+            This property only applies to Pie charts. 
+            It causes the field to add percentage labels to the pie slices.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.RecordSource">
+      <summary>
+            Gets or sets a Sql statement to use and retrieve data for the chart.
+            </summary>
+      <remarks>
+            If provided, data is retrieved using the parent report's ConnectionString. 
+            If omitted, data is retrieved directly from the parent report. 
+            In this latter case, the data is automatically filtered according 
+            to the current grouping scope (e.g. a chart in a 'Category' 
+            group header would contain data only for the current category).
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.DataX">
+      <summary>
+            Gets or sets a string containing one field with the chart labels.
+            </summary>
+      <remarks>
+            Labels are displayed along the X axis or along with pie slices. For example:
+            <example>chartField.DataX = "ProductName"</example></remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.DataY">
+      <summary>
+            Gets or sets a string containing one or more fields with the data to plot on the chart.
+            </summary>
+      <remarks>
+            If multiple fields are provided, they must be separated with semicolons. For example:
+            <example>chartField.DataY = "UnitPrice;UnitsInStock"</example>
+            You can also use regular VBScript expressions instead of simple field names. 
+            For example, to plot sales and sales taxes as two separate series, you could use:
+            <example>chartField.DataY = "Sales;Sales * 0.085"</example></remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.DataYLabels">
+      <summary>
+            Gets or sets a string containing text labels to use for <see cref="P:C1.C1Report.CustomFields.Chart.DataY" />.
+            <para>
+            If null or empty, field names specified by <see cref="P:C1.C1Report.CustomFields.Chart.DataY" /> are used.
+            </para><para>
+            If multiple labels are provided, they must be separated with semicolons. For example:
+            <example>chartField.DataYLabels = "Unit Price;Units In Stock"</example></para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.DataColor">
+      <summary>
+            Specifies the color for the chart bars, lines, symbols, or pie slices.
+            </summary>
+      <remarks>
+            If the chart contains more than one series (or pie slices) 
+            then additional colors are generated automatically by making 
+            the base color lighter. To control the color of each series in 
+            a multi-series chart, use the <see cref="P:C1.C1Report.CustomFields.Chart.Palette" /> property instead.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Palette">
+      <summary>
+            Specifies a collection of colors to be used for each series (or pie slices).
+            </summary>
+      <remarks>
+            The collection is specified as a string containing a list of color names, 
+            delimited by semicolons. For example:
+            <example>chartField.Palette = "Red;Green;Blue"</example></remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.GridLines">
+      <summary>
+            Adds gridlines to charts. This property does not apply to Pie charts.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Boxed">
+      <summary>
+            Draws a box around the plot area.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Use3D">
+      <summary>
+            Applies 3D effects to the charts.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.XMin">
+      <summary>
+            Gets or sets the minimum value for the X axis.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.XMax">
+      <summary>
+            Gets or sets the maximum value for the X axis.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.YMin">
+      <summary>
+            Gets or sets the minimum value for the Y axis.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.YMax">
+      <summary>
+            Gets or sets the maximum value for the Y axis.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FormatX">
+      <summary>
+            Gets or sets the annotation format for the X axis.
+            </summary>
+      <remarks>
+        <para>This property controls the format used to display values along the X axis of the chart.</para>
+        <para>The value is a regular .NET format string that is used to format numeric or <see cref="T:System.DateTime" /> 
+            values. For details on how to specify format strings, see the <see cref="T:System.IFormattable" /> interface.</para>
+        <para>Typical values used for formatting numeric values are "F2" (floating point with two decimals),
+            "C" (currency), and "#,##0.00" (thousand-separated values with two decimals).</para>
+            See also <b>C1.Win.C1Chart.Axis.AnnoFormat</b>.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FormatY">
+      <summary>
+            Gets or sets the annotation format for the Y axis. 
+            </summary>
+      <remarks>
+        <para>This property controls the format used to display values along the Y axis of the chart.</para>
+        <para>The value is a regular .NET format string that is used to format numeric or <see cref="T:System.DateTime" /> 
+            values. For details on how to specify format strings, see the <see cref="T:System.IFormattable" /> interface.</para>
+        <para>Typical values used for formatting numeric values are "F2" (floating point with two decimals),
+            "C" (currency), and "#,##0.00" (thousand-separated values with two decimals).</para>
+            See also <b>C1.Win.C1Chart.Axis.AnnoFormat</b>.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LabelCompass">
+      <summary>
+            Gets or sets the location of labels relative to data points. If set to Auto,
+            several AutoLabel* properties provide additional options.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LabelOffset">
+      <summary>
+            Gets or sets the distance between a label and its associated data point (maximum distance when auto arranging labels).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LabelConnected">
+      <summary>
+            Gets or sets a value indicating whether a connecting line is drawn from a label to its associated data point.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LabelAutoArrangeMethod">
+      <summary>
+            Gets or sets method used to auto arrange labels (used only if LabelCompass is Auto).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LabelAutoArrangeOptions">
+      <summary>
+            Gets or sets flags controlling which locations are allowed when auto arranging labels (applicable only if LabelCompass is Auto).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.SeriesOffset">
+      <summary>
+            Gets or sets the data series offset for appropriate charts.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ShowOutline">
+      <summary>
+            Gets or sets a value indicating whether chart figures should be outlined.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.OutlineColor">
+      <summary>
+            Gets or sets the color used to draw outlines.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.PieStartAngle">
+      <summary>
+            For Pie charts, gets or sets the starting angle of the first slice (in degrees, counter-clockwise from the X axis).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.PieClockwise">
+      <summary>
+            For Pie charts, gets or sets a value indicating whether series are drawn clockwise or counter-clockwise.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.PieInnerRadius">
+      <summary>
+            For Pie charts, gets or sets the inner radius of the pie, in percent relative to the outer radius.
+            Values greater than 0 turn a pie chart into a doughnut.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.View3dDepth">
+      <summary>
+            For 3D charts (Use3D is true), gets or sets the apparent chart depth as a percentage of chart width.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.View3dElevation">
+      <summary>
+            For 3D charts (Use3D is true), gets or sets the apparent degree of inclination of the eye-point above the X-axis.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.View3dRotation">
+      <summary>
+            For 3D charts (Use3D is true), gets or sets the apparent degree of rotation of the eye-point to the right of the Y-axis.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.View3dShading">
+      <summary>
+            For 3D charts (Use3D is true), gets or sets the type of shading applied to 3D areas of the chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ImageType">
+      <summary>
+            Gets or sets the type of image generated by the chart.
+            </summary>
+      <remarks>Because of GDI+ limitation, this conversion does not support transparency.</remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ShowLegend">
+      <summary>
+            Gets or sets a value indicating whether the chart should include a legend.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.Aggregate">
+      <summary>
+            Gets or sets how values should be aggregated on the chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ChartControl">
+      <summary>
+            Gets a reference to the underlying <c>C1Chart</c> control. 
+            </summary>
+      <remarks>
+            You can set properties in the underlying <c>C1Chart</c> control using script or code, 
+            but these properties are not persisted when the report is saved.
+            </remarks>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.ChartTypeEnum">
+      <summary>
+            Specifies the type of chart to display.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Bar">
+      <summary>
+            A chart that draws each series as a bar in a cluster.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Area">
+      <summary>
+            A chart that draws each series as connected points of data, 
+            filled below the points.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Scatter">
+      <summary>
+            A chart that uses two values to represent each data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Pie">
+      <summary>
+            A chart that draws each series as a slice in a pie.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Line">
+      <summary>
+            A chart that represents data as data points connected with line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Column">
+      <summary>
+            A chart that draws each series as a vertical bar in a cluster.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Step">
+      <summary>
+            A chart that draws each series as a form of a XY Plot chart.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Histogram">
+      <summary>
+            A chart that takes a collection of raw data values and plots the frequency distribution.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Radar">
+      <summary>
+            A chart that draws each series as a radar line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ChartTypeEnum.Polar">
+      <summary>
+            A chart that draws each series as (theta,r), 
+            where theta is amount of rotation from the origin and r is the distance from the origin.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.ImageTypeEnum">
+      <summary>
+            Specifies the type of image to generate.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ImageTypeEnum.Emf">
+      <summary>
+            Enhanced Windows metafile image format (EMF).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ImageTypeEnum.Png">
+      <summary>
+            W3C Portable Network Graphics (PNG) image format.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ImageTypeEnum.Gif">
+      <summary>
+            Graphics Interchange Format (GIF) image format.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ImageTypeEnum.Jpeg">
+      <summary>
+            Joint Photographic Experts Group (JPEG) image format.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ImageTypeEnum.Bmp">
+      <summary>
+            Bitmap image format (BMP).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.ShowLegendEnum">
+      <summary>
+            Specifies whether a legend should be displayed.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ShowLegendEnum.Automatic">
+      <summary>
+            Show legend if there are two or more series.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ShowLegendEnum.Always">
+      <summary>
+            Always show legend.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ShowLegendEnum.Never">
+      <summary>
+            Never show legend.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.AggregateEnum">
+      <summary>
+            Specifies how data should be aggregated for charting.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.None">
+      <summary>
+            Raw values (no aggregation).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.Sum">
+      <summary>
+            Sum all values for each point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.Count">
+      <summary>
+            Number of values for each point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.Average">
+      <summary>
+            Average all values for each point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.Minimum">
+      <summary>
+            Get the minimum value for each point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.Maximum">
+      <summary>
+            Get the maximum value for each point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.Variance">
+      <summary>
+            Gets the variance of the values for each point (sample).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.VariancePop">
+      <summary>
+            Gets the variance of the values for each point (population).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.StandardDeviation">
+      <summary>
+            Gets the standard deviation of the values for each point (sample).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AggregateEnum.StandardDeviationPop">
+      <summary>
+            Gets the standard deviation of the values for each point (population).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.LabelCompassEnum">
+      <summary>
+            Specifies data label location relative to the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.None">
+      <summary>
+            Label is not shown.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.North">
+      <summary>
+            Label is to the north of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.NorthEast">
+      <summary>
+            Label is to the north east of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.East">
+      <summary>
+            Label is to the east of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.SouthEast">
+      <summary>
+            Label is to the south east of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.South">
+      <summary>
+            Label is to the south of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.SouthWest">
+      <summary>
+            Label is to the south west of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.West">
+      <summary>
+            Label is to the west of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.NorthWest">
+      <summary>
+            Label is to the north west of the data point.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.Radial">
+      <summary>
+            In a pie chart, label is directly away from the center of the chart.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.Orthogonal">
+      <summary>
+            Label is perpendicularly away from the plot line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.Auto">
+      <summary>
+            Automatic label arrangement.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LabelCompassEnum.RadialText">
+      <summary>
+            Label is perpendicular away from the plot line, with text oriented along that line.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.ShadingEnum">
+      <summary>
+            Specifies the type of shading used when rendering 3D charts.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ShadingEnum.None">
+      <summary>
+            No special 3D color is applied.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ShadingEnum.ColorLight">
+      <summary>
+            3D color is lighter than front color.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.ShadingEnum.ColorDark">
+      <summary>
+            3D color is darker than front color.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions">
+      <summary>
+            Flags controlling which label positions are allowed when labels are arranged automatically.
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.Default" -->
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.Top">
+      <summary>
+            Allows top label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.Left">
+      <summary>
+            Allows left label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.Bottom">
+      <summary>
+            Allows bottom label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.Right">
+      <summary>
+            Allows right label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.TopRight">
+      <summary>
+            Allows top right label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.BottomRight">
+      <summary>
+            Allows bottom right label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.BottomLeft">
+      <summary>
+            Allows bottom left label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.TopLeft">
+      <summary>
+            Allows top left label position.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementOptions.UseDataPoints">
+      <summary>
+            Labels should not cover data points.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.AutoLabelArrangementMethodEnum">
+      <summary>
+            Specifies the label auto arrangement method.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementMethodEnum.Decimation">
+      <summary>
+            Remove labels which cannot be placed without overlapping.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.AutoLabelArrangementMethodEnum.FindingOptimum">
+      <summary>
+            Try to position all labels avoiding overlapping.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.ChartOwnedItem">
+      <summary>
+            Represents that the instance of this class is owned by Chart.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.ChartOwnedItem.Clone(C1.C1Report.CustomFields.Chart)">
+      <summary>
+            Create a duplicate instance of this object.
+            </summary>
+      <param name="owner">The owner of the new object.</param>
+      <returns>A new object which is a copy of this object.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.ChartOwnedItem.OnPropertyChanged">
+      <summary>
+            Notify the owner that some property changed.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Chart.ChartOwnedItem.OnOwnerChanged">
+      <summary>
+            Notify the owner of this object is changed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.ChartOwnedItem.Owner">
+      <summary>
+            Gets or sets the chart object as owner.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.CircularOptions">
+      <summary>
+            Represents the common options for Radar and Polar chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.CircularOptions.Start">
+      <summary>
+            Gets or sets the starting angle of Radar and Polar chart.
+            </summary>
+      <remarks>
+            The angle is measured in degrees if the Degrees property is true, radians otherwise.
+            The angle is measured in the counter-clockwise direction from the 12 o'clock position.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.CircularOptions.Degrees">
+      <summary>
+            Gets or sets whether the Start value reflects angles in degrees (true) or radians (false) for Radar and Polar chart.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.RadarOptions">
+      <summary>
+            Represents the options for Radar chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.RadarOptions.Filled">
+      <summary>
+            Gets or sets whether Radar chart should be filled.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.RadarOptions.FlatGridLines">
+      <summary>
+            Gets or sets whether Radar chart should use flat Y coordinate gridlines. By default, Y coordinate gridlines are circular.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.PolarOptions">
+      <summary>
+            Represents the options for Polar chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.PolarOptions.PiRatioAnnotations">
+      <summary>
+            Gets or sets whether polar chart measured in radians should be annotated with Pi rations.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.HistogramOptions">
+      <summary>
+            Represents the options for Histogram chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.Normalized">
+      <summary>
+            Gets or sets whether each histogram series interval is normalized.
+            </summary>
+      <remarks>
+            When histograms with non-uniform intervals are generated, each interval
+            is typically normalized such that each interval height represents the
+            same frequency per unit width.  This preserves the most appropriate
+            histogram shape.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.NormalizationInterval">
+      <summary>
+            Gets or sets the normalization interval width.
+            </summary>
+      <remarks>
+            When histograms with non-uniform intervals are generated, each interval
+            is typically normalized such that each interval height represents the
+            same frequency per unit width.  This preserves the most appropriate
+            histogram shape.  The normalization interval width is the width to which
+            all other intervals are normalized.  Intervals with the same width as the
+            normalization width, will have a height which directly indicates its value.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.NormalDisplay">
+      <summary>
+            Gets or sets an object describing a Gaussian normal curve display.
+            </summary>
+      <remarks>
+            Histograms and frequency graphs are used to show the distribution of
+            data values.  Very often, the data distributions are compared to normal
+            distributions.  The properties of the NormalCurve object control the
+            appearance of a built in display of a Normal (Gaussian) curve for
+            comparison.  The normal curve is unrelated to the data.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.DisplayType">
+      <summary>
+            Gets or sets the method used to display the frequency data.
+            </summary>
+      <remarks>
+            Frequency data can be displayed in a different manner on a per series
+            basis, making it possible to mix display types in a single chart group.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.IntervalCreationMethod">
+      <summary>
+            Gets or sets the method used to specify the histogram intervals.
+            </summary>
+      <remarks>
+            Interval boundaries can be established in a variety of ways.
+            <para>When the Automatic method is used, the chart calculates
+            the upper and lower limits of the intervals using the maximum and minimum
+            data values, and restricting the intervals to lie within 3 standard deviations
+            of the data mean.  The number of intervals is optional.  Interval boundaries
+            are calculated uniformly.</para><para>When the SemiAutomatic method is used, the upper and lower limits
+            of the intervals are specified together with the number of intervals.
+            Interval boundaries are calculated uniformly.</para><para>When the XDataBoundaries method is used, the X values of the data
+            data series are used to explicitly set each interval boundary.  The X values
+            are sorted and duplicate values are eliminated.  Each ascending value of the
+            result is used determine the next interval boundary.  Thus, the first and second
+            resulting X values define the first interval and each successive X value specifies
+            the end of the next interval.  Note that specification of N intervals requires
+            N+1 unique X values.
+            </para></remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.IntervalNumber">
+      <summary>
+            Gets or sets the number of intervals in the histogram.
+            </summary>
+      <remarks>
+            The IntervalNumber property applies only to histograms created with
+            Automatic and SemiAutomatic methods.  When the XDataBoundaries method
+            is used, the number of intervals is defined as 1 less than the number
+            of unique X values specified.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.IntervalStart">
+      <summary>
+            Gets or sets the numeric value of the beginning of the first interval.
+            </summary>
+      <remarks>Applies only to the SemiAutomatic creation method.</remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.HistogramOptions.IntervalWidth">
+      <summary>
+            Gets or sets the numeric value of the width of the each interval.
+            </summary>
+      <remarks>Applies only to the SemiAutomatic creation method.</remarks>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.NormalCurve">
+      <summary>
+            Represents the appearance of the  normal curve for the Histogram chart.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.NormalCurve.ForegroundDisplay">
+      <summary>
+            Gets or sets whether the Normal (Gaussian) curve is displayed on top of the chart data display.
+            </summary>
+      <remarks>
+            By default, the Normal (Gaussian) curve is displayed behind all charted data.  Setting
+            the ForegroundDisplay property to true specifies that the Normal curve should be drawn
+            on top of the charted data.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.NormalCurve.LineStyle">
+      <summary>
+            Gets or sets the LineStyle object for the Normal curve.
+            </summary>
+      <remarks>
+            The LineStyle property controls the appearance of the actual line drawn
+            representing the Normal curve.  The FillStyle property controls the
+            appearance of the area under the Normal curve.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.NormalCurve.FillStyle">
+      <summary>
+            Gets or sets the FillStyle object for the Normal curve.
+            </summary>
+      <remarks>
+            The FillStyle property controls the appearance of the area under the Normal
+            curve.  The LineStyle property controls the appearance of the actual line
+            drawn representing the Normal curve.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.NormalCurve.UseAntiAlias">
+      <summary>
+            Gets or sets whether the Normal curve is drawn using anti-aliasing.
+            </summary>
+      <remarks>
+            By default, the normal curve is drawn using anti-aliasing methods.  Setting
+            the UseAntiAlias property to false overrides this behavior.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.NormalCurve.Visible">
+      <summary>
+            Gets or sets whether the Normal curve is drawn.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.FillStyle">
+      <summary>
+            Represents the fill style for chart elements.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.Color1">
+      <summary>
+            Gets or sets the fill color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.Color2">
+      <summary>
+            Gets or sets the second fill color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.OutlineColor">
+      <summary>
+            Gets or sets the color filled region outlines.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.OutlineThickness">
+      <summary>
+            Gets or sets the thickness of filled region outlines.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.FillType">
+      <summary>
+            Gets or sets the fill type.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.GradientStyle">
+      <summary>
+            Gets or sets the fill gradient style.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.HatchStyle">
+      <summary>
+            Gets or sets the fill hatch style.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.Image">
+      <summary>
+            Gets or sets the fill image.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.FillStyle.Alpha">
+      <summary>
+            Gets or sets the fill alpha value (transparency).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.LineStyle">
+      <summary>
+            Represents the style of chart lines.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LineStyle.Thickness">
+      <summary>
+            Gets or sets the thickness of the line in pixels. The valid range is from 0 to 1000.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LineStyle.Color">
+      <summary>
+            Gets or sets the color of the line.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LineStyle.Pattern">
+      <summary>
+            Gets or sets the pattern of the line.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LineStyle.LineJoin">
+      <summary>
+            Gets or sets the joining style of the drawn line segments.
+            </summary>
+      <remarks>
+            For further details, see the discussion of the LineJoin property and LineJoin
+            enumeration for the System.Drawing.Pen instance.  The default value is appropriate
+            for most situations.  Lower MiterLimit values or LineJoin.Round might be appropriate
+            for thick lines.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Chart.LineStyle.MiterLimit">
+      <summary>
+            Gets or sets the miter limit of the joints of the drawn line.
+            </summary>
+      <remarks>
+            For further details, see the discussion of the MiterLimit property for
+            the System.Drawing.Pen instance.  The default value is appropriate for most
+            situations.  Lower values might be appropriate for thick lines.
+            </remarks>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.IntervalCreationMethodEnum">
+      <summary>
+            Defines the method of interval creation.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.IntervalCreationMethodEnum.Automatic">
+      <summary>
+            Interval boundaries and width are calculated based on the data statistics.
+            The number of intervals is an optional input.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.IntervalCreationMethodEnum.SemiAutomatic">
+      <summary>
+            Starting interval, interval width, and the number of intervals specify interval boundaries. 
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.IntervalCreationMethodEnum.XDataBoundaries">
+      <summary>
+            The X data inputs will be used for interval boundaries.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.DisplayTypeEnum">
+      <summary>
+            Defines the type of how to display the intervals.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.DisplayTypeEnum.Histogram">
+      <summary>
+            Displays the intervals and counts as a histogram.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.DisplayTypeEnum.FrequencyGraph">
+      <summary>
+            Displays the intervals and counts as a frequency graph.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.DisplayTypeEnum.SteppedFrequencyGraph">
+      <summary>
+            Displays the intervals and counts as a stepped frequency graph.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.FillTypeEnum">
+      <summary>
+            Specifies how data shapes are filled.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.FillTypeEnum.SolidColor">
+      <summary>
+            Solid color is used for filling using Color1.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.FillTypeEnum.Gradient">
+      <summary>
+            A two color gradient is used to fill using Color1 and Color2 with a pattern enumerated by the <see cref="T:C1.C1Report.CustomFields.Chart.GradientStyleEnum" />./&gt;.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.FillTypeEnum.Hatch">
+      <summary>
+            A two color hatch pattern is used to fill using Color1 and Color2 with a pattern enumerated by the <see cref="T:C1.C1Report.CustomFields.Chart.HatchStyleEnum" />./&gt;.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.FillTypeEnum.Texture">
+      <summary>
+            A texture is created by tiling the specified Image of the FillStyle.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.GradientStyleEnum">
+      <summary>
+            Defines the style of the gradient.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.None">
+      <summary>
+            No gradient filling.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.Horizontal">
+      <summary>
+            From left (Color1) to right (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.HorizontalCenter">
+      <summary>
+            From center (Color1) to left and right (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.Vertical">
+      <summary>
+            From top (Color1) to bottom (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.VerticalCenter">
+      <summary>
+            From center (Color1) to top and bottom (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.Diagonal">
+      <summary>
+            From left-bottom (Color1) to right-top (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.DiagonalCenter">
+      <summary>
+            From center (Color1) to  left-bottom and right-top (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.DiagonalBack">
+      <summary>
+            From left-top (Color1) to right-bottom (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.DiagonalBackCenter">
+      <summary>
+            From center (Color1) to left-top and right-bottom (Color2).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.Radial">
+      <summary>
+            From center (Color1) to corners (Color2) in radial direction.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.GradientStyleEnum.FromCenter">
+      <summary>
+            From center (Color1) to corners (Color2).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.HatchStyleEnum">
+      <summary>
+            Defines the style of Hatch.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.None">
+      <summary>
+            No pattern.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Horizontal">
+      <summary>
+            A pattern of horizontal lines.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Vertical">
+      <summary>
+            A pattern of vertical lines.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.ForwardDiagonal">
+      <summary>
+            A pattern of lines on a diagonal from upper left to lower right.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.BackwardDiagonal">
+      <summary>
+            A pattern of lines on a diagonal from upper right to lower left.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Cross">
+      <summary>
+            Specifies horizontal and vertical lines that cross.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DiagonalCross">
+      <summary>
+            Specifies forward diagonal and backward diagonal lines that cross. The lines are antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent05">
+      <summary>
+            Specifies a 5-percent hatch. The ratio of foreground color to background color is 5:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent10">
+      <summary>
+            Specifies a 10-percent hatch. The ratio of foreground color to background color is 10:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent20">
+      <summary>
+            Specifies a 20-percent hatch. The ratio of foreground color to background color is 20:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent25">
+      <summary>
+            Specifies a 25-percent hatch. The ratio of foreground color to background color is 25:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent30">
+      <summary>
+            Specifies a 30-percent hatch. The ratio of foreground color to background color is 30:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent40">
+      <summary>
+            Specifies a 40-percent hatch. The ratio of foreground color to background color is 40:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent50">
+      <summary>
+            Specifies a 50-percent hatch. The ratio of foreground color to background color is 50:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent60">
+      <summary>
+            Specifies a 60-percent hatch. The ratio of foreground color to background color is 60:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent70">
+      <summary>
+            Specifies a 70-percent hatch. The ratio of foreground color to background color is 70:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent75">
+      <summary>
+            Specifies a 75-percent hatch. The ratio of foreground color to background color is 75:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent80">
+      <summary>
+            Specifies a 80-percent hatch. The ratio of foreground color to background color is 80:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Percent90">
+      <summary>
+            Specifies a 90-percent hatch. The ratio of foreground color to background color is 90:100.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.LightDownwardDiagonal">
+      <summary>
+            Specifies diagonal lines that slant to the left from top points to bottom points and
+            are spaced 50 percent closer together than ForwardDiagonal, but they are not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.LightUpwardDiagonal">
+      <summary>
+            Specifies diagonal lines that slant to the left from top points to bottom points and
+            are spaced 50 percent closer together than BackwardDiagonal, but they are not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DarkDownwardDiagonal">
+      <summary>
+            Specifies diagonal lines that slant to the right from top points to bottom points,
+            are spaced 50 percent closer together than, and are twice the width of ForwardDiagonal.
+            This hatch pattern is not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DarkUpwardDiagonal">
+      <summary>
+            Specifies diagonal lines that slant to the left from top points to bottom points,
+            are spaced 50 percent closer together than BackwardDiagonal, and are twice its width,
+            but the lines are not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.WideDownwardDiagonal">
+      <summary>
+            Specifies diagonal lines that slant to the right from top points to bottom points,
+            have the same spacing as hatch style ForwardDiagonal, and are triple its width, but are not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.WideUpwardDiagonal">
+      <summary>
+            Specifies diagonal lines that slant to the left from top points to bottom points,
+            have the same spacing as hatch style BackwardDiagonal, and are triple its width, but are not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.LightVertical">
+      <summary>
+            Specifies vertical lines that are spaced 50 percent closer together than Vertical.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.LightHorizontal">
+      <summary>
+            Specifies horizontal lines that are spaced 50 percent closer together than Horizontal.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.NarrowVertical">
+      <summary>
+            Specifies vertical lines that are spaced 75 percent closer together
+            than hatch style Vertical (or 25 percent closer together than LightVertical).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.NarrowHorizontal">
+      <summary>
+            Specifies horizontal lines that are spaced 75 percent closer together
+            than hatch style Horizontal (or 25 percent closer together than LightHorizontal).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DarkVertical">
+      <summary>
+            Specifies vertical lines that are spaced 50 percent closer together than Vertical and are twice its width.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DarkHorizontal">
+      <summary>
+            Specifies horizontal lines that are spaced 50 percent closer together than Horizontal and are twice its width.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DashedDownwardDiagonal">
+      <summary>
+            Specifies dashed diagonal lines that slant to the right from top points to bottom points.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DashedUpwardDiagonal">
+      <summary>
+            Specifies dashed diagonal lines that slant to the left from top points to bottom points.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DashedHorizontal">
+      <summary>
+            Specifies dashed horizontal lines.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DashedVertical">
+      <summary>
+            Specifies dashed vertical lines.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.SmallConfetti">
+      <summary>
+            Specifies a hatch that has the appearance of confetti.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.LargeConfetti">
+      <summary>
+            Specifies a hatch that has the appearance of confetti,
+            and is composed of larger pieces than SmallConfetti.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.ZigZag">
+      <summary>
+            Specifies horizontal lines that are composed of zigzags.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Wave">
+      <summary>
+            Specifies horizontal lines that are composed of tildes.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DiagonalBrick">
+      <summary>
+            Specifies a hatch that has the appearance of layered bricks that
+            slant to the left from top points to bottom points.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.HorizontalBrick">
+      <summary>
+            Specifies a hatch that has the appearance of horizontally layered bricks.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Weave">
+      <summary>
+            Specifies a hatch that has the appearance of a woven material.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Plaid">
+      <summary>
+            Specifies a hatch that has the appearance of a plaid material.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Divot">
+      <summary>
+            Specifies a hatch that has the appearance of divots.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DottedGrid">
+      <summary>
+            Specifies horizontal and vertical lines, each of which is composed of dots that cross.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.DottedDiamond">
+      <summary>
+            Specifies forward diagonal and backward diagonal lines, each of which is composed of dots, that cross.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Shingle">
+      <summary>
+            Specifies a hatch that has the appearance of diagonally-layered shingles that slant
+            to the right from top points to bottom points.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Trellis">
+      <summary>
+            Specifies a hatch that has the appearance of a trellis.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.Sphere">
+      <summary>
+            Specifies a hatch that has the appearance of spheres laid adjacent to one another.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.SmallGrid">
+      <summary>
+            Specifies horizontal and vertical lines that cross and are spaced 50 percent
+            closer together than hatch style Cross.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.SmallCheckerBoard">
+      <summary>
+            Specifies a hatch that has the appearance of a checkerboard.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.LargeCheckerBoard">
+      <summary>
+            Specifies a hatch that has the appearance of a checkerboard with
+            squares that are twice the size of SmallCheckerBoard.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.OutlinedDiamond">
+      <summary>
+            Specifies forward diagonal and backward diagonal lines that cross but are not antialiased.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.HatchStyleEnum.SolidDiamond">
+      <summary>
+            Specifies a hatch that has the appearance of a checkerboard placed diagonally.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Chart.LinePatternEnum">
+      <summary>
+            Represents the patterns of the line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LinePatternEnum.Solid">
+      <summary>
+            A solid line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LinePatternEnum.Dash">
+      <summary>
+            A dashed line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LinePatternEnum.Dot">
+      <summary>
+            A dotted line.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LinePatternEnum.DashDot">
+      <summary>
+            A line with alternating dashes and dots.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LinePatternEnum.DashDotDot">
+      <summary>
+            A line with series consisting of a dash followed by two dots.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Chart.LinePatternEnum.None">
+      <summary>
+            No line is drawn.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Gradient">
+      <summary>
+            This class inherits from <see cref="T:C1.C1Report.Field" /> and uses a LinearGradient brush
+            to draw a gradient background. If the field contains text, that is also displayed.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Gradient.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Report.CustomFields.Gradient" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Gradient.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean)">
+      <summary>
+            Selects the text or image that will be rendered by the field.
+            </summary>
+      <param name="value">Field text.</param>
+      <param name="img">Field image.</param>
+      <param name="designTime">Whether we in design time or runtime.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Gradient.DrawRoundRect(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Rectangle,System.Int32,System.Int32)">
+      <summary>
+            Draw rounded rectangle.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Gradient.FillRoundRect(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Rectangle,System.Int32,System.Int32)">
+      <summary>
+            Fill rounded rectangle.
+            </summary>
+      <param name="g">
+      </param>
+      <param name="brush">
+      </param>
+      <param name="rc">
+      </param>
+      <param name="radiusX">
+      </param>
+      <param name="radiusY">
+      </param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Gradient.RoundRect(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Int32,System.Int32)">
+      <summary>
+            Draw and fill rounded rectangle.
+            </summary>
+      <param name="g">
+      </param>
+      <param name="brush">
+      </param>
+      <param name="pen">
+      </param>
+      <param name="rc">
+      </param>
+      <param name="radiusX">
+      </param>
+      <param name="radiusY">
+      </param>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Gradient.ColorFrom">
+      <summary>
+            Initial color for the gradient background.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Gradient.ColorTo">
+      <summary>
+            Final color for the gradient background.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Gradient.Angle">
+      <summary>
+            Angle for the gradient pattern, in degrees.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.C1Mapper">
+      <summary>
+            Provides functionality that allows to use the C1.WPF.Maps.C1Maps control
+            to generate maps in reports.
+            </summary>
+      <remarks>
+            TODO:
+            - allow to specify keys for tile sources that require it (CloudMadeMapsSource);
+            - ?
+            </remarks>
+      <summary>
+            C1Mapper
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:C1.C1Report.CustomFields.Maps.C1Mapper.HideShowTools" -->
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.DoCenterAndZoom">
+      <summary>
+            Centers and zooms the map based on owner settings (including auto zoom/center).
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.GetImage(System.Double,System.Double)">
+      <summary>
+            Gets a System.Drawing.Image representing the current map.
+            </summary>
+      <param name="dpiX">The horizontal resolution of the image.</param>
+      <param name="dpiY">The vertical resolution of the image.</param>
+      <returns>The image (bitmap).</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.UpdateKmlLayer(System.String,System.IO.Stream,C1.C1Report.CustomFields.Maps.AddingKmlItemDelegate)">
+      <summary>
+            Adds a layer created from the specified KML stream.
+            </summary>
+      <param name="kml">The source KML stream.</param>
+      <param name="name">The new layer name (must be a valid alphanumeric name).</param>
+      <param name="addingItemProc">The callback to invoke for each KML item as it is being loaded.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.ClearMarks">
+      <summary>
+            Clears all previously added marks and lines. (Does not affect KML layers.)
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.DistancePix(System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            Calculates screen distance (in 96dpi pixels) between two points.
+            </summary>
+      <param name="longitude1">
+      </param>
+      <param name="latitude1">
+      </param>
+      <param name="longitude2">
+      </param>
+      <param name="latitude2">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.DrawPoint(System.String,System.Double,System.Double,System.String,System.Drawing.Font,System.Drawing.Color,C1.C1Report.CustomFields.Maps.MarkerShape,System.Double,System.Drawing.Color,System.Drawing.Color)">
+      <summary>
+            Adds a point.
+            </summary>
+      <param name="layerKey">
+      </param>
+      <param name="longitude">
+      </param>
+      <param name="latitude">
+      </param>
+      <param name="caption">
+      </param>
+      <param name="font">
+      </param>
+      <param name="markShape">
+      </param>
+      <param name="size">
+      </param>
+      <param name="stroke">
+      </param>
+      <param name="fill">
+      </param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.DrawLine(System.String,System.Double,System.Double,System.Double,System.Double,System.Drawing.Color,C1.C1Report.CustomFields.Maps.DashStyle,System.Double)">
+      <summary>
+            Adds a line to the lines layer.
+            </summary>
+      <param name="longitude1">
+      </param>
+      <param name="latitude1">
+      </param>
+      <param name="longitude2">
+      </param>
+      <param name="latitude2">
+      </param>
+      <param name="stroke">
+      </param>
+      <param name="dashStyle">
+      </param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.DrawLine(System.String,System.Double,System.Double,System.Double,System.Double,System.Windows.Media.Brush,System.Windows.Media.Brush,System.Windows.Media.DoubleCollection,System.Double)">
+      <summary>
+            Adds a line to the lines layer.
+            </summary>
+      <param name="longitude1">
+      </param>
+      <param name="latitude1">
+      </param>
+      <param name="longitude2">
+      </param>
+      <param name="latitude2">
+      </param>
+      <param name="stroke">
+      </param>
+      <param name="fill">
+      </param>
+      <param name="dashes">
+      </param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.C1Mapper.InitializeComponent">
+      <summary>
+            InitializeComponent
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.GeocoderGoogle">
+      <summary>
+            Geocoder that uses Google geocoding services.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.GeocoderBase">
+      <summary>
+            Abstract base class used for the GeocoderGoogle and GeocoderBing classes.
+            </summary>
+      <remarks>
+            This class manages a file-based location cache. The actual geocoding must be performed
+            on derived classes that implement the GetLocation method.
+            </remarks>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBase.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of a <see cref="!:CachedGeoCoder" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBase.GetLocation(System.String)">
+      <summary>
+            Gets the location of a given object.
+            </summary>
+      <param name="address">Address to be located.</param>
+      <returns>A <see cref="T:System.Windows.Point" /> that represents the location of the given address.</returns>
+      <remarks>
+            The X and Y values of the point returned represent the longitude and latitude of the address.
+            </remarks>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBase.GeoLocateAddress(System.String)">
+      <summary>
+            Call geocoding service to retrieve the location of an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="T:System.Windows.Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBase.LoadCache">
+      <summary>
+            Loads the location cache from the default cache file..
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBase.SaveCache">
+      <summary>
+            Saves the current location cache to the default cache file.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBase.UrlEncode(System.String)">
+      <summary>
+            Same as HttpUtility.UrlEncode, but without taking a dependency on System.Web.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderGoogle.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.C1Report.CustomFields.Maps.GeocoderGoogle" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderGoogle.GeoLocateAddress(System.String)">
+      <summary>
+            Call Google to geocode an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="T:System.Windows.Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.GeocoderGoogleOld">
+      <summary>
+            As of Jan 2015, this does not work anymore.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderGoogleOld.#ctor(System.String,System.Boolean)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.C1Report.CustomFields.Maps.GeocoderGoogle" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderGoogleOld.GeoLocateAddress(System.String)">
+      <summary>
+            Call Google to geocode an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="T:System.Windows.Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.GeocoderBing">
+      <summary>
+            Geocoder that uses Bing geocoding services.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBing.#ctor(System.String,System.Boolean,System.String)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.C1Report.CustomFields.Maps.GeocoderGoogle" />.
+            </summary>
+      <param name="cacheFile">Name of cache file where locations are persisted.</param>
+      <param name="bingKey">Bing license key used to access Bing services.</param>
+      <remarks>
+            You can create Bing license keys here: http://www.bingmapsportal.com/.
+            </remarks>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.GeocoderBing.GeoLocateAddress(System.String)">
+      <summary>
+            Call Bing to geocode an address.
+            </summary>
+      <param name="address">Address to geocode.</param>
+      <returns>
+        <para>A <see cref="T:System.Windows.Point" /> where the X and Y values represent the Longitude and 
+            Latitude of the given <paramref name="address" />.</para>
+        <para>If the address cannot be located, the point returned has X and Y values
+            set to double.NaN.</para>
+      </returns>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.KmlItemStyle">
+      <summary>
+            Represents a style used to render KML items on a map.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MapStyleBase">
+      <summary>
+            Abstract base class for layer style types used in maps.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MapOwnedKeyedItem">
+      <summary>
+            Represents a map item with a unique immutable key.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MapOwnedItemBase">
+      <summary>
+            Abstract base class for types owned by a Map field.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MapOwnedItemBase.BaseName">
+      <summary>
+            Gets a one word description of the item type (e.g. "Layer").
+            Also used to automatically generate new items' names.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MapOwnedItemBase.Name">
+      <summary>
+            Gets or sets the name of the item. If specified, and the item is contained in a collection,
+            this name can be used in script expressions to reference the item by name rather than by index.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MapOwnedKeyedItem.Key">
+      <summary>
+            Unique string identifying the layer.
+            May be used as the layer's name in C1Maps so should be a valid id
+            (alpha-numeric starting with a letter).
+            <para>
+            NOTE: the set accessor is for serialization ONLY. This property must NOT be changed.
+            </para></summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.ILegendItem">
+      <summary>
+            Interface that should be implemented by objects which may be represented in a legend.
+            It exposes properties that enable the legend to draw a representation of the object
+            (such as a layer or a style).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemKind">
+      <summary>
+            Gets the kind of legend item.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemCaption">
+      <summary>
+            Gets the legend item's caption.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemVisible">
+      <summary>
+            Gets the legend item's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemTextColor">
+      <summary>
+            Gets the legend item's text color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemFont">
+      <summary>
+            Gets the legend item's font.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemStrokeColor">
+      <summary>
+            Gets the legend item graphic's stroke color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemFillColor">
+      <summary>
+            Gets the legend item graphic's fill color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemMarkerShape">
+      <summary>
+            Gets the legend item graphic's shape (for point marker item kind).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemDashStyle">
+      <summary>
+            Gets the legend item graphic's dash style (for line item kind).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemLineThickness">
+      <summary>
+            Gets the legend item graphic's line thickness in 96dpi pixels (for line item kind). Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.ILegendItem.LegendItemMarkerSize">
+      <summary>
+            Gets the legend item graphic's marker size in 96dpi pixels (for point marker item kind). Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlItemStyle.ItemNameExpr">
+      <summary>
+            Gets or sets an expression specifying the name (caption) associated with the KML item. Set to an empty string ("") to suppress printing of item captions.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlItemStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke color of markers placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlItemStyle.FillColor">
+      <summary>
+            Gets or sets the fill color of markers placed on the map.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.InlineKmlItemStyle">
+      <summary>
+            Represents a <see cref="T:C1.C1Report.CustomFields.Maps.KmlItemStyle" /> built into a KML layer.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.InlineKmlItemStyle.Name">
+      <summary>
+            Suppress showing the name in the property editor, as referencing inline styles
+            in expressions is not possible.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.KmlItemStyleCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.C1Report.CustomFields.Maps.KmlItemStyle" /> elements.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MapOwnedCollectionBase`1">
+      <summary>
+            Represents a collection of elements derived from <see cref="T:C1.C1Report.CustomFields.Maps.MapOwnedItemBase" />.
+            </summary>
+      <typeparam name="T">
+      </typeparam>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.IMapOwnedCloneable">
+      <summary>
+            Interface for cloneable objects owned by a Map field.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Maps.MapOwnedCollectionBase`1.Serializer">
+      <summary>
+            Must be initialized in the static ctor.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MapOwnedCollectionEditor`1">
+      <summary>
+            Represents an editor for a collection derived from MapOwnedCollectionBase.
+            </summary>
+      <typeparam name="TColl">
+      </typeparam>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.KmlLayer">
+      <summary>
+            Represents a map layer containing KML spatial data.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LayerBase">
+      <summary>
+            Abstract base class for map layer classes.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LayerBase.PointsLocationExpressions">
+      <summary>
+            Gets the list of lists of location expressions.
+            The outer list corresponds to the point or points associated
+            with each record of the layer - i.e. for a points layer, that list
+            will contain one element, for lines - two etc.
+            The inner list for each point is the collection of location
+            expressions. E.g. it can be Country, City, Address.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LayerBase.Visible">
+      <summary>
+            Gets or sets the current layer's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LayerBase.Track">
+      <summary>
+            Gets or sets a value indicating whether spatial data from the current layer should be used to auto center/zoom the map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LayerBase.Opacity">
+      <summary>
+            Gets or sets the opacity factor applied to the layer.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LayerBase.Caption">
+      <summary>
+            Gets or sets the current layer's caption.
+            Used to represent the layer in legends.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LayerBase.RecordSource">
+      <summary>
+            Gets or sets an SQL statement used to retrieve data for the layer.
+            </summary>
+      <remarks>
+            If provided, data is retrieved using the parent report's ConnectionString. 
+            If omitted, data is retrieved directly from the parent report. 
+            In this latter case, the data is automatically filtered according 
+            to the current grouping scope (e.g. a layer in a 'Category' 
+            group header would contain data only for the current category).
+            </remarks>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Maps.KmlLayer.varItemName">
+      <summary>
+            The string "kmlItemName" used in KmlLayer's expressions will be replaced with
+            the actual quoted KML item name at runtime prior to expression's evaluation.
+            E.g. the following expression could be used to check for the country:
+            <code>Country=kmlItemName</code> (note the absense of quotes around kmlName).
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.Caption">
+      <summary>
+            Hides Caption as KML layers cannot be represented in legends.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.KmlFileName">
+      <summary>
+            Gets or sets the KML/KMZ file name or network URL.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.KmlFileNameXml">
+      <summary>
+            Used to persist <see cref="P:C1.C1Report.CustomFields.Maps.KmlLayer.KmlFileName" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.EmbedKmlFile">
+      <summary>
+            Gets or sets a value indicating whether to embed KML data loaded from <see cref="P:C1.C1Report.CustomFields.Maps.KmlLayer.KmlFileName" /> in the report definition file itself.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.KmlFileData">
+      <summary>
+            Gets or sets the KML file data.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemFilterExpr">
+      <summary>
+            Gets or sets a filter string applied to the layer's <see cref="!:RecordSource" />.
+            When KML data is loaded into the layer, for each item being loaded this filter
+            is applied to the layer data, and item expressions
+            (<see cref="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemTrackExpr" />, <see cref="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemVisibleExpr" />, <see cref="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemStyleExpr" />)
+            are evaluated in the context of the first data row matching the filter.
+            <para>
+            NOTE: this only works if a custom <see cref="!:RecordSource" /> is
+            specified for the KML layer.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemTrackExpr">
+      <summary>
+            Gets or sets an expression that determines whether a KML item's
+            coordinates are used when calculating auto center/zoom.
+            If this property is not specified, true is assumed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemVisibleExpr">
+      <summary>
+            Gets or sets an expression that determines whether a KML item is visible.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemStyleExpr">
+      <summary>
+            Gets or sets an expression that should evaluate to an index or a name of a style in the KmlItemStyles collection
+            that will be applied to the item. The name may refer to a style in another Map object within the report.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.KmlLayer.ItemStyle">
+      <summary>
+            Gets the default item style.
+            <para>Note: the set accessor is for serialization only, and should not be used directly.</para></summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.KmlLayer.KmlFileEditor">
+      <summary>
+            Specialized editor for specifying KML/KMZ files.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LayerCollection">
+      <summary>
+            Represents a collection of map layers.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.Legend">
+      <summary>
+            Represents a map legend - an area on a <see cref="T:C1.C1Report.CustomFields.Map" /> containing
+            a list of items derived from <see cref="T:C1.C1Report.CustomFields.Maps.LegendItemBase" />.
+            The following item types are supported:
+            <list type="bullet"><item><term><see cref="T:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem" /></term><description>Represents a map layer or layer style. Shows the layer's marker or line, and a descriptive text (the layer's caption by default).</description></item><item><term><see cref="T:C1.C1Report.CustomFields.Maps.LegendColorSwatchItem" /></term><description>Shows a color swatch, and a descriptive text.</description></item><item><term><see cref="T:C1.C1Report.CustomFields.Maps.LegendTextItem" /></term><description>Shows an arbitrary text.</description></item></list></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Automatic">
+      <summary>
+            Gets or sets a value indicating whether the current legend's items are
+            automatically generated at runtime from the map's layers.
+            If true, the <see cref="P:C1.C1Report.CustomFields.Maps.Legend.Items" /> collection is ignored.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Caption">
+      <summary>
+            Gets or sets the legend's caption.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.LegendAlignment">
+      <summary>
+            Gets or sets the alignment of the legend within the map bounds.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.BackColor">
+      <summary>
+            Gets or sets the legend's background color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.TextColor">
+      <summary>
+            Gets or sets the legend's text color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Font">
+      <summary>
+            Gets or sets the legend text font.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Items">
+      <summary>
+            Gets the collection of legend items. If <see cref="P:C1.C1Report.CustomFields.Maps.Legend.Automatic" /> is true, this collection is ignored.
+            <para>Note: the set accessor is for serialization only.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Margin">
+      <summary>
+            Gets or sets the margin (spacing) between the legend and map edges.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Padding">
+      <summary>
+            Gets or sets the padding between the legend and items within.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.BorderThickness">
+      <summary>
+            Gets or sets the thickness of borders around the legend.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Orientation">
+      <summary>
+            Gets or sets the orientation of items within the legend.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.Legend.Visible">
+      <summary>
+            Gets or sets the legend's visibility.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendCollection">
+      <summary>
+            Represents a collection of map legends (<see cref="T:C1.C1Report.CustomFields.Maps.Legend" />).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendItemBase">
+      <summary>
+            Abstract base class for types representing items in a map legend.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.LegendItemBase.OnItemSelectedInEditor">
+      <summary>
+            Called by design time editor when item is selected.
+            Allows to update readonly-ness of properties depending on values etc.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendItemBase.Visible">
+      <summary>
+            Gets or sets the item's visibility.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendItemBase.Caption">
+      <summary>
+            Gets or sets the text representing the current item in the legend.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendItemBase.Font">
+      <summary>
+            Gets or sets the font used to draw the current item's <see cref="P:C1.C1Report.CustomFields.Maps.LegendItemBase.Caption" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendItemBase.TextColor">
+      <summary>
+            Gets or sets the color used to draw the current item's <see cref="P:C1.C1Report.CustomFields.Maps.LegendItemBase.Caption" />.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem">
+      <summary>
+            Represents a legend item describing a map layer or a layer style.
+            <para>
+            The layer may belong to a different map in the report. This may be used
+            to place a legend outside the map's bounds for instance.
+            </para><para>
+            If no layer or style is associated with the legend item, arbitrary markers, colors
+            etc may be selected.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.LayerStyle">
+      <summary>
+            Gets or sets the layer or style associated with the current legend item.
+            The layer or style may belong to a different <see cref="T:C1.C1Report.CustomFields.Map" /> in the report.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.TargetKey">
+      <summary>
+            Gets or sets the key identifying the layer or style associated with this legend item.
+            May be null or empty, in which case the item is not associated with any layer or style.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.Caption">
+      <summary>
+            Gets or sets the caption of this legend item.
+            May be empty, in which case the caption is retrieved from the associated layer if possible.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.GraphicKind">
+      <summary>
+            Gets or sets the kind of graphic shown by the current legend item.
+            If a layer or style is associated with this item, the value of this property is determined by
+            it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.Stroke">
+      <summary>
+            Gets or sets the stroke color used to draw the graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.Fill">
+      <summary>
+            Gets or sets the fill color used to draw the graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.MarkerShape">
+      <summary>
+            Gets or sets the marker shape used to draw point kind graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.DashStyle">
+      <summary>
+            Gets or sets the line dash style used to draw line kind graphic shown by this legend item.
+            If a layer or style is associated with this item, the value of this property
+            is determined by it and cannot be changed.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.LineThickness">
+      <summary>
+            Gets or sets the line thickness used to draw line kind graphic shown by this legend item.
+            Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.MarkerSize">
+      <summary>
+            Gets or sets the marker size used to draw point kind graphic shown by this legend item.
+            Specify -1 to use the default.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.GraphicKindEnum">
+      <summary>
+            Specifies the kind of graphic shown by a legend item.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.GraphicKindEnum.Point">
+      <summary>
+            The graphic is a point marker.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Maps.LegendLayerStyleItem.GraphicKindEnum.Line">
+      <summary>
+            The graphic is a line.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendColorSwatchItem">
+      <summary>
+            Represents a color swatch legend item.
+            Shows a colored swatch along with some descriptive text.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendTextItem">
+      <summary>
+            Represents a text only legend item.
+            Shows arbitrary text.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendItemCollection">
+      <summary>
+            Represents a collection of map legend items
+            (types derived from <see cref="T:C1.C1Report.CustomFields.Maps.LegendItemBase" />).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LinesLayer">
+      <summary>
+            Represents a map layer containing lines,
+            where each line connects two points on the map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.MapLocation1">
+      <summary>
+            Gets or sets a string containing one or more semicolon-delimited fields which may be used
+            to determine the location of an entity using an external service such as Google.
+            Typically these would be the fields specifying the address, e.g. "Address;City;PostalCode;Country".
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.MapLocation2">
+      <summary>
+            Gets or sets a string containing one or more semicolon-delimited fields which may be used
+            to determine the location of an entity using an external service such as Google.
+            Typically these would be the fields specifying the address, e.g. "Address;City;PostalCode;Country".
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.Longitude1">
+      <summary>
+            Gets or sets the name of a field specifying the longitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.Latitude1">
+      <summary>
+            Gets or sets the name of a field specifying the latitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.Longitude2">
+      <summary>
+            Gets or sets the name of a field specifying the longitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.Latitude2">
+      <summary>
+            Gets or sets the name of a field specifying the latitude.
+            Ignored if <see cref="!:MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.LineVisibleExpr">
+      <summary>
+            Gets or sets expression determining whether a line is visible.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.LineStyleExpr">
+      <summary>
+            Gets or sets an expression that should evaluate to an index or a name of a style in the LineStyles collection
+            that will be used to draw the line.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LinesLayer.LineStyle">
+      <summary>
+            Gets the default line style.
+            <para>Note: the set accessor is for serialization only, and should not be used directly.</para></summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LineStyle">
+      <summary>
+            Represents a style used to render lines on a map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LineStyle.ThicknessExpr">
+      <summary>
+            Gets or sets the thickness of lines on the map, in 96 DPI pixels.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LineStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.LineStyle.DashStyle">
+      <summary>
+            Gets or sets the fill brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.InlineLineStyle">
+      <summary>
+            Represents a <see cref="T:C1.C1Report.CustomFields.Maps.LineStyle" /> built into a <see cref="T:C1.C1Report.CustomFields.Maps.LinesLayer" />.
+            Hides the style's Name as it cannot be used to reference an inline style.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.InlineLineStyle.Name">
+      <summary>
+            Hide the name from properties window.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LineStyleCollection">
+      <summary>
+            Represents a collection of line styles (elements of type <see cref="T:C1.C1Report.CustomFields.Maps.LineStyle" />).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Map">
+      <summary>
+            Represents a map showing spatial and analytical data in the report.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.IMapperOwner">
+      <summary>
+            Allows the mapper to pull relevant map properties.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.BackColor">
+      <summary>
+            The background color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.ToolsColor">
+      <summary>
+            Tools' (scale etc) background color.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.TileSource">
+      <summary>
+            Tile source.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.ShowZoomTool">
+      <summary>
+            Whether to show the zoom scale.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.ShowPanTool">
+      <summary>
+            Whether to show the pan tool.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.ShowScale">
+      <summary>
+            Whether to show the scale.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.AutoZoom">
+      <summary>
+            Whether to auto-zoom to enclose all marks.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.MaxAutoZoom">
+      <summary>
+            Gets the maximum auto zoom level. 0 means there's no limitation.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.RoundAutoZoom">
+      <summary>
+            If true, automatic zoom will be rounded down to next integer.
+            This may improve performance with some net based tile sources.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.AutoZoomPadLon">
+      <summary>
+            Auto zoom longitude padding, in percent.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.AutoZoomPadLat">
+      <summary>
+            Auto zoom latitude padding, in percent.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.ZoomLevel">
+      <summary>
+            The zoom level, 0 being no zoom, 1 - x2 zoom and so on.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.AutoCenter">
+      <summary>
+            Whether to auto-center to enclose all marks.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.CenterLatitude">
+      <summary>
+            The center latitude. Ignored if <see cref="P:C1.C1Report.CustomFields.Maps.IMapperOwner.AutoCenter" /> is true.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.CenterLongitude">
+      <summary>
+            The center longitude. Ignored if <see cref="P:C1.C1Report.CustomFields.Maps.IMapperOwner.AutoCenter" /> is true.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.Legends">
+      <summary>
+            The collection of legends.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.IMapperOwner.Layers">
+      <summary>
+            The collection of layers.
+            </summary>
+    </member>
+    <member name="E:C1.C1Report.CustomFields.Maps.IMapperOwner.LayersChanged">
+      <summary>
+            Event fired when the collection of layers changes.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Map.#ctor">
+      <summary>
+            Initializes a new instance of the Map class.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Map.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean)">
+      <summary>
+            Assigns the map image that will be rendered by the field.
+            </summary>
+      <param name="value">The field text (ignored unless map creation failed).</param>
+      <param name="img">The map image.</param>
+      <param name="designTime">Specifies whether we are in design time or runtime.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Map.OnPropertyChanged">
+      <summary>
+            Overridden. Disposes the cached map image if any, and calls the base implementation.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Map.Load(System.Xml.XmlNodeList)">
+      <summary>
+            Overridden. Loads map specific collections.
+            </summary>
+      <param name="properties">The source XML data.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Map.Save(System.Xml.XmlWriter)">
+      <summary>
+            Overridden. Saves map specific collections.
+            </summary>
+      <param name="properties">Writer used to save data.</param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Map.Clone">
+      <summary>
+            Overridden to clone the inner objects.
+            </summary>
+      <returns>A deep clone of the <see cref="T:C1.C1Report.CustomFields.Map" /> field.</returns>
+    </member>
+    <member name="E:C1.C1Report.CustomFields.Map.LayersChanged">
+      <summary>
+            Fired when the Layers collection is set.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.GeoCachePath">
+      <summary>
+            Gets or sets the path to the file used to cache spatial coordinates (longitude/latitude) specified as
+            MapLocation rather than actual Longitude/Latitude values. The coordinates in such cases are retrieved
+            using an online service such as Google, and caching them significantly imporoves performance when the
+            same location is encountered multiple times.
+            <para>The path is relative to the application startup path.</para><para>The default is "geocache.xml".</para><para>Clear this value to disable caching (not recommended).</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.Layers">
+      <summary>
+            Gets the collection of layers containing markers, lines and KML data rendered on the map.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.Legends">
+      <summary>
+            Gets the collection of legends rendered on the map.
+            Legends may represent layers or arbitrary information (such as captions).
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.MarkerStyles">
+      <summary>
+            Gets the collection of styles used to render markers on the map.
+            Styles allow markers in different layers or even in different maps to use common visual properties.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.LineStyles">
+      <summary>
+            Gets the collection of styles used to render lines on the map.
+            Styles allow lines in different layers or even in different maps to use common visual properties.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.KmlItemStyles">
+      <summary>
+            Gets the collection of styles used to render KML/KMZ items on the map.
+            Styles allow KML items in different layers or even in different maps to use common visual properties.
+            <para>
+            Note that the set accessor is only for deserialization, and should not be used directly.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.ToolsColor">
+      <summary>
+            Gets or sets the background color of the map scale and other tools.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.ShowZoomTool">
+      <summary>
+            Gets or sets a value indicating whether to show the zoom scale.
+            <para>The default is false.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.ShowPanTool">
+      <summary>
+            Gets or sets a value indicating whether to show the pan tool.
+            <para>The default is false.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.ShowScale">
+      <summary>
+            Gets or sets a value indicating whether to show the map scale.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.TileSource">
+      <summary>
+            Gets or sets the map tile source.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.AutoZoom">
+      <summary>
+            Gets or sets a value indicating whether the map should automatically zoom in to just include all spatial data.
+            Ignored (considered to be false) if AutoCenter is false.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.AutoCenter">
+      <summary>
+            Gets or sets a value indicating whether to automatically center the map around the spatial data.
+            Note that setting this property to false effectively turns off AutoZoom.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.AutoZoomPadLon">
+      <summary>
+            Gets or sets auto zoom longitude padding, in percent relative to the viewport width.
+            <para>The default is 10%.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.AutoZoomPadLat">
+      <summary>
+            Gets or sets auto zoom latitude padding, in percent relative to the viewport height.
+            <para>The default is 10%.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.ZoomLevel">
+      <summary>
+            Gets or sets the zoom level value. 0 is no zoom, 1 - x2 zoom and so on.
+            Valid values are from 0 to 20.
+            <para>The default is 0.</para>
+            Ignored if <see cref="P:C1.C1Report.CustomFields.Map.AutoZoom" /> is true.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.MaxAutoZoom">
+      <summary>
+            Gets or sets the maximum zoom level value for auto zooming.
+            Valid values are from 0 to 20.
+            0 (the default) disables auto zoom limiting.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.RoundAutoZoom">
+      <summary>
+            Gets or sets a value indicating whether to round automatically calculated
+            zoom levels down to next integer.
+            <para>The default is true.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.CenterLongitude">
+      <summary>
+            Gets or sets the map center longitude. Ignored if AutoCenter is true.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.CenterLatitude">
+      <summary>
+            Gets or sets the map center latitude. Ignored if AutoCenter is true.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Map.TargetDpi">
+      <summary>
+            Gets or sets the target image resolution (dpi).
+            <para>The default is 200 dpi.</para></summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Map.GeoCacheFileEditor">
+      <summary>
+            Design time editor for the geocache file name.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.AddingKmlItemDelegate">
+      <summary>
+            Delegate called for each KML item as it is loaded from the KML file into the map.
+            </summary>
+      <param name="itemName">IN/OUT: the item name.</param>
+      <param name="stroke">OUT: item stroke color (null uses color specified in the KML data).</param>
+      <param name="fill">OUT: item fill color (null uses color specified in the KML data).</param>
+      <param name="trackCoords">OUT: indicates whether the item's coordinates should be used to auto size/zoom the map.</param>
+      <returns>True to include an item in the map, false to exclude it.</returns>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LegendItemKind">
+      <summary>
+            Specifies the kind of a legend item.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.TileSource">
+      <summary>
+            Enumerates the possible map tile sources.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.DashStyle">
+      <summary>
+            Enumerates the line dash styles.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MarkerShape">
+      <summary>
+            Enumerates the marker shapes.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.ScaleType">
+      <summary>
+            Specifies a scale type.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Maps.ScaleType.Linear">
+      <summary>
+            Linear scale.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.Maps.ScaleType.Logarithmic">
+      <summary>
+            Logarithmic scale.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.LonLat`1">
+      <summary>
+            Represents a longitude/latitude pair.
+            </summary>
+      <typeparam name="T">The type used to represent longitude and latitude.</typeparam>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.Util">
+      <summary>
+            Miscellaneous map utility functions.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.IsNumericType(System.Type)">
+      <summary>
+            Tests whether the type is a numeric one.
+            </summary>
+      <param name="t">The type to test.</param>
+      <returns>True if the type is numeric, false otherwise.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetColor(System.Object)">
+      <summary>
+            Converts an object to a System.Drawing.Color value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted color, or null if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetDouble(System.Object)">
+      <summary>
+            Converts an object to a double value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted value, or double.NaN if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetDouble(System.Object,System.Double)">
+      <summary>
+            Converts an object to a double value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="defaultValue">The default value.</param>
+      <returns>The converted value, or <paramref name="defaultValue" /> if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetBool(System.Object,System.Boolean)">
+      <summary>
+            Converts an object to a boolean value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="defaultValue">The default value.</param>
+      <returns>The converted value, or <paramref name="defaultValue" /> if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetInt(System.Object)">
+      <summary>
+            Converts an object to an integer value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted value, or 0 if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetInt(System.Object,System.Int32)">
+      <summary>
+            Converts an object to an integer value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="defaultValue">The default value.</param>
+      <returns>The converted value, or <paramref name="defaultValue" /> if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetString(System.Object)">
+      <summary>
+            Converts an object to a string value.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <returns>The converted value, or empty string if the object could not be converted.</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GetIndex(System.Object,System.Int32@)">
+      <summary>
+            Converts an object to an integer or a string that can be used as an index in a collection.
+            </summary>
+      <param name="value">The object to convert.</param>
+      <param name="integer">OUT: the integer index if <paramref name="value" /> could be converted to an integer, -1 otherwise.</param>
+      <returns>The string index (use only if <paramref name="integer" /> is -1).</returns>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.SetReadOnlyAttribute(System.ComponentModel.PropertyDescriptor,System.Boolean)">
+      <summary>
+            NOTE: Property MUST HAVE [ReadOnly(...)] specified already (in source)!!! otherwise this blows things up majorly.
+            </summary>
+      <param name="prop">
+      </param>
+      <param name="isReadOnly">
+      </param>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.Maps.Util.GenerateId">
+      <summary>
+            Generates a unique sequence of 16 hex digits.
+            </summary>
+      <returns>
+      </returns>
+      <remarks>
+            Source: http://madskristensen.net/post/Generate-unique-strings-and-numbers-in-C.aspx
+            </remarks>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MarkerStyle">
+      <summary>
+            Represents a style used to render point markers on a map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.CaptionExpr">
+      <summary>
+            Gets or sets the name of a field specifying the caption.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.Shape">
+      <summary>
+            Gets or sets the shape of a mark.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.SizeExpr">
+      <summary>
+            Gets or sets the size of marks placed on the map, in 96 DPI pixels.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.StrokeColor">
+      <summary>
+            Gets or sets the stroke brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.FillColor">
+      <summary>
+            Gets or sets the fill brush of marks placed on the map.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.Font">
+      <summary>
+            Gets or sets the font used to draw mark captions.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.MarkerStyle.TextColor">
+      <summary>
+            Gets or sets the text color of mark captions.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.InlineMarkerStyle">
+      <summary>
+            Represents a <see cref="T:C1.C1Report.CustomFields.Maps.MarkerStyle" /> built into a <see cref="T:C1.C1Report.CustomFields.Maps.PointsLayer" />.
+            Hides the style's Name as it cannot be used to reference an inline style.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.MarkerStyleCollection">
+      <summary>
+            Represents a collection of marker styles (elements of type <see cref="T:C1.C1Report.CustomFields.Maps.MarkerStyle" />).
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.Maps.PointsLayer">
+      <summary>
+            Represents a map layer containing point markers.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.MapLocation">
+      <summary>
+            Gets or sets a string containing one or more semicolon-delimited fields which may be used
+            to determine the location of an object using an external service such as Google.
+            Typically these would be the fields specifying the address, e.g. "Address;City;PostalCode;Country".
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.Longitude">
+      <summary>
+            Gets or sets an expression specifying the longitude of a marker.
+            Ignored if <see cref="P:C1.C1Report.CustomFields.Maps.PointsLayer.MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.Latitude">
+      <summary>
+            Gets or sets an expression specifying the latitude of a marker.
+            Ignored if <see cref="P:C1.C1Report.CustomFields.Maps.PointsLayer.MapLocation" /> is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.MarkerVisibleExpr">
+      <summary>
+            Gets or sets an expression determining whether a marker is visible.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.MarkerStyleExpr">
+      <summary>
+            Gets or sets an expression that should evaluate to an index or a name of a style in the MarkerStyles collection
+            that will be used to draw the marker.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.MarkerStyle">
+      <summary>
+            Gets the default marker style.
+            <para>Note: the set accessor is for serialization only, and should not be used directly.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.ClusterDistance">
+      <summary>
+            Gets or sets the maximum distance (in 96dpi pixels) between markers that should be grouped into clusters.
+            Default (0) disables clustering.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.ClusterDistribution">
+      <summary>
+            Gets or sets the type of cluster styles distribution.
+            </summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.Maps.PointsLayer.ClusterStyles">
+      <summary>
+            Gets or sets the collection of cluster styles.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.QRCode">
+      <summary>
+            Inherits from <see cref="T:C1.C1Report.Field" /> and uses an instance of
+            <b>C1.Win.C1BarCode.C1QRCode</b> component to draw QR (Quick Response) 2D barcode.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.QRCode.#ctor">
+      <summary>
+            Initializes a new instance of the <b>QRCode</b> class.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.QRCode.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean)">
+      <summary>
+            Renders QRCode content using the <b>C1QRCode</b> control.
+            </summary>
+      <param name="value">IN/OUT: Field text.</param>
+      <param name="img">IN/OUT: Field image.</param>
+      <param name="designTime">Design or run time.</param>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.QRCode.CodeVersion">
+      <summary>
+            Gets or sets the version of QR code to generate.
+            <para>For more details see <b>C1.Win.C1BarCode.C1QRCode</b> documentation.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.QRCode.EncodingException">
+      <summary>
+            Gets the exception that prevented the field's text from being encoded.
+            <para>For more details see <b>C1.Win.C1BarCode.C1QRCode</b> documentation.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.QRCode.ErrorCorrectionLevel">
+      <summary>
+            Gets or sets the error correction level used to create the QR code.
+            <para>For more details see <b>C1.Win.C1BarCode.C1QRCode</b> documentation.</para></summary>
+    </member>
+    <member name="P:C1.C1Report.CustomFields.QRCode.SymbolSize">
+      <summary>
+            Gets or sets the size, in pixels, of the symbols used to build the QR image. Must be between 2-10.
+            <para>For more details see <b>C1.Win.C1BarCode.C1QRCode</b> documentation.</para></summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.QRCode.EncodingEnum">
+      <summary>
+            Specifies the type of encoding to use (more flexible encodings consume more space).
+            <para>For more details see <b>C1.Win.C1BarCode.Encoding</b>.</para></summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.EncodingEnum.Automatic">
+      <summary>
+            Select encoding automatically based on the content.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.EncodingEnum.AlphaNumeric">
+      <summary>
+            Encode up to 395 alpha-numeric values. Alpha-numeric values include digits from 0 to 9,
+            uppercase letters from A to Z, space, and the following additional characters:
+            dollar, percentage, asterisk, plus, minus, slash, and colon ([0-9][A-Z][$%*+-./:]).
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.EncodingEnum.Byte">
+      <summary>
+            Encode up to 271 bytes.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.EncodingEnum.Numeric">
+      <summary>
+            Encode up to 652 numeric values.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.QRCode.ErrorCorrectionLevelEnum">
+      <summary>
+            Specifies the error-correction level (higher levels consume more space).
+            <para>For more details see <b>C1.Win.C1BarCode.ErrorCorrectionLevel</b>.</para></summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.ErrorCorrectionLevelEnum.L">
+      <summary>
+            Able to correct up to 7% damage.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.ErrorCorrectionLevelEnum.M">
+      <summary>
+            Able to correct up to 15% damage.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.ErrorCorrectionLevelEnum.Q">
+      <summary>
+            Able to correct up to 25% damage.
+            </summary>
+    </member>
+    <member name="F:C1.C1Report.CustomFields.QRCode.ErrorCorrectionLevelEnum.H">
+      <summary>
+            Able to correct up to 30% damage.
+            </summary>
+    </member>
+    <member name="T:C1.C1Report.CustomFields.SuperLabel">
+      <summary>
+            Inherits from <see cref="T:C1.C1Report.Field" /> and uses an instance of
+            <b>C1.Win.C1SuperTooltip.C1SuperLabel</b> component to draw HTML content.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.SuperLabel.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Report.CustomFields.SuperLabel" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.C1Report.CustomFields.SuperLabel.GetRenderContent(System.String@,System.Drawing.Image@,System.Boolean)">
+      <summary>
+            Renders HTML content using the <b>C1SuperLabel</b> component.
+            </summary>
+      <param name="value">Field text.</param>
+      <param name="img">Field image.</param>
+      <param name="designTime">Whether we in design time or runtime.</param>
+    </member>
+  </members>
+</doc>

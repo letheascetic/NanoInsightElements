@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.C1FlexGrid.SearchPanel.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.C1FlexGrid.SearchPanelRuntimeStrings">
+      <summary>
+            Static class containing UI strings used by the designer.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1FlexGrid.SearchMode">
+      <summary>
+            Contains values that specify how data searching is performed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1FlexGrid.SearchMode.Always">
+      <summary>
+            A control starts searching data automatically, after a small delay.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1FlexGrid.SearchMode.SearchClick">
+      <summary>
+            A control starts searching data on clicking the Search button or pressing ENTER key.
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "T:C1.Win.C1FlexGrid.C1FlexGridSearchPanel" -->
+    <member name="M:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.GetC1FlexGridSearchPanel(C1.Win.C1FlexGrid.C1FlexGridBase)">
+      <summary>
+            Gets the <see cref="T:C1.Win.C1FlexGrid.C1FlexGridSearchPanel" /> associated with current <see cref="T:C1.Win.C1FlexGrid.C1FlexGridBase" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.SetC1FlexGridSearchPanel(C1.Win.C1FlexGrid.C1FlexGridBase,C1.Win.C1FlexGrid.C1FlexGridSearchPanel)">
+      <summary>
+            Sets the <see cref="T:C1.Win.C1FlexGrid.C1FlexGridSearchPanel" /> associated with current <see cref="T:C1.Win.C1FlexGrid.C1FlexGridBase" />.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.Dispose(System.Boolean)">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.SearchDelay">
+      <summary>
+            Gets or sets the delay in milliseconds, after which a data search is initiated (if automatic search mode is active).
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.SearchMode">
+      <summary>
+            Gets or sets whether data searching starts automatically, or must be started manually.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.Watermark">
+      <summary>
+            Gets or sets the text displayed when the search box is empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.HighlightSearchResults">
+      <summary>
+            Gets or sets whether the search string is highlighted within located records.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.FilterSearchResults">
+      <summary>
+            Gets or sets whether the search results should be filtered.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.ShowSearchButton">
+      <summary>
+            Gets or sets whether the Search button is displayed within the <see cref="T:C1.Win.C1FlexGrid.C1FlexGridSearchPanel" />.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1FlexGrid.C1FlexGridSearchPanel.ShowClearButton">
+      <summary>
+            Gets or sets whether the Clear button is displayed within the <see cref="T:C1.Win.C1FlexGrid.C1FlexGridSearchPanel" />.
+            </summary>
+    </member>
+  </members>
+</doc>

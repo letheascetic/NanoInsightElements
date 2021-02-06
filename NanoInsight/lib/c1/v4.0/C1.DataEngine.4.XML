@@ -1,0 +1,2444 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.DataEngine.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.FlexPivot.Subtotal">
+      <summary>
+            Specifies the type of subtotal (aggregate) statistic to calculate.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Sum">
+      <summary>
+            Gets the sum of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Count">
+      <summary>
+            Gets the number of values in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Average">
+      <summary>
+            Gets the average of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Max">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Min">
+      <summary>
+            Gets the minimum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.First">
+      <summary>
+            Gets the first value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Last">
+      <summary>
+            Gets the last value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Var">
+      <summary>
+            Gets the sample variance of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.Std">
+      <summary>
+            Gets the sample standard deviation of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.VarP">
+      <summary>
+            Gets the population variance of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Subtotal.StdP">
+      <summary>
+            Gets the population standard deviation of a group.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.ShowTotals">
+      <summary>
+            Specifies whether to include totals in the output table.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowTotals.None">
+      <summary>
+            Do not show any totals.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowTotals.GrandTotals">
+      <summary>
+            Show grand totals.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowTotals.Subtotals">
+      <summary>
+            Show subtotals and grand totals.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.ShowAs">
+      <summary>
+            Specifies calculations to be applied to cells in the output view.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowAs.NoCalculation">
+      <summary>
+            Show plain aggregated values.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowAs.DiffRow">
+      <summary>
+            Show differences between each item and the item in the previous row.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowAs.DiffRowPct">
+      <summary>
+            Show differences between each item and the item in the previous row as a percentage.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowAs.DiffCol">
+      <summary>
+            Show differences between each item and the item in the previous column.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ShowAs.DiffColPct">
+      <summary>
+            Show differences between each item and the item in the previous column as a percentage.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotEngine">
+      <summary>
+            Class that tabulates data in a <see cref="P:C1.FlexPivot.C1FlexPivotEngine.DataSource" /> according to lists of 
+            fields and creates a <see cref="T:System.Data.DataTable" /> exposed by the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" /> property.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.FlexPivot.C1FlexPivotEngine" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.TransposeFields">
+      <summary>
+            Transposes the fields in the current view so rows become columns and
+            columns become rows.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetViewTitle">
+      <summary>
+            Gets a string with a title describing the current view.
+            </summary>
+      <returns>A string describing the current view.</returns>
+      <remarks>
+            The string includes the names of the fields currently active and 
+            can be used as a caption for charts and reports.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetViewTitle(System.String,System.String)">
+      <summary>
+            Gets a localized string with a title describing the current view.
+            </summary>
+      <param name="by">String to use as a separator between value and row/column field names.</param>
+      <param name="and">String to use as a separator between row and column field names.</param>
+      <returns>A string describing the current view.</returns>
+      <remarks>
+            The string includes the names of the fields currently active and 
+            can be used as a caption for charts and reports.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.BeginUpdate">
+      <summary>
+            Suspend automatic updates to the output table while defining the FlexPivot view.
+            </summary>
+      <remarks>
+            The <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> updates the output table whenever the 
+            fields that make up the FlexPivot view change. 
+            Before making multiple changes (such as defining a new FlexPivot view), 
+            you can increase performance by enclosing the changes between calls to
+            <see cref="M:C1.FlexPivot.C1FlexPivotEngine.BeginUpdate" /> and <see cref="M:C1.FlexPivot.C1FlexPivotEngine.EndUpdate" />.
+            </remarks>
+      <example>
+            The code below shows how to define a new FlexPivot view efficiently by 
+            enclosing the changes between calls to <see cref="M:C1.FlexPivot.C1FlexPivotEngine.BeginUpdate" /> and 
+            <see cref="M:C1.FlexPivot.C1FlexPivotEngine.EndUpdate" />.
+            <code>
+            // set data source (populates Fields list)
+            fp.DataSource = GetDataTable();
+            
+            // prevent updates while building FlexPivot view
+            fp.BeginUpdate();
+            
+            // show countries in rows
+            fp.RowFields.Add("Country");
+            
+            // show categories and products in columns
+            fp.ColumnFields.Add("Category");
+            fp.ColumnFields.Add("Product");
+            
+            // show total sales in cells
+            fp.ValueFields.Add("Sales");
+            
+            // done defining the view
+            fp.EndUpdate();
+            </code></example>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.EndUpdate">
+      <summary>
+            Restore automatic updates to the output table after the FlexPivot view has been defined.
+            </summary>
+      <example>
+            For a complete example, please refer to the <see cref="M:C1.FlexPivot.C1FlexPivotEngine.BeginUpdate" /> method documentation.
+            </example>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.OnUpdating(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.FlexPivot.C1FlexPivotEngine.Updating" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.OnUpdated(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.FlexPivot.C1FlexPivotEngine.Updated" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.OnLoadedFields(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.FlexPivot.C1FlexPivotEngine.LoadedFields" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.Update">
+      <summary>
+            Causes the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> to rebuild the output
+            table exposed by the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" /> property.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.Dispose">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetFlexPivotKey(System.Data.DataColumn)">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> associated with a <see cref="T:System.Data.DataColumn" />
+            on a FlexPivot table.
+            </summary>
+      <param name="column">
+        <see cref="T:System.Data.DataColumn" /> for which the key should be retrieved.</param>
+      <returns>The <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> associated with the <paramref name="column" />.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetFlexPivotKey(System.Data.DataRow)">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> associated with a <see cref="T:System.Data.DataRow" />
+            on a FlexPivot table.
+            </summary>
+      <param name="row">
+        <see cref="T:System.Data.DataRow" /> for which the key should be retrieved.</param>
+      <returns>The <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> associated with the <paramref name="row" />.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetDetail(System.Data.DataRow,System.Data.DataColumn)">
+      <summary>
+            Gets a list of objects in the raw data source that define the content 
+            of a specific cell in the output table exposed by the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" /> 
+            property.
+            </summary>
+      <param name="row">
+        <see cref="T:System.Data.DataRow" /> that contains the FlexPivot cell.</param>
+      <param name="column">
+        <see cref="T:System.Data.DataColumn" /> that contains the FlexPivot cell.</param>
+      <returns>A list of objects in the raw data source that define the
+            content of the specified FlexPivot cell.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetDetail(System.Data.DataRow,System.String)">
+      <summary>
+            Gets a list of objects in the raw data source that define the content 
+            of a specific cell in the output table exposed by the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" /> 
+            property.
+            </summary>
+      <param name="row">
+        <see cref="T:System.Data.DataRow" /> that contains the FlexPivot cell.</param>
+      <param name="columnName">Name of the column that contains the FlexPivot cell.</param>
+      <returns>A list of objects in the raw data source that define the
+            content of the specified FlexPivot cell.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.Exec(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+      <summary>
+            Server-side asynchronous execution of a view returning aggregated results to the caller client.
+            </summary>
+      <param name="workspace">Path in the server's file system where DataEngine data is saved in files.</param>
+      <param name="table">The name of the DataEngine table on which the view is based.</param>
+      <param name="view">View definition. It is obtained from a view in JSON format using System.Web.Script.Serialization.JavaScriptSerializer.Deserialize.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>View execution (aggregation) result</returns>
+      <remarks>
+        <para>This method supports multi-user thread-safe execution of views on the server. Result of such execution is intended for
+            passing to a client for visualization on the web or elsewhere.</para>
+        <para>It can execute views in multiple DataEngine workspaces and tables. It maintains a pool of <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Workspace" /> objects internally to enable that.</para>
+        <para>Aggregation result is a dictionary mapping keys to values.</para>
+        <para>Each value is an array representing values of the value fields in the view
+            in the order those fields are specified in the view. So, for example, if the view has two value fields V1 and V2, then each value is an array [v1, v2]
+            where v1 is the aggregated value of V1 corresponding to the key, and v2 is the aggregated value of V2 corresponding to the same key.</para>
+        <para>A key is an array of values of the row and column fields in the view in the order those fields are specified in the view,
+            with row fields coming first followed by column fields. Some or even all elements of that array can be <b>null</b>, which means that the corresponding
+            value is aggregated through all values of the fields whose position in the key contains <b>null</b>. The key where all elements are <b>null</b>
+            (such key is unique in the dictionary) corresponds to the grand total.</para>
+        <para>For example, with row field Country, column field Customer, value fields Withdrawal and Deposit with aggregation operation Sum,
+            key ["UK", "Joe"] corresponds to [v1, v2], where v1/v2 is the sum of all withdrawals/deposits of the customer Joe in UK,
+            key ["UK", null] corresponds to [v1, v2], where v1/v2 is the sum of all withdrawals/deposits of all UK customers,
+            key [null, "Joe"] corresponds to [v1, v2], where v1/v2 is the sum of all withdrawals/deposits of all customers (in all countries) whose name is Joe,
+            key [null, null] corresponds to [v1, v2], where v1/v2 is the sum of all withdrawals/deposits of all customers everywhere.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.Exec(System.Collections.IEnumerable,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+      <summary>
+            Server-side asynchronous execution of a view returning aggregated results to the caller client.
+            </summary>
+      <param name="dataSource">Data source collection containing data for aggregation.</param>
+      <param name="view">View definition. It is obtained from a view in JSON format using System.Web.Script.Serialization.JavaScriptSerializer.Deserialize.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>View execution (aggregation) result</returns>
+      <remarks>
+        <para>This method supports multi-user thread-safe execution of views on the server. Result of such execution is intended for
+            passing to a client for visualization on the web or elsewhere.</para>
+        <para>It can execute views over multiple dataSource collections. It maintains a pool of <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Workspace" /> objects internally to enable that.</para>
+        <para>Aggregation result is a dictionary mapping keys to values. See a description of keys and values in <see cref="M:C1.FlexPivot.C1FlexPivotEngine.Exec(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)" /></para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.ExecCube(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)">
+      <summary>
+            Server request for data from a SQL Server Analysis Service (SSAS) cube. Returns aggregated results to the caller client.
+            </summary>
+      <param name="connection">SSAS connection string.</param>
+      <param name="cubeName">Cube name.</param>
+      <param name="view">View definition used for retrieving data from the cube.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Aggregation results.</returns>
+      <remarks>
+        <para>This method supports multi-user thread-safe retrieval of aggregated data form a cube. Resulting data is intended for
+            passing to a client for visualization on the web or elsewhere.</para>
+        <para>It can get data from multiple cubes, cube name (and connection) specified in each call. It maintains a pool of <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Workspace" /> objects internally to enable that.</para>
+        <para>Aggregation result is a dictionary mapping keys to values. See a description of keys and values in <see cref="M:C1.FlexPivot.C1FlexPivotEngine.Exec(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)" /></para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetDetails(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object[],System.Threading.CancellationToken)">
+      <summary>
+            Makes source data rows used in obtaining a given aggregated value accessible to the server's clients.
+            </summary>
+      <param name="workspace">Path in the server's file system where DataEngine data is saved in files.</param>
+      <param name="table">The name of a DataEngine table.</param>
+      <param name="key">Key values specifying the aggregated value (subtotal). See a description of keys and values in <see cref="M:C1.FlexPivot.C1FlexPivotEngine.Exec(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)" /></param>
+      <param name="view">View definition used for performing aggregation.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>List of source data objects that contributed to the given aggregation value.</returns>
+      <remarks>
+            It is recommended to use paging providing source data to the clients, because a DataEngine table can have a very large number of rows and aggregating a subtotal can involve a considerable part of all rows.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetDetails(System.Collections.IEnumerable,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object[],System.Threading.CancellationToken)">
+      <summary>
+            Makes source data rows used in obtaining a given aggregated value accessible to the server's clients.
+            </summary>
+      <param name="dataSource">Data source collection.</param>
+      <param name="key">Key values specifying one aggregated value (subtotal). See a description of keys and values in <see cref="M:C1.FlexPivot.C1FlexPivotEngine.Exec(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.CancellationToken)" /></param>
+      <param name="view">View definition used for performing aggregation.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>List of source data objects that contributed to the given aggregation value.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetRawData(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>
+            Makes the entire raw source data collection accessible to the server's clients.
+            </summary>
+      <param name="workspace">Path in the server's file system where DataEngine data is saved in files.</param>
+      <param name="table">The name of a DataEngine table.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>List of source data objects.</returns>
+      <remarks>
+            It is recommended to use paging providing source data to the clients, because a DataEngine table can have a very large number of rows.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetRawData(System.Collections.IEnumerable,System.Threading.CancellationToken)">
+      <summary>
+            Makes the entire raw source data collection accessible to the server's clients.
+            </summary>
+      <param name="dataSource">Data source collection.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>List of source data objects.</returns>
+      <remarks>
+            This method overload simply converts the source collection (which is an IEnumerable) to an IList.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetUniqueValues(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.Threading.CancellationToken)">
+      <summary>
+            Lists unique values of a field for the server's clients.
+            </summary>
+      <param name="workspace">Path in the server's file system where DataEngine data is saved in files.</param>
+      <param name="table">The name of a DataEngine table.</param>
+      <param name="view">View definition used for performing aggregation.</param>
+      <param name="fieldName">The name of the field to provide unique values for.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Collection of objects with properties Name (string) and Type (System.Type)</returns>
+      <remarks>
+        <para>Using this method, a client can show a list of values for the user to choose from.</para>
+        <para>Specifying the view (and not just a field name) for which values are to be listed is necessary because list of values can depend on the field's format (for example, values can be rounded).</para>
+        <para>Clients need to be aware that getting value list can take considerable time if number of rows in the source data is very large.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetUniqueValues(System.Collections.IEnumerable,System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.Threading.CancellationToken)">
+      <summary>
+            Lists unique values of a field for the server's clients.
+            </summary>
+      <param name="dataSource">Data source collection.</param>
+      <param name="view">View definition used for performing aggregation.</param>
+      <param name="fieldName">The name of the field to provide unique values for.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Collection of objects with properties Name (string) and Type (System.Type)</returns>
+      <remarks>
+        <para>Using this method, a client can show a list of values for the user to choose from.</para>
+        <para>Specifying the view (and not just a field name) for which values are to be listed is necessary because list of values can depend on the field's format (for example, values can be rounded).</para>
+        <para>Clients need to be aware that getting value list can take considerable time if number of rows in the source data is very large.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetUniqueValuesCube(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.Threading.CancellationToken)">
+      <summary>
+            Lists unique values of a field for the server's clients.
+            </summary>
+      <param name="connection">SQL Server Analysis Service (SSAS) connection string.</param>
+      <param name="cubeName">Cube name.</param>
+      <param name="view">View definition used for retrieving data from the cube.</param>
+      <param name="fieldUniqueName">The name of the field to provide unique values for.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Collection of objects with properties Name (string) and Type (System.Type)</returns>
+      <remarks>
+        <para>Using this method, a client can show a list of values for the user to choose from.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetMetadata(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>
+            Lists fields with their types and provides other metadata for a DataEngine table.
+            </summary>
+      <param name="workspace">Path in the server's file system where DataEngine data is saved in files.</param>
+      <param name="table">The name of a DataEngine table.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Dictionary containing key/value pairs for metadata parts, where key is the name of the part.</returns>
+      <remarks>
+        <para>Currently supported metadata parts are:</para>
+        <para>"fields": IList collection containing field information, objects with properties Name (string) and Type (System.Type)</para>
+        <para>"rowCount": Number of rows in the DataEngine table</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetMetadata(System.Collections.IEnumerable,System.Threading.CancellationToken)">
+      <summary>
+            Lists fields with their types and provides other metadata for a data source.
+            </summary>
+      <param name="dataSource">Data source collection.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Dictionary containing key/value pairs for metadata parts, where key is the name of the part.</returns>
+      <remarks>
+        <para>Currently supported metadata parts are:</para>
+        <para>"fields": IList collection containing field information, objects with properties Name (string) and Type (System.Type)</para>
+        <para>"rowCount": Number of rows in the data source</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetMetadataCube(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>
+            Lists fields with their metadata for a SQL Server Analysis Service (SSAS) cube.
+            </summary>
+      <param name="connection">SSAS connection string.</param>
+      <param name="cubeName">Cube name.</param>
+      <param name="cancelToken">Enables task cancellation.</param>
+      <returns>Dictionary containing key/value pairs for metadata parts, where key is the name of the part.</returns>
+      <remarks>
+        <para>Only one metadata part is supported (multiple parts are allowed here for consistency
+            with GetMetadata methods for DataEngine tables and DataSource, and for future extensions):</para>
+        <para>"fields": IList collection containing field information, objects with following properties:</para>
+        <para> Name (string): field name by which it is known to the client. </para>
+        <para> UniqueName (string): name identifying the field in the cube.</para>
+        <para> DimensionType (enum): one of the following enum values defining the role of the field in the cube:
+            Dimension = 0, Measure = 1, Kpi = 2, Attribute = 4, Folder = 5, Hierarchy = 6. </para>
+        <para> SubFields (IList): Collection of metadata objects for child fields. </para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.CancelUpdate">
+      <summary>
+            Requests cancellation of a pending request operation.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.WriteXml(System.Xml.XmlWriter)">
+      <summary>
+            Saves the current FlexPivot view definition into an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the view definition will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.WriteXml(System.String)">
+      <summary>
+            Saves the current FlexPivot view definition into an Xml file.
+            </summary>
+      <param name="path">Name of the file to save.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.ReadXml(System.Xml.XmlReader)">
+      <summary>
+            Reads an FlexPivot view definition from an <see cref="T:System.Xml.XmlReader" />.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> that contains the view definition.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.ReadXml(System.String)">
+      <summary>
+            Reads an FlexPivot view definition from a file.
+            </summary>
+      <param name="path">Name of the file that contains the view definition.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.ConnectDataEngine(System.String)">
+      <summary>
+            Connect to a C1.DataEngine table.
+            </summary>
+      <param name="tableName">Table name to connect to.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotEngine.GetUniqueValues(C1.FlexPivot.C1FlexPivotField,System.Exception@,System.Int32,System.Int32)">
+      <summary>
+            Gets a list of unique values from a <see cref="T:C1.FlexPivot.C1FlexPivotField" />.
+            </summary>
+      <param name="field">A <see cref="T:C1.FlexPivot.C1FlexPivotField" /> that contains values.</param>
+      <param name="ex">An <see cref="T:System.Exception" /> occurs in the operation.</param>
+      <param name="dataLimit">Limit of data values.</param>
+      <param name="uniqueLimit">Limit of unique values.</param>
+      <returns>A list of unique values.</returns>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.DataSource">
+      <summary>
+            Gets or sets the object that contains data to be analyzed.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.Fields">
+      <summary>
+            Gets the list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects exposed by 
+            the data source.
+            </summary>
+      <remarks>
+        <para>This list is created automatically whenever the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.DataSource" />
+            property is set.</para>
+        <para>FlexPivot views are defined by copying fields from this list to
+            the lists that define the view: <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ValueFields" />, <see cref="P:C1.FlexPivot.C1FlexPivotEngine.RowFields" />,
+            <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ColumnFields" />, and <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FilterFields" />.</para>
+      </remarks>
+      <example>
+            The code below assigns a data source to the FlexPivot engine and then defines
+            a view by adding fields to each of the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.RowFields" />, 
+            <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ColumnFields" />, and <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ValueFields" /> lists.
+            <code>
+            // set data source (populates Fields list)
+            fp.DataSource = GetDataTable();
+            
+            // prevent updates while building FlexPivot view
+            fp.BeginUpdate();
+            
+            // show countries in rows
+            fp.RowFields.Add("Country");
+            
+            // show categories and products in columns
+            fp.ColumnFields.Add("Category");
+            fp.ColumnFields.Add("Product");
+            
+            // show total sales in cells
+            fp.ValueFields.Add("Sales");
+            
+            // done defining the view
+            fp.EndUpdate();
+            </code></example>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.RowFields">
+      <summary>
+            Gets a list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects that define
+            the fields shown as rows in the output table.
+            </summary>
+      <remarks>
+            See the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Fields" /> property for details and an example.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ColumnFields">
+      <summary>
+            Gets a list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects that define
+            the fields shown as columns in the output table.
+            </summary>
+      <remarks>
+            See the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Fields" /> property for details and an example.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ValueFields">
+      <summary>
+            Gets a list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects that define
+            the fields summarized in the cells of the output table.
+            </summary>
+      <remarks>
+            See the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Fields" /> property for details and an example.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ValueField">
+      <summary>
+            Gets the first <see cref="T:C1.FlexPivot.C1FlexPivotField" /> in the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ValueFields" />
+            collection, or null if the collection is empty.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.FilterFields">
+      <summary>
+            Gets a list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects that define
+            the fields used as filters for the output table.
+            </summary>
+      <remarks>
+        <para>Fields in this list do not appear in the output table,
+            but are still used for filtering the input data.</para>
+        <para>See the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.Fields" /> property for details and an example.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.IsViewDefined">
+      <summary>
+            Gets a value that determines whether an FlexPivot view is currently defined.
+            </summary>
+      <remarks>
+            An FlexPivot view is defined if the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ValueFields" /> list is not
+            empty and either the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.RowFields" /> or <see cref="P:C1.FlexPivot.C1FlexPivotEngine.ColumnFields" />
+            lists are not empty.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ShowTotalsRows">
+      <summary>
+            Gets or sets a value that determines whether the FlexPivot output table
+            should include rows containing subtotals or grand totals.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ShowTotalsColumns">
+      <summary>
+            Gets or sets a value that determines whether the FlexPivot output table
+            should include columns containing subtotals or grand totals.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ShowKeyColumns">
+      <summary>
+            Gets or sets a value that determines whether the FlexPivot output table
+            should include columns containing the row keys.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ShowZeros">
+      <summary>
+            Gets or sets a value that determines whether the FlexPivot output table
+            should use zeros to indicate missing values.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.TotalsBeforeData">
+      <summary>
+            Gets or sets a value that determines whether row and column totals
+            should be displayed before or after regular data rows and columns.
+            If this value is set to true, total rows appear above data rows
+            and total columns appear on the left of regular data columns.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable">
+      <summary>
+            Gets the <see cref="T:System.Data.DataTable" /> that contains the output of
+            the FlexPivot analysis.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotDefaultView">
+      <summary>
+            Gets the default <see cref="T:System.ComponentModel.IBindingList" /> that exposes the data 
+            in the <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" />.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ItemCount">
+      <summary>
+            Gets the number of elements that in the data source.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.FilteredItemCount">
+      <summary>
+            Gets the number of elements that are represented in the current view.
+            </summary>
+      <remarks>
+            If no filters are active, this is the number of elements in the data source.
+            If filters are active, only elements that pass the filter are included in
+            the count.
+            </remarks>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.Updating">
+      <summary>
+            Fires before the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> starts updating 
+            the output <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" />.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.Updated">
+      <summary>
+            Fires after the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> finishes the FlexPivot analysis 
+            and the output <see cref="P:C1.FlexPivot.C1FlexPivotEngine.FlexPivotTable" /> is ready.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.LoadedFields">
+      <summary>
+            Fires after the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> finishes loading the fields for
+            the current DataSource.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.UpdateProgressChanged">
+      <summary>
+            Fires when the update progress of the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> is changed.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.UpdateCompleted">
+      <summary>
+            Fires after the update of the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> is finished.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.ViewDefinition">
+      <summary>
+            Gets or sets the FlexPivot view definition as an Xml string.
+            </summary>
+      <remarks>
+            This property is typically used to persist the current FlexPivot
+            view as an application setting.
+            </remarks>
+      <example>
+        <para>The code below shows how to save an FlexPivot view as an 
+            application setting when the application ends and how to 
+            load it when the application starts.</para>
+        <para>The code assumes that the application settings contain a 
+            string property called "FlexPivotView".</para>
+        <code>
+            public Form1()
+            {
+              InitializeComponent();
+            
+              // load default view
+              C1FlexPivotEngine fp = GetFlexPivotEngine();
+              string view = Properties.Settings.Default.FlexPivotView;
+              if (!string.IsNullOrEmpty(view))
+              {
+                fp.ViewDefinition = Properties.Settings.Default.FlexPivotView;
+              }
+            }
+            protected override void OnClosed(EventArgs e)
+            {
+              // save current view as default
+              C1FlexPivotEngine fp = GetFlexPivotEngine();
+              Properties.Settings.Default.FlexPivotView = fp.ViewDefinition;
+              Properties.Settings.Default.Save();
+            }
+            </code>
+      </example>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotEngine.Workspace">
+      <summary>
+            Gets or sets the DataEngine workspace.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.StartUpdating">
+      <summary>
+            Occurs when calculation starts.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotEngine.CancelUpdating">
+      <summary>
+            Occurs when calculation is cancelled.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotField">
+      <summary>
+            Represents a property of the items in the data source.
+            </summary>
+      <remarks>
+        <para>
+          <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects represent 'dimensions' in 
+            the output FlexPivot table.</para>
+        <para>Each row and column on the output table is uniquely identified 
+            by a <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> object. These objects contain a list
+            of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects and specific values.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotField.GetUniqueValues">
+      <summary>
+            Gets a list of unique values found in the data source for this field.
+            </summary>
+      <returns>A list of unique values found in the data source for this field.</returns>
+      <remarks>
+            This list is updated whenever the <see cref="P:C1.FlexPivot.C1FlexPivotField.FlexPivotEngine" /> traverses
+            the data to build the output table. Calling this method before the engine
+            builds the output table returns an empty collection.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotField.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.FlexPivot.C1FlexPivotField.PropertyChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.ComponentModel.PropertyChangedEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotField.WriteXml(System.Xml.XmlWriter)">
+      <summary>
+            Saves the field into an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the field will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotField.WriteAttributes(System.Xml.XmlWriter)">
+      <summary>
+            Saves addition attributes of the field into an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the field will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotField.ReadXml(System.Xml.XmlReader)">
+      <summary>
+            Reads the field from an <see cref="T:System.Xml.XmlReader" />.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> that contains the field information.</param>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Name">
+      <summary>
+            Gets the name of the field source column.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Caption">
+      <summary>
+            Gets or sets a string to be displayed in the user interface.
+            </summary>
+      <remarks>
+            If this property is set to null or to an empty string, the <see cref="P:C1.FlexPivot.C1FlexPivotField.Key" />
+            property will be used instead.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Width">
+      <summary>
+            Gets or sets the preferred width to be used for showing the field in the user interface.
+            </summary>
+      <remarks>
+            Setting this property to zero or to a negative value disables it. Setting it
+            to a positive value causes any bound grid controls to use the value when 
+            setting column widths.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Type">
+      <summary>
+            Gets the type of the field source column.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Subtotal">
+      <summary>
+            Gets or sets the type of subtotal to use when combining field values.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.ShowAs">
+      <summary>
+            Gets or sets how the field results should be formatted.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.WeightField">
+      <summary>
+            Gets or sets the <see cref="T:C1.FlexPivot.C1FlexPivotField" /> used as a weight for calculating
+            subtotals on this field.
+            </summary>
+      <remarks>
+        <para>If this property is set to null, all values are assumed to have weight one.</para>
+        <para>This property allows you to calculate weighted averages and totals. 
+            For example, if the data contains a 'Quantity' field and a 'Price' field,
+            you could use the 'Price' field as a value field and the 'Quantity' field as
+            a weight. The output would contain a weighted average of the data.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Format">
+      <summary>
+            Gets or sets the format to use when displaying field values.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Style">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotFieldStyle" /> used to display the field values on the grid.
+            </summary>
+      <remarks>
+        <para>This property allows you to assign style properties to a specific <see cref="T:C1.FlexPivot.C1FlexPivotField" />,
+            customizing the way the field values are displayed to the user.</para>
+        <para>Customizing the appearance of a field can be useful in views that contain
+            multiple value fields.</para>
+        <para>For example, the code below creates a view with two value fields and gives one
+            of the fields a green background:</para>
+        <code>
+            // create view
+            var fp = this.c1FlexPivotPage1.FlexPivotEngine;
+            fp.RowFields.Add("ProductName");
+            fp.ColumnFields.Add("Country");
+            fp.ValueFields.MaxItems = 2;
+            fp.ValueFields.Add("ExtendedPrice", "Freight");
+            
+            // give the "ExtendedPrice" field a green background
+            var f = fp.Fields["ExtendedPrice"];
+            f.Style.BackColor = Color.FromArgb(240, 255, 240);
+            </code>
+        <para>You can also create conditional styles using the <see cref="P:C1.FlexPivot.C1FlexPivotField.StyleHigh" />
+            and <see cref="P:C1.FlexPivot.C1FlexPivotField.StyleLow" /> properties.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.StyleHigh">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotConditionalFieldStyle" /> used to display high values.
+            </summary>
+      <remarks>
+        <para>This property allows you to apply conditional formatting to a field, making
+            certain values stand out when displayed on to the user.</para>
+        <para>For example, the code below shows values in the top 10% range in bold
+            with a green background and values in the bottom 10% range in bold with a
+            red background:</para>
+        <code>
+            // apply formatting to all value fields
+            var fp = this.c1FlexPivotPage1.FlexPivotEngine;
+            foreach (var f in fp.ValueFields)
+            {
+              // show top 10% values in green, bold
+              var sh = f.StyleHigh;
+              sh.ConditionType = C1.FlexPivot.ConditionType.Percentage;
+              sh.Value = .9;
+              sh.BackColor = Color.FromArgb(210, 255, 210);
+              sh.FontBold = true;
+              
+              // show bottom 10% values in red, bold
+              var sl = f.StyleLow;
+              sl.ConditionType = C1.FlexPivot.ConditionType.Percentage;
+              sl.Value = .1;
+              sl.BackColor = Color.FromArgb(255, 210, 210);
+              sl.FontBold = true;
+            }
+            </code>
+      </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.StyleLow">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotConditionalFieldStyle" /> used to display low values.
+            </summary>
+      <remarks>
+        <para>This property allows you to apply conditional formatting to a field, making
+            certain values stand out when displayed to the user.</para>
+        <para>For an example, see the <see cref="P:C1.FlexPivot.C1FlexPivotField.StyleHigh" /> property.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Filter">
+      <summary>
+            Gets the filter used to select field values.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.IsActive">
+      <summary>
+            Gets or sets whether this field is active in the FlexPivot view.
+            </summary>
+      <remarks>
+            Setting this property to true causes the field to be added to the
+            <see cref="P:C1.FlexPivot.C1FlexPivotEngine.RowFields" /> list of the parent <see cref="T:C1.FlexPivot.C1FlexPivotEngine" />.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.FlexPivotEngine">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotEngine" /> that owns this field.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.ParentList">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotFieldList" /> that contains this field.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Lookup">
+      <summary>
+            Gets or sets <see cref="!:IDictionary" /> that contains lookup values for this field.
+            </summary>
+      <remarks>This dictionary serves to replace code values with their string descriptions.</remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotField.Key">
+      <summary>
+            Gets a key that uniquely identifies the field in a collection.
+            </summary>
+      <remarks>
+            This poroperty is equal to <see cref="P:C1.FlexPivot.C1FlexPivotField.Name" /> unless there is more than one field with the same <see cref="P:C1.FlexPivot.C1FlexPivotField.Name" />, in which case
+            this property can have a number added in the end to ensure uniqueness.
+            </remarks>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotField.PropertyChanged">
+      <summary>
+            Fires when a property changes.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.Internal.C1CubeField.WriteXml(System.Xml.XmlWriter)">
+      <summary>
+            Saves the field into an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the field will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.Internal.C1CubeField.WriteAttributes(System.Xml.XmlWriter)">
+      <summary>
+            Saves addition attributes of the field into an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the field will be saved.</param>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Dimension">
+      <summary>
+            Gets the sum of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Measure">
+      <summary>
+            Gets the number of values in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Kpi">
+      <summary>
+            Gets the average of a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.NameSet">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Attribute">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Folder">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Hierarchy">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Date">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.Internal.DimensionType.Currency">
+      <summary>
+            Gets the maximum value in a group.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotFieldList">
+      <summary>
+            Represents a list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.Add(System.String[])">
+      <summary>
+            Adds an existing <see cref="T:C1.FlexPivot.C1FlexPivotField" /> to the list.
+            </summary>
+      <param name="fieldNames">One or more field names to add to the list.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.Insert(System.Int32,System.String)">
+      <summary>
+            Inserts a <see cref="T:C1.FlexPivot.C1FlexPivotField" /> at a specified position in the list.
+            </summary>
+      <param name="index">Position where the field will be inserted.</param>
+      <param name="fieldName">Name of the existing <see cref="T:C1.FlexPivot.C1FlexPivotField" />.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.IndexOf(System.String)">
+      <summary>
+            Gets the position of a given <see cref="T:C1.FlexPivot.C1FlexPivotField" /> in the list.
+            </summary>
+      <param name="fieldKey">Key of the field to look for.</param>
+      <returns>The index of the field in the list, or -1 if the field is
+            not a member of the list.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.InsertItem(System.Int32,C1.FlexPivot.C1FlexPivotField)">
+      <summary>
+            Inserts an <see cref="T:C1.FlexPivot.C1FlexPivotField" /> at a specified position in the list.
+            </summary>
+      <param name="index">Position where the field will be inserted.</param>
+      <param name="item">
+        <see cref="T:C1.FlexPivot.C1FlexPivotField" /> to add to the list.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.Remove(System.String)">
+      <summary>
+            Removes the first occurrence of the <see cref="T:C1.FlexPivot.C1FlexPivotField" /> with a key that matches
+            the one passed as parameter.
+            </summary>
+      <param name="fieldKey">Key of the <see cref="T:C1.FlexPivot.C1FlexPivotField" /> to remove</param>
+      <returns>true if item is successfully removed; otherwise, false. This method also
+            returns false if item was not found in the list.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.RemoveItem(System.Int32)">
+      <summary>
+            Removes an item from the list.
+            </summary>
+      <param name="index">Index of the item to remove from the list.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.ClearItems">
+      <summary>
+            Removes all items from the list.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldList.SetItem(System.Int32,C1.FlexPivot.C1FlexPivotField)">
+      <summary>
+            Replaces the item at a specified position.
+            </summary>
+      <param name="index">Index of the item to replace.</param>
+      <param name="item">New value for the item at the specified index.</param>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldList.MaxItems">
+      <summary>
+            Gets or sets the maximum number of fields allowed in this list.
+            </summary>
+      <remarks>
+            Negative values mean the list can have any number of items.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldList.Item(System.String)">
+      <summary>
+            Gets a <see cref="T:C1.FlexPivot.C1FlexPivotField" /> by name.
+            </summary>
+      <param name="fieldKey">Key of the field to retrieve.</param>
+      <returns>The requested <see cref="T:C1.FlexPivot.C1FlexPivotField" />.</returns>
+      <remarks>
+            If the list does not contain a field with the specified name,
+            an exception is thrown.
+            </remarks>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotFieldStyle">
+      <summary>
+            Style used to display field values to the user.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldStyle.Clear">
+      <summary>
+            Clears this style.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldStyle.WriteXml(System.Xml.XmlWriter,System.String)">
+      <summary>
+            Saves the style into an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the style will be saved.</param>
+      <param name="styleName">
+        <see cref="T:System.Xml.XmlWriter" /> name of the style to be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldStyle.ReadXml(System.Xml.XmlReader)">
+      <summary>
+            Reads the style from an <see cref="T:System.Xml.XmlReader" />.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> that contains the style information.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldStyle.OnPropertyChanged">
+      <summary>
+            Notifies the parent field that the style has changed.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldStyle.SaveAttributes(System.Xml.XmlWriter)">
+      <summary>
+            Saves the style properties to an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the style properties will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFieldStyle.LoadAttributes(System.Xml.XmlReader)">
+      <summary>
+            Loads the style properties from an <see cref="T:System.Xml.XmlReader" />.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> that contains the style properties.</param>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldStyle.BackColor">
+      <summary>
+            Gets or sets the color used to paint the background of cells in this field.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldStyle.ForeColor">
+      <summary>
+            Gets or sets the color used to paint the content of cells in this field.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldStyle.FontBold">
+      <summary>
+            Gets or sets a value that determines whether cells in this field should be shown in bold.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldStyle.Field">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotField" /> that owns this style.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFieldStyle.IsEmpty">
+      <summary>
+            Gets a value that indicates whether this style is empty.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.ConditionType">
+      <summary>
+            Specifies the type of comparison to be used when applying a
+            <see cref="T:C1.FlexPivot.C1FlexPivotConditionalFieldStyle" />.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionType.NotSet">
+      <summary>
+            Disable conditional formatting for this style.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionType.Absolute">
+      <summary>
+            Compare field values to the specified absolute value.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionType.Percentage">
+      <summary>
+            Compare field values to the specified value as a percentage.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotConditionalFieldStyle">
+      <summary>
+            Conditional style applied to cells depending on their value.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.Clear">
+      <summary>
+            Clears this style.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.AppliesTo(System.Double,System.Double,System.Double)">
+      <summary>
+             Determines whether this style should be applied to a given value.
+            </summary>
+      <param name="value">Value to test for.</param>
+      <param name="min">Lower value of the value range to use with conditional formatting.</param>
+      <param name="max">Upper value of the value range to use with conditional formatting.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.SaveAttributes(System.Xml.XmlWriter)">
+      <summary>
+            Saves the style properties to an <see cref="T:System.Xml.XmlWriter" />.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the style properties will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.LoadAttributes(System.Xml.XmlReader)">
+      <summary>
+            Reads the style from an <see cref="T:System.Xml.XmlReader" />.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> that contains the style information.</param>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.ConditionType">
+      <summary>
+            Gets or sets the condition that determines whether this style should be applied.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.Value">
+      <summary>
+            Gets or sets the threshold that determines whether this style should be applied.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotConditionalFieldStyle.IsEmpty">
+      <summary>
+            Gets a value that indicates whether this style is empty.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.ConditionOperator">
+      <summary>
+            Represents operators that can be used in filter conditions.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.None">
+      <summary>
+            Disables the operator.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.Equals">
+      <summary>
+            Return true if the value equals the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.NotEquals">
+      <summary>
+            Return true if the value does not equal the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.GreaterThan">
+      <summary>
+            Return true if the value is greater than the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.LessThan">
+      <summary>
+            Return true if the value is less than the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.GreaterThanOrEqualTo">
+      <summary>
+            Return true if the value is greater than or equal to the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.LessThanOrEqualTo">
+      <summary>
+            Return true if the value is less than or equal to the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.Contains">
+      <summary>
+            Return true if the string representation of the value contains the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.DoesNotContain">
+      <summary>
+            Return true if the string representation of the value does not contain the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.BeginsWith">
+      <summary>
+            Return true if the string representation of the value begins with the operator parameter.
+            </summary>
+    </member>
+    <member name="F:C1.FlexPivot.ConditionOperator.EndsWith">
+      <summary>
+            Return true if the string representation of the value ends with the operator parameter.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotFilter">
+      <summary>
+            Represents a filter used to select values for a field.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFilter.#ctor(C1.FlexPivot.C1FlexPivotField)">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.FlexPivot.C1FlexPivotFilter" />.
+            </summary>
+      <param name="field">
+        <see cref="T:C1.FlexPivot.C1FlexPivotField" /> that owns the new filter.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFilter.Apply(System.Object)">
+      <summary>
+            Applies the filter to a value.
+            </summary>
+      <param name="value">Value to test.</param>
+      <returns>True if the values passes through the filter, false otherwise.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFilter.Clear">
+      <summary>
+            Clears the filter.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFilter.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.FlexPivot.C1FlexPivotFilter.PropertyChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.ComponentModel.PropertyChangedEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFilter.WriteXml(System.Xml.XmlWriter)">
+      <summary>
+            Persist filter to Xml.
+            </summary>
+      <param name="xw">
+        <see cref="T:System.Xml.XmlWriter" /> where the filter will be saved.</param>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotFilter.ReadXml(System.Xml.XmlReader)">
+      <summary>
+            Reads a filter from Xml.
+            </summary>
+      <param name="xr">
+        <see cref="T:System.Xml.XmlReader" /> that contains the filter definition.</param>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.Field">
+      <summary>
+            Gets the field that this filter is acting on.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.C1FlexPivotFilter.PropertyChanged">
+      <summary>
+            Fires when a property changes.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.Condition1">
+      <summary>
+            Gets the first filter condition.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.Condition2">
+      <summary>
+            Gets the second filter condition.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.AndConditions">
+      <summary>
+            Gets or sets whether the filter conditions should be combined
+            with an 'And' or with an 'Or' operator.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.IsCustomFilterActive">
+      <summary>
+            Gets a value that indicates the custom filter is active.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.IsActive">
+      <summary>
+            Gets a value that indicates the filter is active.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.ShowValues">
+      <summary>
+            Gets or sets an array with the values that should be included in the output.
+            </summary>
+      <remarks>
+            Setting this property to null causes the filter to include all values in the output.
+            </remarks>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotFilter.Values">
+      <summary>
+            Gets or sets the list of values to be displayed in the value filter list editor.
+            </summary>
+      <remarks>
+            Setting this property to null causes the filter build the value list automatically
+            using the values present in the data source.
+            </remarks>
+    </member>
+    <member name="T:C1.FlexPivot.FilterCondition">
+      <summary>
+            Represents a condition within a <see cref="T:C1.FlexPivot.C1FlexPivotFilter" />.
+            </summary>
+      <remarks>
+            Each <see cref="T:C1.FlexPivot.C1FlexPivotFilter" /> contains up to two conditions that
+            can be combined with 'And' or 'Or' operators.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.FilterCondition.Clear">
+      <summary>
+            Clears this condition by setting the <see cref="P:C1.FlexPivot.FilterCondition.Operator" /> to 'None' 
+            and the <see cref="P:C1.FlexPivot.FilterCondition.Parameter" /> to null.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.FilterCondition.Apply(System.Object)">
+      <summary>
+            Applies the condition to a given value.
+            </summary>
+      <param name="value">Value to test.</param>
+      <returns>True if the value satisfies the condition, false otherwise.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.FilterCondition.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.FlexPivot.FilterCondition.PropertyChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.ComponentModel.PropertyChangedEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="P:C1.FlexPivot.FilterCondition.IsActive">
+      <summary>
+            Gets a value that indicates whether the condition is active.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.FilterCondition.Operator">
+      <summary>
+            Gets or sets the operator used by this condition.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.FilterCondition.Parameter">
+      <summary>
+            Gets or sets the parameter used by this condition.
+            </summary>
+    </member>
+    <member name="E:C1.FlexPivot.FilterCondition.PropertyChanged">
+      <summary>
+            Fires when a property changes.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.C1FlexPivotKey">
+      <summary>
+            Represents a combination of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects and their values.
+            </summary>
+      <remarks>
+        <para>Each row and column on the output FlexPivot table is defined by a unique
+            <see cref="T:C1.FlexPivot.C1FlexPivotKey" />. The values in the table cells represent an aggregation
+            of the value field for all items that match the row and column keys.</para>
+        <para>For example, if a column key is set to 'Country:UK;Customer:Joe' and 
+            the row key is set to 'Category:Desserts;Product:Pie', then the corresponding 
+            cell contains the aggregate for all items with the following properties:
+            'Country:UK;Customer:Joe;Category:Desserts;Product:Pie'.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotKey.GetFormattedValue(System.Int32)">
+      <summary>
+            Gets a formatted value from the <see cref="P:C1.FlexPivot.C1FlexPivotKey.Values" /> array.
+            </summary>
+      <param name="index">Index of the field whose value should be retrieved.</param>
+      <returns>The formatted value for the given index.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotKey.GetFormattedValue(System.Int32,System.Object)">
+      <summary>
+            Gets a formatted value from the <see cref="P:C1.FlexPivot.C1FlexPivotKey.Values" /> array.
+            </summary>
+      <param name="index">Index of the field whose value should be retrieved.</param>
+      <param name="item">Object that provides the unformatted value.</param>
+      <returns>The formatted value for the given index.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotKey.MatchesItem(System.Object)">
+      <summary>
+            Gets a value that determines whether a given data object matches the
+            content of this <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.
+            </summary>
+      <param name="item">Item that contains the raw data.</param>
+      <returns>True if the <paramref name="item" /> matches this 
+            <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.</returns>
+      <remarks>
+        <para>The match is determined by comparing the formatted values for each
+            <see cref="T:C1.FlexPivot.C1FlexPivotField" /> in the key to the formatted values in the
+            <paramref name="item" />. Therefore, matches may occur even if the raw 
+            values are different.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotKey.ToString">
+      <summary>
+            Returns a string that represents this <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.
+            </summary>
+      <returns>A string that represents this <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotKey.GetHashCode">
+      <summary>
+            Serves as a hash function for a <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> object. 
+            </summary>
+      <returns>An integer that serves as a hash function for a <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> object.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.C1FlexPivotKey.Equals(System.Object)">
+      <summary>
+            Returns true if two <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> objects represent the 
+            same set of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> objects and values.
+            </summary>
+      <param name="obj">
+        <see cref="T:C1.FlexPivot.C1FlexPivotKey" /> to compare with this key.</param>
+      <returns>True if both keys represent the same fields and values.</returns>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotKey.Fields">
+      <summary>
+            Gets the list of <see cref="T:C1.FlexPivot.C1FlexPivotField" /> pivot fields associated with this
+            <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotKey.Values">
+      <summary>
+            Gets an array of values for the <see cref="T:C1.FlexPivot.C1FlexPivotField" /> pivot fields
+            associated with this <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.
+            </summary>
+    </member>
+    <member name="P:C1.FlexPivot.C1FlexPivotKey.ValueField">
+      <summary>
+            Gets the <see cref="T:C1.FlexPivot.C1FlexPivotField" /> that represents the value field 
+            associated with this <see cref="T:C1.FlexPivot.C1FlexPivotKey" />.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.Internal.C1FlexPivotTally">
+      <summary>
+            Accumulates observations and returns aggregate statistics.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.Internal.Types">
+      <summary>
+            Static helpers for dealing with <see cref="T:System.Type" /> objects.
+            </summary>
+    </member>
+    <member name="T:C1.FlexPivot.ValueSet`1">
+      <summary>
+            Represents a collection of unique values of type <b>T</b>.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.#ctor">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.FlexPivot.ValueSet`1" />.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+      <summary>
+            Initializes a new instance of a <see cref="T:C1.FlexPivot.ValueSet`1" />.
+            </summary>
+      <param name="comparer">The comparer to use when comparing keys.</param>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.Add(`0)">
+      <summary>
+            Adds a value to the collection if not already present.
+            </summary>
+      <param name="value">Value to add to the collection.</param>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.Contains(`0)">
+      <summary>
+            Determines whether the collection contains a specific value.
+            </summary>
+      <param name="value">Value to look for.</param>
+      <returns>True if the collection contains the value.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.Clear">
+      <summary>
+            Removes all objects from the collection.
+            </summary>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.Sort">
+      <summary>
+            Sorts the elements in the collection.
+            </summary>
+      <remarks>
+            This method assumes the elements support the <see cref="T:System.IComparable" /> interface.
+            </remarks>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.ToList">
+      <summary>
+            Creates a <see cref="T:System.Collections.Generic.List`1" /> from this collection.
+            </summary>
+      <returns>A <see cref="T:System.Collections.Generic.List`1" /> that contains the objects in this collection.</returns>
+    </member>
+    <member name="M:C1.FlexPivot.ValueSet`1.ToArray">
+      <summary>
+            Creates an array from this collection.
+            </summary>
+      <returns>An array that contains the objects in this collection.</returns>
+    </member>
+    <member name="P:C1.FlexPivot.ValueSet`1.Count">
+      <summary>
+            Gets the number of objects in the collection.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.Connector">
+      <summary>
+            Base class for ComponentOne DataEngine data connectors.
+            </summary>
+      <remarks>
+            Data connectors are used to fill DataEngine tables with data, import data to DataEngine.
+            </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Connector.GetData(System.String,System.Int64)">
+      <summary>
+            Import data to a DataEngine table.
+            </summary>
+      <param name="tableName">The name of the DataEngine table.</param>
+      <param name="count">Optional number of rows to import. If count is 0 (default), import all rows.</param>
+    </member>
+    <member name="M:C1.DataEngine.Connector.AppendData(System.String,System.Int64)">
+      <summary>
+            Append data to the end of a DataEngine table.
+            </summary>
+      <param name="tableName">The name of the DataEngine table.</param>
+      <param name="count">Optional number of rows to import. If count is 0 (default), import all rows.</param>
+    </member>
+    <member name="M:C1.DataEngine.Connector.GetData(C1.DataEngine.Workspace,System.Data.IDataReader,System.String,System.Int64)">
+      <summary>
+            Import data to a DataEngine table.
+            </summary>
+      <param name="workspace">Workspace containing the DataEngine table.</param>
+      <param name="reader">Reader providing the data.</param>
+      <param name="tableName">The name of the DataEngine table.</param>
+      <param name="count">Optional number of rows to import. If count is 0 (default), import all rows.</param>
+    </member>
+    <member name="M:C1.DataEngine.Connector.AppendData(C1.DataEngine.Workspace,System.Data.IDataReader,System.String,System.Int64)">
+      <summary>
+            Append data to the end of a DataEngine table.
+            </summary>
+      <param name="workspace">Workspace containing the DataEngine table.</param>
+      <param name="reader">Reader providing the data.</param>
+      <param name="tableName">The name of the DataEngine table.</param>
+      <param name="count">Optional number of rows to import. If count is 0 (default), import all rows.</param>
+    </member>
+    <member name="T:C1.DataEngine.DbConnector">
+      <summary>
+            Connector for importing data to a DataEngine table from a database.
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.DbConnector.#ctor(C1.DataEngine.Workspace,System.Data.Common.DbConnection,System.Data.Common.DbCommand)">
+      <summary>
+            Initializes a new instance of the <see cref="T:System.Data.Common.DbConnection" /> class.
+            </summary>
+      <param name="workspace">Workspace to use the connector in.</param>
+      <param name="connection">ADO.NET connection object for connecting to the database.</param>
+      <param name="command">ADO.NET command object for retrieving data from the database.</param>
+    </member>
+    <member name="M:C1.DataEngine.DbConnector.GetData(C1.DataEngine.Workspace,System.Data.DataTable,System.String,System.Int64)">
+      <summary>
+            Import data to a DataEngine table from an ADO.NET DataTable.
+            </summary>
+      <param name="workspace">Workspace containing the DataEngine table.</param>
+      <param name="table">ADO.NET DataTable to import data from.</param>
+      <param name="tableName">The name of the DataEngine table.</param>
+      <param name="count">Optional number of rows to import. If count is 0 (default), import all rows.</param>
+    </member>
+    <member name="P:C1.DataEngine.DbConnector.Command">
+      <summary>
+            Gets or sets the ADO.NET command object for retrieving data from the database.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.ObjectConnector`1">
+      <summary>
+            Connector for importing data to a DataEngine table from an arbitrary IEnumerable.
+            </summary>
+      <typeparam name="T">The type of the elements of IEnumerable.</typeparam>
+    </member>
+    <member name="M:C1.DataEngine.ObjectConnector`1.#ctor(C1.DataEngine.Workspace,System.Collections.Generic.IEnumerable{`0})">
+      <summary>
+            Initializes a new instance of the ObjectConnector class.
+            </summary>
+      <param name="workspace">Workspace to use the connector in.</param>
+      <param name="data">Collection to import data from.</param>
+    </member>
+    <member name="T:C1.DataEngine.IDataList">
+      <summary>
+             Represents the collection of rows of a DataEngine table or query.
+            </summary>
+      <remarks>
+             This collection can be used both for getting data programmatically and for data binding. 
+            </remarks>
+    </member>
+    <member name="M:C1.DataEngine.IDataList.GetItem(System.Int64)">
+      <summary>
+            Collection element (row) access with access to column values in the row through the IDataRecord interface.
+            </summary>
+      <param name="index">The zero-based index of the element (row).</param>
+      <returns>Element (row) at the specified index implementing the IDataRecord interface.</returns>
+    </member>
+    <member name="P:C1.DataEngine.IDataList.Size">
+      <summary>
+            Returns number of rows in the table or query.
+            </summary>
+      <remarks>
+            It can be different from the Count property value if <see cref="P:C1.DataEngine.IDataList.ViewLimit" /> is set. In that case Count is less than or equal to the <see cref="P:C1.DataEngine.IDataList.ViewLimit" /> value.
+            </remarks>
+    </member>
+    <member name="P:C1.DataEngine.IDataList.ViewLimit">
+      <summary>
+            Specifies maximum number of rows to include in the collection. If 0 (default), all rows are included.
+            </summary>
+      <remarks>
+            DataEngine tables and queries can contain very large number of rows that can be inappropriate for data binding.
+            To limit number of rows shown in a data bound control, set this property.
+            </remarks>
+    </member>
+    <member name="T:C1.DataEngine.DateTimeParts">
+      <summary>
+            Used in DbParts operation to indicate the part to extract from a DateTime value.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.KeepFileType">
+      <summary>
+            Strategies determining what files are kept permanently after their creation and what are deleted when no longer needed.
+            Used in the <see cref="P:C1.DataEngine.Workspace.KeepFiles" /> property.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.KeepFileType.None">
+      <summary>
+            All files created in calculations are deleted when no longer needed. If they are requested again, they are recreated.
+            Use this strategy only for calculations peformed once or rarely repeated, or if saving disk space is more important than performance.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.KeepFileType.Index">
+      <summary>
+            All indexes (table row ids sorted by one or more fields) created in calculations are kept for possible reuse in future calculations.
+            Indexes (and joins, if joins are used) are the most costly data to recreate, so it is important to keep them for optimal performance.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.KeepFileType.IndexAndJoin">
+      <summary>
+            Default for server-side DataEngine.
+            All indexes and joins created in calculations are kept for possible reuse in future calculations.
+            They are the most costly data to recreate, so it is important to keep them for optimal performance.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.KeepFileType.Results">
+      <summary>
+            Default for FlexPivot control.
+            All files created in calculations are kept on disk, so they can be used in future calculations without recreating them.
+            This strategy is appropriate for FlexPivot control, but usually not for server-side DataEngine serving multiple clients.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.ClearFileType">
+      <summary>
+            Kind of data files to delete (for disk cleanup). Used in the <see cref="M:C1.DataEngine.Workspace.Clear(C1.DataEngine.ClearFileType)" /> method.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.ClearFileType.Index">
+      <summary>
+             Delete all indexes (table row ids sorted by one or more fields) created in calculations.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.ClearFileType.Projection">
+      <summary>
+             Delete all projections (files containing field values projected on an index sort order) created in calculations.
+             Projections are kept (in automatic cleanup) together with corresponding indexes, that is why there is no separate value for them in the <see cref="T:C1.DataEngine.KeepFileType" /> enum,
+             but they can be deleted separately from indexes in manual cleanup.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.ClearFileType.Join">
+      <summary>
+             Delete all joins created in calculations.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.ClearFileType.Results">
+      <summary>
+             Delete all result files (data sent to the client) created in calculations.
+            </summary>
+    </member>
+    <member name="F:C1.DataEngine.ClearFileType.All">
+      <summary>
+             Delete all workspace files, including the original table data.
+             Use this value with caution. It wipes out all DataEngine data for the workspace.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.BaseTable">
+      <summary>
+            Represents a DataEngine base table, that is, a table filled with rows imported from data source(s).
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.Table">
+      <summary>
+            Base class for <see cref="T:C1.DataEngine.BaseTable" /> and <see cref="T:C1.DataEngine.Query" />.
+            </summary>
+    </member>
+    <member name="P:C1.DataEngine.Table.Workspace">
+      <summary>
+            Workspace containing the table.
+            </summary>
+    </member>
+    <member name="P:C1.DataEngine.Table.Name">
+      <summary>
+            String uniquely identifying the base table or query in the workspace.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.Column">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.Column.As(System.String)">
+      <summary>
+            Used for columns of linked tables in a join query to specify an alias, if needed.
+            </summary>
+      <param name="alias">Alias of the column to be used as the column name.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Eq(System.Object)">
+      <summary>
+            Comparison operation Equals.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value equals the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Gt(System.Object)">
+      <summary>
+            Comparison operation GreaterThan.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is greater than the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Lt(System.Object)">
+      <summary>
+            Comparison operation LessThan.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is less than the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Gte(System.Object)">
+      <summary>
+            Comparison operation GreaterThanOrEqual.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is greater than or equal to the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Lte(System.Object)">
+      <summary>
+            Comparison operation LessThanOrEqual.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is greater than or equal to the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Ne(System.Object)">
+      <summary>
+            Comparison operation NotEqual.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value does not equal the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Cnt(System.Object)">
+      <summary>
+            Comparison operation Contains for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value contains the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Nc(System.Object)">
+      <summary>
+            Comparison operation DoesNotContain for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value does not contain the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Bw(System.Object)">
+      <summary>
+            Comparison operation BeginsWith for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value begins with the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Column.Ew(System.Object)">
+      <summary>
+            Comparison operation EndsWith for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value ends with the string.</returns>
+    </member>
+    <member name="P:C1.DataEngine.Column.Name">
+      <summary>
+            Gets the name of the column.
+            </summary>
+    </member>
+    <member name="P:C1.DataEngine.Column.Alias">
+      <summary>
+            For columns of linked tables in a join query, gets the alias of the column if it is different from the name. Otherwise, empty.
+            </summary>
+    </member>
+    <member name="P:C1.DataEngine.Column.Table">
+      <summary>
+            Gets the table to which the column belongs.
+            </summary>
+    </member>
+    <member name="P:C1.DataEngine.Column.Type">
+      <summary>
+            Gets the type of data stored in the column.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.ColumnDerived">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.ColumnCopy">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.ColumnOp">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.Columns">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.JoinColumns">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.CondValue">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.CondValues">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.ColumnCondition">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Lt(System.Object)">
+      <summary>
+            Comparison operation LessThan.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is less than the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Gt(System.Object)">
+      <summary>
+            Comparison operation GreaterThan.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is greater than the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Lte(System.Object)">
+      <summary>
+            Comparison operation LessThanOrEqual.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is greater than or equal to the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Gte(System.Object)">
+      <summary>
+            Comparison operation GreaterThanOrEqual.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value is greater than or equal to the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Eq(System.Object)">
+      <summary>
+            Comparison operation Equals.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value equals the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Ne(System.Object)">
+      <summary>
+            Comparison operation NotEqual.
+            </summary>
+      <param name="val">A value.</param>
+      <returns>True if a column value does not equal the specified value.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Cnt(System.Object)">
+      <summary>
+            Comparison operation Contains for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value contains the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Nc(System.Object)">
+      <summary>
+            Comparison operation DoesNotContain for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value does not contain the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Bw(System.Object)">
+      <summary>
+            Comparison operation BeginsWith for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value begins with the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Ew(System.Object)">
+      <summary>
+            Comparison operation EndsWith for a string column.
+            </summary>
+      <param name="val">A string.</param>
+      <returns>True if a column value ends with the string.</returns>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.And">
+      <summary>
+            Connects the following condition with the 'and' connective.
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.ColumnCondition.Or">
+      <summary>
+            Connects the following condition with the 'or' connective.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.Condition">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.JoinQuery">
+      <summary>
+            Represents a DataEngine query joining a main table with one or more linked tables.
+            </summary>
+    </member>
+    <member name="T:C1.DataEngine.Query">
+      <summary>
+            Represents a DataEngine query, that is, a table filled with rows computed by DataEngine from one or more base tables by applying query operations.
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.Query.Execute">
+      <summary>
+            Executes the query.
+            </summary>
+      <returns>Object providing access to the query result. It can be used both for programmatic access and for data binding.</returns>
+    </member>
+    <member name="T:C1.DataEngine.Op">
+      <summary>
+            Class used in specifying queries. See "DataEngine queries" for explanations of how queries are created and executed.
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.Op.Add(C1.DataEngine.Column,C1.DataEngine.Column)">
+      <summary>
+            Add: binary, simple (without aggregation) operation.
+            </summary>
+      <param name="col1">First operand.</param>
+      <param name="col2">Second operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Sub(C1.DataEngine.Column,C1.DataEngine.Column)">
+      <summary>
+            Subtract: binary, simple (without aggregation) operation.
+            </summary>
+      <param name="col1">First operand.</param>
+      <param name="col2">Second operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Mul(C1.DataEngine.Column,C1.DataEngine.Column)">
+      <summary>
+            Multiply: binary, simple (without aggregation) operation.
+            </summary>
+      <param name="col1">First operand.</param>
+      <param name="col2">Second operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Div(C1.DataEngine.Column,C1.DataEngine.Column)">
+      <summary>
+            Divide: binary, simple (without aggregation) operation.
+            </summary>
+      <param name="col1">First operand.</param>
+      <param name="col2">Second operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Mod(C1.DataEngine.Column,C1.DataEngine.Column)">
+      <summary>
+            Modulo: binary, simple (without aggregation) operation.
+            </summary>
+      <param name="col1">First operand.</param>
+      <param name="col2">Second operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Rnd(C1.DataEngine.Column,System.Int32)">
+      <summary>
+            Round: unary, simple (without aggregation) operation.
+            </summary>
+      <param name="col">Operand.</param>
+      <param name="precision">Number of decimal places to round to. Can be negative, meaning rounding to the nearest hundreds, thousands, etc.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.SubStr(C1.DataEngine.Column,System.Int32,System.Int32)">
+      <summary>
+            Substring: unary, simple (without aggregation) operation on strings.
+            </summary>
+      <param name="col">String operand.</param>
+      <param name="startIndex">Extract substring starting from this index.</param>
+      <param name="length">Length of the substring.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.LCase(C1.DataEngine.Column)">
+      <summary>
+            Convert to lower case: unary, simple (without aggregation) operation on strings.
+            </summary>
+      <param name="col">String operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.UCase(C1.DataEngine.Column)">
+      <summary>
+            Convert to upper case: unary, simple (without aggregation) operation on strings.
+            </summary>
+      <param name="col">String operand.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Fmt(C1.DataEngine.Column,System.String)">
+      <summary>
+            Format: unary, simple (without aggregation) operation.
+            </summary>
+      <param name="col">Operand.</param>
+      <param name="format">Format string.</param>
+      <remarks>
+            For every data type, this operation creates a string column. It is equivalent to applying the ToString(format) method to column values.
+            </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Op.Rpl(C1.DataEngine.Column,System.String,System.String)">
+      <summary>
+            Replace: unary, simple (without aggregation) operation on strings.
+            </summary>
+      <param name="col">String operand.</param>
+      <param name="oldValue">Substring to replace.</param>
+      <param name="newValue">Substring to replace it with.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.DtPart(C1.DataEngine.Column,C1.DataEngine.DateTimeParts)">
+      <summary>
+            DateTime part: unary, simple (without aggregation) operation on DateTime.
+            </summary>
+      <param name="col">DateTime operand.</param>
+      <param name="part">Part to extract from DateTime values.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Dt(C1.DataEngine.Column,System.String)">
+      <summary>
+            formatted DateTime: unary, simple (without aggregation) operation on DateTime producing string column.
+            </summary>
+      <param name="col">DateTime operand.</param>
+      <param name="format">DateTime format string.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Sum(C1.DataEngine.Column)">
+      <summary>
+            Sum: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Avg(C1.DataEngine.Column)">
+      <summary>
+            Average: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.First(C1.DataEngine.Column)">
+      <summary>
+            First (value in the first row in the column order): aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Last(C1.DataEngine.Column)">
+      <summary>
+            Last (value in the last row in the column order): aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Count(C1.DataEngine.Column)">
+      <summary>
+            Count: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Max(C1.DataEngine.Column)">
+      <summary>
+            Maximum: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Min(C1.DataEngine.Column)">
+      <summary>
+            Minimum: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.VarP(C1.DataEngine.Column)">
+      <summary>
+            Population variance: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Var(C1.DataEngine.Column)">
+      <summary>
+            Variance: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.StdP(C1.DataEngine.Column)">
+      <summary>
+            Population standard deviation: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="M:C1.DataEngine.Op.Std(C1.DataEngine.Column)">
+      <summary>
+            Standard deviation: aggregation operation.
+            </summary>
+      <param name="col">Operand column.</param>
+    </member>
+    <member name="T:C1.DataEngine.Workspace">
+      <summary>
+            Provides access to the ComponentOne DataEngine.
+            </summary>
+      <remarks>
+            If several workspaces are used in an application, they are isolated from each other.
+            </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.DataEngine.Workspace" /> class
+            </summary>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.Init(System.String)">
+      <summary>
+            Initializes ComponentOne DataEngine.
+            </summary>
+      <param name="path">Folder where C1.DataEngine data is saved in files.</param>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.GetTableData(System.String,System.Int32)">
+      <summary>
+            Gets size and enumerator for all data rows in a table.
+            </summary>
+      <param name="tableName">Name of the table to get data from.</param>
+      <param name="limit">Maximum rows to return. If 0 (default value) all rows will be returned.</param>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.GetQueryData(System.String,System.Int32)">
+      <summary>
+            Gets size and enumerator for all data rows in a query.
+            </summary>
+      <param name="queryName">Name of the query to get data from.</param>
+      <param name="limit">Maximum rows to return. If 0 (default value) all rows will be returned.</param>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.Clear(C1.DataEngine.ClearFileType)">
+      <summary>
+            Deletes data files from disk.
+            </summary>
+      <param name="type">Type of the data files to delete.</param>
+      <remarks>
+        <para>If ClearFileType.All is used (which is the default, meaning all tables are removed from workspace),
+            all data and structure information is deleted, workspace is wiped clean. Use it with caution.</para>
+        <para>Other ClearFileType flags (or their combinations) are used for manual disk cleanup, deleting data files created in calculations.
+            Manual disk cleanup is an advanced feature. Use it only if the default automatic disk cleanup with <see cref="P:C1.DataEngine.Workspace.KeepFiles" /> property is not enough for your scenario.
+            </para>
+      </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.Clear(System.String,C1.DataEngine.ClearFileType)">
+      <summary>
+            Deletes data files of a table from disk.
+            </summary>
+      <param name="tableName">Name of the table to delete.</param>
+      <param name="type">Type of the data files to delete.</param>
+      <remarks>
+        <para>If ClearFileType.All is used (which is the default, meaning the table is removed from workspace),
+            original table data and structure information for that table is deleted together with calculated data based on that table.
+            Use it with caution. It can also be used creating a new table to ensure that it did not exist before.</para>
+        <para>Other ClearFileType flags (or their combinations) are used for manual disk cleanup, deleting data files created in calculations based on that table.
+            Manual disk cleanup is an advanced feature. Use it only if the default automatic disk cleanup with <see cref="P:C1.DataEngine.Workspace.KeepFiles" /> property is not enough for your scenario.
+            </para>
+      </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.Save">
+      <summary>
+            Saves workspace metadata to disk.
+            </summary>
+      <remarks>
+            Use this method only if you want to override the default behavior saving metadata on disk every time it changes.
+            Workspace storage (in the folder specified in <see cref="M:C1.DataEngine.Workspace.Init(System.String)" />) contains data (memory-mapped) files for base tables and queries and also 
+            a file called metadata.xml containing metadata describing the structure of all base tables and queries. Metadata changes
+            when a new table or query is created, and it can also change when a query is executed. When DataEngine is initialized with 
+            data already existing on disk, it is essential that metadata file contains up-to-date information. By default, it is ensured automatically by
+            saving the metadata file every time metadata changes. If you don't want to spend time (usually insignificant) on these autosaves,
+            set the <see cref="P:C1.DataEngine.Workspace.AutoSave" /> property to <b>false</b> and call the Save method when you are done working with the workspace. 
+            </remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.TableExists(System.String)">
+      <summary>
+            Determines whether the specified base table exists in the workspace.
+            </summary>
+      <param name="tableName">Table name to check.</param>
+      <returns>
+        <b>true</b> if the base table exists in the workspace; otherwise, <b>false</b>.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.QueryExists(System.String)">
+      <summary>
+            Determines whether the specified query exists in the workspace.
+            </summary>
+      <param name="queryName">Query name to check.</param>
+      <returns>
+        <b>true</b> if the query exists in the workspace; otherwise, <b>false</b>.</returns>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.table(System.String)">
+      <summary>
+            Gets a base table by its name.
+            </summary>
+      <param name="name">The name of the base table</param>
+      <returns>Dynamic object representing the base table.</returns>
+      <remarks>
+            The dynamic object is used in queries over this table, for example,
+            <code>
+            dynamic od = workspace.table("OderDetails");
+            dynamic query1 = workspace.query(new 
+            {
+                price = Op.Mul(od.UnitPrice, od.Discount)
+            });
+            </code>
+            Also, it has a Table property that returns the <see cref="T:C1.DataEngine.BaseTable" /> object representing this base table:
+            <code>
+            BaseTable t = workspace.table("t1").Table;
+            </code></remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.query(System.String,System.Object)">
+      <summary>
+            Creates a query based on a single table or query (not a join).
+            </summary>
+      <param name="name">Name of the query. If the name is specified, query result is stored on disk.</param>
+      <param name="settings">Columns of the resut, and other settings of the query.</param>
+      <returns>Dynamic object representing the query.</returns>
+      <remarks>
+            The dynamic object can be used in queries over the result of this query if such are needed, same way as in <see cref="M:C1.DataEngine.Workspace.table(System.String)" />
+            Also, it has a Query property that returns the <see cref="T:C1.DataEngine.Query" /> object representing this query.
+            It is used for executing the query:
+            <code>
+            dynamic query1 = workspace.query(...);
+            query1.Query.Execute();
+            </code></remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.query(System.Object)">
+      <summary>
+            Creates a query based on a single table or query (not a join).
+            </summary>
+      <param name="settings">Columns of the resut, and other settings of the query.</param>
+      <returns>Dynamic object representing the query.</returns>
+      <remarks>
+            The dynamic object can be used in queries over the result of this query if such are needed, same way as in <see cref="M:C1.DataEngine.Workspace.table(System.String)" />
+            Also, it has a Query property that returns the <see cref="T:C1.DataEngine.Query" /> object representing this query.
+            It is used for executing the query:
+            <code>
+            dynamic query1 = workspace.query(...);
+            query1.Query.Execute();
+            </code></remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.join(System.String,System.Dynamic.ExpandoObject,System.Object)">
+      <summary>
+            Creates a join query.
+            </summary>
+      <param name="name">Name of the query. If the name is specified, query result is stored on disk.</param>
+      <param name="mainTable">Main table to which linked tables are joined.</param>
+      <param name="settings">Columns of the resut, and links joining linked tables to the main table.</param>
+      <returns>Dynamic object representing the query.</returns>
+      <remarks>
+            The dynamic object can be used in queries over the result of this query if such are needed, same way as in <see cref="M:C1.DataEngine.Workspace.table(System.String)" />
+            Also, it has a Query property that returns the <see cref="T:C1.DataEngine.Query" /> object representing this query.
+            It is used for executing the query:
+            <code>
+            dynamic query1 = workspace.join(...);
+            query1.Query.Execute();
+            </code></remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.join(System.Dynamic.ExpandoObject,System.Object)">
+      <summary>
+            Creates a join query.
+            </summary>
+      <param name="mainTable">Main table to which linked tables are joined.</param>
+      <param name="settings">Columns of the resut, and links joining linked tables to the main table.</param>
+      <returns>Dynamic object representing the query.</returns>
+      <remarks>
+            The dynamic object can be used in queries over the result of this query if such are needed, same way as in <see cref="M:C1.DataEngine.Workspace.table(System.String)" />
+            Also, it has a Query property that returns the <see cref="T:C1.DataEngine.Query" /> object representing this query.
+            It is used for executing the query:
+            <code>
+            dynamic query1 = workspace.join(...);
+            query1.Query.Execute();
+            </code></remarks>
+    </member>
+    <member name="M:C1.DataEngine.Workspace.BeginUpdate">
+      <summary>
+            Indicates that multiple batches of data are being added to one or more tables, so that data consumers can suspend their update until all data changed are complete.
+            </summary>
+      <remarks>
+            Call this method if you want to perform more than one data import with <see cref="M:C1.DataEngine.Connector.GetData(System.String,System.Int64)" /> or <see cref="M:C1.DataEngine.Connector.AppendData(System.String,System.Int64)" />.
+            Call <see cref="M:C1.DataEngine.Workspace.EndUpdate" />  when all data import operations are complete.
+            </remarks>
+      <seealso cref="M:C1.DataEngine.Workspace.EndUpdate" />
+    </member>
+    <member name="M:C1.DataEngine.Workspace.EndUpdate">
+      <summary>
+            Indicates that multiple batches of data changes have been completed.
+            </summary>
+      <seealso cref="M:C1.DataEngine.Workspace.EndUpdate" />
+    </member>
+    <member name="M:C1.DataEngine.Workspace.Dispose">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+    </member>
+    <member name="P:C1.DataEngine.Workspace.KeepFiles">
+      <summary>
+            Automatic disk cleanup strategy.
+            </summary>
+      <remarks>
+            This property can be left at its default value unless you need finer control over what files created in calculations must be kept for future reuse.
+            </remarks>
+    </member>
+    <member name="P:C1.DataEngine.Workspace.AutoSave">
+      <summary>
+            Enables/disables automatic saving metadata to disk on every metadata change. Default: metadata autosave enabled.
+            </summary>
+      <remarks>
+            Change this property only if you want to override the default behavior saving metadata on disk every time it changes.
+            See <see cref="M:C1.DataEngine.Workspace.Save" /> for details.
+            </remarks>
+    </member>
+    <member name="E:C1.DataEngine.Workspace.Initialize">
+      <summary>
+            Occurs after the workspace has been initialized, its <see cref="M:C1.DataEngine.Workspace.Init(System.String)" /> method has been called.
+            </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>C1.Win.C1FlexGrid.Classic.4</name>
+    </assembly>
+    <members>
+        <member name="F:C1.Util.Licensing.VersionConst.VerString">
+            <summary>
+            WinForms version string representation (4 dot-delimited numbers).
+            </summary>
+        </member>
+        <member name="F:C1.Util.Licensing.VersionConst.VersionStr">
+            <summary>
+            Same as <see cref="F:C1.Util.Licensing.VersionConst.VerString"/>.
+            </summary>
+        </member>
+        <member name="F:C1.Util.Licensing.VersionConst.VerAsmName">
+            <summary>
+            For .NET 4.0 version only, used for designer assembly names.
+            </summary>
+        </member>
+        <member name="T:C1.Win.C1FlexGrid.Classic.C1FlexGridClassic">
+            <summary>
+            Summary description for FlexGridClassic.
+            </summary>
+        </member>
+        <member name="T:C1.Win.C1FlexGrid.Classic.Cell">
+            <summary>
+            Cell is a helper class that exposes indexers to implement
+            the original Cell property.
+            This allows you to write:
+            [C#]	fg.Cell[CellPropertySettings.flexcpBackColor, 1, 1] = Color.Red;
+            [VB]	fg.Cell(CellPropertySettings.flexcpBackColor, 1, 1) = Color.Red
+            </summary>
+        </member>
+        <member name="T:C1.Util.Licensing.AssemblyNames">
+            <summary>
+            Specifies assembly name parts, used by AssemblyCommonInfo to generate actual assembly names.
+            </summary>
+        </member>
+    </members>
+</doc>

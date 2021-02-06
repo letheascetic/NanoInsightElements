@@ -6,10 +6,32 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Core
 {
+    // 60 61 62
     public static class ApiCode
     {
         public const int Success = 0x00000000;
-        public const int Failed = 0x10000000;
+        public const int Failed = 0x1F000000;
+        /* error for laser */
+        public const int LaserExecuteFailed = 0x11000000;
+        public const int LaserConnectFailed = 0x11000001;
+        public const int LaserReleaseFailed = 0x11000002;
+        public const int LaserOpenChannelFailed = 0x11000004;
+        public const int LaserCloseChannelFailed = 0x11000008;
+        public const int LaserSetPowerFailed = 0x11000010;
+        /* error for ni card */
+
+        /* error for usb dac */
+        public const int UsbDacExecuteFailed = 0x12000000;
+        public const int UsbDacOpenFailed = 0x12000001;
+        public const int UsbDacReleaseFailed = 0x12000002;
+        public const int UsbDacSetAllOutFailed = 0x12000004;
+        public const int UsbDacSetChannelOutFailed = 0x12000008;
+        public const int UsbDacSetZeroCalibrationFailed = 0x12000010;
+        public const int UsbDacSetGainCalibrationFailed = 0x12000020;
+        public const int UsbDacSetRegisterFailed = 0x12000040;
+        public const int UsbDacReadConfigFailed = 0x12000080;
+        public const int UsbDacWriteConfigFailed = 0x12000100;
+        
 
         /// <summary>
         /// 是否成功

@@ -1,0 +1,1084 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.C1DynamicHelp.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.C1DynamicHelp.C1DynamicHelp">
+      <summary>
+            Provides dynamic help for applications.
+            </summary>
+      <remarks>
+        <para>The <b>C1DynamicHelp</b> control displays help topics from CHM, NetHelp and other help files.</para>
+        <para>The <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.HelpSource" /> property specifies the help file containing the 
+            documentation.</para>
+        <para>Topics in the help file can be associated with components in the application either by a programmer
+            at design time, using the <b>HelpTopic</b> extender property, or without programmers, using the control's
+            'authoring mode' facilities. </para>
+      </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:C1.Win.C1DynamicHelp.C1DynamicHelp" /> control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowTopic(System.String)">
+      <summary>
+            Shows the topic with the given URL in the C1DynamicHelp control.
+            </summary>
+      <param name="topicUrl">String that represents the topic's internal URL.</param>
+      <exception cref="T:System.ArgumentNullException">topicUrl is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowTopic(C1.Win.C1DynamicHelp.HelpTopic)">
+      <summary>
+            Shows the given <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" /> in the C1DynamicHelp control.
+            </summary>
+      <param name="topic">
+        <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" /> object representing the topic.</param>
+      <exception cref="T:System.ArgumentNullException">topic is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowTopic(System.Int32)">
+      <summary>
+            Shows the topic with the given context id in the C1DynamicHelp control.
+            </summary>
+      <param name="contextID">Context id representing the topic.</param>
+      <exception cref="T:System.ArgumentException">specified context id is unknown.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowTopic(System.Object)">
+      <summary>
+            Shows the topic associated in the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.TopicMap" /> with a UI element in the C1DynamicHelp control.
+            </summary>
+      <param name="uiElement">Object associated with the topic to display.</param>
+      <exception cref="T:System.ArgumentNullException">uiElement is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowDefaultTopic">
+      <summary>
+            Shows the topic associated with the Form where the C1DynamicHelp control is placed.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowTopicForActiveControl(C1.Win.C1DynamicHelp.DisplayTarget)">
+      <summary>
+            Shows in <see cref="T:C1.Win.C1DynamicHelp.DisplayTarget" /> the topic associated with the active control (control currently in focus).
+            </summary>
+      <param name="displayTarget">
+        <see cref="T:C1.Win.C1DynamicHelp.DisplayTarget" /> where a topic will be displayed.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab)">
+      <summary>
+            Displays the contents of the help file in an external help viewer window instead of in the C1DynamicHelp panel.
+            </summary>
+      <param name="tab">One of the <see cref="T:C1.Win.C1DynamicHelp.HelpTab" /> values.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab,System.Object)">
+      <summary>
+            Displays the contents of the help file in an external help viewer window instead of in the C1DynamicHelp panel.
+            </summary>
+      <param name="tab">One of the <see cref="T:C1.Win.C1DynamicHelp.HelpTab" /> values.</param>
+      <param name="parameter">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.OnCurrentTopicChanging(C1.Win.C1DynamicHelp.TopicEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopicChanging" /> event.
+            </summary>
+      <param name="e">A <see cref="T:C1.Win.C1DynamicHelp.TopicEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.OnCurrentTopicChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopicChanged" /> event.
+            </summary>
+      <param name="e">A <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.WndProc(System.Windows.Forms.Message@)">
+      <summary>
+            Processes Windows messages.
+            </summary>
+      <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.OnHandleCreated(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.HandleCreated" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.Dispose(System.Boolean)">
+      <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Control" /> and its child controls and optionally releases the managed resources.
+            </summary>
+      <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.SetHelpTopic(System.ComponentModel.Component,C1.Win.C1DynamicHelp.MapItem)">
+      <summary>
+            Associates a <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> object with a UI element.
+            </summary>
+      <param name="uiElement">Object associated with the help topic.</param>
+      <param name="info">The <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> object to associate with the <paramref name="uiElement" />.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.C1DynamicHelp.GetHelpTopic(System.ComponentModel.Component)">
+      <summary>
+            Gets the <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> object currently associated with a given UI element.
+            </summary>
+      <param name="uiElement">Represents a UI element associated with a help topic.</param>
+      <returns>The <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> object associated with the specified UI element.</returns>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.BorderStyle">
+      <summary>
+            Gets or sets the type of border to display around the control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.Dock">
+      <summary>
+            Gets or sets which control borders are docked to its parent control and determines
+            how the control is resized with its parent.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.ContextMenuStrip">
+      <summary>
+            Gets or sets the <see cref="T:System.Windows.Forms.ContextMenuStrip" /> associated with this control.
+            </summary>
+      <returns>
+            The <see cref="T:System.Windows.Forms.ContextMenuStrip" /> for this control, or null if there is 
+            no <see cref="T:System.Windows.Forms.ContextMenuStrip" />. The default is null.
+            </returns>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.ContextMenu">
+      <summary>
+            Gets or sets the shortcut menu associated with the control.
+            </summary>
+      <returns>A <see cref="T:System.Windows.Forms.ContextMenu" /> that represents the shortcut menu associated with the control.</returns>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.AuthoringMode">
+      <summary>
+            Gets or sets a value indicating whether the control is currently in 'authoring mode'.
+            </summary>
+      <remarks>
+        <para>This property allows the application user to create or modify the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.TopicMap" /> at run time, and save it to an XML file. 
+            All map items created in authoring mode have their <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> property set to MapItemType.Dynamic.</para>
+        <para>The map items with dynamic <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> have precedence over the items with static MapItem.ItemType.
+            If a UI element appears with both dynamic and static MapItem.ItemType, the entry with the dynamic MapItem.ItemType
+            will be used instead of the static one.</para>
+        <para>Authoring mode is typically enabled only in special builds used by control authors to create the dynamic 
+            topic map that is shipped with the release version of the application. In most cases, authoring mode needs to be
+            be disabled in the release application to prevent users from accidentally activating the authoring mode.
+            A typical implementation can look like this:</para>
+        <code>
+            // toggle authoring mode when the user hits ctrl+shift+a
+            override protected void OnKeyDown(KeyEventArgs e)
+            {
+            #if AUTHOR_MODE
+                if (e.KeyCode == Keys.A &amp;&amp; e.Control &amp;&amp; e.Shift)
+                {
+                    c1DynamicHelp1.AuthoringMode = !c1DynamicHelp1.AuthoringMode;
+                }
+            #endif
+                base.OnKeyDown(e);
+            }
+            </code>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.MouseHoverDelay">
+      <summary>
+            Gets or sets the interval, in milliseconds, between the time the mouse enters a control or component and the time the associated HelpTopic is displayed in the C1DynamicHelp control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopic">
+      <summary>
+            Gets or sets the HelpTopic that is currently displayed by the C1DynamicHelp control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.HelpSource">
+      <summary>
+            Gets or sets the location of the help source, such as the name of a .chm file (for HTML Help) or the name of the main .htm file (for NetHelp).
+            </summary>
+      <remarks>
+            The name of the file may be absolute or relative. In most cases, the name will be relative and will refer to the application's bin folder.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.Resolver">
+      <summary>
+            Represents a class with virtual methods that are used to supply information about custom controls used in the application.
+            </summary>
+      <remarks>
+            This property must be set only if custom/third-party controls are used in the application and it is 
+            necessary to associate help with parts of such controls (called UI elements, for example, buttons on a 
+            custom ribbon control). It should provide a way to get the Name and Parent for every UI element,
+            get a UI element inside the control by coordinates, get a UI element inside the control by name, etc.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.Provider">
+      <summary>
+            Gets or sets a reference to a help provider.
+            </summary>
+      <exception cref="T:System.ArgumentNullException">Provider cannot be null.</exception>
+      <remarks>
+        <para>You should set this property only if you implement your own help provider class (an advanced feature).
+            A help provider can read data from a help source and provides methods to get a help topic list, to get a dictionary 
+            of context ids and help topics, to open help in an external window, to get a topic URL that can be displayed in 
+            a C1DynamicHelp control, etc.</para>
+        <para>There are two built-in help providers in C1DynamicHelp: ChmProvider and NetHelpProvider which are used automatically
+            when the HelpSource property points to a .chm or .html/.htm file correspondingly.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.DefaultTrigger">
+      <summary>
+            Gets or sets a default <see cref="T:C1.Win.C1DynamicHelp.HelpTopicTrigger" /> value for the C1DynamicHelp control.
+            </summary>
+      <remarks>
+            All map items in the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.TopicMap" /> that have their <see cref="P:C1.Win.C1DynamicHelp.MapItem.UseDefaultTrigger" /> property set to <i>true</i> (default) display their topic
+            when the event specified in the DefaultTrigger property occurs. Map items that have <see cref="P:C1.Win.C1DynamicHelp.MapItem.UseDefaultTrigger" /> = <i>false</i> specify
+            their triggers individually in <see cref="P:C1.Win.C1DynamicHelp.MapItem.HelpTopicTrigger" />.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.TopicMap">
+      <summary>
+            A dictionary that maps UI elements to <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> objects.
+            </summary>
+      <remarks>
+        <para>A  <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> object specifies a help topic to display and a user action that causes the display (control getting focus,
+            mouse hovering). This dictionary can be created at design time and persisted as part of the form (called <i>static</i> mappings),
+            or at run-time (using the controls <i>authoring mode</i>) and persisted as an XML file (called <i>dynamic</i> mappings).</para>
+        <para>This property enables you to obtain a reference to the topic map items that are currently stored in the C1DynamicHelp.
+            With this reference, you can add items, remove items, and obtain a count of the items in the collection. The <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.TopicMap" /> 
+            class has members that allow users to check whether the map has changed since it was created and to persist the map to and from XML.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.MainControl">
+      <summary>
+            Gets or sets a reference to another C1DynamicHelp control which will be used as a source of data for the current C1DynamicHelp control.
+            </summary>
+      <remarks>
+            The current C1DynamicHelp control will use the MainControl's properties: <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.HelpSource" />, <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.Resolver" />, <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.Provider" />, etc
+            instead of its own properties. It is used to place C1DynamicHelp controls on multiple forms that will display
+            topics from one help source. In this case you will have one main C1DynamicHelp control and set properties for it,
+            and all you need to do for the other C1DynamicHelp controls is to set their MainControl property to the main C1DynamicHelp control.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.IsPinnedDown">
+      <summary>
+            Gets or sets a value indicating whether the current help topic is pinned down.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.C1DynamicHelp.Browser">
+      <summary>
+            Provides access to the browser object used to display the topics, so the programmer can use browser features programmatically, for example, to navigate help topics inside the C1DynamicHelp control.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopicChanged">
+      <summary>
+            Fires after the value of the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopic" /> has changed.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopicChanging">
+      <summary>
+            Fires before the value of the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopic" /> changes.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.UIElementInfo">
+      <summary>
+            This class contains information about a UI element: its <see cref="P:C1.Win.C1DynamicHelp.UIElementInfo.Name" /> and <see cref="P:C1.Win.C1DynamicHelp.UIElementInfo.Parent" />.
+            </summary>
+      <remarks>
+            This class should be used only if you want to assign topics to UI elements in custom controls. If you need to handle UI elements inside 
+            custom controls, you have to create your own <see cref="T:C1.Win.C1DynamicHelp.UIElementResolver" /> object and override its virtual methods. 
+            Namely, when you override the <see cref="M:C1.Win.C1DynamicHelp.UIElementResolver.GetUIElementInfo(System.Object)" /> method, you need to create a 
+            UIElementInfo object and set its <see cref="P:C1.Win.C1DynamicHelp.UIElementInfo.Name" /> and <see cref="P:C1.Win.C1DynamicHelp.UIElementInfo.Parent" /> properties.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementInfo.#ctor(System.Object)">
+      <summary>
+            Initializes a new of instance of a <see cref="T:C1.Win.C1DynamicHelp.UIElementInfo" /></summary>
+      <param name="uiElement">UI element for which this UIElementInfo object contains data.</param>
+      <exception cref="T:System.ArgumentNullException">uiElement is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementInfo.#ctor(System.Object,System.String,System.Object)">
+      <summary>
+            Initializes a new of instance of a <see cref="T:C1.Win.C1DynamicHelp.UIElementInfo" /></summary>
+      <param name="uiElement">UI element for which this UIElementInfo object contains data.</param>
+      <param name="name">Name property for the specified <paramref name="uiElement" /></param>
+      <param name="parent">Parent property for the specified <paramref name="uiElement" /></param>
+      <exception cref="T:System.ArgumentNullException">uiElement is null.</exception>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.UIElementInfo.UIElement">
+      <summary>
+            Gets the UI element for which this UIElementInfo object contains data.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.UIElementInfo.Name">
+      <summary>
+            Gets or sets the name of the UIElement. The name should be unique inside the parent control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.UIElementInfo.Parent">
+      <summary>
+            Gets or sets the parent object of the UIElement.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.MapItem">
+      <summary>
+            Class containing a pair consisting of a topic and a user action triggering its display.
+            </summary>
+      <remarks>
+            Objects of this class are stored in the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> dictionary. Map items are created automatically at 
+            design time and in authoring mode. You can also create them at run time programmatically. Map items created at design time have their 
+            <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> property set to <see cref="F:C1.Win.C1DynamicHelp.MapItemType.Static" />, whereas map 
+            items created in authoring mode have their <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> property set to 
+            <see cref="F:C1.Win.C1DynamicHelp.MapItemType.Dynamic">MapItemType.Dynamic</see>. If you create a map item programmatically, you can set 
+            this property to any of the two values.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.MapItem.#ctor">
+      <summary>
+            Initializes a new of instance of a <see cref="T:C1.Win.C1DynamicHelp.MapItem" /></summary>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.MapItem.ToString">
+      <summary>
+            Returns a string representation of a <see cref="T:C1.Win.C1DynamicHelp.MapItem" />, which is the topic URL.
+            </summary>
+      <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:C1.Win.C1DynamicHelp.MapItem" />.</returns>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.HelpTopicTrigger">
+      <summary>
+            Specifies what triggers the topic display.
+            </summary>
+      <remarks>
+            This property is used only if the <see cref="P:C1.Win.C1DynamicHelp.MapItem.UseDefaultTrigger" /> property is set to <i>false</i>.
+            If <see cref="P:C1.Win.C1DynamicHelp.MapItem.UseDefaultTrigger" /> is set to <i>true</i>, this 
+            property is ignored and <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.DefaultTrigger">C1DynamicHelp.DefaultTrigger</see> property is used instead.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.UIElement">
+      <summary>
+            Gets or sets a UI element for which a help topic is displayed.
+            </summary>
+      <remarks>
+            This property should be set only once and shouldn't be changed after that.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.Url">
+      <summary>
+            Gets or sets the URL of a help topic that will be displayed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.ShowDefaultTopicFirst">
+      <summary>
+            Gets or sets a value indicating whether the default topic (the topic associated with the form) 
+            should be always displayed when the form is loaded and becomes visible, even if a UI element 
+            inside the form got focus and has a topic associated with it.
+            </summary>
+      <remarks>
+            This property is used only for top level controls (Form objects), it is ignored for other UI elements.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.UseDefaultTrigger">
+      <summary>
+            Gets or sets a value indicating whether a topic will be displayed depending on its own 
+            <see cref="P:C1.Win.C1DynamicHelp.MapItem.HelpTopicTrigger" /> value or on the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.DefaultTrigger" /> value of the C1DynamicHelp control.
+            </summary>
+      <remarks>
+            If this property is set to <i>false</i>, the <see cref="P:C1.Win.C1DynamicHelp.MapItem.HelpTopicTrigger" /> property is used to determine when the topic should be shown. 
+            Otherwise, the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.DefaultTrigger">C1DynamicHelp.DefaultTrigger</see> value determines when the topic will be displayed.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.ItemType">
+      <summary>
+            Gets or sets an item type.
+            </summary>
+      <remarks>
+            Items with MapItemType.Dynamic are created in authoring mode and saved to an XML file. Items with MapItemType.Static are created 
+            at design time and persisted as part of the form. Items of both types can be created programmatically at run time.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.MapItem.HelpTopic">
+      <summary>
+            Gets the <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" /> object by the <see cref="P:C1.Win.C1DynamicHelp.MapItem.Url" /> value.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.Conflict">
+      <summary>
+            Class used in the <see cref="P:C1.Win.C1DynamicHelp.TopicMap.Conflicts" /> property of the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" />.
+            </summary>
+      <remarks>
+            This class contains data describing a conflict between two map items, one static, the other dynamic. A conflict exists between two map items if
+            they refer to the same UI element.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Conflict.StaticItem">
+      <summary>
+            Returns the static map item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Conflict.DynamicItem">
+      <summary>
+            Returns the dynamic map item.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Conflict.Name">
+      <summary>
+            Returns the name of the UI element (serving as the identifier of the static map item).
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Conflict.UIElementPath">
+      <summary>
+            Returns the UI element's path string (serving as the identifier of the dynamic map item).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.UIElementResolver">
+      <summary>
+            This class provides methods to find UI elements inside a control by name, coordinates, etc, 
+            and other methods necessary for associating dynamic help to UI elements inside a control.
+            </summary>
+      <remarks>
+        <para>A class derived from this class is necessary only if you are using custom controls that 
+            cannot be handled by the C1DynamicHelp control automatically and then only if you need to associate help topics with parts (UI elements) of those 
+            controls, not with the controls themselves.</para>
+        <para>You have no need to create objects of this type, it is sufficient to define 
+            a class derived from UIElementResolver and override its virtual methods.
+            These overridden methods should provide necessary information about UI elements inside custom controls used in your application.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementResolver.#ctor">
+      <summary>
+            Creates a new instance of a <see cref="T:C1.Win.C1DynamicHelp.UIElementResolver" /></summary>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementResolver.FindUIElement(System.Object,System.String)">
+      <summary>
+            Searches for a UI element by its Name property.        
+            </summary>
+      <param name="parent">The object containing the UI elements.</param>
+      <param name="name">The name of a UI element to locate in the parent.</param>
+      <returns>A child UI element with the specified name.</returns>
+      <remarks>
+            Typically, in this overridden method you check if the parent type needs this special handling, and if it does not 
+            (if its children are Control objects, so they can be found automatically by C1DynamicHelp), simply call the method of the base class 
+            UIElementResolver: base.FindUIElement(parent, name).
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementResolver.GetUIElementAtPoint(System.Object,System.Drawing.Point)">
+      <summary>
+            Retrieves the child UI element located at the specified coordinates.
+            </summary>
+      <param name="parent">The object containing the UI elements.</param>
+      <param name="pt"> A <see cref="T:System.Drawing.Point" /> that contains the coordinates where you want to look for a UI element. 
+            Coordinates are relative to the upper-left corner of the parent client area.</param>
+      <returns>A child UI element located at the specified point.</returns>
+      <remarks>
+            Typically, in this overridden method you check if this parent type needs this special handling, and if it does not 
+            (if its children are Control objects, so they can be found automatically by C1DynamicHelp), simply call the method of the base class 
+            UIElementResolver: base.GetUIElementAtPoint(parent, pt).
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementResolver.GetUIElementInfo(System.Object)">
+      <summary>
+            This method returns a <see cref="T:C1.Win.C1DynamicHelp.UIElementInfo" /> object containing the name and parent of the UI element.
+            </summary>
+      <param name="uiElement">A UI element for which the <see cref="T:C1.Win.C1DynamicHelp.UIElementInfo" /> object is requested.</param>
+      <returns>A <see cref="T:C1.Win.C1DynamicHelp.UIElementInfo" /> object containing information for the <paramref name="uiElement" /></returns>
+      <remarks>
+            Typically, in this overridden method you check if this uiElement needs to be handled by you (is not a Control object, so C1DynamicHelp 
+            cannot get this information automatically), in which case create an UIElementInfo object, set its properties and return that object, 
+            otherwise simply call the method of the base class UIElementResolver: base.GetUIElementInfo(uiElement).
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementResolver.ActivateUIElement(System.Object)">
+      <summary>
+            This method is called by the <see cref="T:C1.Win.C1DynamicHelp.C1DynamicHelp" /> control when you need to start monitor events or other occurrences
+            to determine when the focus enters and leaves UI elements inside the custom control.
+            </summary>
+      <param name="uiElement">A UI element for which monitoring should be started.</param>
+      <returns>
+        <i>true</i>, if the specified UI element was handled; otherwise <i>false</i>.</returns>
+      <remarks>
+            Typically, in this overridden method you check if this uiElement needs to be handled by you (is not a Control object, so C1DynamicHelp 
+            cannot monitor its standard events Enter/Leave), in which case create some event handlers or otherwise get ready to determine when the 
+            focus enters/leaves the uiElement and at those moments call <see cref="M:C1.Win.C1DynamicHelp.UIElementResolver.HandleUIElementEvent(System.Object,C1.Win.C1DynamicHelp.UIElementEvents)" /> to notify the C1DynamicHelp.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.UIElementResolver.HandleUIElementEvent(System.Object,C1.Win.C1DynamicHelp.UIElementEvents)">
+      <summary>
+            Simulates an event for a UI element.
+            </summary>
+      <param name="sender">A UI element for which an event occurred.</param>
+      <param name="uiElementEvent">One of the <see cref="T:C1.Win.C1DynamicHelp.UIElementEvents" /> values, determining the type of the event (Enter or Leave).</param>
+      <remarks>
+            You should call this method whenever one of the UIElementEvents (Enter/Leave) occurs for a UI element that must be handled by your code, 
+            that is, the C1DynamicHelp control cannot monitor this UI element for Enter/Leave events automatically (because it does not have those 
+            events). By calling this method you notify C1DynamicHelp that an event has occurred, so C1DynamicHelp can show the topic associated 
+            with that UI element. Typical usage is to override the <see cref="M:C1.Win.C1DynamicHelp.UIElementResolver.ActivateUIElement(System.Object)" /> method, subscribing there to some events that would help you 
+            to detect the moments the focus enters/leaves the UI elements, and call HandleUIElementEvent method from those event handlers. 
+            In the HandleUIElementEvent call, the <paramref name="sender" /> parameter is the UI element for which an event occurred, and <paramref name="uiElementEvent" /> is the type of 
+            the event (Enter or Leave).
+            </remarks>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.HelpTopicEventHandler">
+      <summary>
+            Represents a method that will handle the <see cref="E:C1.Win.C1DynamicHelp.C1DynamicHelp.CurrentTopicChanging" />
+            event of a <see cref="T:C1.Win.C1DynamicHelp.C1DynamicHelp" />.
+            </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">A <see cref="T:C1.Win.C1DynamicHelp.TopicEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.HelpTopicTrigger">
+      <summary>
+            Enumeration that specifies user actions that cause a HelpTopic to be displayed.
+            </summary>
+      <remarks>
+            You can use combinations of this enumeration to show topics both on Enter and MouseHover events.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTopicTrigger.None">
+      <summary>
+            Show topic programmatically, not by events.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTopicTrigger.Enter">
+      <summary>
+            Show topic when a UI element gets the focus.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTopicTrigger.MouseEnter">
+      <summary>
+            Show help topic when the mouse hovers over a UI element.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.MapItemType">
+      <summary>
+            Enumeration that specifies topic map item type.
+            </summary>
+      <remarks>
+            Map items created at design time have the MapItemType.Static type, they are stored in the form's code and cannot be saved to an XML file. 
+            Map items created in authoring mode have the MapItemType.Dynamic type, they are saved to the XML file when the map is persisted. 
+            If you create map items programmatically, you can choose any of these two types.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.MapItemType.Static">
+      <summary>
+            Indicates map items created at design time, persisted in form code.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.MapItemType.Dynamic">
+      <summary>
+            Indicates map items created in authoring mode, saved to an XML file. 
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.HelpTab">
+      <summary>
+            Enumeration specifying the part/element of the help file to display.
+            </summary>
+      <remarks>
+            It is used by the <see cref="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab)" /> method.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTab.TableOfContents">
+      <summary>
+            The help file opens on the table of contents.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTab.Index">
+      <summary>
+            The help file opens on the index.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTab.Find">
+      <summary>
+            The help file opens on the search page.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.HelpTab.Topic">
+      <summary>
+            The help file opens on a specified topic.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.UIElementEvents">
+      <summary>
+            Enumeration that specifies which of the monitored events occurred for a UI element.
+            </summary>
+      <remarks>
+            It is used only in the <see cref="M:C1.Win.C1DynamicHelp.UIElementResolver.HandleUIElementEvent(System.Object,C1.Win.C1DynamicHelp.UIElementEvents)" /> method to specify the type of an event. You need this enumeration only 
+            if you use custom controls and want to associate topics with UI elements inside them.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.UIElementEvents.Enter">
+      <summary>
+            UI element received focus.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.UIElementEvents.Leave">
+      <summary>
+            UI element lost focus.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.DisplayTarget">
+      <summary>
+            Enumeration that specifies where a topic will be displayed.
+            </summary>
+      <remarks>
+            This enumeration is used in <see cref="M:C1.Win.C1DynamicHelp.C1DynamicHelp.ShowTopicForActiveControl(C1.Win.C1DynamicHelp.DisplayTarget)" />, which is typically used when a user presses the F1 key to get help. 
+            It allows to show a topic in the C1DynamicHelp control, in an external window or both.
+            </remarks>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.DisplayTarget.ControlPanel">
+      <summary>
+            Specifies that a topic should be displayed in the C1DynamicHelp control.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.DisplayTarget.ExternalWindow">
+      <summary>
+            Specifies that a topic should be displayed in an external window.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1DynamicHelp.DisplayTarget.PanelAndWindow">
+      <summary>
+            Specifies that a topic should be displayed both in the C1DynamicHelp control and in an external help viewer window.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.TopicEventArgs">
+      <summary>
+            Provides data for a topic change event.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.TopicEventArgs.Cancel">
+      <summary>
+            Gets or sets a value indicating whether the event should be canceled.        
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.TopicEventArgs.Topic">
+      <summary>
+            Gets a value indicating the help topic becoming current.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.HelpTopic">
+      <summary>
+            Represents a topic in a help file.
+            </summary>
+      <remarks>
+            You need to explicitly create HelpTopic objects in your code only 
+            if you implement your own help provider.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.HelpTopic.#ctor(System.String,System.String,C1.Win.C1DynamicHelp.HelpTopicList)">
+      <summary>
+            Creates a new instance of <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" />.
+            </summary>
+      <param name="title">A title for the help topic being created.</param>
+      <param name="url">A URL for the help topic being created.</param>
+      <param name="subtopics">Child topics for the topic being created.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.HelpTopic.#ctor(System.String,System.String)">
+      <summary>
+            Creates a new instance of <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" />.
+            </summary>
+      <param name="title">A title for the help topic being created.</param>
+      <param name="url">A URL for the help topic  being created.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.HelpTopic.ToString">
+      <summary>
+            Gets a string representation of this <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" />.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.HelpTopic.SetCtxtId(System.Int32)">
+      <summary>
+            Set context ID for this <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" />.
+            </summary>
+      <param name="ctxtId">Context ID for this<see cref="T:C1.Win.C1DynamicHelp.HelpTopic" />.</param>
+      <remarks>This method should be used only for creating you own help provider class.</remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.HelpTopic.Title">
+      <summary>
+            Gets the name of the help topic.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.HelpTopic.Url">
+      <summary>
+            Gets the topic URL relative to the help source.
+            </summary>
+      <remarks>
+            Since this is the relative URL, the help viewer/browser may be unable to display topics given only that URL. Full URL can be obtained 
+            from the <see cref="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.GetFullUrl(System.String)">IHelpProvider.GetFullUrl</see> method.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.HelpTopic.ContextID">
+      <summary>
+            Gets the unique numeric ID of the topic within the help system used for context sensitive help purposes.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.HelpTopic.SubTopics">
+      <summary>
+            Gets the list of child topics.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.HelpTopicList">
+      <summary>
+            List of <see cref="T:C1.Win.C1DynamicHelp.HelpTopic" /> objects.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.TopicMap">
+      <summary>
+            Class used to store combinations of topics and user actions that cause their display.
+            </summary>
+      <remarks>
+        <para>This class is a dictionary that associates UI elements to <see cref="T:C1.Win.C1DynamicHelp.MapItem" /> objects that specify a 
+            help topic to display and the user action that causes the display (control getting focus, mouse hovering).</para>
+        <para>This class allows you to add items, remove items, and obtain a count of the items in the collection.
+            The TopicMap class has members that allow users to check whether the map has changed since it 
+            was created and to persist the map to and from XML.</para>
+        <para>It can contain items of two different types: <see cref="T:C1.Win.C1DynamicHelp.MapItemType" />.Dynamic and <see cref="T:C1.Win.C1DynamicHelp.MapItemType" />.Static.
+            Map items with dynamic type are created in authoring mode, and only items of this type can be saved to an XML file with the
+            <see cref="M:C1.Win.C1DynamicHelp.TopicMap.Save" /> method and then loaded with the <see cref="M:C1.Win.C1DynamicHelp.TopicMap.Load" /> method.
+            As opposed to dynamic map items, static map items are created at design time and aren't saved to or loaded from XML file.</para>
+        <para>Dynamic map items use a "control path" string (the name of the UI element itself prepended with the names of all its ancestors up
+            to the form level) as the UI element identifier. So, if you include controls that are created dynamically, at run time, 
+            you need to call the <see cref="M:C1.Win.C1DynamicHelp.TopicMap.Refresh" /> method that finds UI elements by their "control path" and adds
+            them to the dynamic help system. As the controls on the form can be created dynamically, you may need to call the
+            <see cref="M:C1.Win.C1DynamicHelp.TopicMap.Refresh" /> method more than once (or, for example, it can be done on timer).</para>
+      </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Load(System.String)">
+      <summary>
+            Loads the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> contents from an XML file.
+            </summary>
+      <param name="fileName">The location of the file containing a topic map.</param>
+      <remarks>
+            All items loaded with this method will have <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> property set to MapItemType.Dynamic.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Load">
+      <summary>
+            Loads the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> contents from an XML file with the same name as the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.HelpSource" /> with .xml extension.
+            </summary>
+      <remarks>
+            All items loaded with this method will have <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> property set to MapItemType.Dynamic.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Save">
+      <summary>
+            Saves the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> contents to an XML file with the same name as the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.HelpSource" /> with .xml extension.
+            </summary>
+      <remarks>
+            Only map items with <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> set to MapItemType.Dynamic are saved to the XML file.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Save(System.String)">
+      <summary>
+            Saves the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> contents to an XML file with a given name/location.
+            </summary>
+      <param name="fileName">The location of the file where you want to save the topic map.</param>
+      <remarks>
+            Only map items with <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> set to MapItemType.Dynamic are saved to the XML file.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Refresh">
+      <summary>
+            Refreshes topic map items with the <see cref="P:C1.Win.C1DynamicHelp.MapItem.ItemType" /> property set to <see cref="F:C1.Win.C1DynamicHelp.MapItemType.Dynamic" />.
+            For every control path in the map that does not yet have a UI element found for it, it tries to find a UI element.
+            </summary>
+      <remarks>
+            If a UI element is found, it is added to the dynamic help system, that is, the events (focus enter/leave, mouse hover) for it are monitored and the associated topic is shown when triggered by those events.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Contains(System.String)">
+      <summary>
+            Determines whether the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> contains the specified key.
+            </summary>
+      <param name="path">The key to locate in the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" />.</param>
+      <returns>true if the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> contains an element with the specified key; otherwise, false.</returns>
+      <exception cref="T:System.ArgumentNullException">path is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Add(System.Object,C1.Win.C1DynamicHelp.MapItem)">
+      <summary>
+            Adds the specified <paramref name="uiElement" /> and value to the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" />.
+            </summary>
+      <param name="uiElement">The key of the element to add.</param>
+      <param name="info">The value of the element to add.</param>
+      <exception cref="T:System.ArgumentNullException">uiElement or info is null</exception>
+      <exception cref="T:System.ArgumentException">An element with the same <paramref name="uiElement" /> already exists in the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" />.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Add(System.String,C1.Win.C1DynamicHelp.MapItem)">
+      <summary>
+            Adds the specified <paramref name="path" /> and value to the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" />.
+            </summary>
+      <param name="path">The key of the element to add.</param>
+      <param name="info">The value of the element to add.</param>
+      <exception cref="T:System.ArgumentNullException">path or info is null</exception>
+      <exception cref="T:System.ArgumentException">An element with the same <paramref name="path" /> already exists in the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" />.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Remove(System.Object)">
+      <summary>
+            Removes the value with the specified <paramref name="uiElement" /> from the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /></summary>
+      <param name="uiElement">The key of the element to remove.</param>
+      <exception cref="T:System.ArgumentNullException">uiElement is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.Remove(System.String)">
+      <summary>
+            Removes the value with the specified <paramref name="path" /> from the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /></summary>
+      <param name="path">The key of the element to remove.</param>
+      <exception cref="T:System.ArgumentNullException">path is null.</exception>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.OnTopicMapChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1DynamicHelp.TopicMap.TopicMapChanged" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.TopicMap.OnTopicMapSaved(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1DynamicHelp.TopicMap.TopicMapSaved" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.TopicMap.HasChanges">
+      <summary>
+            Gets a value that determines whether the <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> has changed since it was initialized (read from an XML file).
+            </summary>
+      <remarks>
+        <para>This property is typically used in authoring mode, to check whether the TopicMap has changed and should therefore be saved 
+            before the application closes.</para>
+        <para>It will return <i>false</i> if authoring mode is not used, unless the application changes the map programmatically.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.TopicMap.Item(System.Object)">
+      <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+      <param name="uiElement">The UI element of the value to get or set.</param>
+      <returns>The value associated with the specified key. If the specified key is not
+            found, a get operation throws a <see cref="T:System.Collections.Generic.KeyNotFoundException" />,
+            and a set operation creates a new element with the specified key.</returns>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is retrieved and key does not exist in the collection.</exception>
+      <exception cref="T:System.ArgumentNullException">key is null.</exception>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.TopicMap.XmlSource">
+      <summary>
+            Gets or sets an <see cref="T:System.Xml.XmlDocument" /> value representing a <see cref="T:C1.Win.C1DynamicHelp.TopicMap" /> 
+            created in authoring mode (so it consists of dynamic map items, static map items aren't included), which is saved to an XML file.
+            </summary>
+      <remarks>
+            You can set this property instead of loading topic map from an XML file. For example, you can choose to store the XML in
+            application resources, create an XmlDocument at run time and assign it to the XmlSource property.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.TopicMap.Conflicts">
+      <summary>
+            Gets an array of conflicting map items.
+            </summary>
+      <remarks>
+        <para>A conflict exists between two map items, one static and the other dynamic,
+            when they refer to the same UI element. In such a case, the precedence is with the dynamic 
+            map item, no error is generated, the static map item is silently ignored.</para>
+        <para>Usually, there is no need to worry about these conflicts (mostly because static and dynamic
+            mappings are rarely mixed, usually either only static or only dynamic mappings are used),
+            but in case the programmer wants to know which items are in conflict with each 
+            other, that can be done using this property.</para>
+      </remarks>
+    </member>
+    <member name="E:C1.Win.C1DynamicHelp.TopicMap.TopicMapChanged">
+      <summary>
+            Fires after changes were made in the topic map.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1DynamicHelp.TopicMap.TopicMapSaved">
+      <summary>
+            Fires after the topic map is saved to an XML file.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.Providers.ChmProvider">
+      <summary>
+            The class providing the <see cref="T:C1.Win.C1DynamicHelp.Providers.IHelpProvider" /> functionality for HTML Help (.chm files).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.Providers.IHelpProvider">
+      <summary>
+            The interface that needs to be implemented by a help provider class.
+            </summary>
+      <remarks>
+            You need to know this interface only if you want to create your own custom help provider (an advanced feature). A help provider can read data from a help 
+            source and provides methods to get help topics, to get context IDs, to open help in an external window, to get a topic URL that can be 
+            displayed by the C1DynamicHelp control, etc. There are two built-in help providers in the C1DynamicHelp: ChmProvider and NetHelpProvider 
+            which are used automatically when the <see cref="P:C1.Win.C1DynamicHelp.C1DynamicHelp.HelpSource" /> property points to a .chm or a .htm/html file, correspondingly. If you want to use another 
+            help source type (for example, MS Help 2.0) you can do it by creating your own help provider class implementing this interface.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.GetTopics">
+      <summary>
+            Returns a hierarchical list of topics in the help file.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.GetCtxtIdMap">
+      <summary>
+            Returns a dictionary of help topics indexed by their context IDs 
+            (contains only topics that have context ids).
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.GetUrlMap">
+      <summary>
+            Returns a dictionary of help topics indexed by their URLs (contains all topics).
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.GetFullUrl(System.String)">
+      <summary>
+            Returns a URL in a specific for the help provider format that can be displayed by the C1DynamicHelp control.
+            </summary>
+      <param name="url">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab)">
+      <summary>
+            Displays the contents of the help file in an external help viewer window instead of in the C1DynamicHelp panel.
+            </summary>
+      <param name="tab">One of the <see cref="T:C1.Win.C1DynamicHelp.HelpTab" /> values.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab,System.Object)">
+      <summary>
+            Displays the contents of the help file in an external help viewer window instead of in the C1DynamicHelp panel.
+            </summary>
+      <param name="tab">One of the <see cref="T:C1.Win.C1DynamicHelp.HelpTab" /> values.</param>
+      <param name="parameter">
+      </param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.IHelpProvider.CorrectUrl(System.String)">
+      <summary>
+            Checks whether the URL is in correct format and corrects it if necessary.
+            </summary>
+      <param name="url">URL to be checked and corrected</param>
+      <returns>A corrected URL if some changes were made, otherwise the initial URL value</returns>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Providers.IHelpProvider.Source">
+      <summary>
+            Gets or sets the help file.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.GetTopics">
+      <summary>
+            Returns a hierarchical list of topics in the help file.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.GetCtxtIdMap">
+      <summary>
+            Returns a dictionary of help topics indexed by their context IDs 
+            (contains only topics that have context ids).
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.GetUrlMap">
+      <summary>
+            Returns a dictionary of help topics indexed by their URLs (contains all topics).
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.GetFullUrl(System.String)">
+      <summary>
+            Returns a URL in a specific for the help provider format that can be displayed by the C1DynamicHelp control.
+            </summary>
+      <param name="url">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab)">
+      <summary>
+            Show help navigation (in a separate window).
+            </summary>
+      <param name="tab">Initial help page to display, typically <b>HelpTab.Find</b>, 
+            <b>HelpTab.Index</b>, or <b>HelpTab.TableOfContents</b>.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab,System.Object)">
+      <summary>
+            Show help navigation (in a separate window).
+            </summary>
+      <param name="tab">Initial help page to display, typically <b>HelpTab.Find</b>, 
+            <b>HelpTab.Index</b>, or <b>HelpTab.TableOfContents</b>.</param>
+      <param name="parameter">Topic identifier</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.ChmProvider.CorrectUrl(System.String)">
+      <summary>
+            Checks whether the URL is in correct format and corrects it if necessary.
+            </summary>
+      <param name="url">URL to be checked and corrected</param>
+      <returns>A corrected URL if some changes were made, otherwise the initial URL value</returns>
+      <remarks>Clicking some links in a *.chm file can lead to losing the path specified in the 
+            <see cref="P:C1.Win.C1DynamicHelp.Providers.ChmProvider.Source" /> property.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Providers.ChmProvider.Source">
+      <summary>
+            Gets or sets the help file.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1DynamicHelp.Providers.NetHelpProvider">
+      <summary>
+            The class providing the <see cref="T:C1.Win.C1DynamicHelp.Providers.IHelpProvider" /> functionality for ComponentOne NetHelp.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.GetTopics">
+      <summary>
+            Returns a hierarchical list of topics in the help file.
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.GetCtxtIdMap">
+      <summary>
+            Returns a dictionary of help topics indexed by their context IDs 
+            (contains only topics that have context ids).
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.GetUrlMap">
+      <summary>
+            Returns a dictionary of help topics indexed by their URLs (contains all topics).
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.GetFullUrl(System.String)">
+      <summary>
+            Returns a URL in a specific for the help provider format that can be displayed by the C1DynamicHelp control.
+            </summary>
+      <param name="url">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab)">
+      <summary>
+            Show help navigation (in a separate window).
+            </summary>
+      <param name="tab">Initial help page to display, typically <b>HelpTab.Find</b>, 
+            <b>HelpTab.Index</b>, or <b>HelpTab.TableOfContents</b>.</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.ShowExternalHelp(C1.Win.C1DynamicHelp.HelpTab,System.Object)">
+      <summary>
+            Show help navigation (in a separate window).
+            </summary>
+      <param name="tab">Initial help page to display, typically <b>HelpTab.Find</b>, 
+            <b>HelpTab.Index</b>, or <b>HelpTab.TableOfContents</b>.</param>
+      <param name="parameter">Topic identifier</param>
+    </member>
+    <member name="M:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.CorrectUrl(System.String)">
+      <summary>
+            This method is not meaningful for the NetHelpProvider. It is used only to implement the <see cref="T:C1.Win.C1DynamicHelp.Providers.IHelpProvider" /> interface.
+            </summary>
+      <param name="url">Url to be checked and corrected</param>
+      <returns>Always the initial url</returns>
+    </member>
+    <member name="P:C1.Win.C1DynamicHelp.Providers.NetHelpProvider.Source">
+      <summary>
+            Gets or sets the help file.
+            </summary>
+    </member>
+  </members>
+</doc>

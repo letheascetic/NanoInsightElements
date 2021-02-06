@@ -1,0 +1,2041 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>C1.Win.C1ReportDesigner.4</name>
+  </assembly>
+  <members>
+    <member name="T:C1.Win.C1ReportDesigner.ClipboardHandler">
+      <summary>
+            Provides clipboard support for the <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> control. 
+            </summary>
+      <remarks>
+            The <b>ClipboardHandler</b> class has methods for copying and pasting report fields to and from 
+            the clipboard, and for detecting the selection and clipboard status.
+            </remarks>
+      <example>
+            The example below shows how you can use the <b>ClipboardHandler</b> class to provide clipboard 
+            commands in your report designer application.
+            <code>
+            // handle clipboard commands (for reports and fields)
+            private void HandleClipboard(ToolBarButton cmd)
+            {
+                // save undo state for all but copy
+                if (cmd != _btnCopy)
+                {
+                    _designer.UndoStack.SaveState();
+                    _dirty = true;
+                }
+                
+                // execute command
+                ClipboardHandler clip = _designer.ClipboardHandler;
+                if (cmd == _btnCut)    clip.Cut();
+                if (cmd == _btnCopy)   clip.Copy();
+                if (cmd == _btnPaste)  clip.Paste();
+                if (cmd == _btnDelete) clip.Delete();
+                
+                // update UI when done
+                UpdateUI();
+            }
+            
+            // update UI (_menus, toolbars, etc)
+            private void UpdateUI()
+            {
+                _btnUndo.Enabled   = _designer.UndoStack.CanUndo;
+                _btnRedo.Enabled   = _designer.UndoStack.CanRedo;
+                _btnCut.Enabled    = _btnCopy.Enabled = 
+                _btnDelete.Enabled = _designer.ClipboardHandler.CanCut;
+                _btnPaste.Enabled  = _designer.ClipboardHandler.CanPaste;
+            }
+            </code></example>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.ClipboardHandler.Cut">
+      <summary>
+            Cuts the current selection to the clipboard, removing all selected fields from the report.
+            </summary>
+      <returns>Returns false if there is no selection to cut.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.ClipboardHandler.Copy">
+      <summary>
+            Copies the current selection to the clipboard.
+            </summary>
+      <returns>Returns false if there is no selection to copy.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.ClipboardHandler.Delete">
+      <summary>
+            Removes all selected fields from the report.
+            </summary>
+      <returns>Returns false if there is no selection to delete.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.ClipboardHandler.Paste">
+      <summary>
+            Copies a collection of fields from the clipboard to the report, 
+            adding them to the current section.
+            </summary>
+      <returns>Returns false if there is no fields in clipboard.</returns>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.ClipboardHandler.CanCut">
+      <summary>
+            Determines whether the current selection can be cut/copied to the clipboard 
+            (returns true if there is at least one field selected).
+            </summary>
+      <remarks>This property is useful for enabling or disabling clipboard buttons 
+            and menus on the application.</remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.ClipboardHandler.CanPaste">
+      <summary>
+            Determines whether the clipboard contains data that can be pasted into the report.
+            </summary>
+      <remarks>This property is useful for enabling or disabling clipboard buttons 
+            and menus on the application.</remarks>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.CreateFieldEventHandler">
+      <summary>
+            Represents the method that will handle the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField" /> event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.CreateFieldEventArgs">
+      <summary>
+            Contains data for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField" /> event.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.CreateFieldEventArgs.Section">
+      <summary>
+            Section where the new field should be created.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.CreateFieldEventArgs.ClientBounds">
+      <summary>
+            Rectangle where the new field should be created, in client coordinates (pixels).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.CreateFieldEventArgs.FieldBounds">
+      <summary>
+            Rectangle where the new field should be created, in report coordinates (twips).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.CreateFieldEventArgs.CreateFieldInfo">
+      <summary>
+            Object set by the caller with additional information about the new field 
+            (same as <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateFieldInfo" /> property).
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.CreateFieldEventArgs.#ctor(C1.C1Report.Section,System.Drawing.Rectangle,System.Drawing.Rectangle,System.Object)">
+      <summary>
+            Inializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.CreateFieldEventArgs" /> class.
+            </summary>
+      <param name="section">Section where the new field will be created.</param>
+      <param name="rcClient">Rectangle where the new field will be created (client coordinates).</param>
+      <param name="rcField">Rectangle where the new field will be created (report coordinates).</param>
+      <param name="creatorInfo">Object with additional information about the field to be created.</param>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.MoveCopyFieldsEventHandler">
+      <summary>
+            Represents the method that will handle the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.MoveCopyFields" /> event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.MoveCopyFieldsEventArgs">
+      <summary>
+            Contains data for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.MoveCopyFields" /> event.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.MoveCopyFieldsEventArgs.AllowMove">
+      <summary>
+            Set to false to prevent the user from moving the field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.MoveCopyFieldsEventArgs.AllowCopy">
+      <summary>
+            Set to false to prevent the user from copying the field.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.ResizeFieldSectionEventHandler">
+      <summary>
+            Represents the method that will handle the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ResizeFieldSection" /> event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs">
+      <summary>
+            Contains data for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ResizeFieldSection" /> event.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs.HitTestInfo">
+      <summary>
+        <see cref="F:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs.HitTestInfo" /> object containing information about 
+            the field or section being resized.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs.Cancel">
+      <summary>
+            Gets or sets a value that determines whether the operation should be canceled.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs.#ctor(C1.Win.C1ReportDesigner.HitTestInfo)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs" /> class.
+            </summary>
+      <param name="ht">
+        <see cref="F:C1.Win.C1ReportDesigner.ResizeFieldSectionEventArgs.HitTestInfo" /> value that describes the element being resized.</param>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.DeleteFieldEventHandler">
+      <summary>
+            Represents the method that will handle the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.DeleteField" /> event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.DeleteFieldEventArgs">
+      <summary>
+            Contains data for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.DeleteField" /> event.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.DeleteFieldEventArgs.Cancel">
+      <summary>
+            Gets or sets a value that determines whether the operation should be canceled.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.DeleteFieldEventArgs.#ctor">
+      <summary>
+            Inializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.DeleteFieldEventArgs" /> class.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.RenderFieldEventHandler">
+      <summary>
+            Represents the method that will handle the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderField" /> event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.RenderFieldEventArgs">
+      <summary>
+            Contains data for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderField" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.RenderFieldEventArgs.#ctor(C1.Win.C1ReportDesigner.C1ReportDesigner,System.Drawing.Graphics,System.Drawing.Rectangle,C1.C1Report.Field,C1.C1Report.Section,System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.RenderFieldEventArgs" /> class.
+            </summary>
+      <param name="owner">
+        <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> object that contains the design surface.</param>
+      <param name="g">
+        <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Graphics" /> object where the field will be rendered.</param>
+      <param name="bounds">
+        <see cref="T:System.Drawing.Rectangle" />, in client coordinates, where the field will be rendered.</param>
+      <param name="field">
+        <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Field" /> that will be rendered.</param>
+      <param name="section">
+        <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Section" /> that contains the field.</param>
+      <param name="text">String that contains the text that will be rendered in the field.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Render">
+      <summary>
+            Renders the field into the designer surface.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Graphics">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Graphics" /> object where the field will be rendered.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Bounds">
+      <summary>
+            Gets the <see cref="T:System.Drawing.Rectangle" /> where the field will be rendered.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Field">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Field" /> object that will be rendered.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Section">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Section" /> that contains the field.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Text">
+      <summary>
+            Gets or sets the text that will be displayed by the designer in the field.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Handled">
+      <summary>
+            Gets or sets a value that determines whether the event has been handled.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.RenderSectionHeaderEventHandler">
+      <summary>
+            Represents the method that will handle the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderSectionHeader" /> event.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs">
+      <summary>
+            Contains data for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderSectionHeader" /> event.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.#ctor(C1.Win.C1ReportDesigner.C1ReportDesigner,System.Drawing.Graphics,System.Drawing.Rectangle,C1.C1Report.Section,System.String,System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs" /> class.
+            </summary>
+      <param name="owner">
+        <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> object that contains the design surface.</param>
+      <param name="g">
+        <see cref="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Graphics" /> object where the section header will be rendered.</param>
+      <param name="bounds">
+        <see cref="T:System.Drawing.Rectangle" />, in client coordinates, where the section header will be rendered.</param>
+      <param name="section">
+        <see cref="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Section" /> that that owns the section header.</param>
+      <param name="sectionText">String that describes the section.</param>
+      <param name="groupText">String that describes the group.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Render">
+      <summary>
+            Renders the section header into the designer surface.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Graphics">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Graphics" /> object where the section header will be rendered.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Bounds">
+      <summary>
+            Gets the <see cref="T:System.Drawing.Rectangle" /> where the section header will be rendered.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Section">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Section" /> that owns the section header.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.SectionDescription">
+      <summary>
+            Gets or sets the text that describes the Section.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.GroupDescription">
+      <summary>
+            Gets or sets the text that describes the Group that owns the section.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs.Handled">
+      <summary>
+            Gets or sets a value that determines whether the event has been handled.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.GridUnitsEnum">
+      <summary>
+            Use the members of this enumeration to set the value of 
+            the <see cref="P:C1.Win.C1ReportDesigner.Grid.Units" /> property in the <see cref="T:C1.Win.C1ReportDesigner.Grid" /> class.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.GridUnitsEnum.Auto">
+      <summary>
+            Set the grid units based on system settings.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.GridUnitsEnum.Metric">
+      <summary>
+            Use metric units of measurement (cm, mm).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.GridUnitsEnum.English">
+      <summary>
+            Use English units of measurement (inches).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.GridUnitsEnum.Custom">
+      <summary>
+            Use custom units of measurement (twips).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.Grid">
+      <summary>
+            The Grid object controls the appearance and behavior of the design grid.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.Visible">
+      <summary>
+            Gets or sets whether the grid is visible.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.Snap">
+      <summary>
+            Gets or sets whether mouse editing actions should snap to grid measurements.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.Units">
+      <summary>
+            Gets or sets the grid units (Metric, English, Automatic, or Custom).
+            </summary>
+      <see cref="T:C1.Win.C1ReportDesigner.GridUnitsEnum" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.CustomSpacing">
+      <summary>
+            Gets or sets the number of twips per tick mark when the <see cref="P:C1.Win.C1ReportDesigner.Grid.Units" /> property is set to <b>Custom</b>.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.ColorMajor">
+      <summary>
+            Gets or sets the color of the major grid lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.ColorMinor">
+      <summary>
+            Gets or sets the color of the minor grid lines.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Grid.PixelsPerTick">
+      <summary>
+            Gets the number of pixels between grid tick marks.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.HitCodeEnum">
+      <summary>
+            Use the members of this enumeration to set the value of 
+            the <see cref="P:C1.Win.C1ReportDesigner.HitTestInfo.Code" /> property in the <see cref="T:C1.Win.C1ReportDesigner.HitTestInfo" /> structure.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.Nowhere">
+      <summary>
+            The upper left corner of the control.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.Empty">
+      <summary>
+            The empty design area to the right and below the report.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.RulerHorz">
+      <summary>
+            The horizontal ruler.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.RulerVert">
+      <summary>
+            The vertical ruler.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.EdgeRight">
+      <summary>
+            The right edge of the report.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.EdgeBottom">
+      <summary>
+            The bottom edge of the report.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.SectionHdr">
+      <summary>
+            The section header.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.SectionBox">
+      <summary>
+            The section box.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.SortBox">
+      <summary>
+            The sort box.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.Section">
+      <summary>
+            The specified section.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitCodeEnum.Field">
+      <summary>
+            The specified field.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.HitHandleFlags">
+      <summary>
+            Use the members of this enumeration to set the value 
+            of the <see cref="P:C1.Win.C1ReportDesigner.HitTestInfo.HitHandleFlags" /> property in the <see cref="T:C1.Win.C1ReportDesigner.HitTestInfo" /> Structure.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.None">
+      <summary>
+            The center of the field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Left">
+      <summary>
+            The left edge of the field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Center">
+      <summary>
+            The center of the horizontal edge.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Right">
+      <summary>
+            The right edge of the field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Horz">
+      <summary>
+            Any horizontal flag (Left | Center | Right).
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Top">
+      <summary>
+            The top edge of the field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.CenterV">
+      <summary>
+            The center of the vertical edge.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Bottom">
+      <summary>
+            The bottom edge of the field.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.HitHandleFlags.Vert">
+      <summary>
+            Any vertical flag (Top | CenterV | Bottom).
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.HitTestInfo">
+      <summary>
+            HitTestInfo represents hit-testing information for the report.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.Code">
+      <summary>
+            Gets a code that determines the type of element at the given point.
+            </summary>
+      <seealso cref="T:C1.Win.C1ReportDesigner.HitCodeEnum" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.HitHandleFlags">
+      <summary>
+            Gets a set of flags that determines whether the point is on a field resizing handle 
+            (a field has eight handles, one at each corner and one along each edge).
+            </summary>
+      <seealso cref="P:C1.Win.C1ReportDesigner.HitTestInfo.HitHandleFlags" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.X">
+      <summary>
+            Get the client coordinates of the point.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.Y">
+      <summary>
+            Get the client coordinates of the point.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.Point">
+      <summary>
+            Gets the point.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.Field">
+      <summary>
+            Gets the field at the given point (or null if there is no field there).
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.Section">
+      <summary>
+            Gets the section at the given point (or null if the point is outside the design area).
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.SectionX">
+      <summary>
+            Gets the position in section coordinates (twips, relative to the left of the section).
+            </summary>
+      <remarks>
+            This value takes into account the current scroll position.
+            </remarks>
+      <example>
+            The code below takes a point in client coordinates and obains the x position relative to
+            the section at that point.
+            <code>
+            HitTestInfo hti = c1rd.HitTest(clientX, clientY);
+            double sectionX = hti.SectionX; // x position in section coordinates (in twips)
+            </code></example>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.HitTestInfo.SectionY">
+      <summary>
+            Gets the position in section coordinates (twips, relative to the top of the section). 
+            </summary>
+      <remarks>
+            This value takes into account the current scroll position.
+            </remarks>
+      <example>
+            The code below takes a point in client coordinates and obains the y position relative to
+            the section at that point.
+            <code>
+            HitTestInfo hti = c1rd.HitTest(clientX, clientY);
+            double sectionY = hti.SectionY; // y position in section coordinates (in twips)
+            </code></example>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.Strings">
+      <summary>
+            Static class containing UI strings used by the designer.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.MouseHandler">
+      <summary>
+            The MouseHandler object provides mouse support for the <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> control.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.MouseHandler.#ctor(C1.Win.C1ReportDesigner.C1ReportDesigner)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.MouseHandler" /> class. 
+            </summary>
+      <param name="owner">Owner <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> component.</param>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.AutoAdjustEnum">
+      <summary>
+            Use the members of this enumeration to set the value of the 
+            <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.AutoAdjustReportDimensions" /> property 
+            in the <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> control.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AutoAdjustEnum.None">
+      <summary>
+            No adjustments.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AutoAdjustEnum.ReportWidth">
+      <summary>
+            Adjusts the width of the report.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AutoAdjustEnum.SectionHeight">
+      <summary>
+            Adjusts the height of the specified section.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AutoAdjustEnum.Both">
+      <summary>
+            Adjusts the height and width of the report.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.AlignOperationEnum">
+      <summary>
+            Defines the types of align operation that can be performed on fields
+            selected in C1ReportDesigner.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.BringToFront">
+      <summary>
+            Bring to front.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.SendToBack">
+      <summary>
+            Send to back.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignToGrid">
+      <summary>
+            Align to grid.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.SizeToGrid">
+      <summary>
+            Size to grid.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignCenter">
+      <summary>
+            Center align.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignMiddle">
+      <summary>
+            Middle align.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignLeft">
+      <summary>
+            Left align.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignRight">
+      <summary>
+            Right align.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignTop">
+      <summary>
+            Top align.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.AlignBottom">
+      <summary>
+            Bottom align.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.HeightToTallest">
+      <summary>
+            Increase height to tallest element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.HeightToShortest">
+      <summary>
+            Decrease height to shortest element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.WidthToWidest">
+      <summary>
+            Increase width to widest element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.WidthToNarrowest">
+      <summary>
+            Decrease width to narrowest element.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.EqualHorizontalSpacing">
+      <summary>
+            Equally space horizontally.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.IncreaseHorizontalSpacing">
+      <summary>
+            Increase horizontal spacing.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.DecreaseHorizontalSpacing">
+      <summary>
+            Decrease horizontal spacing.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.EqualVerticalSpacing">
+      <summary>
+            Equally space vertically.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.IncreaseVerticalSpacing">
+      <summary>
+            Increase vertical spacing.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.DecreaseVerticalSpacing">
+      <summary>
+            Decrease vertical spacing.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.AlignOperationEnum.FormatAsTableRow">
+      <summary>
+            Format as a table row.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.C1ReportDesigner">
+      <summary>
+            The C1ReportDesigner is a Windows Forms control that provides the ability 
+            to design and edit report definitions that can be used with the <see cref="N:C1.C1Report" />, 
+            C1WebReport, and VSReport controls.
+            </summary>
+      <remarks>To use this control, drag it onto a new or existing form, 
+            add a <see cref="N:C1.C1Report" /> component that will contain the report you want to edit, 
+            and set the <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Report" /> property in the designer control. 
+            Then add all the other UI elements your application needs.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.Util.ScrollableControl">
+      <summary>
+            Base class for controls that support auto-scrolling behavior.
+            </summary>
+      <remarks>
+            This class is similar to the WinForms <see cref="T:System.Windows.Forms.ScrollableControl" />, but provides 
+            extra customization, better scroll notification, and support for scroll tracking and Windows Xp themes.
+            </remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.Util.ScrollableControl" /> class. 
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.Dispose(System.Boolean)">
+      <summary> 
+            Clean up any resources being used.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.DrawComboButton(System.Drawing.Graphics,System.Drawing.Rectangle,System.Windows.Forms.ButtonState)">
+      <summary>
+            Draws a drop-down button on a combo box control in the specified state, 
+            on the specified graphics surface, and within the specified bounds.
+            </summary>
+      <param name="g">The <see cref="T:System.Drawing.Graphics" /> to draw on. </param>
+      <param name="rc">The <see cref="T:System.Drawing.Rectangle" /> that represents the dimensions of the combo box.</param>
+      <param name="bs">A bitwise combination of the <see cref="T:System.Windows.Forms.ButtonState" /> values 
+            that specifies the state to draw the combo box in. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.DrawButton(System.Drawing.Graphics,System.Drawing.Rectangle,System.Windows.Forms.ButtonState)">
+      <summary>
+            Draws a button control in the specified state, on the specified graphics surface, 
+            and within the specified bounds.
+            </summary>
+      <param name="g">The <see cref="T:System.Drawing.Graphics" /> to draw on. </param>
+      <param name="rc">The <see cref="T:System.Drawing.Rectangle" /> that represents the dimensions of the combo box.</param>
+      <param name="bs">A bitwise combination of the <see cref="T:System.Windows.Forms.ButtonState" /> values 
+            that specifies the state to draw the combo box in. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.DrawHeader(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Brush,System.Windows.Forms.Border3DStyle,System.Boolean)">
+      <summary>
+            Draws a header area on the specified graphics surface, within the specified bounds,
+            with specified parameters.
+            </summary>
+      <param name="g">The <see cref="T:System.Drawing.Graphics" /> to draw on. </param>
+      <param name="rc">The <see cref="T:System.Drawing.Rectangle" /> that represents the dimensions of the combo box.</param>
+      <param name="br">The <see cref="T:System.Drawing.Brush" /> to draw with.</param>
+      <param name="bs">The <see cref="T:System.Windows.Forms.Border3DStyle" /> style.</param>
+      <param name="selected">Whether the header is selected.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.DrawHeader(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Brush,System.Boolean)">
+      <summary>
+            Draws a header area on the specified graphics surface, within the specified bounds,
+            with specified parameters.
+            </summary>
+      <param name="g">The <see cref="T:System.Drawing.Graphics" /> to draw on. </param>
+      <param name="rc">The <see cref="T:System.Drawing.Rectangle" /> that represents the dimensions of the combo box.</param>
+      <param name="br">The <see cref="T:System.Drawing.Brush" /> to draw with.</param>
+      <param name="selected">Whether the header is selected.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.DrawHeader(System.Drawing.Graphics,System.Drawing.Rectangle,System.Windows.Forms.Border3DStyle,System.Boolean)">
+      <summary>
+            Draws a header area on the specified graphics surface, within the specified bounds,
+            with specified parameters.
+            </summary>
+      <param name="g">The <see cref="T:System.Drawing.Graphics" /> to draw on. </param>
+      <param name="rc">The <see cref="T:System.Drawing.Rectangle" /> that represents the dimensions of the combo box.</param>
+      <param name="bs">The <see cref="T:System.Windows.Forms.Border3DStyle" /> style.</param>
+      <param name="selected">Whether the header is selected.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.OnImeStartComposition">
+      <summary>
+            This method called when the window receives the WM_IME_STARTCOMPOSITION message. 
+            The WM_IME_STARTCOMPOSITION message is sent immediately before the 
+            IME generates the composition string as a result of a keystroke. 
+            The message is a notification to an IME window to open its composition window. 
+            An application should process this message if it displays composition characters itself.
+            </summary>
+      <remarks>This base implementation does nothing.</remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.OnScroll(System.Windows.Forms.ScrollBars)">
+      <summary>
+            Fires OnScroll event. Occurs when the scroll box has been moved by either 
+            a mouse or keyboard action.
+            </summary>
+      <param name="sb">Specifies which scroll bar was scrolled.</param>
+      <remarks>Override this method to get notifications when the control scrolls.
+            The base implementation invalidates control.</remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.OnScrollTip(System.Int32)">
+      <summary>
+            Fires OnScrollTip event.
+            </summary>
+      <param name="newValue">New position of scroll tip.</param>
+      <remarks>Override this method to update <see cref="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollTipText" /> property.</remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.BuildScrollableRectangle(System.Int32,System.Int32)">
+      <summary>
+            The <see cref="T:C1.Win.C1ReportDesigner.Util.ScrollableControl" /> uses this method to set the scroll rectangle.
+            </summary>
+      <remarks>Override this method to customize scrolling behavior.</remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.SetClientSizeCore(System.Int32,System.Int32)">
+      <summary>
+            Sets the size of the client area of the control.
+            </summary>
+      <param name="x">The client area width, in pixels.</param>
+      <param name="y">The client area height, in pixels.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.OnSizeChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.SizeChanged" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.OnMouseWheel(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.MouseWheel" /> event.
+            </summary>
+      <param name="e">A <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.Util.ScrollableControl.WndProc(System.Windows.Forms.Message@)">
+      <summary>
+            Processes Windows messages.
+            </summary>
+      <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process. </param>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollBars">
+      <summary>
+            Gets or sets which scroll bars should appear on the control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollPosition">
+      <summary>
+            Gets or sets the current scroll position.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollTrack">
+      <summary>
+            Gets or sets whether the control should scroll as the user drags the scrollbar thumb.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollTips">
+      <summary>
+            Gets or sets whether the control should display tooltips as the user scrolls vertically.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollTipText">
+      <summary>
+            Gets or sets the tooltip text displayed as the user scrolls vertically.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.BorderStyle">
+      <summary>
+            Gets or sets the type of border around the control.
+            </summary>
+      <seealso cref="T:C1.Win.C1ReportDesigner.Util.BorderStyleEnum" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.Cursor">
+      <summary>
+            Gets or sets the cursor that appears when the mouse moves over the control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.ScrollableRectangle">
+      <summary>
+            Gets the rectangle that represents the client area of the control. 
+            The <see cref="T:C1.Win.C1ReportDesigner.Util.ScrollableControl" /> uses this property to set the scroll page size.  
+            </summary>
+      <remarks>Override this property to customize scrolling behavior.</remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Util.ScrollableControl.CreateParams">
+      <summary>
+            Gets the required creation parameters when the control handle is created.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> class. 
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnBackColorChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.BackColorChanged" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.IsFieldLocked(C1.C1Report.Field)">
+      <summary>
+            TODO:
+            Gets a value indicating whether specified <see cref="T:C1.C1Report.Field" /> is locked, i.e. it can not
+            be moved, resized etc.
+            </summary>
+      <param name="field">
+        <see cref="T:C1.C1Report.Field" /> to test.</param>
+      <returns>
+        <b>true</b> if <see cref="T:C1.C1Report.Field" /> locked.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.IsSelectedFieldsLocked">
+      <summary>
+            TODO:
+            Gets a value indicating whether all currently selected fields are locked.
+            </summary>
+      <returns>
+        <b>true</b> if all selected fields are locked, <b>false</b> otherwise, returns <b>null</b> if some of selected fields are locked and some not.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToggleLockOfSelectedFields">
+      <summary>
+            TODO:
+            Toggles lock of selected fields.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.LockSelectedFields">
+      <summary>
+            TODO:
+            Lock currently selected fields.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.UnlockSelectedFields">
+      <summary>
+            TODO:
+            Unlock currently selected fields.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.LockField(C1.C1Report.Field)">
+      <summary>
+            TODO:
+            Lock specified <see cref="T:C1.C1Report.Field" />.
+            </summary>
+      <param name="field">
+        <see cref="T:C1.C1Report.Field" /> to lock.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.UnlockField(C1.C1Report.Field)">
+      <summary>
+            TODO:
+            Unlock specified <see cref="T:C1.C1Report.Field" />.
+            </summary>
+      <param name="field">
+        <see cref="T:C1.C1Report.Field" /> to unlock.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.SetFieldLocked(C1.C1Report.Field,System.Boolean)">
+      <summary>
+            TODO:
+            Lock or unlock specified <see cref="T:C1.C1Report.Field" />.
+            </summary>
+      <param name="field">
+        <see cref="T:C1.C1Report.Field" /> to lock or unlock.</param>
+      <param name="locked">
+        <b>true</b> to lock field, <b>false</b> to unlock.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToPixelsX(System.Double)">
+      <summary>
+            Converts twips to pixels, not taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            </summary>
+      <param name="twip">Value in twips.</param>
+      <returns>Value in pixels.</returns>
+      <remarks>This method is useful to translate report coordinates (expressed in twips) 
+            into mouse/screen coordinates (expressed in pixels).</remarks>
+      <seealso cref="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToZoomedPixelsX(System.Double)" />
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToPixelsY(System.Double)">
+      <summary>
+            Converts twips to pixels, not taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            </summary>
+      <param name="twip">Value in twips.</param>
+      <returns>Value in pixels.</returns>
+      <remarks>This method is useful to translate report coordinates (expressed in twips) 
+            into mouse/screen coordinates (expressed in pixels).</remarks>
+      <seealso cref="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToZoomedPixelsY(System.Double)" />
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToTwipsX(System.Int32)">
+      <summary>
+            Converts pixels to twips, not taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            </summary>
+      <param name="pixels">Value in pixels.</param>
+      <returns>Value in twips.</returns>
+      <remarks>This method is useful to translate mouse/screen coordinates 
+            (expressed in pixels) into report coordinates (expressed in twips).</remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToTwipsY(System.Int32)">
+      <summary>
+            Converts pixels to twips, not taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            </summary>
+      <param name="pixels">Value in pixels.</param>
+      <returns>Value in twips.</returns>
+      <remarks>This method is useful to translate mouse/screen coordinates 
+            (expressed in pixels) into report coordinates (expressed in twips).</remarks>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToZoomedPixelsX(System.Double)">
+      <summary>
+            Converts twips to pixels, taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            </summary>
+      <param name="twip">Value in twips.</param>
+      <returns>Value in pixels.</returns>
+      <remarks>This method is useful to translate report coordinates (expressed in twips) 
+            into mouse/screen coordinates (expressed in pixels).</remarks>
+      <seealso cref="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToPixelsX(System.Double)" />
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToZoomedPixelsY(System.Double)">
+      <summary>
+            Converts twips to pixels, taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            </summary>
+      <param name="twip">Value in twips.</param>
+      <returns>Value in pixels.</returns>
+      <remarks>This method is useful to translate report coordinates (expressed in twips) 
+            into mouse/screen coordinates (expressed in pixels).</remarks>
+      <seealso cref="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToPixelsY(System.Double)" />
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToUnZoomedTwipsX(System.Int32)">
+      <summary>
+            Converts pixels to twips, taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            Note that the return value is rounded to the nearest integral value.
+            </summary>
+      <param name="pixels">Value in pixels.</param>
+      <returns>Value in twips.</returns>
+      <remarks>This method is useful to translate mouse/screen coordinates 
+            (expressed in pixels) into report coordinates (expressed in twips).</remarks>
+      <seealso cref="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToTwipsX(System.Int32)" />
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToUnZoomedTwipsY(System.Int32)">
+      <summary>
+            Converts pixels to twips, taking <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> into account.
+            Note that the return value is rounded to the nearest integral value.
+            </summary>
+      <param name="pixels">Value in pixels.</param>
+      <returns>Value in twips.</returns>
+      <remarks>This method is useful to translate mouse/screen coordinates 
+            (expressed in pixels) into report coordinates (expressed in twips).</remarks>
+      <seealso cref="M:C1.Win.C1ReportDesigner.C1ReportDesigner.ToTwipsY(System.Int32)" />
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.HitTest(System.Int32,System.Int32)">
+      <summary>
+            Gets a <see cref="T:C1.Win.C1ReportDesigner.HitTestInfo" /> object that describes the contents of the control at a given position on the screen.
+            </summary>
+      <param name="x">Horizontal position to test, in client coordinates.</param>
+      <param name="y">Vertical position to test, in client coordinates.</param>
+      <returns>A <see cref="T:C1.Win.C1ReportDesigner.HitTestInfo" /> that describes the contents of the control at a given position on the screen.</returns>
+      <remarks>
+            The <b>HitTest</b> method allows you to determine whether a given point (e.g. mouse position) is over a report element 
+            (field/section) or other parts of the designer (rulers, section headers, empty area, resizing edges, etc.).
+            </remarks>
+      <example>
+            The code below shows how the <b>C1ReportDesigner</b> application uses the <b>HitTest</b> method to handle right-clicks 
+            on the report designer. The code checks to see if the click was on a field, and changes the selection and context menu 
+            accordingly:
+            <code>
+            // handle context-sensitive designer menu
+            private void _designerMenu_Popup(object sender, System.EventArgs e)
+            {
+                // make sure the designer has the focus
+                _designer.Focus();
+                
+                // get field under the mouse
+                Point pt = _designer.PointToClient(Control.MousePosition);
+                HitTestInfo hti = _designer.HitTest(pt.X, pt.Y);
+                Field f = hti.Field;
+                
+                // no field there? clear selection
+                if (f == null) 
+                    _designer.SelectedFields = null;
+                    
+                // field not in selection? then select it
+                if (f != null)
+                {
+                    bool selected = false;
+                    foreach (Field sf in _designer.SelectedFields)
+                    {
+                        if (sf != f) continue;
+                        selected = true;
+                        break;
+                    }
+                    if (!selected)
+                      _designer.SelectedFields = new Field[] { f };
+                }
+                
+                // show cut/copy/delete only when a field was clicked
+                _menuCopyField.Visible   = 
+                _menuCutField.Visible    = 
+                _menuDeleteField.Visible = (f != null);
+            }
+            </code></example>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnSelectionChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectionChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnValuesChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ValuesChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnReportChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ReportChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnZoomFactorChanged(System.EventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactorChanged" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnRenderField(C1.Win.C1ReportDesigner.RenderFieldEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderField" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:C1.Win.C1ReportDesigner.RenderFieldEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnRenderSectionHeader(C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderSectionHeader" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnCreateField(C1.Win.C1ReportDesigner.CreateFieldEventArgs)">
+      <summary>
+            Raises the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField" /> event.
+            </summary>
+      <param name="e">
+        <see cref="T:C1.Win.C1ReportDesigner.RenderSectionHeaderEventArgs" /> that contains the event data.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.AlignSelectedFields(C1.Win.C1ReportDesigner.AlignOperationEnum)">
+      <summary>
+            Aligns selected fields.
+            </summary>
+      <param name="ao">Alignment option.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.Refresh">
+      <summary>
+            Forces the control to invalidate its client area and immediately redraw itself and any child controls.
+            </summary>
+      <remarks>
+            Use this method when you change field properties, create new fields or change report/section dimensions 
+            outside the designer, to ensure that the report and sections are wide enough to accommodate the new fields.
+            </remarks>
+      <example>
+            The code below shows the event handler for the <b>PropertyGrid</b> control that is bound to the designer 
+            selection. When the user changes a field, section, or report property using the designer, the application 
+            calls the <b>Refresh</b> method so the changes will be visible in the designer.
+            <code>
+            // property value changed, update designer
+            private void _propGrid_PropertyValueChanged(object s,
+                                 PropertyValueChangedEventArgs e)
+            {
+                // show changes in the designer
+                _designer.Refresh();
+                
+                // remember the document is dirty
+                if (!_dirty)
+                {
+                    _dirty = true;
+                    UpdateUI();
+                }
+            }
+            </code></example>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnParentChanged(System.EventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.ParentChanged" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnPaint(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.Paint" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+      <summary>
+            Paints the background of the control.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains information 
+            about the control to paint. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.MouseDown" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.MouseMove" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnMouseEnter(System.EventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.MouseEnter" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnMouseLeave(System.EventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.MouseLeave" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.MouseUp" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnDoubleClick(System.EventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.DoubleClick" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.IsInputKey(System.Windows.Forms.Keys)">
+      <summary>
+            Determines whether the specified key is a regular input key or 
+            a special key that requires preprocessing.
+            </summary>
+      <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys" /> values.</param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.KeyDown" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.KeyEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnKeyUp(System.Windows.Forms.KeyEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.KeyUp" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.KeyEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.C1ReportDesigner.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)">
+      <summary>
+            Special handling for the <see cref="E:System.Windows.Forms.Control.KeyPress" /> event.
+            </summary>
+      <param name="e">An <see cref="T:System.Windows.Forms.KeyPressEventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectionChanged">
+      <summary>
+            Fired when the user fields are selected or de-selected.
+            </summary>
+      <remarks>This event is mainly used to refresh the PropertyGrid controls 
+            attached to the selection.
+            </remarks>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ReportChanged">
+      <summary>
+            Fired when a new report is assigned to the control.
+            </summary>
+      <seealso cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Report" />
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactorChanged">
+      <summary>
+            Fired when the designer's <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" /> property has changed.
+            </summary>
+      <seealso cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" />
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ValuesChanged">
+      <summary>
+            Fired when the report changes (e.g. fields are moved/resized or copied with the mouse).
+            </summary>
+      <example>
+            The code below shows how a typical application would handle the <b>ValuesChanged</b> event to refresh a
+            <b>PropertyGrid</b> so it displays the new values, and to mark the current report definition document as 
+            dirty (to indicate the document has changed and needs to be saved).
+            <code>
+            private void _designer_ValuesChanged(object sender, System.EventArgs e)
+            {
+                _dirty = true;
+                _propGrid.Refresh();
+                _designer.CreateFieldInfo = null;
+                UpdateUI();
+            }
+            </code></example>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField">
+      <summary>
+            Fired when the user drops a new report field on the design surface.
+            </summary>
+      <remarks>This event tells the handler that the user wants to create a field, 
+            and the parameters describe the new field's section and position. 
+            It is up to the event handler to actually create the new field and initialize 
+            its properties.
+            </remarks>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.MoveCopyFields">
+      <summary>
+            Fired before the user moves or copies fields with the mouse. 
+            </summary>
+      <remarks>The event handler can examine the current selection and determine 
+            whether the user is allowed to move and/or copy the fields.
+            </remarks>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.ResizeFieldSection">
+      <summary>
+            Fired before the user resizes fields, sections, or the report with the mouse.
+            </summary>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.DeleteField">
+      <summary>
+            Fired before the user deletes the selected fields.
+            </summary>
+      <remarks>The event handler can examine the current selection and determine 
+            whether the user is allowed to delete the fields.</remarks>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderField">
+      <summary>
+            Fired before a field is rendered by the designer.
+            </summary>
+      <remarks>
+        <para>The event handler can change the text displayed in the field and 
+            the way the field is displayed.</para>
+        <para>To change the text displayed in the field, change the value of the <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Text" /> 
+            property in the <see cref="T:C1.Win.C1ReportDesigner.RenderFieldEventArgs" /> event arguments (the designer shows the field's <see cref="P:C1.C1Report.Field.Text" /> property by default).</para>
+        <para>To customize the way the field is displayed, use the <see cref="M:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Render" />
+            method in the <see cref="T:C1.Win.C1ReportDesigner.RenderFieldEventArgs" /> event arguments. You can either change some 
+            field properties, call the <b>Render</b> method, then restore the properties, or use the <see cref="P:C1.Win.C1ReportDesigner.RenderFieldEventArgs.Graphics" />
+            object to draw on the design surface.</para>
+      </remarks>
+      <example>
+            The code below shows calculated fields using a red background, and draws a blue diagonal
+            over barcode fields:
+            <code>
+            private void c1ReportDesigner1_RenderField(object sender, RenderFieldEventArgs e)
+            {
+              C1.Win.C1Report.Field f = e.Field;
+            
+              // save field's current backcolor
+              Color color = f.BackColor;
+            
+              // render calculated fields in red
+              if (f.Calculated)
+                f.BackColor = Color.Red;
+            
+              // let the designer render the field
+              e.Render();
+            
+              // draw a diagonal line over barcode fields
+              if (f.BarCode != C1.Win.C1Report.BarCodeEnum.None)
+              {
+                Rectangle rc = e.Bounds;
+                e.Graphics.DrawLine(Pens.Blue, rc.X, rc.Y, rc.Right, rc.Bottom);
+              }
+            
+              // restore original background color.
+              f.BackColor = color;
+            }
+            </code></example>
+    </member>
+    <member name="E:C1.Win.C1ReportDesigner.C1ReportDesigner.RenderSectionHeader">
+      <summary>
+            Fired before a section header is rendered by the designer.
+            </summary>
+      <remarks>The event handler can change the text displayed for the section 
+            and group information.</remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Report">
+      <summary>
+            Gets or sets the <see cref="N:C1.C1Report" /> control that contains the report being edited.
+            </summary>
+      <remarks>
+        <para>This is the main property in the control. To edit a report, you have to load it into a <see cref="N:C1.C1Report" /> 
+            component and connect the component to the designer using the <b>Report</b> property.</para>
+        <para>Any changes made to the report via the designer are applied to the report in the <b>C1Report</b> component.</para>
+        <para>To save the changes, you should call the <see cref="M:C1.C1Report.C1Report.Save(System.String)" /> method in the <b>C1Report</b> component.</para>
+      </remarks>
+      <example>
+            The <b>C1ReportDesigner</b> application allows the user to load a report definition file, then creates a separate 
+            <b>C1Report</b> component for each report in the file. The <b>C1Report</b> components are stored in a list (the one you 
+            see on the left of the main form). When the user selects a report from the list, the report is displayed in the designer 
+            control using the following code.
+            <code>
+            private void _reportList_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                // make sure we're in design view
+                ReportDesignMode = true;
+                
+                // reset any create field information
+                _designer.CreateFieldInfo = null;
+                
+                // assign selected report to designer component
+                ReportItem rw = _reportList.SelectedItem;
+                _designer.Report = (rw != null)? rw._report: null;
+                
+                // update UI
+                UpdateUI();
+            }
+            </code></example>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor">
+      <summary>
+            Gets or sets the zoom factor (<c>1</c> is actual size).
+            </summary>
+      <remarks>
+            The zoom factor must be not less than <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.MinZoomFactor" />
+            and not greater than <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.MaxZoomFactor" />.
+            </remarks>
+      <seealso cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.MinZoomFactor" />
+      <seealso cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.MaxZoomFactor" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.MinZoomFactor">
+      <summary>
+            Gets the minimum allowed zoom factor (<c>0.1</c>).
+            </summary>
+      <seealso cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.MaxZoomFactor">
+      <summary>
+            Gets the maximum allowed zoom factor (<c>10</c>).
+            </summary>
+      <seealso cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ZoomFactor" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectedFields">
+      <summary>
+            Gets or sets the report fields that are currently selected in the editor.
+            </summary>
+      <remarks>
+        <para>This property exposes the selected fields, usually for editing with a <see cref="T:System.Windows.Forms.PropertyGrid" /> control.</para>
+        <para>This is one of the most important properties in the designer control. The designer control exposes a design 
+            pane that allows users to select, move, resize, copy, and delete fields. It also manages user selections, which are 
+            exposed through the <b>SelectedFields</b> and <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectedSection" /> properties.</para>
+        <para>The control does not provide any means for editing most field and section properties (e.g. BackColor, ForeColor, 
+            Visible, etc). For this, the application should use a <b>PropertyGrid</b> control connected to the current selection, 
+            and it should update the property grid in response to events that indicate the selection has changed.</para>
+        <para>When several fields are selected, the last one in the selection is highlighted in a different color and is 
+            referred to as the <i>reference</i> field. When multiple fields are to be aligned or resized, the reference field 
+            provides the position and size to be used for the others. The second example below illustrates this.</para>
+      </remarks>
+      <example>
+        <para>The code below shows how the <b>C1ReportDesigner</b> application manages the connection between the <b>PropertyGrid</b>
+            and the objects selected in the designer. The connection is made through the designer's <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectionChanged" /> event.</para>
+        <para>Depending on the selection, the grid shows the properties of the selected fields, the selected section, or the whole 
+            report.</para>
+        <code>
+            // selection changed, update property grid
+            private void _designer_SelectionChanged(object sender, EventArgs e)
+            {
+                // show field properties
+                object[] sel = _designer.SelectedFields;
+                if (sel.Length &gt; 0)
+                {
+                    _propLabel.Text = " Field Properties";
+                    _propGrid.SelectedObjects = sel;
+                }
+                // show section properties
+                else if (_designer.SelectedSection != null) 
+                {
+                    _propLabel.Text = " Section Properties";
+                    _propGrid.SelectedObject = _designer.SelectedSection;
+                }
+                // show report properties
+                else if (_designer.Report != null) 
+                {
+                    _propLabel.Text = " Report Properties";
+                    _propGrid.SelectedObject = _designer.Report;
+                }
+                // nothing to show...
+                else 
+                {
+                    _propLabel.Text = " Properties";
+                    _propGrid.SelectedObject = null;
+                }
+                
+                // update UI (_menus, toolbars, etc)
+                _designer.CreateFieldInfo = null;
+                UpdateUI();
+            }
+            </code>
+            The <b>SelectedFields</b> property is also useful for implementing commands that act on a field or group of fields. 
+            For example, the <b>C1ReportDesigner</b> application has commands that allow the user to align the selected fields. 
+            The code below shows how you might implement some of these commands (note that the last field in the selection is 
+            used as a reference for aligning the others):
+            <code>
+            // format toolbar 
+            private void _tbFormat_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+            {
+              // get ready to work
+              Field[] sel = _designer.SelectedFields;
+              Debug.Assert(sel.Length &gt; 0);
+              
+              // get reference field (last in the selection)
+              Field refFld = (Field)sel[sel.Length-1];
+              
+              // save undo info
+              _designer.UndoStack.SaveState();
+              
+              // align fields
+              if (e.Button == _btnAlignLeft)
+              {
+                  for (int i = 0; i &lt; sel.Length; i++)
+                      sel[i].Left = refFld.Left;
+              } 
+              else if (e.Button == _btnAlignCenter)
+              {
+                  double mid = refFld.Left + refFld.Width/2;
+                  for (int i = 0; i &lt; sel.Length; i++)
+                      sel[i].Left = mid - sel[i].Width/2;
+              }
+              else if (e.Button == _btnAlignRight)
+              {
+                  double right = refFld.Left + refFld.Width;
+                  for (int i = 0; i &lt; sel.Length; i++)
+                      sel[i].Left = right - sel[i].Width;
+              }
+              else if (e.Button == _btnAlignTop)
+              {
+                  for (int i = 0; i &lt; sel.Length; i++)
+                      sel[i].Top = refFld.Top;
+              }
+              else if (e.Button == _btnAlignMiddle)
+              {
+                  double mid = refFld.Top + refFld.Height/2;
+                  for (int i = 0; i &lt; sel.Length; i++)
+                      sel[i].Top = mid - sel[i].Height/2;
+              }
+              else if (e.Button == _btnAlignBottom)
+              {
+                  double bottom = refFld.Top + refFld.Height;
+                  for (int i = 0; i &lt; sel.Length; i++)
+                      sel[i].Top = bottom - sel[i].Height;
+              }
+               
+              // show the changes
+              _designer.Refresh();
+              UpdateUI();
+            }
+            </code></example>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectedFieldCount">
+      <summary>
+            Gets the report fields that are currently selected in the editor.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectedSection">
+      <summary>
+            Gets or sets the report section that is currently selected in the editor.
+            </summary>
+      <remarks>
+        <para>This property exposes the selected <see cref="T:C1.C1Report.Section" /> for editing with a <see cref="T:System.Windows.Forms.PropertyGrid" /> control 
+            (when the <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectedFields" /> property returns an empty array).</para>
+        <para>For an example, see the <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.SelectedFields" /> property.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Grid">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Grid" /> object that controls the grid appearance and behavior.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Ruler">
+      <summary>
+            Gets the <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Ruler" /> object that controls the ruler appearance and behavior.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Cursor">
+      <summary>
+            Gets or sets the cursor that appears when the mouse passes over the control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.UndoStack">
+      <summary>
+            Gets the <see cref="T:C1.Win.C1ReportDesigner.UndoStack" /> object used for undo/redo operations.
+            </summary>
+      <remarks>
+        <para>The <b>UndoStack</b> allows you to save the state of the designer and restore it on demand.</para>
+        <para>The <b>UndoStack</b> is used internally by the designer control. For example, when the user moves a 
+            group of fields with the mouse, the control automatically saves the state of the report before the change 
+            so it can be undone.</para>
+        <para>Before changing the report using code, you should also save the state of the control by calling the 
+            <see cref="M:C1.Win.C1ReportDesigner.UndoStack.SaveState" /> method.</para>
+      </remarks>
+      <example>
+            The code below shows how to use the <see cref="M:C1.Win.C1ReportDesigner.UndoStack.SaveState" /> method to 
+            save the report state before performing clipboard operations such as Cut, Paste, and Delete.
+            <code>
+            // handle clipboard commands (for reports and fields)
+            private void HandleClipboard(ToolBarButton cmd)
+            {
+                // save undo state for all but copy
+                if (cmd != _btnCopy)
+                {
+                    _designer.UndoStack.SaveState();
+                    _dirty = true;
+                }
+                
+                // execute command
+                ClipboardHandler clip = _designer.ClipboardHandler;
+                if (cmd == _btnCut)    clip.Cut();
+                if (cmd == _btnCopy)   clip.Copy();
+                if (cmd == _btnPaste)  clip.Paste();
+                if (cmd == _btnDelete) clip.Delete();
+                
+                // update UI when done
+                UpdateUI();
+            }
+            </code><para>Note that after performing the action, the code calls an <b>UpdateUI</b> method. This method is implemented by the 
+            application to update the enabled state of several UI elements and indicate to the user whether he can perform 
+            operations such as Undo/Redo, Cut/Copy/Paste, etc.</para><para>Here is a simple implementation of a UpdateUI method in a report designer application.</para><code>
+            // update UI (_menus, toolbars, etc)
+            private void UpdateUI()
+            {
+                _btnUndo.Enabled   = _designer.UndoStack.CanUndo;
+                _btnRedo.Enabled   = _designer.UndoStack.CanRedo;
+                _btnCut.Enabled    =
+                _btnCopy.Enabled   = 
+                _btnDelete.Enabled = _designer.ClipboardHandler.CanCut;
+                _btnPaste.Enabled  = _designer.ClipboardHandler.CanPaste;
+            }
+            </code></example>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ClipboardHandler">
+      <summary>
+            Gets the <see cref="T:C1.Win.C1ReportDesigner.ClipboardHandler" /> object used for clipboard operations.
+            </summary>
+      <remarks>
+        <para>The <b>ClipboardHandler</b> object provides support for standard Cut/Copy/Paste/Delete operations 
+            for report fields using the system clipboard.</para>
+        <para>For an example, see the <see cref="P:C1.Win.C1ReportDesigner.C1ReportDesigner.UndoStack" /> property.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateFieldInfo">
+      <summary>
+            Gets or sets an object that contains information about a field to be created by the designer.
+            </summary>
+      <remarks>
+        <para>When you set this property to a non-null value, the designer assumes you want to create a new field. 
+            It will change the mouse cursor into a cross-hair and will allow the user to mark the position of the new 
+            field on the report.</para>
+        <para>When the user concludes the mouse operation, the control fires the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField" /> event. 
+            At this point, the event handler can refer to the <b>CreateInfo</b> property and use the information in 
+            the event parameters to create a new field and initialize it.</para>
+      </remarks>
+      <example>
+        <para>The <b>C1ReportDesigner</b> application has a toolbar that is used for creating new fields. The toolbar 
+            contains buttons for several different types of fields.</para>
+        <para>When a button is clicked, the application stores a reference to the button that was clicked in the 
+            <b>CreateFieldInfo</b> property and waits for the <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField" /> event. When the user moves the 
+            mouse over the designer, the cursor changes into a crosshair to indicate to the user that he can mark the 
+            location for the new field.</para>
+        <para>When the user is done marking the location of the new field, the control fires the 
+            <see cref="E:C1.Win.C1ReportDesigner.C1ReportDesigner.CreateField" /> event and the application uses the information in the event parameters to create the field.</para>
+        <para>Here is a simplified version of the code in the <b>C1ReportDesigner</b>:</para>
+        <code>
+            private void _tbCreate_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+            {
+                // save type of field to create and wait for the CreateField event
+                _designer.CreateFieldInfo = e.Button;
+            }
+            
+            // user is creating a field with the mouse
+            // (in response to setting the _designer.CreateFieldInfo property)
+            private void _designer_CreateField(object sender, CreateFieldEventArgs e)
+            {
+                // save undo info
+                _designer.UndoStack.SaveState();
+                
+                // create new field in this section
+                string fldName = GetUniqueFieldName();
+                FieldCollection fields = e.Section.Fields;
+                Field field = fields.Add(fldName, null, e.FieldBounds);
+                
+                // set new field properties based on CreateFieldInfo
+                object btn = e.CreateFieldInfo;
+                if (btn == _btnLabel)
+                {
+                    field.Text = field.Name;
+                    field.Calculated = false;
+                }
+                else if (btn == _btnPageBreak)
+                {
+                    field.ForcePageBreak = ForcePageBreakEnum.After;
+                    field.Calculated = false;
+                }
+                else if (btn == _btnRectangle)
+                {
+                    field.BorderStyle = BorderStyleEnum.Solid;
+                    field.Calculated = false;
+                }
+                else
+                {
+                    Debug.Assert(false, "Unknown field creator object");
+                }
+                
+                // reset creator, select the new field
+                _designer.CreateFieldInfo = null;
+                _designer.SelectedFields = new Field[] { field };
+             }
+            </code>
+      </example>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.BorderStyleSection">
+      <summary>
+            Gets or sets the border style for the <see cref="T:C1.C1Report.Section" /> headers.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ForeColorSection">
+      <summary>
+            Gets or sets the color used to draw the <see cref="T:C1.C1Report.Section" /> names.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.BackColorSection">
+      <summary>
+            Gets or sets the background color of the <see cref="T:C1.C1Report.Section" /> headers.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ForeColorGroup">
+      <summary>
+            Gets or sets the color used to draw the <see cref="T:C1.C1Report.Group" /> information.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.BackColorEmpty">
+      <summary>
+            Gets or sets the background color for the empty area.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ColorReportEdge">
+      <summary>
+            Gets or sets the color of the edge drawn around the work area.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ColorFieldEdge">
+      <summary>
+            Gets or sets the color of the edge drawn around the report fields.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.GroupNameFont">
+      <summary>
+            Gets or sets the font used to display <see cref="T:C1.C1Report.Group" /> names.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.AutoAdjustReportDimensions">
+      <summary>
+            Gets or sets whether the control should automatically adjust the report dimensions after fields are moved.
+            </summary>
+      <remarks>
+            If this property is set to true and the user drags a field beyond the edge of the report, the report width 
+            is automatically adjusted so the field will fit.
+            </remarks>
+      <seealso cref="T:C1.Win.C1ReportDesigner.AutoAdjustEnum" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.Locked">
+      <summary>
+            Gets or sets whether the fields are locked in the designer.
+            </summary>
+      <remarks>
+            This property works as a global toggle and affects all fields in the report. 
+            You cannot lock some fields and leave others unlocked.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.AutoScroll">
+      <summary>
+            Gets or sets whether the designer should scroll automatically when the user drags the mouse 
+            close to the edges of the control.
+            </summary>
+      <remarks>
+            If this property is set to true and the user drags the mouse near the edge of the control 
+            (while moving or resizing fields), the control will scroll automatically to bring the area being 
+            worked on into view.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.BackColor">
+      <summary>
+            Gets or sets the background color of the control.
+            </summary>
+      <remarks>
+            This property only affects the appearance of the designer control, and has no effect on the report definition.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.AllowInPlaceEditing">
+      <summary>
+            Gets or sets whether the user should be able to edit field text in place.
+            </summary>
+      <remarks>
+        <para>If this property is set to true, then the user can select <see cref="T:C1.C1Report.Field" /> objects in the designer 
+            and type text directly into them. The text is assigned to the field's <see cref="P:C1.C1Report.Field.Text" /> property.</para>
+        <para>If the property is set to false, then the user must edit the field text using a property grid control 
+            attached to the field object.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.FieldEditor">
+      <summary>
+            Gets a reference to the in-place field editor.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.HiddenSections">
+      <summary>
+            Gets or sets a list of report sections to be hidden in the designer.
+            </summary>
+      <seealso cref="T:C1.C1Report.SectionTypeEnum" />
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ShowSubreportContent">
+      <summary>
+            Gets or sets whether the designer should display subreport content.
+            </summary>
+      <remarks>
+        <para>By default, subreports are displayed as gray boxes with the subreport
+            name at the center.</para>
+        <para>Setting this property to true causes the designer to paint the
+            content of the subreports on the design surface.</para>
+      </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.C1ReportDesigner.ScrollableRectangle">
+      <summary>
+            Gets the rectangle that represents the client area of the control. 
+            The <see cref="T:C1.Win.C1ReportDesigner.Util.ScrollableControl" /> uses this property to set the scroll page size.  
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.ShowRulerFlags">
+      <summary>
+            Use the members of this enumeration to set the value 
+            of the <see cref="P:C1.Win.C1ReportDesigner.Ruler.Visible" /> property in the <see cref="T:C1.Win.C1ReportDesigner.Ruler" /> class.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.ShowRulerFlags.None">
+      <summary>
+            No rulers are displayed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.ShowRulerFlags.Horizontal">
+      <summary>
+            The horizontal ruler is displayed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.ShowRulerFlags.Vertical">
+      <summary>
+            The vertical ruler is displayed.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.ShowRulerFlags.Both">
+      <summary>
+            Both the vertical and horizontal rulers are displayed.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.Ruler">
+      <summary>
+            The Ruler object controls the appearance of the rulers along the top 
+            and left-hand side of the <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> control.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.BorderStyle">
+      <summary>
+            Gets or sets the style of the border drawn around the ruler.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.BorderColor">
+      <summary>
+            Gets or sets the color of the border drawn around the ruler. If
+            this property is <see cref="F:System.Drawing.Color.Empty" /> then this property is ignored and border is drawn
+            using predefined style and color specified by <see cref="P:C1.Win.C1ReportDesigner.Ruler.BorderStyle" /> property,
+            if this property is <see cref="P:System.Drawing.Color.Transparent" /> then no border is drawn,
+            otherwise one pixel border is drawn around the ruler.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.Font">
+      <summary>
+            Gets or sets the font used to paint values on the ruler.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.BackColor">
+      <summary>
+            Gets or sets the background color of the ruler over the page.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.BackColorEmpty">
+      <summary>
+            Gets or sets the background color of the ruler beyond the edge of the page.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.Highlight">
+      <summary>
+            Gets or sets the color used to highlight the ruler during selection.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.ForeColor">
+      <summary>
+            Gets or sets the color used to paint values on the ruler.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.Visible">
+      <summary>
+            Specifies whether the ruler should be displayed.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.Ruler.AllowSelection">
+      <summary>
+            Specifies whether the ruler can be used for field selection.
+            </summary>
+      <remarks>
+            If this property is set to true, the user can select fields by clicking and dragging the mouse over the rulers 
+            (horizontal or vertical). While dragging the mouse, the ruler will display a selection band. When the mouse is 
+            released, any controls that touch or lie within the selection band will be selected.
+            </remarks>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.UndoStack">
+      <summary>
+            The UndoStack object provides undo/redo services for the <see cref="T:C1.Win.C1ReportDesigner.C1ReportDesigner" /> control. 
+            It has methods that allow you to save and restore the state of the report being edited.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.UndoStack.Clear">
+      <summary>
+            Clears the undo/redo stack.
+            </summary>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.UndoStack.Undo">
+      <summary>
+            Undo changes and restore the report to the last saved state.
+            </summary>
+      <returns>Returns false if the undo stack is empty.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.UndoStack.Redo">
+      <summary>
+            Redo changes, cancelling the last undo operation.
+            </summary>
+      <returns>Returns false if the redo stack is empty.</returns>
+    </member>
+    <member name="M:C1.Win.C1ReportDesigner.UndoStack.SaveState">
+      <summary>
+            Save the current report state into the undo stack.
+            </summary>
+      <returns>Returns false if there is no report.</returns>
+      <remarks>The designer calls this method automatically before it changes 
+            the report in any way. If your code changes the report, 
+            you should also call this method before making the changes so they can be undone.</remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.UndoStack.Enabled">
+      <summary>
+            Gets or sets whether the designer should save the state of the report 
+            before applying any changes (e.g., when the user moves a field with the mouse).
+            </summary>
+      <remarks>The <see cref="T:C1.Win.C1ReportDesigner.UndoStack" /> is enabled by default, because it provides 
+            a valuable service to users. However, if you choose not to expose its functionality 
+            (with undo/redo buttons in your app), then you should disable the <see cref="T:C1.Win.C1ReportDesigner.UndoStack" /> 
+            to improve efficiency.
+            </remarks>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.UndoStack.CanUndo">
+      <summary>
+            Returns true if the undo stack is not empty.
+            </summary>
+    </member>
+    <member name="P:C1.Win.C1ReportDesigner.UndoStack.CanRedo">
+      <summary>
+            Returns true if the redo stack is not empty.
+            </summary>
+    </member>
+    <member name="T:C1.Win.C1ReportDesigner.Util.BorderStyleEnum">
+      <summary>
+            Specifies the type of border to be drawn around the control.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.Util.BorderStyleEnum.None">
+      <summary>
+            No border.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.Util.BorderStyleEnum.FixedSingle">
+      <summary>
+            A single-line border.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.Util.BorderStyleEnum.Fixed3D">
+      <summary>
+            A three-dimensional border.
+            </summary>
+    </member>
+    <member name="F:C1.Win.C1ReportDesigner.Util.BorderStyleEnum.Light3D">
+      <summary>
+            A three-dimensional border for items that do not accept user input.
+            </summary>
+    </member>
+  </members>
+</doc>
