@@ -1,5 +1,6 @@
 ﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
+using NanoInsight.Engine.Attribute;
 using NanoInsight.Engine.Core;
 using NumSharp;
 using System;

@@ -69,22 +69,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\MatrixUtil.cs" />
+    <Compile Include="Data\ApdSampleData.cs" />
     <Compile Include="Core\ApiCode.cs" />
     <Compile Include="Core\Config.cs" />
-    <Compile Include="Core\DetectorProperty.cs" />
-    <Compile Include="Core\GalvoProperty.cs" />
-    <Compile Include="Core\ScanAcquisition.cs" />
-    <Compile Include="Core\ScanArea.cs" />
-    <Compile Include="Core\ScanAreaType.cs" />
-    <Compile Include="Core\ScanChannel.cs" />
-    <Compile Include="Core\ScanDirection.cs" />
-    <Compile Include="Core\ScanHead.cs" />
-    <Compile Include="Core\ScanLineSkip.cs" />
-    <Compile Include="Core\ScanMode.cs" />
-    <Compile Include="Core\ScanPixel.cs" />
-    <Compile Include="Core\ScanPixelDwell.cs" />
-    <Compile Include="Core\ScanProperty.cs" />
+    <Compile Include="Attribute\DetectorProperty.cs" />
+    <Compile Include="Attribute\GalvoProperty.cs" />
+    <Compile Include="Data\PmtSampleData.cs" />
+    <Compile Include="Attribute\ScanAcquisition.cs" />
+    <Compile Include="Attribute\ScanArea.cs" />
+    <Compile Include="Attribute\ScanAreaType.cs" />
+    <Compile Include="Attribute\ScanChannel.cs" />
+    <Compile Include="Attribute\ScanDirection.cs" />
+    <Compile Include="Attribute\ScanHead.cs" />
+    <Compile Include="Data\ScanImage.cs" />
+    <Compile Include="Data\ScanInfo.cs" />
+    <Compile Include="Attribute\ScanLineSkip.cs" />
+    <Compile Include="Attribute\ScanMode.cs" />
+    <Compile Include="Attribute\ScanPixel.cs" />
+    <Compile Include="Attribute\ScanPixelDwell.cs" />
+    <Compile Include="Attribute\ScanProperty.cs" />
     <Compile Include="Core\ScanSequence.cs" />
+    <Compile Include="Core\ScanTask.cs" />
     <Compile Include="Core\Scheduler.cs" />
     <Compile Include="Device\Laser.cs" />
     <Compile Include="Device\NiDaq.cs" />
@@ -109,5 +114,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

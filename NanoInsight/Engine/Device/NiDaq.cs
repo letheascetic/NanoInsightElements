@@ -1,4 +1,5 @@
 ﻿using log4net;
+using NanoInsight.Engine.Attribute;
 using NanoInsight.Engine.Core;
 using NationalInstruments;
 using NationalInstruments.DAQmx;

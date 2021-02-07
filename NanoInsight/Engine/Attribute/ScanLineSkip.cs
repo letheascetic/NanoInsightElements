@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NanoInsight.Engine.Core
+namespace NanoInsight.Engine.Attribute
 {
     /// <summary>
     /// 跳行扫描参数更新事件委托

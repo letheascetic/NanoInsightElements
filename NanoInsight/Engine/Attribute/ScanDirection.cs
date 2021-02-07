@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NanoInsight.Engine.Core
+namespace NanoInsight.Engine.Attribute
 {
     /// <summary>
     /// 扫描方向更新事件委托

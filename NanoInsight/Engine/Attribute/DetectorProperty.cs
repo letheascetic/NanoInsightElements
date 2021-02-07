@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NanoInsight.Engine.Core
+namespace NanoInsight.Engine.Attribute
 {
     /// <summary>
     /// 探测器类型：Apd or Pmt

@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 
-namespace NanoInsight.Engine.Core
+namespace NanoInsight.Engine.Attribute
 {
     /// <summary>
     /// 通道增益更新事件委托
