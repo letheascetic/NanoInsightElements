@@ -482,6 +482,56 @@ namespace NanoInsight.Engine.Core
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 扫描振镜属性
+        /// </summary>
+        public GalvoProperty GalvoAttr { get; set; }
+        /// <summary>
+        /// 探测器属性
+        /// </summary>
+        public DetectorProperty Detector { get; set; }
+
+        public PmtChannel FindPmtChannel(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return Detector.PmtChannel405;
+                case 1:
+                    return Detector.PmtChannel488;
+                case 2:
+                    return Detector.PmtChannel561;
+                case 3:
+                    return Detector.PmtChannel640;
+                default:
+                    return null;
+            }
+        }
+
+        public ApdChannel FindApdChannel(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return Detector.ApdChannel405;
+                case 1:
+                    return Detector.ApdChannel488;
+                case 2:
+                    return Detector.ApdChannel561;
+                case 3:
+                    return Detector.ApdChannel640;
+                default:
+                    return null;
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 激光器端口
+        /// </summary>
+        public string LaserPort { get; set; }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
         public static Config GetConfig()
         {
             if (pConfig == null)
@@ -495,6 +545,64 @@ namespace NanoInsight.Engine.Core
                 }
             }
             return pConfig;
+        }
+
+        /// <summary>
+        /// 通道数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetChannelNum()
+        {
+            return ChannelNum;
+        }
+
+        /// <summary>
+        /// 当前激活的通道数
+        /// </summary>
+        /// <returns></returns>
+        public int GetActivatedChannelNum()
+        {
+            int activatedChannelNum = 0;
+            activatedChannelNum += ScanChannel405.Activated ? 1 : 0;
+            activatedChannelNum += ScanChannel488.Activated ? 1 : 0;
+            activatedChannelNum += ScanChannel561.Activated ? 1 : 0;
+            activatedChannelNum += ScanChannel640.Activated ? 1 : 0;
+            return activatedChannelNum;
+        }
+
+        public ScanChannel FindScanChannel(int id)
+        {
+            return ScanChannels.FirstOrDefault(p => p.ID == id);
+        }
+
+        /// <summary>
+        /// 扩展后的扫描范围
+        /// </summary>
+        /// <returns></returns>
+        public ScanArea GetExtendScanArea()
+        {
+            RectangleF scanRange = SelectedScanArea.ScanRange;
+            float xExtendRange = ScanArea.ExtendLineTime * scanRange.Width / (SelectedScanPixelDwell.Data * SelectedScanPixel.Data);
+            float yExtendRange = ScanArea.ExtendRowCount * ScanPixelSize;
+            return new ScanArea(new RectangleF(scanRange.X - xExtendRange / 2, scanRange.Y - yExtendRange / 2, scanRange.Width + xExtendRange, scanRange.Height + yExtendRange));
+        }
+
+        /// <summary>
+        /// 扩展后的X像素数
+        /// </summary>
+        /// <returns></returns>
+        public int GetExtendScanXPixels()
+        {
+            return SelectedScanPixel.Data + (ScanArea.ExtendLineTime >> 1) / SelectedScanPixelDwell.Data * 2;
+        }
+
+        /// <summary>
+        /// 扩展后的Y像素数
+        /// </summary>
+        /// <returns></returns>
+        public int GetExtendScanYPixels()
+        {
+            return SelectedScanPixel.Data + ScanArea.ExtendRowCount;
         }
 
         private Config()
@@ -529,7 +637,22 @@ namespace NanoInsight.Engine.Core
             ScanChannel561 = new ScanChannel(ScanChannel.Channel561);
             ScanChannel640 = new ScanChannel(ScanChannel.Channel640);
             ScanChannels = new ScanChannel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
-
+            // 扫描类型 & 范围
+            ScanAreaTypeList = new List<ScanAreaType>()
+            {
+                new ScanAreaType(ScanAreaType.Square),
+                new ScanAreaType(ScanAreaType.Bank),
+                new ScanAreaType(ScanAreaType.Line)
+            };
+            FullScanArea = ScanArea.CreateFullScanArea();
+            SelectedScanArea = ScanArea.CreateFullScanArea();
+            // 像素尺寸
+            ScanPixelSize = SelectedScanArea.ScanRange.Width / SelectedScanPixel.Data;
+            // 振镜参数和探测器参数
+            GalvoAttr = new GalvoProperty();
+            Detector = new DetectorProperty();
+            // 激光端口
+            LaserPort = "COM2";
         }
 
     }

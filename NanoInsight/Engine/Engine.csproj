@@ -71,6 +71,7 @@
     <Compile Include="Common\MatrixUtil.cs" />
     <Compile Include="Core\ApiCode.cs" />
     <Compile Include="Core\Config.cs" />
+    <Compile Include="Core\DetectorProperty.cs" />
     <Compile Include="Core\GalvoProperty.cs" />
     <Compile Include="Core\ScanAcquisition.cs" />
     <Compile Include="Core\ScanArea.cs" />
