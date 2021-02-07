@@ -113,5 +113,47 @@
     <Setting Name="ScanLineSkipEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="XGalvoOffsetVoltage" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="YGalvoOffsetVoltage" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Y2GalvoOffsetVoltage" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="XGalvoCalibrationVoltage" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">58.48</Value>
+    </Setting>
+    <Setting Name="YGalvoCalibrationVoltage" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">58.48</Value>
+    </Setting>
+    <Setting Name="NiDeviceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dev1</Value>
+    </Setting>
+    <Setting Name="XGalvoAoChannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/ao0</Value>
+    </Setting>
+    <Setting Name="YGalvoAoChannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/ao1</Value>
+    </Setting>
+    <Setting Name="Y2GalvoAoChannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/ao2</Value>
+    </Setting>
+    <Setting Name="StartTrigger" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/ao/StartTrigger</Value>
+    </Setting>
+    <Setting Name="TriggerSignal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/port0/line0</Value>
+    </Setting>
+    <Setting Name="TriggerReceive" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/PFI9</Value>
+    </Setting>
+    <Setting Name="LaserPortName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="DetectorType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

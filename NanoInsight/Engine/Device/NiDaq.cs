@@ -1,4 +1,5 @@
 ﻿using log4net;
+using NationalInstruments.DAQmx;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,10 @@ namespace NanoInsight.Engine.Device
         ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+        public static string[] GetDeviceNames()
+        {
+            return DaqSystem.Local.Devices;
+        }
 
     }
 }

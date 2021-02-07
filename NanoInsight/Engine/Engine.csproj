@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,14 @@
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.DAQmx, Version=20.0.45.49152, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NationalInstruments.DAQmx.dll</HintPath>
+    </Reference>
     <Reference Include="NumSharp.Core">
       <HintPath>..\lib\NumSharp.Core.dll</HintPath>
     </Reference>
@@ -62,6 +71,7 @@
     <Compile Include="Common\MatrixUtil.cs" />
     <Compile Include="Core\ApiCode.cs" />
     <Compile Include="Core\Config.cs" />
+    <Compile Include="Core\GalvoProperty.cs" />
     <Compile Include="Core\ScanAcquisition.cs" />
     <Compile Include="Core\ScanArea.cs" />
     <Compile Include="Core\ScanAreaType.cs" />

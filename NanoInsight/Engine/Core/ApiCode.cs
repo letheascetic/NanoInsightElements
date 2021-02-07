@@ -51,6 +51,8 @@ namespace NanoInsight.Engine.Core
         public const int ConfigSetChannelPseudoColorFailed = 0x13008000;
         public const int ConfigSetChannelPinHoleFailed = 0x13010000;
         public const int ConfigSetChannelGammaFailed = 0x13020000;
+        public const int ConfigSetScanAreaFailed = 0x13040000;
+
 
         /// <summary>
         /// 是否成功

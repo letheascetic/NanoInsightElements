@@ -83,6 +83,13 @@ namespace NanoInsight.Engine.Core
                 ScanRange.Width.ToString("0.0"), ScanRange.Height.ToString("0.0"));
         }
 
+        public void Update(RectangleF scanRange)
+        {
+            ScanRange = scanRange;
+            Text = string.Format("[{0}, {1}][{2}, {3}]", ScanRange.X.ToString("0.0"), ScanRange.Y.ToString("0.0"),
+                ScanRange.Width.ToString("0.0"), ScanRange.Height.ToString("0.0"));
+        }
+
         public static ScanArea CreateFullScanArea()
         {
             float fullScanRange = Settings.Default.FullScanRange;

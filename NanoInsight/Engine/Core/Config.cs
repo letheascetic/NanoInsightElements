@@ -422,7 +422,66 @@ namespace NanoInsight.Engine.Core
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 扫描区域类型列表
+        /// </summary>
+        public List<ScanAreaType> ScanAreaTypeList { get; set; }
+        /// <summary>
+        /// 选择的扫描区域类型
+        /// </summary>
+        public ScanAreaType SelectedScanAreaType { get; set; }
+        /// <summary>
+        /// 选择的扫描区域
+        /// </summary>
+        public ScanArea SelectedScanArea { get; set; }
+        /// <summary>
+        /// 全视场
+        /// </summary>
+        public ScanArea FullScanArea { get; set; }
+        /// <summary>
+        /// 像素尺寸
+        /// </summary>
+        public float ScanPixelSize { get; set; }
+        /// <summary>
+        /// 设置扫描区域
+        /// </summary>
+        /// <param name="scanRange"></param>
+        /// <returns></returns>
+        public int SetScanArea(RectangleF scanRange)
+        {
+            if (!FullScanArea.ScanRange.Contains(scanRange))
+            {
+                return ApiCode.ConfigSetScanAreaFailed;
+            }
+            SelectedScanArea.Update(scanRange);
+            ScanPixelSize = SelectedScanArea.ScanRange.Width / SelectedScanPixel.Data;
+            Logger.Info(string.Format("Selected Scan Area [{0}].", SelectedScanArea.ScanRange));
+            return ApiCode.Success;
+        }
+        /// <summary>
+        /// 设置全视场的扫描范围
+        /// </summary>
+        /// <param name="scanRange"></param>
+        /// <returns></returns>
+        public int SetFullScanArea(RectangleF scanRange)
+        {
+            FullScanArea.Update(scanRange);
+            Logger.Info(string.Format("Full Scan Area [{0}].", FullScanArea.ScanRange));
+            return ApiCode.Success;
+        }
+        /// <summary>
+        /// 设置全视场的扫描范围
+        /// </summary>
+        /// <param name="scanRange"></param>
+        /// <returns></returns>
+        public int SetFullScanArea(float scanRange)
+        {
+            FullScanArea.Update(new System.Drawing.RectangleF(-scanRange / 2, -scanRange / 2, scanRange, scanRange));
+            Logger.Info(string.Format("Full Scan Area [{0}].", FullScanArea.ScanRange));
+            return ApiCode.Success;
+        }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
         public static Config GetConfig()
         {
             if (pConfig == null)
