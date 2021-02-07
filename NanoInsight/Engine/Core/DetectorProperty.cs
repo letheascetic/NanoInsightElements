@@ -120,6 +120,11 @@ namespace NanoInsight.Engine.Core
         public DetectorType Pmt { get; set; }
         public DetectorType Apd { get; set; }
 
+        public DetectorType CurrentDetecor
+        {
+            get { return Pmt.IsEnabled ? Pmt : Apd; }
+        }
+        
         /// <summary>
         /// 启动同步源
         /// </summary>
@@ -167,6 +172,40 @@ namespace NanoInsight.Engine.Core
             ApdChannel561 = new ApdChannel(2);
             ApdChannel640 = new ApdChannel(3);
 
+        }
+
+        public PmtChannel FindPmtChannel(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return PmtChannel405;
+                case 1:
+                    return PmtChannel488;
+                case 2:
+                    return PmtChannel561;
+                case 3:
+                    return PmtChannel640;
+                default:
+                    return null;
+            }
+        }
+
+        public ApdChannel FindApdChannel(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return ApdChannel405;
+                case 1:
+                    return ApdChannel488;
+                case 2:
+                    return ApdChannel561;
+                case 3:
+                    return ApdChannel640;
+                default:
+                    return null;
+            }
         }
 
     }

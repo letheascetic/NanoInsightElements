@@ -491,40 +491,6 @@ namespace NanoInsight.Engine.Core
         /// </summary>
         public DetectorProperty Detector { get; set; }
 
-        public PmtChannel FindPmtChannel(int id)
-        {
-            switch (id)
-            {
-                case 0:
-                    return Detector.PmtChannel405;
-                case 1:
-                    return Detector.PmtChannel488;
-                case 2:
-                    return Detector.PmtChannel561;
-                case 3:
-                    return Detector.PmtChannel640;
-                default:
-                    return null;
-            }
-        }
-
-        public ApdChannel FindApdChannel(int id)
-        {
-            switch (id)
-            {
-                case 0:
-                    return Detector.ApdChannel405;
-                case 1:
-                    return Detector.ApdChannel488;
-                case 2:
-                    return Detector.ApdChannel561;
-                case 3:
-                    return Detector.ApdChannel640;
-                default:
-                    return null;
-            }
-        }
-
         ///////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// 激光器端口

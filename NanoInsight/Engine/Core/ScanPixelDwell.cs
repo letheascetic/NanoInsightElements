@@ -8,6 +8,31 @@ using System.Threading.Tasks;
 namespace NanoInsight.Engine.Core
 {
     /// <summary>
+    /// 扫描像素时间更新事件
+    /// </summary>
+    /// <param name="scanPixel"></param>
+    /// <returns></returns>
+    public delegate int ScanPixelDwellChangedEventHandler(ScanPixelDwell scanPixelDwell);
+    /// <summary>
+    /// 扫描像素偏置更新事件
+    /// </summary>
+    /// <param name="scanPixelDwell"></param>
+    /// <returns></returns>
+    public delegate int ScanPixelOffsetChangedEventHandler(ScanPixelDwell scanPixelDwell);
+    /// <summary>
+    /// 扫描像素补偿更新事件
+    /// </summary>
+    /// <param name="scanPixelDwell"></param>
+    /// <returns></returns>
+    public delegate int ScanPixelCalibrationChangedEventHandler(ScanPixelDwell scanPixelDwell);
+    /// <summary>
+    /// 扫描像素缩放系数更新事件
+    /// </summary>
+    /// <param name="scanPixelDwell"></param>
+    /// <returns></returns>
+    public delegate int ScanPixelScaleChangedEventHandler(ScanPixelDwell scanPixelDwell);
+
+    /// <summary>
     /// 像素停留时间
     /// </summary>
     public class ScanPixelDwell : ScanPropertyWithValue<int>

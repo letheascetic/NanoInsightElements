@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Core
 {
+
+    /// <summary>
+    /// 扫描头更新事件委托
+    /// </summary>
+    /// <param name="scanHead"></param>
+    /// <returns></returns>
+    public delegate int ScanHeadChangedEventHandler(ScanHead scanHead);
+
+    /// <summary>
+    /// 扫描头
+    /// </summary>
     public class ScanHead : ScanProperty
     {
         ///////////////////////////////////////////////////////////////////////////////////////////

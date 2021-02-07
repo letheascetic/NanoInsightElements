@@ -18,8 +18,6 @@ namespace NanoInsight.Engine.Core
         public const int LaserOpenChannelFailed = 0x11000004;
         public const int LaserCloseChannelFailed = 0x11000008;
         public const int LaserSetPowerFailed = 0x11000010;
-        /* error for ni card */
-
         /* error for usb dac */
         public const int UsbDacExecuteFailed = 0x12000000;
         public const int UsbDacOpenFailed = 0x12000001;
@@ -52,6 +50,14 @@ namespace NanoInsight.Engine.Core
         public const int ConfigSetChannelPinHoleFailed = 0x13010000;
         public const int ConfigSetChannelGammaFailed = 0x13020000;
         public const int ConfigSetScanAreaFailed = 0x13040000;
+        /* error for ni card */
+        public const int NiDaqExecuteFailed = 0x14000000;
+        public const int NiDaqConfigAiTaskFailed = 0x14000001;
+        public const int NiDaqConfigAoTaskFailed = 0x14000002;
+        public const int NiDaqConfigDoTaskFailed = 0x14000004;
+        public const int NiDaqConfigCiTaskFailed = 0x14000008;
+        public const int NiDaqStartTaskFailed = 0x14000010;
+        public const int NiDaqSetGalvoOffsetVoltageFailed = 0x14000020;
 
 
         /// <summary>
@@ -61,7 +67,7 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public static bool IsSuccessful(int apiCode)
         {
-            return (Success & apiCode) == Success;
+            return apiCode == Success;
         }
 
     }

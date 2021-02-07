@@ -84,6 +84,8 @@
     <Compile Include="Core\ScanPixel.cs" />
     <Compile Include="Core\ScanPixelDwell.cs" />
     <Compile Include="Core\ScanProperty.cs" />
+    <Compile Include="Core\ScanSequence.cs" />
+    <Compile Include="Core\Scheduler.cs" />
     <Compile Include="Device\Laser.cs" />
     <Compile Include="Device\NiDaq.cs" />
     <Compile Include="Device\UsbDac.cs" />

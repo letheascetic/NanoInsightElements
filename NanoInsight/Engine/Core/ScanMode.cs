@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Core
 {
+    /// <summary>
+    /// 扫描模式更新事件
+    /// </summary>
+    /// <param name="scanMode"></param>
+    /// <returns></returns>
+    public delegate int ScanModeChangedEventHandler(ScanMode scanMode);
+
+    /// <summary>
+    /// 扫描模式：Galvo or Resonant
+    /// </summary>
     public class ScanMode : ScanProperty
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
