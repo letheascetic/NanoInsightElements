@@ -26,6 +26,20 @@ namespace NanoInsight.Engine.Attribute
     public delegate int ChannelPowerChangedEventHandler(ScanChannel channel);
 
     /// <summary>
+    /// 通道激光颜色更新事件
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelLaserColorChangedEventHandler(ScanChannel channel);
+
+    /// <summary>
+    /// 通道伪彩色更新事件
+    /// </summary>
+    /// <param name="channel"></param>
+    /// <returns></returns>
+    public delegate int ChannelPseudoColorChangedEventHandler(ScanChannel channel);
+
+    /// <summary>
     /// 通道激活状态更新事件委托
     /// </summary>
     /// <param name="channel"></param>

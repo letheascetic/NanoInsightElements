@@ -374,7 +374,7 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
-        public int SetChannelLaerColor(int id, Color color)
+        public int SetChannelLaserColor(int id, Color color)
         {
             ScanChannel scanChannel = ScanChannels.FirstOrDefault(p => p.ID == id);
             if (scanChannel == null)
