@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Data
 {
+    /// <summary>
+    /// PMT采集数据
+    /// </summary>
     public class PmtSampleData
     {
         public short[][] NSamples { get; set; }

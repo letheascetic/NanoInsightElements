@@ -44,6 +44,9 @@
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NationalInstruments.Common.dll</HintPath>
@@ -59,6 +62,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,6 +86,8 @@
     <Compile Include="Attribute\ScanChannel.cs" />
     <Compile Include="Attribute\ScanDirection.cs" />
     <Compile Include="Attribute\ScanHead.cs" />
+    <Compile Include="Data\ScanBank.cs" />
+    <Compile Include="Data\ScanData.cs" />
     <Compile Include="Data\ScanImage.cs" />
     <Compile Include="Data\ScanInfo.cs" />
     <Compile Include="Attribute\ScanLineSkip.cs" />

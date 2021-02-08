@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Data
 {
+    /// <summary>
+    /// APD采集数据
+    /// </summary>
     public class ApdSampleData
     {
         public int[] NSamples { get; set; }

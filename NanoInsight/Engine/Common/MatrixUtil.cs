@@ -1,7 +1,7 @@
 ﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
+using MathNet.Numerics.LinearAlgebra.Double;
 using NanoInsight.Engine.Attribute;
-using NanoInsight.Engine.Core;
 using NumSharp;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,20 @@ namespace NanoInsight.Engine.Common
 {
     public class MatrixUtil
     {
+        /// <summary>
+        /// 求解矩阵运算Ax=B中的x
+        /// </summary>
+        /// <param name="matrixData">矩阵A</param>
+        /// <param name="matrixResult">结果B</param>
+        /// <returns></returns>
+        public static double[] SolveMatrix(double[,] matrixData, double[] matrixResult)
+        {
+            DenseMatrix a = DenseMatrix.OfArray(matrixData);
+            DenseVector b = new DenseVector(matrixResult);
+            var x = a.LU().Solve(b);
+            return x.AsArray();
+        }
+
         /// <summary>
         /// 负电压转换成正电压
         /// </summary>

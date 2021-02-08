@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Data
 {
+    /// <summary>
+    /// 扫描信息
+    /// </summary>
     public class ScanInfo
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
