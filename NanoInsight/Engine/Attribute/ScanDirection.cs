@@ -28,7 +28,7 @@ namespace NanoInsight.Engine.Attribute
         {
             if (id == Unidirection)
             {
-                id = Unidirection;
+                ID = Unidirection;
                 Text = "单向";
                 IsEnabled = Settings.Default.ScanDirection == Unidirection;
             }

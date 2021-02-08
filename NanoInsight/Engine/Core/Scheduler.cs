@@ -289,7 +289,7 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int SetScanHead(int id)
         {
-            int code = ApiCode.Success;
+            int code;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
@@ -311,12 +311,11 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int SetScanDirection(int id)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SetScanDirection(code);
+            int code = mConfig.SetScanDirection(id);
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanDirectionChangedEvent != null)
@@ -333,12 +332,11 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int SetScanMode(int id)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SetScanMode(id);
+            int code = mConfig.SetScanMode(id);
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanModeChangedEvent != null)
@@ -356,7 +354,7 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SelectScanPixel(int id)
         {
-            int code = ApiCode.Success;
+            int code;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
@@ -379,7 +377,7 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SelectScanPixelDwell(int id)
         {
-            int code = ApiCode.Success;
+            int code;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
@@ -459,12 +457,11 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SelectLineSkip(int id)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SelectLineSkip(id);
+            int code = mConfig.SelectLineSkip(id);
             if (ApiCode.IsSuccessful(code))
             {
                 if (LineSkipChangedEvent != null)
@@ -578,12 +575,11 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SetChannelStatus(int id, bool activated)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SetChannelStatus(id, activated);
+            int code = mConfig.SetChannelStatus(id, activated);
             if (ApiCode.IsSuccessful(code))
             {
                 if (ChannelActivateChangedEvent != null)
@@ -603,12 +599,11 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SetScanArea(RectangleF scanRange)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SetScanArea(scanRange);
+            int code = mConfig.SetScanArea(scanRange);
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanAreaChangedEvent != null)
@@ -626,12 +621,11 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SetFullScanArea(RectangleF scanRange)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SetFullScanArea(scanRange);
+            int code = mConfig.SetFullScanArea(scanRange);
             if (ApiCode.IsSuccessful(code))
             {
                 if (FullScanAreaChangedEvent != null)
@@ -649,12 +643,11 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SetFullScanArea(float scanRange)
         {
-            int code = ApiCode.Success;
             if (mConfig.IsScanning)
             {
                 return ApiCode.SchedulerTaskScanning;
             }
-            code = mConfig.SetFullScanArea(scanRange);
+            int code = mConfig.SetFullScanArea(scanRange);
             if (ApiCode.IsSuccessful(code))
             {
                 if (FullScanAreaChangedEvent != null)
