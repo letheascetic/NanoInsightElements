@@ -303,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\ScanAcquisitionModel.cs" />
+    <Compile Include="Model\ScanPixelModel.cs" />
     <Compile Include="Model\ScanPropertyBaseModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
