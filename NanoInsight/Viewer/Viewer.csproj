@@ -249,6 +249,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\c1\v4.0\C1.Win.TreeView.4.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV.UI, Version=4.1.0.3420, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Emgu.CV.UI.dll</HintPath>
@@ -260,6 +263,15 @@
     <Reference Include="Emgu.CV.World, Version=4.1.0.3420, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Emgu.CV.World.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
@@ -276,6 +288,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -287,8 +302,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ScanAcquisitionModel.cs" />
+    <Compile Include="Model\ScanPropertyBaseModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ScanAreaViewModel.cs" />
+    <Compile Include="ViewModel\ScanSettingViewModel.cs" />
     <Compile Include="View\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +326,12 @@
     <Compile Include="View\ScanSettingView.Designer.cs">
       <DependentUpon>ScanSettingView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SysSettingsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SysSettingsView.Designer.cs">
+      <DependentUpon>SysSettingsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ThemeView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,11 +349,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ScanAreaView.resx">
       <DependentUpon>ScanAreaView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ScanSettingView.resx">
       <DependentUpon>ScanSettingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SysSettingsView.resx">
+      <DependentUpon>SysSettingsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ThemeView.resx">
       <DependentUpon>ThemeView.cs</DependentUpon>
@@ -355,6 +386,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reset.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{5a1b17dd-4aed-4240-97b8-07ccf05d465e}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
