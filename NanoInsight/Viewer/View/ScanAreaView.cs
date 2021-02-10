@@ -77,7 +77,10 @@ namespace NanoInsight.Viewer.View
         private void RegisterEvents()
         {
             mScanAreaVM.Engine.ScanAcquisitionChangedEvent += ScanAcquisitionChangedEventHandler;
+            mScanAreaVM.Engine.ScanPixelChangedEvent += ScanPixelChangedEventHandler;
+            mScanAreaVM.Engine.ScanAreaChangedEvent += ScanAreaChangedEventHandler;
 
+            cbxScanPixel.ChangeCommitted += ScanPixelChanged;
             pbxScanArea.MouseEnter += MouseEnterImage;
             pbxScanArea.MouseLeave += MouseLeaveImage;
             pbxScanArea.MouseWheel += ScanRangeZoomed;
@@ -303,7 +306,79 @@ namespace NanoInsight.Viewer.View
             {
                 return;
             }
-            // mScanAreaVM.Engine.ScanPixelChangeCommand(scanPixel);
+            mScanAreaVM.SelectScanPixel(scanPixel.ID);
+        }
+
+        /// <summary>
+        /// 扫描像素变化事件处理
+        /// </summary>
+        /// <param name="scanPixel"></param>
+        /// <returns></returns>
+        private int ScanPixelChangedEventHandler(Engine.Attribute.ScanPixel scanPixel)
+        {
+            if(scanPixel.ID == ((ScanPixelModel)cbxScanPixel.SelectedItem).ID)
+            {
+                return ApiCode.Success;
+            }
+            return mScanAreaVM.ScanPixelChangedEventHandler(scanPixel.ID);
+        }
+
+        /// <summary>
+        /// 使用最大视场范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FullRangeClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            mScanAreaVM.SetScanArea(mScanAreaVM.Engine.Configuration.FullScanArea.ScanRange);
+            mScanRange = mScanAreaVM.SelectedScanArea.ScanRange;
+            mScanPixelRange = mScanAreaVM.ScanRangeToScanPixelRange(mScanRange);
+            mCoordinate = ScanPixelRangeToCoordinate(mScanPixelRange);
+            mCoordinateChanged = false;
+
+            DrawScanArea(mCoordinate, mScanAreaGra, pbxScanArea);
+            DrawScanArea(mCoordinate, mScanAreaGra, pbxScanArea);
+        }
+
+        /// <summary>
+        /// 使用上一个扫描范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LastScanRangeClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            mScanRange = mScanAreaVM.SelectedScanArea.ScanRange;
+            mScanPixelRange = mScanAreaVM.ScanRangeToScanPixelRange(mScanRange);
+            mCoordinate = ScanPixelRangeToCoordinate(mScanPixelRange);
+            mCoordinateChanged = false;
+
+            DrawScanArea(mCoordinate, mScanAreaGra, pbxScanArea);
+            DrawScanArea(mCoordinate, mScanAreaGra, pbxScanArea);
+        }
+
+        /// <summary>
+        /// 使用当前扫描范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanRangeConfirmClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            mScanPixelRange = CoordinateToScanPixelRange(mCoordinate);
+            mScanRange = mScanAreaVM.ScanPixelRangeToScanRange(mScanPixelRange);
+            mScanAreaVM.SetScanArea(mScanRange);
+
+            mScanRange = mScanAreaVM.SelectedScanArea.ScanRange;
+            mScanPixelRange = mScanAreaVM.ScanRangeToScanPixelRange(mScanRange);
+            mCoordinate = ScanPixelRangeToCoordinate(mScanPixelRange);
+            mCoordinateChanged = false;
+
+            DrawScanArea(mCoordinate, mScanAreaGra, pbxScanArea);
+            DrawScanArea(mCoordinate, mScanAreaGra, pbxScanArea);
+        }
+
+        private int ScanAreaChangedEventHandler(Engine.Attribute.ScanArea scanArea)
+        {
+            return mScanAreaVM.ScanAreaChangedEventHandler(scanArea.ScanRange);
         }
 
     }

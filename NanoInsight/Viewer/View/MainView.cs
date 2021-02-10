@@ -65,5 +65,14 @@ namespace NanoInsight.Viewer.View
                 }
             }
         }
+
+        private void ScanAreaClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            ScanAreaView mScanAreaView = new ScanAreaView()
+            {
+                MdiParent = this,
+                Visible = true
+            };
+        }
     }
 }

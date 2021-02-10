@@ -35,6 +35,8 @@
             this.cmdLinkTheme = new C1.Win.C1Command.C1CommandLink();
             this.cmdTheme = new C1.Win.C1Command.C1Command();
             this.cmdMenuWindow = new C1.Win.C1Command.C1CommandMenu();
+            this.cmdLinkScanArea = new C1.Win.C1Command.C1CommandLink();
+            this.cmdScanArea = new C1.Win.C1Command.C1Command();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainMenu = new C1.Win.C1Command.C1MainMenu();
             this.cmdLinkFile = new C1.Win.C1Command.C1CommandLink();
@@ -59,6 +61,7 @@
             this.c1CommandHolder.Commands.Add(this.cmdMenuView);
             this.c1CommandHolder.Commands.Add(this.cmdMenuWindow);
             this.c1CommandHolder.Commands.Add(this.cmdTheme);
+            this.c1CommandHolder.Commands.Add(this.cmdScanArea);
             this.c1CommandHolder.Owner = this;
             // 
             // cmdMenuFile
@@ -90,10 +93,23 @@
             // 
             // cmdMenuWindow
             // 
+            this.cmdMenuWindow.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
+            this.cmdLinkScanArea});
             this.cmdMenuWindow.HideNonRecentLinks = false;
             this.cmdMenuWindow.Name = "cmdMenuWindow";
             this.cmdMenuWindow.ShortcutText = "";
             this.cmdMenuWindow.Text = "窗口（&W）";
+            // 
+            // cmdLinkScanArea
+            // 
+            this.cmdLinkScanArea.Command = this.cmdScanArea;
+            // 
+            // cmdScanArea
+            // 
+            this.cmdScanArea.Name = "cmdScanArea";
+            this.cmdScanArea.ShortcutText = "";
+            this.cmdScanArea.Text = "扫描区域（&S）";
+            this.cmdScanArea.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanAreaClick);
             // 
             // statusStrip
             // 
@@ -217,6 +233,7 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nano Insight v";
@@ -251,5 +268,7 @@
         private System.Windows.Forms.ToolStripButton btnLaserRelease;
         private C1.Win.C1Command.C1CommandDock dockToolBar;
         private C1.Win.C1Command.C1ToolBar toolBar;
+        private C1.Win.C1Command.C1CommandLink cmdLinkScanArea;
+        private C1.Win.C1Command.C1Command cmdScanArea;
     }
 }

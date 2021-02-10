@@ -103,6 +103,7 @@ namespace NanoInsight.Viewer.View
             this.cmdFullRange.Name = "cmdFullRange";
             this.cmdFullRange.ShortcutText = "";
             this.cmdFullRange.Text = "全视场";
+            this.cmdFullRange.Click += new C1.Win.C1Command.ClickEventHandler(this.FullRangeClick);
             // 
             // cmdConfirm
             // 
@@ -317,6 +318,8 @@ namespace NanoInsight.Viewer.View
             this.pbxScanArea.Size = new System.Drawing.Size(100, 100);
             this.pbxScanArea.TabIndex = 22;
             this.pbxScanArea.TabStop = false;
+            this.pbxScanArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownChanged);
+            this.pbxScanArea.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ScanRangeMoved);
             // 
             // pictureBox
             // 
@@ -344,6 +347,8 @@ namespace NanoInsight.Viewer.View
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.dockToolBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ScanAreaView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "扫描区域";

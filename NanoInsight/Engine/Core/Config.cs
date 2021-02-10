@@ -206,6 +206,8 @@ namespace NanoInsight.Engine.Core
                     scanPixel.IsEnabled = false;
                 }
             }
+            ScanPixelSize = SelectedScanArea.ScanRange.Width / SelectedScanPixel.Data;
+            Logger.Info(string.Format("Scan Pixel [{0}].", SelectedScanPixel.Text));
             return ApiCode.Success;
         }
 

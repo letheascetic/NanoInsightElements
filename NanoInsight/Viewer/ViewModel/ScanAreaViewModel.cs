@@ -162,11 +162,56 @@ namespace NanoInsight.Viewer.ViewModel
             return new RectangleF(x, y, width, height);
         }
 
-        public void SetScanPixel(ScanPixelModel scanPixelModel)
+        public int SelectScanPixel(int id)
         {
-            SelectedScanPixel = scanPixelModel;
+            foreach (ScanPixelModel scanPixel in ScanPixelList)
+            {
+                if (scanPixel.ID == id)
+                {
+                    SelectedScanPixel = scanPixel;
+                    scanPixel.IsEnabled = true;
+                }
+                else
+                {
+                    scanPixel.IsEnabled = false;
+                }
+            }
+            int code = mScheduler.SelectScanPixel(SelectedScanPixel.ID);
+            ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+            return code;
+        }
 
-            
+        public int ScanPixelChangedEventHandler(int id)
+        {
+            foreach (ScanPixelModel scanPixel in ScanPixelList)
+            {
+                if (scanPixel.ID == id)
+                {
+                    SelectedScanPixel = scanPixel;
+                    scanPixel.IsEnabled = true;
+                }
+                else
+                {
+                    scanPixel.IsEnabled = false;
+                }
+            }
+            ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+            return ApiCode.Success;
+        }
+
+        public int SetScanArea(RectangleF scanRange)
+        {
+            SelectedScanArea.Update(scanRange);
+            int code = mScheduler.SetScanArea(scanRange);
+            ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+            return code;
+        }
+
+        public int ScanAreaChangedEventHandler(RectangleF scanRange)
+        {
+            SelectedScanArea.Update(scanRange);
+            ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+            return ApiCode.Success;
         }
 
     }
