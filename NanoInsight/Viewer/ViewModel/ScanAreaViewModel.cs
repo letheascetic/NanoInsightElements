@@ -2,6 +2,7 @@
 using Emgu.CV.CvEnum;
 using GalaSoft.MvvmLight;
 using NanoInsight.Engine.Core;
+using NanoInsight.Viewer.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,7 +14,6 @@ namespace NanoInsight.Viewer.ViewModel
 {
     public class ScanAreaViewModel : ViewModelBase
     {
-
         private readonly Scheduler mScheduler;
 
         private int pixelDwell;
@@ -21,6 +21,13 @@ namespace NanoInsight.Viewer.ViewModel
         private int scanHeight;
         private int zoomFactor;
         private Mat scanImage;
+
+        private ScanAreaModel selectedScanArea;
+        private ScanAreaModel fullScanArea;
+        private float scanPixelSize;
+
+        private List<ScanPixelModel> scanPixelList;
+        private ScanPixelModel selectedScanPixel;
 
         public int PixelDwell
         {
@@ -60,6 +67,53 @@ namespace NanoInsight.Viewer.ViewModel
             set { scanImage = value; RaisePropertyChanged(() => ScanImage); }
         }
 
+        /// <summary>
+        /// 当前选择的扫描区域
+        /// </summary>
+        public ScanAreaModel SelectedScanArea
+        {
+            get { return selectedScanArea; }
+            set { selectedScanArea = value; RaisePropertyChanged(() => SelectedScanArea); }
+        }
+        /// <summary>
+        /// 全视场
+        /// </summary>
+        public ScanAreaModel FullScanArea
+        {
+            get { return fullScanArea; }
+            set { fullScanArea = value; RaisePropertyChanged(() => FullScanArea); }
+        }
+        /// <summary>
+        /// 扫描像素尺寸
+        /// </summary>
+        public float ScanPixelSize
+        {
+            get { return scanPixelSize; }
+            set { scanPixelSize = value; RaisePropertyChanged(() => ScanPixelSize); }
+        }
+
+        /// <summary>
+        /// 扫描像素列表
+        /// </summary>
+        public List<ScanPixelModel> ScanPixelList
+        {
+            get { return scanPixelList; }
+            set { scanPixelList = value; RaisePropertyChanged(() => ScanPixelList); }
+        }
+        /// <summary>
+        /// 选择的扫描像素 
+        /// </summary>
+        public ScanPixelModel SelectedScanPixel
+        {
+            get { return selectedScanPixel; }
+            set { selectedScanPixel = value; RaisePropertyChanged(() => SelectedScanPixel); }
+        }
+
+        public Scheduler Engine
+        {
+            get { return mScheduler; }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         public ScanAreaViewModel()
@@ -69,9 +123,15 @@ namespace NanoInsight.Viewer.ViewModel
             PixelDwell = mScheduler.Configuration.SelectedScanPixelDwell.Data;
             ScanWidth = mScheduler.Configuration.SelectedScanPixel.Data;
             ScanHeight = mScheduler.Configuration.SelectedScanPixel.Data;
-
             ZoomFactor = 5;
             ScanImage = new Mat(ScanWidth, ScanHeight, DepthType.Cv8U, 3);
+
+            FullScanArea = new ScanAreaModel(mScheduler.Configuration.FullScanArea);
+            SelectedScanArea = new ScanAreaModel(mScheduler.Configuration.SelectedScanArea);
+            ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+
+            ScanPixelList = ScanPixelModel.Initialize(mScheduler.Configuration.ScanPixelList);
+            SelectedScanPixel = ScanPixelList.Where(p => p.IsEnabled).First();
         }
 
         /// <summary>
@@ -81,11 +141,32 @@ namespace NanoInsight.Viewer.ViewModel
         /// <returns></returns>
         public Rectangle ScanRangeToScanPixelRange(RectangleF scanRange)
         {
-            int x = (int)((scanRange.X - mScheduler.Configuration.SelectedScanArea.ScanRange.X) / mScheduler.Configuration.ScanPixelSize);
-            int y = (int)((scanRange.Y - mScheduler.Configuration.SelectedScanArea.ScanRange.Y) / mScheduler.Configuration.ScanPixelSize);
-            int width = (int)(scanRange.Width / mScheduler.Configuration.ScanPixelSize);
-            int height = (int)(scanRange.Height / mScheduler.Configuration.ScanPixelSize);
+            int x = (int)((scanRange.X - SelectedScanArea.ScanRange.X) / ScanPixelSize);
+            int y = (int)((scanRange.Y - SelectedScanArea.ScanRange.Y) / ScanPixelSize);
+            int width = (int)(scanRange.Width / ScanPixelSize);
+            int height = (int)(scanRange.Height / ScanPixelSize);
             return new Rectangle(x, y, width, height);
+        }
+
+        /// <summary>
+        /// 扫描像素范围转换成扫描范围
+        /// </summary>
+        /// <param name="scanPixelRange"></param>
+        /// <returns></returns>
+        public RectangleF ScanPixelRangeToScanRange(Rectangle scanPixelRange)
+        {
+            float x = SelectedScanArea.ScanRange.X + ScanPixelSize * scanPixelRange.X;
+            float y = SelectedScanArea.ScanRange.Y + ScanPixelSize * scanPixelRange.Y;
+            float width = ScanPixelSize * scanPixelRange.Width;
+            float height = ScanPixelSize * scanPixelRange.Height;
+            return new RectangleF(x, y, width, height);
+        }
+
+        public void SetScanPixel(ScanPixelModel scanPixelModel)
+        {
+            SelectedScanPixel = scanPixelModel;
+
+            
         }
 
     }

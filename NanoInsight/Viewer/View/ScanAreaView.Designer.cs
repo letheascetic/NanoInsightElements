@@ -32,6 +32,11 @@ namespace NanoInsight.Viewer.View
             this.components = new System.ComponentModel.Container();
             this.c1CommandHolder = new C1.Win.C1Command.C1CommandHolder();
             this.cmdSquare = new C1.Win.C1Command.C1Command();
+            this.cmdRect = new C1.Win.C1Command.C1Command();
+            this.cmdFullRange = new C1.Win.C1Command.C1Command();
+            this.cmdConfirm = new C1.Win.C1Command.C1Command();
+            this.cmdLastScanRange = new C1.Win.C1Command.C1Command();
+            this.contextMenu = new C1.Win.C1Command.C1ContextMenu();
             this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
             this.toolBar = new C1.Win.C1Command.C1ToolBar();
             this.cmdLinkSquare = new C1.Win.C1Command.C1CommandLink();
@@ -58,15 +63,10 @@ namespace NanoInsight.Viewer.View
             this.lbScanRangeValue = new C1.Win.C1InputPanel.InputLabel();
             this.lbMaxScanRange = new C1.Win.C1InputPanel.InputLabel();
             this.lbMaxScanRangeValue = new C1.Win.C1InputPanel.InputLabel();
-            this.cmdRect = new C1.Win.C1Command.C1Command();
             this.pbxScanArea = new System.Windows.Forms.PictureBox();
             this.pictureBox = new Emgu.CV.UI.ImageBox();
-            this.cmdFullRange = new C1.Win.C1Command.C1Command();
-            this.cmdLastScanRange = new C1.Win.C1Command.C1Command();
-            this.cmdConfirm = new C1.Win.C1Command.C1Command();
             this.mCursorTimer = new System.Windows.Forms.Timer(this.components);
             this.mImageTimer = new System.Windows.Forms.Timer(this.components);
-            this.contextMenu = new C1.Win.C1Command.C1ContextMenu();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
             this.dockToolBar.SuspendLayout();
@@ -90,6 +90,38 @@ namespace NanoInsight.Viewer.View
             this.cmdSquare.Name = "cmdSquare";
             this.cmdSquare.ShortcutText = "";
             this.cmdSquare.Text = "方形";
+            // 
+            // cmdRect
+            // 
+            this.cmdRect.Name = "cmdRect";
+            this.cmdRect.ShortcutText = "";
+            this.cmdRect.Text = "矩形";
+            // 
+            // cmdFullRange
+            // 
+            this.cmdFullRange.Image = global::NanoInsight.Viewer.Properties.Resources.fullrange;
+            this.cmdFullRange.Name = "cmdFullRange";
+            this.cmdFullRange.ShortcutText = "";
+            this.cmdFullRange.Text = "全视场";
+            // 
+            // cmdConfirm
+            // 
+            this.cmdConfirm.Image = global::NanoInsight.Viewer.Properties.Resources.confirm;
+            this.cmdConfirm.Name = "cmdConfirm";
+            this.cmdConfirm.ShortcutText = "";
+            this.cmdConfirm.Text = "设置为当前扫描视场";
+            // 
+            // cmdLastScanRange
+            // 
+            this.cmdLastScanRange.Image = global::NanoInsight.Viewer.Properties.Resources.reset;
+            this.cmdLastScanRange.Name = "cmdLastScanRange";
+            this.cmdLastScanRange.ShortcutText = "";
+            this.cmdLastScanRange.Text = "使用上一个扫描视场";
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.ShortcutText = "";
             // 
             // dockToolBar
             // 
@@ -277,12 +309,6 @@ namespace NanoInsight.Viewer.View
             this.lbMaxScanRangeValue.Name = "lbMaxScanRangeValue";
             this.lbMaxScanRangeValue.Text = "xxxx";
             // 
-            // cmdRect
-            // 
-            this.cmdRect.Name = "cmdRect";
-            this.cmdRect.ShortcutText = "";
-            this.cmdRect.Text = "矩形";
-            // 
             // pbxScanArea
             // 
             this.pbxScanArea.BackColor = System.Drawing.Color.Transparent;
@@ -303,35 +329,10 @@ namespace NanoInsight.Viewer.View
             this.pictureBox.TabIndex = 17;
             this.pictureBox.TabStop = false;
             // 
-            // cmdFullRange
-            // 
-            this.cmdFullRange.Image = global::NanoInsight.Viewer.Properties.Resources.fullrange;
-            this.cmdFullRange.Name = "cmdFullRange";
-            this.cmdFullRange.ShortcutText = "";
-            this.cmdFullRange.Text = "全视场";
-            // 
-            // cmdLastScanRange
-            // 
-            this.cmdLastScanRange.Image = global::NanoInsight.Viewer.Properties.Resources.reset;
-            this.cmdLastScanRange.Name = "cmdLastScanRange";
-            this.cmdLastScanRange.ShortcutText = "";
-            this.cmdLastScanRange.Text = "使用上一个扫描视场";
-            // 
-            // cmdConfirm
-            // 
-            this.cmdConfirm.Image = global::NanoInsight.Viewer.Properties.Resources.confirm;
-            this.cmdConfirm.Name = "cmdConfirm";
-            this.cmdConfirm.ShortcutText = "";
-            this.cmdConfirm.Text = "设置为当前扫描视场";
-            // 
             // mCursorTimer
             // 
             this.mCursorTimer.Interval = 250;
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.ShortcutText = "";
+            this.mCursorTimer.Tick += new System.EventHandler(this.TimerTick);
             // 
             // ScanAreaView
             // 
@@ -346,6 +347,7 @@ namespace NanoInsight.Viewer.View
             this.Name = "ScanAreaView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "扫描区域";
+            this.Load += new System.EventHandler(this.ScanAreaViewLoad);
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).EndInit();
             this.dockToolBar.ResumeLayout(false);

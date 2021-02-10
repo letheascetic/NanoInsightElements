@@ -289,12 +289,10 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int SetScanHead(int id)
         {
-            int code;
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            code = mConfig.SetScanHead(id);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetScanHead(id);
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanHeadChangedEvent != null)
@@ -311,11 +309,10 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int SetScanDirection(int id)
         {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            int code = mConfig.SetScanDirection(id);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetScanDirection(id);
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanDirectionChangedEvent != null)
@@ -332,11 +329,10 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int SetScanMode(int id)
         {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            int code = mConfig.SetScanMode(id);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetScanMode(id);
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanModeChangedEvent != null)
@@ -354,12 +350,10 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SelectScanPixel(int id)
         {
-            int code;
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            code = mConfig.SelectScanPixel(id);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SelectScanPixel(id);
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanPixelChangedEvent != null)
@@ -377,12 +371,10 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SelectScanPixelDwell(int id)
         {
-            int code;
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            code = mConfig.SelectScanPixelDwell(id);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SelectScanPixelDwell(id);
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanPixelDwellChangedEvent != null)
@@ -440,6 +432,7 @@ namespace NanoInsight.Engine.Core
         public int SetScanPixelScale(int id, int scanPixelScale)
         {
             int code = mConfig.SetScanPixelScale(id, scanPixelScale);
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanPixelScaleChangedEvent != null)
@@ -457,11 +450,10 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SelectLineSkip(int id)
         {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            int code = mConfig.SelectLineSkip(id);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SelectLineSkip(id); ;
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (LineSkipChangedEvent != null)
@@ -575,11 +567,20 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SetChannelStatus(int id, bool activated)
         {
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetChannelStatus(id, activated);
+
             if (mConfig.IsScanning)
             {
-                return ApiCode.SchedulerTaskScanning;
+                ScanChannel channel = mConfig.FindScanChannel(id);
+                if (!channel.Activated && mConfig.GetActivatedChannelNum() == 0)
+                {
+                    channel.Activated = true;
+                }
             }
-            int code = mConfig.SetChannelStatus(id, activated);
+
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ChannelActivateChangedEvent != null)
@@ -599,11 +600,10 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public int SetScanArea(RectangleF scanRange)
         {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            int code = mConfig.SetScanArea(scanRange);
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetScanArea(scanRange);
+            code |= AfterPropertyChanged();
+
             if (ApiCode.IsSuccessful(code))
             {
                 if (ScanAreaChangedEvent != null)
@@ -870,6 +870,34 @@ namespace NanoInsight.Engine.Core
                 }
             }
             mSampleWorkers = null;
+        }
+
+        /// <summary>
+        /// 在属性变化前执行
+        /// </summary>
+        /// <returns></returns>
+        private int BeforePropertyChanged()
+        {
+            // 如果当前正在采集(有任一采集模式使能)，则先停止采集
+            if (mConfig.IsScanning)
+            {
+                return StopScanTask();
+            }
+            return ApiCode.Success;
+        }
+
+        private int AfterPropertyChanged()
+        {
+            if (mConfig.IsScanning)
+            {
+                CreateScanTask(0, "实时扫描", out ScanTask scanTask);
+                return StartScanTask(scanTask);
+            }
+            else
+            {
+                mSequence.GenerateScanCoordinates();
+            }
+            return ApiCode.Success;
         }
 
     }
