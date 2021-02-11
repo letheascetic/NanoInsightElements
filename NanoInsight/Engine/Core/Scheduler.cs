@@ -659,6 +659,194 @@ namespace NanoInsight.Engine.Core
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+
+        public int SetXGalvoChannel(string xGalvoChannel)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.XGalvoAoChannel = xGalvoChannel;
+            Logger.Info(string.Format("X Galvo Ao Channel [{0}].", mConfig.GalvoAttr.XGalvoAoChannel));
+            return ApiCode.Success;
+        }
+
+        public int SetYGalvoChannel(string yGalvoChannel)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.YGalvoAoChannel = yGalvoChannel;
+            Logger.Info(string.Format("Y Galvo Ao Channel [{0}].", mConfig.GalvoAttr.YGalvoAoChannel));
+            return ApiCode.Success;
+        }
+
+        public int SetY2GalvoChannel(string y2GalvoChannel)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.Y2GalvoAoChannel = y2GalvoChannel;
+            Logger.Info(string.Format("Y2 Galvo Ao Channel [{0}].", mConfig.GalvoAttr.Y2GalvoAoChannel));
+            return ApiCode.Success;
+        }
+
+        public int SetXGalvoOffsetVoltage(double offsetVoltage)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.XGalvoOffsetVoltage = offsetVoltage;
+            Logger.Info(string.Format("X Galvo Offset Voltage [{0}].", mConfig.GalvoAttr.XGalvoOffsetVoltage));
+            return ApiCode.Success;
+        }
+
+        public int SetXGalvoCalibrationVoltage(double calibrationVoltage)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.XGalvoCalibrationVoltage = calibrationVoltage;
+            Logger.Info(string.Format("X Galvo Calibration Voltage [{0}].", mConfig.GalvoAttr.XGalvoCalibrationVoltage));
+            return ApiCode.Success;
+        }
+
+        public int SetYGalvoOffsetVoltage(double offsetVoltage)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.YGalvoOffsetVoltage = offsetVoltage;
+            Logger.Info(string.Format("Y Galvo Offset Voltage [{0}].", mConfig.GalvoAttr.YGalvoOffsetVoltage));
+            return ApiCode.Success;
+        }
+
+        public int SetYGalvoCalibrationVoltage(double calibrationVoltage)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.YGalvoCalibrationVoltage = calibrationVoltage;
+            Logger.Info(string.Format("Y Galvo Calibration Voltage [{0}].", mConfig.GalvoAttr.YGalvoCalibrationVoltage));
+            return ApiCode.Success;
+        }
+
+        public int SetGalvoResponseTime(double responseTime)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.GalvoAttr.GalvoResponseTime = responseTime;
+            Logger.Info(string.Format("Galvo Response Time [{0}].", mConfig.GalvoAttr.GalvoResponseTime));
+            return ApiCode.Success;
+        }
+
+        public int SetDetectorMode(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            
+            mConfig.Detector.Pmt.IsEnabled = mConfig.Detector.Pmt.ID == id;
+            mConfig.Detector.Apd.IsEnabled = !mConfig.Detector.Pmt.IsEnabled;
+            Logger.Info(string.Format("Detector Mode [{0}].", mConfig.Detector.CurrentDetecor.Text));
+            return ApiCode.Success;
+        }
+
+        public int SetPmtChannel(int id, string pmtChannel)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            PmtChannel channel = mConfig.Detector.FindPmtChannel(id);
+            channel.AiChannel = pmtChannel;
+            Logger.Info(string.Format("Pmt [{0}] Ao Channel [{1}].", channel.ID, channel.AiChannel));
+            return ApiCode.Success;
+        }
+
+        public int SetApdSource(int id, string apdSource)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            ApdChannel channel = mConfig.Detector.FindApdChannel(id);
+            channel.CiSource = apdSource;
+            Logger.Info(string.Format("Apd [{0}] Ci Channel [{1}:{2}].", channel.ID, channel.CiSource, channel.CiChannel));
+            return ApiCode.Success;
+        }
+
+        public int SetApdChannel(int id, string apdChannel)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            ApdChannel channel = mConfig.Detector.FindApdChannel(id);
+            channel.CiChannel = apdChannel;
+            Logger.Info(string.Format("Apd [{0}] Ci Channel [{1}:{2}].", channel.ID, channel.CiSource, channel.CiChannel));
+            return ApiCode.Success;
+        }
+
+        public int SetStartTrigger(string startTrigger)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.Detector.StartTrigger = startTrigger;
+            Logger.Info(string.Format("Start Trigger [{0}].", mConfig.Detector.StartTrigger));
+            return ApiCode.Success;
+        }
+
+        public int SetTriggerSignal(string triggerSignal)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.Detector.TriggerSignal = triggerSignal;
+            Logger.Info(string.Format("Trigger Signal [{0}].", mConfig.Detector.TriggerSignal));
+            return ApiCode.Success;
+        }
+
+        public int SetTriggerReceiver(string triggerReceive)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            mConfig.Detector.TriggerReceive = triggerReceive;
+            Logger.Info(string.Format("Trigger Receiver [{0}].", mConfig.Detector.TriggerReceive));
+            return ApiCode.Success;
+        }
+
+        /// <summary>
+        /// 控制振镜偏转到其偏置电压对应的角度
+        /// </summary>
+        /// <returns></returns>
+        public int SetGalvoOffsetVoltage()
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+            int code = mNiDaq.SetGalvoOffsetVoltage(mConfig.GalvoAttr.XGalvoAoChannel, mConfig.GalvoAttr.XGalvoOffsetVoltage);
+            code |= mNiDaq.SetGalvoOffsetVoltage(mConfig.GalvoAttr.YGalvoAoChannel, mConfig.GalvoAttr.YGalvoOffsetVoltage);
+            return code;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
         private Scheduler()
         {
             Initialize();

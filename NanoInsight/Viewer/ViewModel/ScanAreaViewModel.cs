@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Viewer.ViewModel
 {
+    /// <summary>
+    /// 扫描区域ViewModel
+    /// </summary>
     public class ScanAreaViewModel : ViewModelBase
     {
         private readonly Scheduler mScheduler;
