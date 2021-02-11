@@ -111,6 +111,7 @@ namespace NanoInsight.Viewer.View
             this.cmdConfirm.Name = "cmdConfirm";
             this.cmdConfirm.ShortcutText = "";
             this.cmdConfirm.Text = "设置为当前扫描视场";
+            this.cmdConfirm.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanRangeConfirmClick);
             // 
             // cmdLastScanRange
             // 
@@ -118,6 +119,7 @@ namespace NanoInsight.Viewer.View
             this.cmdLastScanRange.Name = "cmdLastScanRange";
             this.cmdLastScanRange.ShortcutText = "";
             this.cmdLastScanRange.Text = "使用上一个扫描视场";
+            this.cmdLastScanRange.Click += new C1.Win.C1Command.ClickEventHandler(this.LastScanRangeClick);
             // 
             // contextMenu
             // 
