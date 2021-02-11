@@ -1,6 +1,7 @@
 ﻿using C1.Win.C1InputPanel;
 using C1.Win.C1Ribbon;
 using log4net;
+using NanoInsight.Engine.Core;
 using NanoInsight.Viewer.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -168,9 +169,9 @@ namespace NanoInsight.Viewer.View
         /// <param name="e"></param>
         private void XGalvoChannelChanged(object sender, EventArgs e)
         {
-            // mSysSettingsViewModel.Engine.SetXGalvoChannel(cbxXGalvo.SelectedItem.ToString());
+            mSysSettingsViewModel.Engine.SetXGalvoChannel(cbxXGalvo.SelectedItem.ToString());
+            mSysSettingsViewModel.GalvoProperty.XGalvoAoChannel = mSysSettingsViewModel.Engine.Configuration.GalvoAttr.XGalvoAoChannel;
         }
-
         /// <summary>
         /// Y振镜端口更新事件
         /// </summary>
@@ -178,7 +179,8 @@ namespace NanoInsight.Viewer.View
         /// <param name="e"></param>
         private void YGalvoChannelChanged(object sender, EventArgs e)
         {
-            mSysSettingsViewModel.Engine.YGalvoChannelChangeCommand(cbxYGalvo.SelectedItem.ToString());
+            mSysSettingsViewModel.Engine.SetYGalvoChannel(cbxYGalvo.SelectedItem.ToString());
+            mSysSettingsViewModel.GalvoProperty.YGalvoAoChannel = mSysSettingsViewModel.Engine.Configuration.GalvoAttr.YGalvoAoChannel;
         }
 
         /// <summary>
@@ -189,11 +191,13 @@ namespace NanoInsight.Viewer.View
         private void Y2GalvoChannelChanged(object sender, EventArgs e)
         {
             mSysSettingsViewModel.Engine.SetY2GalvoChannel(cbxYGalvo2.SelectedItem.ToString());
+            mSysSettingsViewModel.GalvoProperty.Y2GalvoAoChannel = mSysSettingsViewModel.Engine.Configuration.GalvoAttr.Y2GalvoAoChannel;
         }
 
         private void XGalvoOffsetVoltageChaned(object sender, EventArgs e)
         {
             mSysSettingsViewModel.Engine.SetXGalvoOffsetVoltage((double)nbXGalvoOffset.Value);
+            mSysSettingsViewModel.GalvoProperty.XGalvoOffsetVoltage = mSysSettingsViewModel.Engine.Configuration.GalvoAttr.XGalvoOffsetVoltage;
         }
 
         private void YGalvoOffsetVoltageChaned(object sender, EventArgs e)

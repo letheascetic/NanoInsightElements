@@ -93,6 +93,16 @@ namespace NanoInsight.Viewer.Model
         private string triggerSignal;
         private string triggerReceive;
 
+        private PmtChannelModel pmtChannel405;
+        private PmtChannelModel pmtChannel488;
+        private PmtChannelModel pmtChannel561;
+        private PmtChannelModel pmtChannel640;
+
+        private ApdChannelModel apdChannel405;
+        private ApdChannelModel apdChannel488;
+        private ApdChannelModel apdChannel561;
+        private ApdChannelModel apdChannel640;
+
         /// <summary>
         /// APD
         /// </summary>
@@ -132,6 +142,67 @@ namespace NanoInsight.Viewer.Model
         {
             get { return triggerReceive; }
             set { triggerReceive = value; RaisePropertyChanged(() => TriggerReceive); }
+        }
+
+        public PmtChannelModel PmtChannel405
+        {
+            get { return pmtChannel405; }
+            set { pmtChannel405 = value; RaisePropertyChanged(() => PmtChannel405); }
+        }
+        public PmtChannelModel PmtChannel488
+        {
+            get { return pmtChannel488; }
+            set { pmtChannel488 = value; RaisePropertyChanged(() => PmtChannel488); }
+        }
+        public PmtChannelModel PmtChannel561
+        {
+            get { return pmtChannel561; }
+            set { pmtChannel561 = value; RaisePropertyChanged(() => PmtChannel561); }
+        }
+        public PmtChannelModel PmtChannel640
+        {
+            get { return pmtChannel640; }
+            set { pmtChannel640 = value; RaisePropertyChanged(() => PmtChannel640); }
+        }
+
+        public ApdChannelModel ApdChannel405
+        {
+            get { return apdChannel405; }
+            set { apdChannel405 = value; RaisePropertyChanged(() => ApdChannel405); }
+        }
+        public ApdChannelModel ApdChannel488
+        {
+            get { return apdChannel488; }
+            set { apdChannel488 = value; RaisePropertyChanged(() => ApdChannel488); }
+        }
+        public ApdChannelModel ApdChannel561
+        {
+            get { return apdChannel561; }
+            set { apdChannel561 = value; RaisePropertyChanged(() => ApdChannel561); }
+        }
+        public ApdChannelModel ApdChannel640
+        {
+            get { return apdChannel640; }
+            set { apdChannel640 = value; RaisePropertyChanged(() => ApdChannel640); }
+        }
+
+        public DetectorPropertyModel(DetectorProperty detectorProperty)
+        {
+            Apd = new DetectorTypeModel(detectorProperty.Apd);
+            Pmt = new DetectorTypeModel(detectorProperty.Pmt);
+            StartTrigger = detectorProperty.StartTrigger;
+            TriggerSignal = detectorProperty.TriggerSignal;
+            TriggerReceive = detectorProperty.TriggerReceive;
+
+            PmtChannel405 = new PmtChannelModel(detectorProperty.PmtChannel405);
+            PmtChannel488 = new PmtChannelModel(detectorProperty.PmtChannel488);
+            PmtChannel561 = new PmtChannelModel(detectorProperty.PmtChannel561);
+            PmtChannel640 = new PmtChannelModel(detectorProperty.PmtChannel640);
+
+            ApdChannel405 = new ApdChannelModel(detectorProperty.ApdChannel405);
+            ApdChannel488 = new ApdChannelModel(detectorProperty.ApdChannel488);
+            ApdChannel561 = new ApdChannelModel(detectorProperty.ApdChannel561);
+            ApdChannel640 = new ApdChannelModel(detectorProperty.ApdChannel640);
         }
 
     }

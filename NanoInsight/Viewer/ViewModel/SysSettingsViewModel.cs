@@ -2,6 +2,7 @@
 using log4net;
 using NanoInsight.Engine.Core;
 using NanoInsight.Engine.Device;
+using NanoInsight.Viewer.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,9 @@ namespace NanoInsight.Viewer.ViewModel
         private string[] mTriggerReceivers;
         private string[] mStartTriggers;
 
+        private GalvoPropertyModel mGalvoProperty;
+        private DetectorPropertyModel mDetector;
+
         public string[][] AiChannels
         {
             get { return mAiChannels; }
@@ -86,8 +90,17 @@ namespace NanoInsight.Viewer.ViewModel
             set { mStartTriggers = value; RaisePropertyChanged(() => StartTriggers); }
         }
 
+        public GalvoPropertyModel GalvoProperty
+        {
+            get { return mGalvoProperty; }
+            set { mGalvoProperty = value; RaisePropertyChanged(() => GalvoProperty); }
+        }
 
-
+        public DetectorPropertyModel Detector
+        {
+            get { return mDetector; }
+            set { mDetector = value; RaisePropertyChanged(() => Detector); }
+        }
 
         public SysSettingsViewModel()
         {
@@ -121,6 +134,9 @@ namespace NanoInsight.Viewer.ViewModel
             StartTriggers = NiDaq.GetStartSyncSignals();
             TriggerSignals = NiDaq.GetDoLines();
             TriggerReceivers = NiDaq.GetPFIs();
+
+            GalvoProperty = new GalvoPropertyModel(mScheduler.Configuration.GalvoAttr);
+            Detector = new DetectorPropertyModel(mScheduler.Configuration.Detector);
         }
 
     }
