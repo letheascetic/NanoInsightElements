@@ -49,6 +49,8 @@
             this.btnLaserRelease = new System.Windows.Forms.ToolStripButton();
             this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
             this.toolBar = new C1.Win.C1Command.C1ToolBar();
+            this.cmdLinkSysSettings = new C1.Win.C1Command.C1CommandLink();
+            this.cmdSysSettings = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
@@ -62,6 +64,7 @@
             this.c1CommandHolder.Commands.Add(this.cmdMenuWindow);
             this.c1CommandHolder.Commands.Add(this.cmdTheme);
             this.c1CommandHolder.Commands.Add(this.cmdScanArea);
+            this.c1CommandHolder.Commands.Add(this.cmdSysSettings);
             this.c1CommandHolder.Owner = this;
             // 
             // cmdMenuFile
@@ -94,7 +97,8 @@
             // cmdMenuWindow
             // 
             this.cmdMenuWindow.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
-            this.cmdLinkScanArea});
+            this.cmdLinkScanArea,
+            this.cmdLinkSysSettings});
             this.cmdMenuWindow.HideNonRecentLinks = false;
             this.cmdMenuWindow.Name = "cmdMenuWindow";
             this.cmdMenuWindow.ShortcutText = "";
@@ -223,6 +227,18 @@
             this.toolBar.VisualStyle = C1.Win.C1Command.VisualStyle.Custom;
             this.toolBar.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue;
             // 
+            // cmdLinkSysSettings
+            // 
+            this.cmdLinkSysSettings.Command = this.cmdSysSettings;
+            this.cmdLinkSysSettings.SortOrder = 1;
+            // 
+            // cmdSysSettings
+            // 
+            this.cmdSysSettings.Name = "cmdSysSettings";
+            this.cmdSysSettings.ShortcutText = "";
+            this.cmdSysSettings.Text = "系统设置（&S）";
+            this.cmdSysSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.SysSettingsClick);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -270,5 +286,7 @@
         private C1.Win.C1Command.C1ToolBar toolBar;
         private C1.Win.C1Command.C1CommandLink cmdLinkScanArea;
         private C1.Win.C1Command.C1Command cmdScanArea;
+        private C1.Win.C1Command.C1CommandLink cmdLinkSysSettings;
+        private C1.Win.C1Command.C1Command cmdSysSettings;
     }
 }

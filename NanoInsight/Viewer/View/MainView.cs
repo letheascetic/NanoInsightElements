@@ -74,5 +74,14 @@ namespace NanoInsight.Viewer.View
                 Visible = true
             };
         }
+
+        private void SysSettingsClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            SysSettingsView mSysSettingsView = new SysSettingsView()
+            {
+                MdiParent = this,
+                Visible = true
+            };
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace NanoInsight.Viewer.ViewModel
 
         private GalvoPropertyModel mGalvoProperty;
         private DetectorPropertyModel mDetector;
+        private ScanAreaModel mFullScanArea;
 
         public string[][] AiChannels
         {
@@ -101,6 +102,12 @@ namespace NanoInsight.Viewer.ViewModel
             get { return mDetector; }
             set { mDetector = value; RaisePropertyChanged(() => Detector); }
         }
+        
+        public ScanAreaModel FullScanArea
+        {
+            get { return mFullScanArea; }
+            set { mFullScanArea = value; RaisePropertyChanged(() => FullScanArea); }
+        }
 
         public SysSettingsViewModel()
         {
@@ -137,6 +144,39 @@ namespace NanoInsight.Viewer.ViewModel
 
             GalvoProperty = new GalvoPropertyModel(mScheduler.Configuration.GalvoAttr);
             Detector = new DetectorPropertyModel(mScheduler.Configuration.Detector);
+            FullScanArea = new ScanAreaModel(mScheduler.Configuration.FullScanArea);
+        }
+
+        public int SetDetectorMode(int id)
+        {
+            int code = mScheduler.SetDetectorMode(id);
+            Detector.Pmt.IsEnabled = mScheduler.Configuration.Detector.Pmt.IsEnabled;
+            Detector.Apd.IsEnabled = mScheduler.Configuration.Detector.Apd.IsEnabled;
+            return code;
+        }
+
+        public int SetPmtChannel(int id, string pmtChannel)
+        {
+            int code = mScheduler.SetPmtChannel(id, pmtChannel);
+            PmtChannelModel channel = Detector.FindPmtChannel(id);
+            channel.AiChannel = mScheduler.Configuration.Detector.FindPmtChannel(id).AiChannel;
+            return code;
+        }
+
+        public int SetApdSource(int id, string ciSource)
+        {
+            int code = mScheduler.SetApdSource(id, ciSource);
+            ApdChannelModel channel = Detector.FindApdChannel(id);
+            channel.CiSource = mScheduler.Configuration.Detector.FindApdChannel(id).CiSource;
+            return code;
+        }
+
+        public int SetApdChannel(int id, string ciChannel)
+        {
+            int code = mScheduler.SetApdChannel(id, ciChannel);
+            ApdChannelModel channel = Detector.FindApdChannel(id);
+            channel.CiChannel = mScheduler.Configuration.Detector.FindApdChannel(id).CiChannel;
+            return code;
         }
 
     }

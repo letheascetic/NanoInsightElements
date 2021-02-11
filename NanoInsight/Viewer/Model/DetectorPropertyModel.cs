@@ -205,5 +205,39 @@ namespace NanoInsight.Viewer.Model
             ApdChannel640 = new ApdChannelModel(detectorProperty.ApdChannel640);
         }
 
+        public PmtChannelModel FindPmtChannel(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return PmtChannel405;
+                case 1:
+                    return PmtChannel488;
+                case 2:
+                    return PmtChannel561;
+                case 3:
+                    return PmtChannel640;
+                default:
+                    return null;
+            }
+        }
+
+        public ApdChannelModel FindApdChannel(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return ApdChannel405;
+                case 1:
+                    return ApdChannel488;
+                case 2:
+                    return ApdChannel561;
+                case 3:
+                    return ApdChannel640;
+                default:
+                    return null;
+            }
+        }
+
     }
 }
