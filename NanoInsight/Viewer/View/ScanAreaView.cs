@@ -79,6 +79,7 @@ namespace NanoInsight.Viewer.View
             mScanAreaVM.Engine.ScanAcquisitionChangedEvent += ScanAcquisitionChangedEventHandler;
             mScanAreaVM.Engine.ScanPixelChangedEvent += ScanPixelChangedEventHandler;
             mScanAreaVM.Engine.ScanAreaChangedEvent += ScanAreaChangedEventHandler;
+            mScanAreaVM.Engine.FullScanAreaChangedEvent += FullScanAreaChangedEventHandler;
 
             cbxScanPixel.ChangeCommitted += ScanPixelChanged;
             pbxScanArea.MouseEnter += MouseEnterImage;
@@ -379,6 +380,11 @@ namespace NanoInsight.Viewer.View
         private int ScanAreaChangedEventHandler(Engine.Attribute.ScanArea scanArea)
         {
             return mScanAreaVM.ScanAreaChangedEventHandler(scanArea.ScanRange);
+        }
+
+        private int FullScanAreaChangedEventHandler(Engine.Attribute.ScanArea scanArea)
+        {
+            return mScanAreaVM.FullScanAreaChangedEventHandler(scanArea.ScanRange);
         }
 
     }

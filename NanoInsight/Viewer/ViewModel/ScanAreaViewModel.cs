@@ -181,6 +181,8 @@ namespace NanoInsight.Viewer.ViewModel
             }
             int code = mScheduler.SelectScanPixel(SelectedScanPixel.ID);
             ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+            ScanWidth = mScheduler.Configuration.SelectedScanPixel.Data;
+            ScanHeight = mScheduler.Configuration.SelectedScanPixel.Data;
             return code;
         }
 
@@ -214,6 +216,12 @@ namespace NanoInsight.Viewer.ViewModel
         {
             SelectedScanArea.Update(scanRange);
             ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
+            return ApiCode.Success;
+        }
+
+        public int FullScanAreaChangedEventHandler(RectangleF scanRange)
+        {
+            FullScanArea.Update(scanRange);
             return ApiCode.Success;
         }
 

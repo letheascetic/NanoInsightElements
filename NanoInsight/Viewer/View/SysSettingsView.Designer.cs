@@ -714,6 +714,7 @@
             this.Name = "SysSettingsView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "系统配置";
+            this.Load += new System.EventHandler(this.SysSettingsViewLoad);
             ((System.ComponentModel.ISupportInitialize)(this.inputPanel)).EndInit();
             this.ResumeLayout(false);
 

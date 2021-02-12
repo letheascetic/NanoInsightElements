@@ -71,7 +71,6 @@ namespace NanoInsight.Viewer.View
             cbxYGalvo.DataSource = mSysSettingsVM.YGalvoAoChannels;
             cbxYGalvo2.DataSource = mSysSettingsVM.Y2GalvoAoChannels;
 
-
             cbxXGalvo.SelectedItem = mSysSettingsVM.GalvoProperty.XGalvoAoChannel;
             cbxYGalvo.SelectedItem = mSysSettingsVM.GalvoProperty.YGalvoAoChannel;
             cbxYGalvo2.SelectedItem = mSysSettingsVM.GalvoProperty.Y2GalvoAoChannel;
@@ -129,10 +128,10 @@ namespace NanoInsight.Viewer.View
             cbxYGalvo2.SelectedIndexChanged += Y2GalvoChannelChanged;
 
             // 振镜偏置电压和校准电压
-            nbXGalvoOffset.ChangeCommitted += XGalvoOffsetVoltageChaned;
-            nbYGalvoOffset.ChangeCommitted += YGalvoOffsetVoltageChaned;
-            nbXGalvoCalibration.ChangeCommitted += XGalvoCalibrationVoltageChaned;
-            nbYGalvoCalibration.ChangeCommitted += YGalvoCalibrationVoltageChaned;
+            nbXGalvoOffset.ValueChanged += XGalvoOffsetVoltageChanged;
+            nbYGalvoOffset.ValueChanged += YGalvoOffsetVoltageChanged;
+            nbXGalvoCalibration.ValueChanged += XGalvoCalibrationVoltageChanged;
+            nbYGalvoCalibration.ValueChanged += YGalvoCalibrationVoltageChanged;
 
             // 振镜响应时间和视场
             nbGalvoResponseTime.ValueChanged += GalvoResponseTimeChanged;
@@ -195,25 +194,25 @@ namespace NanoInsight.Viewer.View
             mSysSettingsVM.GalvoProperty.Y2GalvoAoChannel = mSysSettingsVM.Engine.Configuration.GalvoAttr.Y2GalvoAoChannel;
         }
 
-        private void XGalvoOffsetVoltageChaned(object sender, EventArgs e)
+        private void XGalvoOffsetVoltageChanged(object sender, EventArgs e)
         {
             mSysSettingsVM.Engine.SetXGalvoOffsetVoltage((double)nbXGalvoOffset.Value);
             mSysSettingsVM.GalvoProperty.XGalvoOffsetVoltage = mSysSettingsVM.Engine.Configuration.GalvoAttr.XGalvoOffsetVoltage;
         }
 
-        private void YGalvoOffsetVoltageChaned(object sender, EventArgs e)
+        private void YGalvoOffsetVoltageChanged(object sender, EventArgs e)
         {
             mSysSettingsVM.Engine.SetYGalvoOffsetVoltage((double)nbYGalvoOffset.Value);
             mSysSettingsVM.GalvoProperty.YGalvoOffsetVoltage = mSysSettingsVM.Engine.Configuration.GalvoAttr.YGalvoOffsetVoltage;
         }
 
-        private void XGalvoCalibrationVoltageChaned(object sender, EventArgs e)
+        private void XGalvoCalibrationVoltageChanged(object sender, EventArgs e)
         {
             mSysSettingsVM.Engine.SetXGalvoCalibrationVoltage((double)nbXGalvoCalibration.Value);
             mSysSettingsVM.GalvoProperty.XGalvoCalibrationVoltage = mSysSettingsVM.Engine.Configuration.GalvoAttr.XGalvoCalibrationVoltage;
         }
 
-        private void YGalvoCalibrationVoltageChaned(object sender, EventArgs e)
+        private void YGalvoCalibrationVoltageChanged(object sender, EventArgs e)
         {
             mSysSettingsVM.Engine.SetYGalvoCalibrationVoltage((double)nbYGalvoCalibration.Value);
             mSysSettingsVM.GalvoProperty.YGalvoCalibrationVoltage = mSysSettingsVM.Engine.Configuration.GalvoAttr.YGalvoCalibrationVoltage;
@@ -293,5 +292,11 @@ namespace NanoInsight.Viewer.View
             mSysSettingsVM.SetApdChannel((int)cbx.Tag, cbx.SelectedItem.ToString());
         }
 
+        private void SysSettingsViewLoad(object sender, EventArgs e)
+        {
+            Initialize();
+            SetDataBindings();
+            RegisterEvents();
+        }
     }
 }
