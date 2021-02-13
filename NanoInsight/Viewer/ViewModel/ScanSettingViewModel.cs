@@ -200,11 +200,87 @@ namespace NanoInsight.Viewer.ViewModel
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+        private ScanChannelModel scanChannel405;
+        private ScanChannelModel scanChannel488;
+        private ScanChannelModel scanChannel561;
+        private ScanChannelModel scanChannel640;
+        private ScanChannelModel[] scanChannels;
+
+        /// <summary>
+        /// 405nm通道
+        /// </summary>
+        public ScanChannelModel ScanChannel405
+        {
+            get { return scanChannel405; }
+            set { scanChannel405 = value; RaisePropertyChanged(() => ScanChannel405); }
+        }
+        /// <summary>
+        /// 488nm通道
+        /// </summary>
+        public ScanChannelModel ScanChannel488
+        {
+            get { return scanChannel488; }
+            set { scanChannel488 = value; RaisePropertyChanged(() => ScanChannel488); }
+        }
+        /// <summary>
+        /// 561nm通道
+        /// </summary>
+        public ScanChannelModel ScanChannel561
+        {
+            get { return scanChannel561; }
+            set { scanChannel561 = value; RaisePropertyChanged(() => ScanChannel561); }
+        }
+        /// <summary>
+        /// 640nm通道
+        /// </summary>
+        public ScanChannelModel ScanChannel640
+        {
+            get { return scanChannel640; }
+            set { scanChannel640 = value; RaisePropertyChanged(() => ScanChannel640); }
+        }
+        public ScanChannelModel[] ScanChannels
+        {
+            get { return scanChannels; }
+            set { scanChannels = value; RaisePropertyChanged(() => ScanChannels); }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
         public ScanSettingViewModel()
         {
             mScheduler = Scheduler.CreateInstance();
+            // 采集模式
             ScanLiveMode = new ScanAcquisitionModel(mScheduler.Configuration.ScanLiveMode);
             ScanCaptureMode = new ScanAcquisitionModel(mScheduler.Configuration.ScanCaptureMode);
+            // 扫描头
+            TwoGalvo = new ScanHeadModel(mScheduler.Configuration.TwoGalvo);
+            ThreeGalvo = new ScanHeadModel(mScheduler.Configuration.ThreeGalvo);
+            // 采集模式
+            ScanLiveMode = new ScanAcquisitionModel(mScheduler.Configuration.ScanLiveMode);
+            ScanCaptureMode = new ScanAcquisitionModel(mScheduler.Configuration.ScanCaptureMode);
+            // 扫描模式
+            Resonant = new ScanModeModel(mScheduler.Configuration.Resonant);
+            Galavano = new ScanModeModel(mScheduler.Configuration.Galvano);
+            // 扫描方向
+            Unidirection = new ScanDirectionModel(mScheduler.Configuration.Unidirection);
+            Bidirection = new ScanDirectionModel(mScheduler.Configuration.Bidirection);
+            // 像素时间
+            FastModeEnabled = mScheduler.Configuration.FastModeEnabled;
+            ScanPixelDwellList = ScanPixelDwellModel.Initialize(mScheduler.Configuration.ScanPixelDwellList);
+            SelectedScanPixelDwell = ScanPixelDwellList.Where(p => p.IsEnabled).First();
+            // 扫描像素
+            ScanPixelList = ScanPixelModel.Initialize(mScheduler.Configuration.ScanPixelList);
+            SelectedScanPixel = ScanPixelList.Where(p => p.IsEnabled).First();
+            // 跳行扫描
+            ScanLineSkipEnabled = mScheduler.Configuration.ScanLineSkipEnabled;
+            ScanLineSkipList = ScanLineSkipModel.Initialize(mScheduler.Configuration.ScanLineSkipList);
+            SelectedScanLineSkip = ScanLineSkipList.Where(p => p.ID == mScheduler.Configuration.SelectedScanLineSkip.ID).First();
+            // 扫描通道
+            ScanChannel405 = new ScanChannelModel(mScheduler.Configuration.ScanChannel405);
+            ScanChannel488 = new ScanChannelModel(mScheduler.Configuration.ScanChannel488);
+            ScanChannel561 = new ScanChannelModel(mScheduler.Configuration.ScanChannel561);
+            ScanChannel640 = new ScanChannelModel(mScheduler.Configuration.ScanChannel640);
+            ScanChannels = new ScanChannelModel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
+
         }
     }
 }

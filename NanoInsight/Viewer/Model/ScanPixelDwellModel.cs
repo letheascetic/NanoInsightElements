@@ -56,5 +56,15 @@ namespace NanoInsight.Viewer.Model
             ScanPixelOffset = scanPixelDwell.ScanPixelOffset;
         }
 
+        public static List<ScanPixelDwellModel> Initialize(List<ScanPixelDwell> scanPixelDwells)
+        {
+            List<ScanPixelDwellModel> scanPixelDwellList = new List<ScanPixelDwellModel>();
+            foreach (ScanPixelDwell scanPixelDwell in scanPixelDwells)
+            {
+                scanPixelDwellList.Add(new ScanPixelDwellModel(scanPixelDwell));
+            }
+            return scanPixelDwellList;
+        }
+
     }
 }
