@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Viewer.ViewModel
 {
-    public class ScanSettingViewModel : ViewModelBase
+    public class ScanSettingsViewModel : ViewModelBase
     {
-        private Scheduler mScheduler;
+        private readonly Scheduler mScheduler;
+
+        public Scheduler Engine
+        {
+            get { return mScheduler; }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         private ScanAcquisitionModel scanLiveMode;
@@ -144,6 +149,11 @@ namespace NanoInsight.Viewer.ViewModel
         private List<ScanPixelDwellModel> scanPixelDwellList;
         private ScanPixelDwellModel selectedScanPixelDwell;
 
+        private int scanPixelCalibration;
+        private int scanPixelOffset;
+        private int scanPixelCalibrationMaximum;
+        private int scanPixelScale;
+
         /// <summary>
         /// 快速模式使能
         /// </summary>
@@ -167,6 +177,39 @@ namespace NanoInsight.Viewer.ViewModel
         {
             get { return selectedScanPixelDwell; }
             set { selectedScanPixelDwell = value; RaisePropertyChanged(() => SelectedScanPixelDwell); }
+        }
+
+        /// <summary>
+        /// 扫描像素补偿
+        /// </summary>
+        public int ScanPixelCalibration
+        {
+            get { return scanPixelCalibration; }
+            set { scanPixelCalibration = value; RaisePropertyChanged(() => ScanPixelCalibration); }
+        }
+        /// <summary>
+        /// 扫描像素偏置
+        /// </summary>
+        public int ScanPixelOffset
+        {
+            get { return scanPixelOffset; }
+            set { scanPixelOffset = value; RaisePropertyChanged(() => ScanPixelOffset); }
+        }
+        /// <summary>
+        /// 扫描像素补偿最大值
+        /// </summary>
+        public int ScanPixelCalibrationMaximum
+        {
+            get { return scanPixelCalibrationMaximum; }
+            set { scanPixelCalibrationMaximum = value; RaisePropertyChanged(() => ScanPixelCalibrationMaximum); }
+        }
+        /// <summary>
+        /// 扫描像素缩放系数
+        /// </summary>
+        public int ScanPixelScale
+        {
+            get { return scanPixelScale; }
+            set { scanPixelScale = value; RaisePropertyChanged(() => ScanPixelScale); }
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -245,7 +288,7 @@ namespace NanoInsight.Viewer.ViewModel
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
-        public ScanSettingViewModel()
+        public ScanSettingsViewModel()
         {
             mScheduler = Scheduler.CreateInstance();
             // 采集模式
@@ -267,6 +310,10 @@ namespace NanoInsight.Viewer.ViewModel
             FastModeEnabled = mScheduler.Configuration.FastModeEnabled;
             ScanPixelDwellList = ScanPixelDwellModel.Initialize(mScheduler.Configuration.ScanPixelDwellList);
             SelectedScanPixelDwell = ScanPixelDwellList.Where(p => p.IsEnabled).First();
+            ScanPixelCalibrationMaximum = SelectedScanPixelDwell.ScanPixelCalibrationMaximum;
+            ScanPixelCalibration = SelectedScanPixelDwell.ScanPixelCalibration;
+            ScanPixelOffset = SelectedScanPixelDwell.ScanPixelOffset;
+            ScanPixelScale = SelectedScanPixelDwell.ScanPixelScale;
             // 扫描像素
             ScanPixelList = ScanPixelModel.Initialize(mScheduler.Configuration.ScanPixelList);
             SelectedScanPixel = ScanPixelList.Where(p => p.IsEnabled).First();

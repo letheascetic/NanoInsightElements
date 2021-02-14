@@ -234,6 +234,7 @@ namespace NanoInsight.Viewer.View
             this.btnLive.Name = "btnLive";
             this.btnLive.Text = "实时";
             this.btnLive.Width = 50;
+            this.btnLive.Click += new System.EventHandler(this.LiveClick);
             // 
             // btnCapture
             // 
@@ -243,6 +244,7 @@ namespace NanoInsight.Viewer.View
             this.btnCapture.Name = "btnCapture";
             this.btnCapture.Text = "捕捉";
             this.btnCapture.Width = 50;
+            this.btnCapture.Click += new System.EventHandler(this.CaptureClick);
             // 
             // rbtnTwoScanners
             // 
