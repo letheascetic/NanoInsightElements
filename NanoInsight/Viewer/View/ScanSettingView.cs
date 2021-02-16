@@ -1,6 +1,7 @@
 ﻿using C1.Win.C1InputPanel;
 using C1.Win.C1Ribbon;
 using log4net;
+using NanoInsight.Viewer.Model;
 using NanoInsight.Viewer.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -102,17 +103,16 @@ namespace NanoInsight.Viewer.View
         /// </summary>
         private void RegisterEvents()
         {
-            //this.rbtnTwoScanners.CheckedChanged += ScannerHeadChanged;
-            //this.rbtnGalvano.CheckedChanged += ScanModeChanged;
+            this.rbtnTwoScanners.CheckedChanged += ScanHeadChanged;
+            this.rbtnGalvano.CheckedChanged += ScanModeChanged;
 
-            //for (int i = 0; i < mPixelDwellButtons.Length; i++)
-            //{
-            //    mPixelDwellButtons[i].Tag = mScanSettingsVM.Engine.Config.ScanPixelDwellList[i];
-            //    mPixelDwellButtons[i].Click += ScanPixelDwellChanged;
-            //}
+            for (int i = 0; i < mPixelDwellButtons.Length; i++)
+            {
+                mPixelDwellButtons[i].Click += ScanPixelDwellChanged;
+            }
 
-            //nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
-            //nbScanPixelScale.ValueChanged += ScanPixelScaleChanged;
+            nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
+            nbScanPixelScale.ValueChanged += ScanPixelScaleChanged;
 
             //for (int i = 0; i < mScanPixelButtons.Length; i++)
             //{
@@ -143,40 +143,40 @@ namespace NanoInsight.Viewer.View
         private void SetDataBindings()
         {
             // 采集模式
-            //this.btnLive.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanLiveMode, "Text");
-            //this.btnLive.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanLiveMode, "IsEnabled");
-            //this.btnCapture.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanCaptureMode, "Text");
-            //this.btnCapture.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanCaptureMode, "IsEnabled");
+            this.btnLive.DataBindings.Add("Text", mScanSettingsVM.ScanLiveMode, "Text");
+            this.btnLive.DataBindings.Add("Pressed", mScanSettingsVM.ScanLiveMode, "IsEnabled");
+            this.btnCapture.DataBindings.Add("Text", mScanSettingsVM.ScanCaptureMode, "Text");
+            this.btnCapture.DataBindings.Add("Pressed", mScanSettingsVM.ScanCaptureMode, "IsEnabled");
             // 扫描头
-            //this.rbtnTwoScanners.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScannerHeadTwoGalv, "Text");
-            //this.rbtnTwoScanners.DataBindings.Add("Checked", mScanSettingsVM.Engine.Config.ScannerHeadTwoGalv, "IsEnabled");
-            //this.rbtnThreeScanners.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScannerHeadThreeGalv, "Text");
-            //this.rbtnThreeScanners.DataBindings.Add("Checked", mScanSettingsVM.Engine.Config.ScannerHeadThreeGalv, "IsEnabled");
+            this.rbtnTwoScanners.DataBindings.Add("Text", mScanSettingsVM.TwoGalvo, "Text");
+            this.rbtnTwoScanners.DataBindings.Add("Checked", mScanSettingsVM.TwoGalvo, "IsEnabled");
+            this.rbtnThreeScanners.DataBindings.Add("Text", mScanSettingsVM.ThreeGalvo, "Text");
+            this.rbtnThreeScanners.DataBindings.Add("Checked", mScanSettingsVM.ThreeGalvo, "IsEnabled");
             // 扫描模式
-            //this.rbtnGalvano.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanModeGalavano, "Text");
-            //this.rbtnGalvano.DataBindings.Add("Checked", mScanSettingsVM.Engine.Config.ScanModeGalavano, "IsEnabled");
-            //this.rbtnResonant.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanModeResonant, "Text");
-            //this.rbtnResonant.DataBindings.Add("Checked", mScanSettingsVM.Engine.Config.ScanModeResonant, "IsEnabled");
+            this.rbtnGalvano.DataBindings.Add("Text", mScanSettingsVM.Galavano, "Text");
+            this.rbtnGalvano.DataBindings.Add("Checked", mScanSettingsVM.Galavano, "IsEnabled");
+            this.rbtnResonant.DataBindings.Add("Text", mScanSettingsVM.Resonant, "Text");
+            this.rbtnResonant.DataBindings.Add("Checked", mScanSettingsVM.Resonant, "IsEnabled");
             // 扫描方向
-            //this.btnUniDirection.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanUniDirection, "Text");
-            //this.btnUniDirection.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanUniDirection, "IsEnabled");
-            //this.btnBiDirection.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanBiDirection, "Text");
-            //this.btnBiDirection.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanBiDirection, "IsEnabled");
+            this.btnUnidirection.DataBindings.Add("Text", mScanSettingsVM.Unidirection, "Text");
+            this.btnUnidirection.DataBindings.Add("Pressed", mScanSettingsVM.Unidirection, "IsEnabled");
+            this.btnBidirection.DataBindings.Add("Text", mScanSettingsVM.Bidirection, "Text");
+            this.btnBidirection.DataBindings.Add("Pressed", mScanSettingsVM.Bidirection, "IsEnabled");
             // 双向补偿
-            //this.nbScanPixelCalibration.DataBindings.Add("Enabled", mScanSettingsVM.Engine.Config.ScanBiDirection, "IsEnabled");
-            //this.nbScanPixelCalibration.DataBindings.Add("Maximum", mScanSettingsVM, "ScanPixelCalibrationMaximum");
-            //this.nbScanPixelCalibration.DataBindings.Add("Value", mScanSettingsVM, "ScanPixelCalibration");
+            this.nbScanPixelCalibration.DataBindings.Add("Enabled", mScanSettingsVM.Bidirection, "IsEnabled");
+            this.nbScanPixelCalibration.DataBindings.Add("Maximum", mScanSettingsVM, "ScanPixelCalibrationMaximum");
+            this.nbScanPixelCalibration.DataBindings.Add("Value", mScanSettingsVM, "ScanPixelCalibration");
             //// 像素缩放
-            //this.nbScanPixelScale.DataBindings.Add("Value", mScanSettingsVM, "ScanPixelScale");
+            this.nbScanPixelScale.DataBindings.Add("Value", mScanSettingsVM, "ScanPixelScale");
             // 像素时间
             // 快速模式使能
             //this.rbtnFastMode.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config, "FastModeEnabled");
-            //foreach (InputButton button in mPixelDwellButtons)
-            //{
-            //    ScanPixelDwellModel model = (ScanPixelDwellModel)button.Tag;
-            //    button.DataBindings.Add("Text", model, "Text");
-            //    button.DataBindings.Add("Pressed", model, "IsEnabled");
-            //}
+            for (int i = 0; i < mPixelDwellButtons.Length; i++)
+            {
+                mPixelDwellButtons[i].Tag = mScanSettingsVM.ScanPixelDwellList[i];
+                mPixelDwellButtons[i].DataBindings.Add("Text", mScanSettingsVM.ScanPixelDwellList[i], "Text");
+                mPixelDwellButtons[i].DataBindings.Add("Pressed", mScanSettingsVM.ScanPixelDwellList[i], "IsEnabled");
+            }
             // 扫描像素
             //foreach (InputButton button in mScanPixelButtons)
             //{
@@ -254,15 +254,17 @@ namespace NanoInsight.Viewer.View
             {
                 btnCapture.Pressed = false;
             }
+
             if (btnLive.Pressed)
             {
-                
+                mScanSettingsVM.Engine.StartAcquisition(mScanSettingsVM.ScanLiveMode.ID);
             }
-            //if (mScanSettingsVM.Engine.ScanAcquisitionChangeCommand(btnLive.Pressed, btnCapture.Pressed) != API_RETURN_CODE.API_SUCCESS)
-            //{
-            //    btnLive.Pressed = false;
-            //    btnCapture.Pressed = false;
-            //}
+            else
+            {
+                mScanSettingsVM.Engine.StopAcquisition();
+            }
+            mScanSettingsVM.ScanLiveMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanLiveMode.IsEnabled;
+            mScanSettingsVM.ScanCaptureMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanCaptureMode.IsEnabled;
         }
 
         /// <summary>
@@ -276,12 +278,113 @@ namespace NanoInsight.Viewer.View
             {
                 btnLive.Pressed = false;
             }
-            //if (mScanSettingsVM.Engine.ScanAcquisitionChangeCommand(btnLive.Pressed, btnCapture.Pressed) != API_RETURN_CODE.API_SUCCESS)
-            //{
-            //    btnLive.Pressed = false;
-            //    btnCapture.Pressed = false;
-            //}
+
+            if (btnCapture.Pressed)
+            {
+                mScanSettingsVM.Engine.StartAcquisition(mScanSettingsVM.ScanCaptureMode.ID);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.StopAcquisition();
+            }
+            mScanSettingsVM.ScanLiveMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanLiveMode.IsEnabled;
+            mScanSettingsVM.ScanCaptureMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanCaptureMode.IsEnabled;
         }
 
+        /// <summary>
+        /// 扫描头切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanHeadChanged(object sender, EventArgs e)
+        {
+            int id = rbtnTwoScanners.Checked ? mScanSettingsVM.TwoGalvo.ID : mScanSettingsVM.ThreeGalvo.ID;
+            mScanSettingsVM.Engine.SetScanHead(id);
+            mScanSettingsVM.TwoGalvo.IsEnabled = mScanSettingsVM.Engine.Configuration.TwoGalvo.IsEnabled;
+            mScanSettingsVM.ThreeGalvo.IsEnabled = mScanSettingsVM.Engine.Configuration.ThreeGalvo.IsEnabled;
+        }
+
+        /// <summary>
+        /// 切换扫描模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanModeChanged(object sender, EventArgs e)
+        {
+            int id = rbtnGalvano.Checked ? mScanSettingsVM.Galavano.ID : mScanSettingsVM.Resonant.ID;
+            mScanSettingsVM.Engine.SetScanMode(id);
+            mScanSettingsVM.Galavano.IsEnabled = mScanSettingsVM.Engine.Configuration.Galvano.IsEnabled;
+            mScanSettingsVM.Resonant.IsEnabled = mScanSettingsVM.Engine.Configuration.Resonant.IsEnabled;
+        }
+
+        private void UnidirectionClick(object sender, EventArgs e)
+        {
+            if (mScanSettingsVM.Unidirection.IsEnabled)
+            {
+                btnUnidirection.Pressed = true;
+                return;
+            }
+            mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Unidirection.ID);
+            mScanSettingsVM.Bidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Bidirection.IsEnabled;
+            mScanSettingsVM.Unidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Unidirection.IsEnabled;
+        }
+
+        private void BidirectionClick(object sender, EventArgs e)
+        {
+            if (mScanSettingsVM.Bidirection.IsEnabled)
+            {
+                btnBidirection.Pressed = true;
+                return;
+            }
+            mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Bidirection.ID);
+            mScanSettingsVM.Bidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Bidirection.IsEnabled;
+            mScanSettingsVM.Unidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Unidirection.IsEnabled;
+        }
+
+        /// <summary>
+        /// 像素停留时间按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanPixelDwellChanged(object sender, EventArgs e)
+        {
+            InputButton button = (InputButton)sender;
+            ScanPixelDwellModel model = (ScanPixelDwellModel)button.Tag;
+            if (model.IsEnabled)
+            {
+                button.Pressed = true;
+                return;
+            }
+            nbScanPixelCalibration.ValueChanged -= ScanPixelCalibrationChanged;
+            mScanSettingsVM.SelectScanPixelDwell(model.ID);
+            nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
+        }
+
+        /// <summary>
+        /// 双向扫描像素补偿更新事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanPixelCalibrationChanged(object sender, EventArgs e)
+        {
+            mScanSettingsVM.SetScanPixelCalibration((int)nbScanPixelCalibration.Value);
+        }
+
+        /// <summary>
+        /// 扫描像素缩放系数更新事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanPixelScaleChanged(object sender, EventArgs e)
+        {
+            mScanSettingsVM.SetScanPixelScale((int)nbScanPixelScale.Value);
+        }
+
+        private void ScanSettingViewLoad(object sender, EventArgs e)
+        {
+            Initialize();
+            SetDataBindings();
+            RegisterEvents();
+        }
     }
 }

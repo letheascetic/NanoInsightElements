@@ -37,8 +37,8 @@ namespace NanoInsight.Viewer.View
             this.rbtnGalvano = new C1.Win.C1InputPanel.InputRadioButton();
             this.rbtnResonant = new C1.Win.C1InputPanel.InputRadioButton();
             this.separator6 = new C1.Win.C1InputPanel.InputSeparator();
-            this.btnUniDirection = new C1.Win.C1InputPanel.InputButton();
-            this.btnBiDirection = new C1.Win.C1InputPanel.InputButton();
+            this.btnUnidirection = new C1.Win.C1InputPanel.InputButton();
+            this.btnBidirection = new C1.Win.C1InputPanel.InputButton();
             this.nbScanPixelCalibration = new C1.Win.C1InputPanel.InputNumericBox();
             this.chbxLineSkip = new C1.Win.C1InputPanel.InputCheckBox();
             this.cbxLineSkip = new C1.Win.C1InputPanel.InputComboBox();
@@ -137,8 +137,8 @@ namespace NanoInsight.Viewer.View
             this.inputPanel.Items.Add(this.rbtnGalvano);
             this.inputPanel.Items.Add(this.rbtnResonant);
             this.inputPanel.Items.Add(this.separator6);
-            this.inputPanel.Items.Add(this.btnUniDirection);
-            this.inputPanel.Items.Add(this.btnBiDirection);
+            this.inputPanel.Items.Add(this.btnUnidirection);
+            this.inputPanel.Items.Add(this.btnBidirection);
             this.inputPanel.Items.Add(this.nbScanPixelCalibration);
             this.inputPanel.Items.Add(this.chbxLineSkip);
             this.inputPanel.Items.Add(this.cbxLineSkip);
@@ -284,21 +284,23 @@ namespace NanoInsight.Viewer.View
             this.separator6.Name = "separator6";
             this.separator6.Width = 240;
             // 
-            // btnUniDirection
+            // btnUnidirection
             // 
-            this.btnUniDirection.Break = C1.Win.C1InputPanel.BreakType.None;
-            this.btnUniDirection.CheckOnClick = true;
-            this.btnUniDirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnUniDirection.Name = "btnUniDirection";
-            this.btnUniDirection.Text = "单向";
+            this.btnUnidirection.Break = C1.Win.C1InputPanel.BreakType.None;
+            this.btnUnidirection.CheckOnClick = true;
+            this.btnUnidirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnUnidirection.Name = "btnUnidirection";
+            this.btnUnidirection.Text = "单向";
+            this.btnUnidirection.Click += new System.EventHandler(this.UnidirectionClick);
             // 
-            // btnBiDirection
+            // btnBidirection
             // 
-            this.btnBiDirection.Break = C1.Win.C1InputPanel.BreakType.None;
-            this.btnBiDirection.CheckOnClick = true;
-            this.btnBiDirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnBiDirection.Name = "btnBiDirection";
-            this.btnBiDirection.Text = "双向";
+            this.btnBidirection.Break = C1.Win.C1InputPanel.BreakType.None;
+            this.btnBidirection.CheckOnClick = true;
+            this.btnBidirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnBidirection.Name = "btnBidirection";
+            this.btnBidirection.Text = "双向";
+            this.btnBidirection.Click += new System.EventHandler(this.BidirectionClick);
             // 
             // nbScanPixelCalibration
             // 
@@ -910,6 +912,7 @@ namespace NanoInsight.Viewer.View
             this.Name = "ScanSettingView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "扫描设置";
+            this.Load += new System.EventHandler(this.ScanSettingViewLoad);
             ((System.ComponentModel.ISupportInitialize)(this.inputPanel)).EndInit();
             this.ResumeLayout(false);
 
@@ -925,8 +928,8 @@ namespace NanoInsight.Viewer.View
         private C1.Win.C1InputPanel.InputRadioButton rbtnGalvano;
         private C1.Win.C1InputPanel.InputRadioButton rbtnResonant;
         private C1.Win.C1InputPanel.InputSeparator separator6;
-        private C1.Win.C1InputPanel.InputButton btnUniDirection;
-        private C1.Win.C1InputPanel.InputButton btnBiDirection;
+        private C1.Win.C1InputPanel.InputButton btnUnidirection;
+        private C1.Win.C1InputPanel.InputButton btnBidirection;
         private C1.Win.C1InputPanel.InputNumericBox nbScanPixelCalibration;
         private C1.Win.C1InputPanel.InputCheckBox chbxLineSkip;
         private C1.Win.C1InputPanel.InputComboBox cbxLineSkip;

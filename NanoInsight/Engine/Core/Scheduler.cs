@@ -128,7 +128,7 @@ namespace NanoInsight.Engine.Core
         /// <param name="taskId"></param>
         /// <param name="taskName"></param>
         /// <returns></returns>
-        public int StartScanTask(ScanTask scanTask)
+        private int StartScanTask(ScanTask scanTask)
         {
             int code = ApiCode.Success;
             if (mConfig.GetActivatedChannelNum() == 0)
@@ -182,7 +182,7 @@ namespace NanoInsight.Engine.Core
         /// 停止扫描任务
         /// </summary>
         /// <returns></returns>
-        public int StopScanTask()
+        private int StopScanTask()
         {
             if (ScanningTask == null)
             {
@@ -231,17 +231,14 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         public int StartAcquisition(int id)
         {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
+            int code = BeforePropertyChanged();
 
             if (mConfig.GetActivatedChannelNum() == 0)
             {
                 return ApiCode.SchedulerNoScanChannelActivated;
             }
 
-            int code = mConfig.StartAcquisition(id);
+            code |= mConfig.StartAcquisition(id);
             if (!ApiCode.IsSuccessful(code))
             {
                 return code;

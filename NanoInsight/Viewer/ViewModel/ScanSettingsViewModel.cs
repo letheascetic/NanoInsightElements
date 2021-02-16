@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using NanoInsight.Engine.Attribute;
 using NanoInsight.Engine.Core;
 using NanoInsight.Viewer.Model;
 using System;
@@ -328,6 +329,63 @@ namespace NanoInsight.Viewer.ViewModel
             ScanChannel640 = new ScanChannelModel(mScheduler.Configuration.ScanChannel640);
             ScanChannels = new ScanChannelModel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
 
+            // 绑定事件
+            // Engine.ScanPixelDwellChangedEvent += ScanPixelDwellChangedEventHandler;
         }
+
+        public int SelectScanPixelDwell(int id)
+        {
+            int code = Engine.SelectScanPixelDwell(id);
+            foreach (ScanPixelDwellModel scanPixelDwell in ScanPixelDwellList)
+            {
+                if (scanPixelDwell.ID == Engine.Configuration.SelectedScanPixelDwell.ID)
+                {
+                    scanPixelDwell.IsEnabled = true;
+                    SelectedScanPixelDwell = scanPixelDwell;
+                }
+                else
+                {
+                    scanPixelDwell.IsEnabled = false;
+                }
+            }
+            ScanPixelCalibration = 0;
+            ScanPixelCalibrationMaximum = SelectedScanPixelDwell.ScanPixelCalibrationMaximum;
+            ScanPixelCalibration = SelectedScanPixelDwell.ScanPixelCalibration;
+            ScanPixelOffset = SelectedScanPixelDwell.ScanPixelOffset;
+            ScanPixelScale = SelectedScanPixelDwell.ScanPixelScale;
+            return code;
+        }
+
+        public int SetScanPixelCalibration(int scanPixelCalibration)
+        {
+            int code = Engine.SetScanPixelCalibration(SelectedScanPixelDwell.ID, scanPixelCalibration);
+            SelectedScanPixelDwell.ScanPixelCalibration = Engine.Configuration.SelectedScanPixelDwell.ScanPixelCalibration;
+            ScanPixelCalibration = SelectedScanPixelDwell.ScanPixelCalibration;
+            return code;
+        }
+
+        public int SetScanPixelScale(int scanPixelScale)
+        {
+            int code = Engine.SetScanPixelScale(SelectedScanPixelDwell.ID, scanPixelScale);
+            SelectedScanPixelDwell.ScanPixelScale = Engine.Configuration.SelectedScanPixelDwell.ScanPixelScale;
+            ScanPixelScale = SelectedScanPixelDwell.ScanPixelScale;
+            return code;
+        }
+
+        public int SelectScanPixel(int id)
+        {
+            return 0;
+        }
+
+        private int ScanPixelDwellChangedEventHandler(ScanPixelDwell scanPixelDwell)
+        {
+            ScanPixelCalibration = 0;
+            ScanPixelCalibrationMaximum = scanPixelDwell.ScanPixelCalibrationMaximum;
+            ScanPixelCalibration = scanPixelDwell.ScanPixelCalibration;
+            ScanPixelOffset = scanPixelDwell.ScanPixelOffset;
+            ScanPixelScale = scanPixelDwell.ScanPixelScale;
+            return ApiCode.Success;
+        }
+
     }
 }

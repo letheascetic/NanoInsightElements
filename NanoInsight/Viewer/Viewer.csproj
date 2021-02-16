@@ -306,12 +306,18 @@
     <Compile Include="Model\GalvoPropertyModel.cs" />
     <Compile Include="Model\ScanAcquisitionModel.cs" />
     <Compile Include="Model\ScanAreaModel.cs" />
+    <Compile Include="Model\ScanChannelModel.cs" />
+    <Compile Include="Model\ScanDirectionModel.cs" />
+    <Compile Include="Model\ScanHeadModel.cs" />
+    <Compile Include="Model\ScanLineSkipModel.cs" />
+    <Compile Include="Model\ScanModeModel.cs" />
+    <Compile Include="Model\ScanPixelDwellModel.cs" />
     <Compile Include="Model\ScanPixelModel.cs" />
     <Compile Include="Model\ScanPropertyBaseModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ScanAreaViewModel.cs" />
-    <Compile Include="ViewModel\ScanSettingViewModel.cs" />
+    <Compile Include="ViewModel\ScanSettingsViewModel.cs" />
     <Compile Include="ViewModel\SysSettingsViewModel.cs" />
     <Compile Include="View\MainView.cs">
       <SubType>Form</SubType>

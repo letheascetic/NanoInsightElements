@@ -44,7 +44,7 @@ namespace NanoInsight.Viewer.Model
             List<ScanLineSkipModel> list = new List<ScanLineSkipModel>();
             foreach (ScanLineSkip scanLineSkip in scanLineSkips)
             {
-                list.Add(new ScanLineSkipModel(scanLineSkip);
+                list.Add(new ScanLineSkipModel(scanLineSkip));
             }
             return list;
         }
