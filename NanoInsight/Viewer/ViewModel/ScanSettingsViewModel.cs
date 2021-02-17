@@ -287,6 +287,21 @@ namespace NanoInsight.Viewer.ViewModel
             get { return scanChannels; }
             set { scanChannels = value; RaisePropertyChanged(() => ScanChannels); }
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        private double fps;
+        private double frameTime;
+
+        public double Fps
+        {
+            get { return fps; }
+            set { fps = value; RaisePropertyChanged(() => Fps); }
+        }
+
+        public double FrameTime
+        {
+            get { return frameTime; }
+            set { frameTime = value; RaisePropertyChanged(() => FrameTime); }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         public ScanSettingsViewModel()
@@ -328,7 +343,9 @@ namespace NanoInsight.Viewer.ViewModel
             ScanChannel561 = new ScanChannelModel(mScheduler.Configuration.ScanChannel561);
             ScanChannel640 = new ScanChannelModel(mScheduler.Configuration.ScanChannel640);
             ScanChannels = new ScanChannelModel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
-
+            // Fps & FrameTime
+            Fps = mScheduler.Sequence.FPS;
+            FrameTime = mScheduler.Sequence.FrameTime;
             // 绑定事件
             // Engine.ScanPixelDwellChangedEvent += ScanPixelDwellChangedEventHandler;
         }
@@ -390,6 +407,12 @@ namespace NanoInsight.Viewer.ViewModel
             return code;
         }
 
+        public void Update()
+        {
+            Fps = mScheduler.Sequence.FPS;
+            FrameTime = mScheduler.Sequence.FrameTime;
+        }
+
         private int ScanPixelDwellChangedEventHandler(ScanPixelDwell scanPixelDwell)
         {
             ScanPixelCalibration = 0;
@@ -399,6 +422,5 @@ namespace NanoInsight.Viewer.ViewModel
             ScanPixelScale = scanPixelDwell.ScanPixelScale;
             return ApiCode.Success;
         }
-
     }
 }

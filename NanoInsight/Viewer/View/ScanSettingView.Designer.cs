@@ -315,6 +315,7 @@ namespace NanoInsight.Viewer.View
             this.chbxLineSkip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.chbxLineSkip.Name = "chbxLineSkip";
             this.chbxLineSkip.Text = "跳行扫描";
+            this.chbxLineSkip.CheckedChanged += new System.EventHandler(this.LineSkipCheckedChanged);
             // 
             // cbxLineSkip
             // 
@@ -363,6 +364,7 @@ namespace NanoInsight.Viewer.View
             this.rbtnFastMode.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rbtnFastMode.Name = "rbtnFastMode";
             this.rbtnFastMode.Text = "快速模式";
+            this.rbtnFastMode.Click += new System.EventHandler(this.FastModeClick);
             // 
             // btnPixelDwell2
             // 

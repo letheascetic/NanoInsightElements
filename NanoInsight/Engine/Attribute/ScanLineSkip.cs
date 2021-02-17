@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Attribute
 {
+    public delegate int LineSkipStatusChangedEventHandler(bool status);
+
     /// <summary>
     /// 跳行扫描参数更新事件委托
     /// </summary>

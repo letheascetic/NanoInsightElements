@@ -30,6 +30,7 @@ namespace NanoInsight.Engine.Core
         public event ScanDirectionChangedEventHandler ScanDirectionChangedEvent;
         public event ScanModeChangedEventHandler ScanModeChangedEvent;
         public event LineSkipChangedEventHandler LineSkipChangedEvent;
+        public event LineSkipStatusChangedEventHandler LineSkipStatusChangedEvent;
         public event ScanPixelChangedEventHandler ScanPixelChangedEvent;
         public event ScanPixelDwellChangedEventHandler ScanPixelDwellChangedEvent;
         public event ScanPixelOffsetChangedEventHandler ScanPixelOffsetChangedEvent;
@@ -362,6 +363,17 @@ namespace NanoInsight.Engine.Core
         }
 
         /// <summary>
+        /// 设置快速扫描模式
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int SetFastModeStatus(bool status)
+        {
+            mConfig.FastModeEnabled = status;
+            return ApiCode.Success;
+        }
+
+        /// <summary>
         /// 选择像素时间
         /// </summary>
         /// <param name="id"></param>
@@ -456,6 +468,26 @@ namespace NanoInsight.Engine.Core
                 if (LineSkipChangedEvent != null)
                 {
                     return LineSkipChangedEvent.Invoke(mConfig.SelectedScanLineSkip);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 跳行扫描开关状态变化
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int SetLineSkipStatus(bool status)
+        {
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetLineSkipStatus(status);
+            code |= AfterPropertyChanged();
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (LineSkipStatusChangedEvent != null)
+                {
+                    return LineSkipStatusChangedEvent.Invoke(status);
                 }
             }
             return code;

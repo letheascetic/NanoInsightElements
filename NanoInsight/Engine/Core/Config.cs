@@ -328,6 +328,17 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 跳行扫描开或关
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int SetLineSkipStatus(bool status)
+        {
+            ScanLineSkipEnabled = status;
+            return ApiCode.Success;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////
         
         public ScanChannel ScanChannel405 { get; set; }

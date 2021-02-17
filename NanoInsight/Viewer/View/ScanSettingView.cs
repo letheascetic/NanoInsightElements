@@ -119,21 +119,17 @@ namespace NanoInsight.Viewer.View
                 mScanPixelButtons[i].Click += ScanPixelChanged;
             }
 
-            //cbxLineSkip.SelectedIndexChanged += ScanLineSkipChanged;
+            cbxLineSkip.SelectedIndexChanged += ScanLineSkipChanged;
 
             //cbxPinHoleSelect.SelectedIndexChanged += ScanPinHoleChanged;
 
-            //for (int i = 0; i < mChannelGainBars.Length; i++)
-            //{
-            //    mChannelGainBars[i].Tag = i;
-            //    mChannelGainBars[i].ValueChanged += ChannelGainChanged;
-            //    mChannelOffsetBars[i].Tag = i;
-            //    mChannelOffsetBars[i].ValueChanged += ChannelOffsetChanged;
-            //    mChannelPowerBars[i].Tag = i;
-            //    mChannelPowerBars[i].ValueChanged += ChannelPowerChanged;
-            //    mChannelActivateButtons[i].Tag = i;
-            //    mChannelActivateButtons[i].Click += ChannelActivateChanged;
-            //}
+            for (int i = 0; i < mChannelGainBars.Length; i++)
+            {
+                mChannelGainBars[i].ValueChanged += ChannelGainChanged;
+                mChannelOffsetBars[i].ValueChanged += ChannelOffsetChanged;
+                mChannelPowerBars[i].ValueChanged += ChannelPowerChanged;
+                mChannelActivateButtons[i].Click += ChannelActivateChanged;
+            }
         }
 
         /// <summary>
@@ -169,7 +165,7 @@ namespace NanoInsight.Viewer.View
             this.nbScanPixelScale.DataBindings.Add("Value", mScanSettingsVM, "ScanPixelScale");
             // 像素时间
             // 快速模式使能
-            //this.rbtnFastMode.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config, "FastModeEnabled");
+            this.rbtnFastMode.DataBindings.Add("Pressed", mScanSettingsVM, "FastModeEnabled");
             for (int i = 0; i < mPixelDwellButtons.Length; i++)
             {
                 mPixelDwellButtons[i].Tag = mScanSettingsVM.ScanPixelDwellList[i];
@@ -184,54 +180,58 @@ namespace NanoInsight.Viewer.View
                 mScanPixelButtons[i].DataBindings.Add("Pressed", mScanSettingsVM.ScanPixelList[i], "IsEnabled");
             }
             // 帧率 & 帧时间
-            //this.lbFPSValue.DataBindings.Add("Text", mScanSettingsVM.Engine.Sequence, "FPS", true, DataSourceUpdateMode.OnPropertyChanged, null, "0.000 fps");
-            //this.lbFrameTimeValue.DataBindings.Add("Text", mScanSettingsVM.Engine.Sequence, "FrameTime", true, DataSourceUpdateMode.OnPropertyChanged, null, "0.000 sec");
+            this.lbFPSValue.DataBindings.Add("Text", mScanSettingsVM, "FPS", true, DataSourceUpdateMode.OnPropertyChanged, null, "0.000 fps");
+            this.lbFrameTimeValue.DataBindings.Add("Text", mScanSettingsVM, "FrameTime", true, DataSourceUpdateMode.OnPropertyChanged, null, "0.000 sec");
             // 跳行扫描
-            //this.chbxLineSkip.DataBindings.Add("Checked", mScanSettingsVM.Engine.Config, "ScanLineSkipEnabled");
-            //this.cbxLineSkip.DataSource = mScanSettingsVM.Engine.Config.ScanLineSkipList;
-            //this.cbxLineSkip.DisplayMember = "Text";
-            //this.cbxLineSkip.ValueMember = "Data";
-            //this.cbxLineSkip.SelectedItem = mScanSettingsVM.Engine.Config.SelectedScanLineSkip;
+            this.chbxLineSkip.DataBindings.Add("Checked", mScanSettingsVM, "ScanLineSkipEnabled");
+            this.cbxLineSkip.DataSource = mScanSettingsVM.ScanLineSkipList;
+            this.cbxLineSkip.DisplayMember = "Text";
+            this.cbxLineSkip.ValueMember = "Data";
+            this.cbxLineSkip.SelectedItem = mScanSettingsVM.SelectedScanLineSkip;
+            // 扫描通道
+            for (int i = 0; i < mChannelGainBars.Length; i++)
+            {
+                mChannelGainBars[i].Tag = i;
+                mChannelOffsetBars[i].Tag = i;
+                mChannelPowerBars[i].Tag = i;
+                mChannelActivateButtons[i].Tag = i;
+            }
             // 扫描通道1 - 405nm
-            //this.gh405.DataBindings.Add("BackColor", mScanSettingsVM.Engine.Config.ScanChannel405, "PseudoColor");
-            //this.gh405.DataBindings.Add("Collapsed", mScanSettingsVM.Engine.Config.ScanChannel405, "Collapsed");
-            //this.tbar405HV.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel405, "Gain");
-            //this.tbx405HV.DataBindings.Add("Text", tbar405HV, "Value");
-            //this.tbar405Offset.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel405, "Offset");
-            //this.tbx405Offset.DataBindings.Add("Text", tbar405Offset, "Value");
-            //this.tbar405Power.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel405, "LaserPower");
-            //this.tbx405Power.DataBindings.Add("Text", tbar405Power, "Value");
-            //this.btn405Power.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanChannel405, "Activated");
+            this.gh405.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel405, "PseudoColor");
+            this.tbar405HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel405, "Gain");
+            this.tbx405HV.DataBindings.Add("Text", tbar405HV, "Value");
+            this.tbar405Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel405, "Offset");
+            this.tbx405Offset.DataBindings.Add("Text", tbar405Offset, "Value");
+            this.tbar405Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel405, "LaserPower");
+            this.tbx405Power.DataBindings.Add("Text", tbar405Power, "Value");
+            this.btn405Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel405, "Activated");
             // 扫描通道2 - 488nm
-            //this.gh488.DataBindings.Add("BackColor", mScanSettingsVM.Engine.Config.ScanChannel488, "PseudoColor");
-            //this.gh488.DataBindings.Add("Collapsed", mScanSettingsVM.Engine.Config.ScanChannel488, "Collapsed");
-            //this.tbar488HV.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel488, "Gain");
-            //this.tbx488HV.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel488, "Gain");
-            //this.tbar488Offset.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel488, "Offset");
-            //this.tbx488Offset.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel488, "Offset");
-            //this.tbar488Power.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel488, "LaserPower");
-            //this.tbx488Power.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel488, "LaserPower");
-            //this.btn488Power.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanChannel488, "Activated");
+            this.gh488.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel488, "PseudoColor");
+            this.tbar488HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel488, "Gain");
+            this.tbx488HV.DataBindings.Add("Text", mScanSettingsVM.ScanChannel488, "Gain");
+            this.tbar488Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel488, "Offset");
+            this.tbx488Offset.DataBindings.Add("Text", mScanSettingsVM.ScanChannel488, "Offset");
+            this.tbar488Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel488, "LaserPower");
+            this.tbx488Power.DataBindings.Add("Text", mScanSettingsVM.ScanChannel488, "LaserPower");
+            this.btn488Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel488, "Activated");
             // 扫描通道3 - 561nm
-            //this.gh561.DataBindings.Add("BackColor", mScanSettingsVM.Engine.Config.ScanChannel561, "PseudoColor");
-            //this.gh561.DataBindings.Add("Collapsed", mScanSettingsVM.Engine.Config.ScanChannel561, "Collapsed");
-            //this.tbar561HV.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel561, "Gain");
-            //this.tbx561HV.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel561, "Gain");
-            //this.tbar561Offset.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel561, "Offset");
-            //this.tbx561Offset.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel561, "Offset");
-            //this.tbar561Power.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel561, "LaserPower");
-            //this.tbx561Power.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel561, "LaserPower");
-            //this.btn561Power.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanChannel561, "Activated");
+            this.gh561.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel561, "PseudoColor");
+            this.tbar561HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel561, "Gain");
+            this.tbx561HV.DataBindings.Add("Text", mScanSettingsVM.ScanChannel561, "Gain");
+            this.tbar561Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel561, "Offset");
+            this.tbx561Offset.DataBindings.Add("Text", mScanSettingsVM.ScanChannel561, "Offset");
+            this.tbar561Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel561, "LaserPower");
+            this.tbx561Power.DataBindings.Add("Text", mScanSettingsVM.ScanChannel561, "LaserPower");
+            this.btn561Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel561, "Activated");
             // 扫描通道4 - 640nm
-            //this.gh640.DataBindings.Add("BackColor", mScanSettingsVM.Engine.Config.ScanChannel640, "PseudoColor");
-            //this.gh640.DataBindings.Add("Collapsed", mScanSettingsVM.Engine.Config.ScanChannel640, "Collapsed");
-            //this.tbar640HV.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel640, "Gain");
-            //this.tbx640HV.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel640, "Gain");
-            //this.tbar640Offset.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel640, "Offset");
-            //this.tbx640Offset.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel640, "Offset");
-            //this.tbar640Power.DataBindings.Add("Value", mScanSettingsVM.Engine.Config.ScanChannel640, "LaserPower");
-            //this.tbx640Power.DataBindings.Add("Text", mScanSettingsVM.Engine.Config.ScanChannel640, "LaserPower");
-            //this.btn640Power.DataBindings.Add("Pressed", mScanSettingsVM.Engine.Config.ScanChannel640, "Activated");
+            this.gh640.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel640, "PseudoColor");
+            this.tbar640HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel640, "Gain");
+            this.tbx640HV.DataBindings.Add("Text", mScanSettingsVM.ScanChannel640, "Gain");
+            this.tbar640Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel640, "Offset");
+            this.tbx640Offset.DataBindings.Add("Text", mScanSettingsVM.ScanChannel640, "Offset");
+            this.tbar640Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel640, "LaserPower");
+            this.tbx640Power.DataBindings.Add("Text", mScanSettingsVM.ScanChannel640, "LaserPower");
+            this.btn640Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel640, "Activated");
             // 小孔
             //this.cbxPinHoleSelect.DataSource = mScanSettingsVM.Engine.Config.ScanPinHoleList;
             //this.cbxPinHoleSelect.DisplayMember = "Name";
@@ -264,6 +264,7 @@ namespace NanoInsight.Viewer.View
             }
             mScanSettingsVM.ScanLiveMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanLiveMode.IsEnabled;
             mScanSettingsVM.ScanCaptureMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanCaptureMode.IsEnabled;
+            mScanSettingsVM.Update();
         }
 
         /// <summary>
@@ -288,6 +289,7 @@ namespace NanoInsight.Viewer.View
             }
             mScanSettingsVM.ScanLiveMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanLiveMode.IsEnabled;
             mScanSettingsVM.ScanCaptureMode.IsEnabled = mScanSettingsVM.Engine.Configuration.ScanCaptureMode.IsEnabled;
+            mScanSettingsVM.Update();
         }
 
         /// <summary>
@@ -326,6 +328,7 @@ namespace NanoInsight.Viewer.View
             mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Unidirection.ID);
             mScanSettingsVM.Bidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Bidirection.IsEnabled;
             mScanSettingsVM.Unidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Unidirection.IsEnabled;
+            mScanSettingsVM.Update();
         }
 
         private void BidirectionClick(object sender, EventArgs e)
@@ -338,6 +341,7 @@ namespace NanoInsight.Viewer.View
             mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Bidirection.ID);
             mScanSettingsVM.Bidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Bidirection.IsEnabled;
             mScanSettingsVM.Unidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Unidirection.IsEnabled;
+            mScanSettingsVM.Update();
         }
 
         /// <summary>
@@ -356,6 +360,7 @@ namespace NanoInsight.Viewer.View
             }
             nbScanPixelCalibration.ValueChanged -= ScanPixelCalibrationChanged;
             mScanSettingsVM.SelectScanPixelDwell(model.ID);
+            mScanSettingsVM.Update();
             nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
         }
 
@@ -375,6 +380,7 @@ namespace NanoInsight.Viewer.View
             }
 
             mScanSettingsVM.SelectScanPixel(model.ID);
+            mScanSettingsVM.Update();
         }
 
         /// <summary>
@@ -397,11 +403,98 @@ namespace NanoInsight.Viewer.View
             mScanSettingsVM.SetScanPixelScale((int)nbScanPixelScale.Value);
         }
 
+        /// <summary>
+        /// 切换跳行扫描事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanLineSkipChanged(object sender, EventArgs e)
+        {
+            int id = ((ScanLineSkipModel)cbxLineSkip.SelectedItem).ID;
+            mScanSettingsVM.Engine.SelectLineSkip(id);
+            mScanSettingsVM.SelectedScanLineSkip = mScanSettingsVM.ScanLineSkipList.Where(p => p.ID == mScanSettingsVM.Engine.Configuration.SelectedScanLineSkip.ID).First();
+        }
+
         private void ScanSettingViewLoad(object sender, EventArgs e)
         {
             Initialize();
             SetDataBindings();
             RegisterEvents();
         }
+
+        /// <summary>
+        /// 跳行扫描使能变更事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LineSkipCheckedChanged(object sender, EventArgs e)
+        {
+            mScanSettingsVM.Engine.SetLineSkipStatus(chbxLineSkip.Checked);
+        }
+
+        /// <summary>
+        /// 快速模式使能点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FastModeClick(object sender, EventArgs e)
+        {
+            mScanSettingsVM.Engine.SetFastModeStatus(rbtnFastMode.Pressed);
+            mScanSettingsVM.FastModeEnabled = mScanSettingsVM.Engine.Configuration.FastModeEnabled;
+            Logger.Info(string.Format("Fast Mode Enabled [{0}].", mScanSettingsVM.FastModeEnabled));
+        }
+
+        /// <summary>
+        /// 通道增益更新事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChannelGainChanged(object sender, EventArgs e)
+        {
+            InputTrackBar bar = (InputTrackBar)sender;
+            int id = (int)bar.Tag;
+            mScanSettingsVM.Engine.SetChannelGain(id, bar.Value);
+            mScanSettingsVM.ScanChannels[id].Gain = mScanSettingsVM.Engine.Configuration.ScanChannels[id].Gain;
+        }
+
+        /// <summary>
+        /// 通道偏置更新事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChannelOffsetChanged(object sender, EventArgs e)
+        {
+            InputTrackBar bar = (InputTrackBar)sender;
+            int id = (int)bar.Tag;
+            mScanSettingsVM.Engine.SetChannelOffset(id, bar.Value);
+            mScanSettingsVM.ScanChannels[id].Offset = mScanSettingsVM.Engine.Configuration.ScanChannels[id].Offset;
+        }
+
+        /// <summary>
+        /// 通道功率更新事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChannelPowerChanged(object sender, EventArgs e)
+        {
+            InputTrackBar bar = (InputTrackBar)sender;
+            int id = (int)bar.Tag;
+            mScanSettingsVM.Engine.SetChannelPower(id, bar.Value);
+            mScanSettingsVM.ScanChannels[id].LaserPower = mScanSettingsVM.Engine.Configuration.ScanChannels[id].LaserPower;
+        }
+
+        /// <summary>
+        /// 通道激光开关事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChannelActivateChanged(object sender, EventArgs e)
+        {
+            InputButton button = (InputButton)sender;
+            int id = (int)button.Tag;
+            mScanSettingsVM.Engine.SetChannelStatus(id, button.Pressed);
+            mScanSettingsVM.ScanChannels[id].Activated = mScanSettingsVM.Engine.Configuration.ScanChannels[id].Activated;
+        }
+
     }
 }
