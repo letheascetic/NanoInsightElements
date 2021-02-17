@@ -374,7 +374,20 @@ namespace NanoInsight.Viewer.ViewModel
 
         public int SelectScanPixel(int id)
         {
-            return 0;
+            int code = Engine.SelectScanPixel(id);
+            foreach (ScanPixelModel scanPixel in ScanPixelList)
+            {
+                if (scanPixel.ID == Engine.Configuration.SelectedScanPixel.ID)
+                {
+                    scanPixel.IsEnabled = true;
+                    SelectedScanPixel = scanPixel;
+                }
+                else
+                {
+                    scanPixel.IsEnabled = false;
+                }
+            }
+            return code;
         }
 
         private int ScanPixelDwellChangedEventHandler(ScanPixelDwell scanPixelDwell)

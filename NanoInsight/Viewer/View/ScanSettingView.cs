@@ -114,11 +114,10 @@ namespace NanoInsight.Viewer.View
             nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
             nbScanPixelScale.ValueChanged += ScanPixelScaleChanged;
 
-            //for (int i = 0; i < mScanPixelButtons.Length; i++)
-            //{
-            //    mScanPixelButtons[i].Tag = mScanSettingsVM.Engine.Config.ScanPixelList[i];
-            //    mScanPixelButtons[i].Click += ScanPixelChanged;
-            //}
+            for (int i = 0; i < mScanPixelButtons.Length; i++)
+            {
+                mScanPixelButtons[i].Click += ScanPixelChanged;
+            }
 
             //cbxLineSkip.SelectedIndexChanged += ScanLineSkipChanged;
 
@@ -178,12 +177,12 @@ namespace NanoInsight.Viewer.View
                 mPixelDwellButtons[i].DataBindings.Add("Pressed", mScanSettingsVM.ScanPixelDwellList[i], "IsEnabled");
             }
             // 扫描像素
-            //foreach (InputButton button in mScanPixelButtons)
-            //{
-            //    ScanPixelModel model = (ScanPixelModel)button.Tag;
-            //    button.DataBindings.Add("Text", model, "Text");
-            //    button.DataBindings.Add("Pressed", model, "IsEnabled");
-            //}
+            for (int i = 0; i < mScanPixelButtons.Length; i++)
+            {
+                mScanPixelButtons[i].Tag = mScanSettingsVM.ScanPixelList[i];
+                mScanPixelButtons[i].DataBindings.Add("Text", mScanSettingsVM.ScanPixelList[i], "Text");
+                mScanPixelButtons[i].DataBindings.Add("Pressed", mScanSettingsVM.ScanPixelList[i], "IsEnabled");
+            }
             // 帧率 & 帧时间
             //this.lbFPSValue.DataBindings.Add("Text", mScanSettingsVM.Engine.Sequence, "FPS", true, DataSourceUpdateMode.OnPropertyChanged, null, "0.000 fps");
             //this.lbFrameTimeValue.DataBindings.Add("Text", mScanSettingsVM.Engine.Sequence, "FrameTime", true, DataSourceUpdateMode.OnPropertyChanged, null, "0.000 sec");
@@ -358,6 +357,24 @@ namespace NanoInsight.Viewer.View
             nbScanPixelCalibration.ValueChanged -= ScanPixelCalibrationChanged;
             mScanSettingsVM.SelectScanPixelDwell(model.ID);
             nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
+        }
+
+        /// <summary>
+        /// 扫描像素按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ScanPixelChanged(object sender, EventArgs e)
+        {
+            InputButton button = (InputButton)sender;
+            ScanPixelModel model = (ScanPixelModel)button.Tag;
+            if (model.IsEnabled)
+            {
+                button.Pressed = true;
+                return;
+            }
+
+            mScanSettingsVM.SelectScanPixel(model.ID);
         }
 
         /// <summary>
