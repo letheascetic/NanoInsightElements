@@ -249,6 +249,9 @@ namespace NanoInsight.Viewer.ViewModel
         private ScanChannelModel scanChannel561;
         private ScanChannelModel scanChannel640;
         private ScanChannelModel[] scanChannels;
+        private ScanChannelModel selectedScanChannel;
+
+        private int selectedPinHole;
 
         /// <summary>
         /// 405nm通道
@@ -287,6 +290,18 @@ namespace NanoInsight.Viewer.ViewModel
             get { return scanChannels; }
             set { scanChannels = value; RaisePropertyChanged(() => ScanChannels); }
         }
+        public ScanChannelModel SelectedScanChannel
+        {
+            get { return selectedScanChannel; }
+            set { selectedScanChannel = value; RaisePropertyChanged(() => SelectedScanChannel); }
+        }
+
+        public int SelectedPinHole
+        {
+            get { return selectedPinHole; }
+            set { selectedPinHole = value; RaisePropertyChanged(() => SelectedPinHole); }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////
         private double fps;
         private double frameTime;
@@ -343,6 +358,8 @@ namespace NanoInsight.Viewer.ViewModel
             ScanChannel561 = new ScanChannelModel(mScheduler.Configuration.ScanChannel561);
             ScanChannel640 = new ScanChannelModel(mScheduler.Configuration.ScanChannel640);
             ScanChannels = new ScanChannelModel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
+            SelectedScanChannel = ScanChannel405;
+            SelectedPinHole = SelectedScanChannel.PinHole;
             // Fps & FrameTime
             Fps = mScheduler.Sequence.FPS;
             FrameTime = mScheduler.Sequence.FrameTime;

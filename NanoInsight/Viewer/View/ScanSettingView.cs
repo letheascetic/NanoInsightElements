@@ -121,7 +121,8 @@ namespace NanoInsight.Viewer.View
 
             cbxLineSkip.SelectedIndexChanged += ScanLineSkipChanged;
 
-            //cbxPinHoleSelect.SelectedIndexChanged += ScanPinHoleChanged;
+            cbxPinHoleSelect.SelectedIndexChanged += SelectedScanChannelChanged;
+            tbarPinHole.ValueChanged += PinHoleChanged;
 
             for (int i = 0; i < mChannelGainBars.Length; i++)
             {
@@ -208,37 +209,37 @@ namespace NanoInsight.Viewer.View
             // 扫描通道2 - 488nm
             this.gh488.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel488, "PseudoColor");
             this.tbar488HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel488, "Gain");
-            this.tbx488HV.DataBindings.Add("Text", mScanSettingsVM.ScanChannel488, "Gain");
+            this.tbx488HV.DataBindings.Add("Text", tbar488HV, "Value");
             this.tbar488Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel488, "Offset");
-            this.tbx488Offset.DataBindings.Add("Text", mScanSettingsVM.ScanChannel488, "Offset");
+            this.tbx488Offset.DataBindings.Add("Text", tbar488Offset, "Value");
             this.tbar488Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel488, "LaserPower");
-            this.tbx488Power.DataBindings.Add("Text", mScanSettingsVM.ScanChannel488, "LaserPower");
+            this.tbx488Power.DataBindings.Add("Text", tbar488Power, "Value");
             this.btn488Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel488, "Activated");
             // 扫描通道3 - 561nm
             this.gh561.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel561, "PseudoColor");
             this.tbar561HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel561, "Gain");
-            this.tbx561HV.DataBindings.Add("Text", mScanSettingsVM.ScanChannel561, "Gain");
+            this.tbx561HV.DataBindings.Add("Text", tbar561HV, "Value");
             this.tbar561Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel561, "Offset");
-            this.tbx561Offset.DataBindings.Add("Text", mScanSettingsVM.ScanChannel561, "Offset");
+            this.tbx561Offset.DataBindings.Add("Text", tbar561Offset, "Value");
             this.tbar561Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel561, "LaserPower");
-            this.tbx561Power.DataBindings.Add("Text", mScanSettingsVM.ScanChannel561, "LaserPower");
+            this.tbx561Power.DataBindings.Add("Text", tbar561Power, "Value");
             this.btn561Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel561, "Activated");
             // 扫描通道4 - 640nm
             this.gh640.DataBindings.Add("BackColor", mScanSettingsVM.ScanChannel640, "PseudoColor");
             this.tbar640HV.DataBindings.Add("Value", mScanSettingsVM.ScanChannel640, "Gain");
-            this.tbx640HV.DataBindings.Add("Text", mScanSettingsVM.ScanChannel640, "Gain");
+            this.tbx640HV.DataBindings.Add("Text", tbar640HV, "Value");
             this.tbar640Offset.DataBindings.Add("Value", mScanSettingsVM.ScanChannel640, "Offset");
-            this.tbx640Offset.DataBindings.Add("Text", mScanSettingsVM.ScanChannel640, "Offset");
+            this.tbx640Offset.DataBindings.Add("Text", tbar640Offset, "Value");
             this.tbar640Power.DataBindings.Add("Value", mScanSettingsVM.ScanChannel640, "LaserPower");
-            this.tbx640Power.DataBindings.Add("Text", mScanSettingsVM.ScanChannel640, "LaserPower");
+            this.tbx640Power.DataBindings.Add("Text", tbar640Power, "Value");
             this.btn640Power.DataBindings.Add("Pressed", mScanSettingsVM.ScanChannel640, "Activated");
             // 小孔
-            //this.cbxPinHoleSelect.DataSource = mScanSettingsVM.Engine.Config.ScanPinHoleList;
-            //this.cbxPinHoleSelect.DisplayMember = "Name";
-            //this.cbxPinHoleSelect.ValueMember = "Size";
-            //this.cbxPinHoleSelect.SelectedItem = mScanSettingsVM.Engine.Config.SelectedPinHole;
-            //this.tbxPinHole.DataBindings.Add("Text", tbarPinHole, "Value");
-
+            this.cbxPinHoleSelect.DataSource = mScanSettingsVM.ScanChannels;
+            this.cbxPinHoleSelect.DisplayMember = "LaserWaveLength";
+            this.cbxPinHoleSelect.ValueMember = "PinHole";
+            this.cbxPinHoleSelect.SelectedItem = mScanSettingsVM.SelectedScanChannel;
+            this.tbarPinHole.DataBindings.Add("Value", mScanSettingsVM, "SelectedPinHole");
+            this.tbxPinHole.DataBindings.Add("Text", tbarPinHole, "Value");
             // 其他
         }
 
@@ -494,6 +495,32 @@ namespace NanoInsight.Viewer.View
             int id = (int)button.Tag;
             mScanSettingsVM.Engine.SetChannelStatus(id, button.Pressed);
             mScanSettingsVM.ScanChannels[id].Activated = mScanSettingsVM.Engine.Configuration.ScanChannels[id].Activated;
+        }
+
+        /// <summary>
+        /// 切换扫描通道事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SelectedScanChannelChanged(object sender, EventArgs e)
+        {
+            tbarPinHole.ValueChanged -= PinHoleChanged;
+            mScanSettingsVM.SelectedScanChannel = (ScanChannelModel)cbxPinHoleSelect.SelectedItem;
+            mScanSettingsVM.SelectedPinHole = mScanSettingsVM.SelectedScanChannel.PinHole;
+            tbarPinHole.ValueChanged += PinHoleChanged;
+        }
+
+        /// <summary>
+        /// 设置小孔孔径
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PinHoleChanged(object sender, EventArgs e)
+        {
+            InputTrackBar bar = (InputTrackBar)sender;
+            int id = mScanSettingsVM.SelectedScanChannel.ID;
+            mScanSettingsVM.Engine.SetChannelPinHole(id, bar.Value);
+            mScanSettingsVM.SelectedScanChannel.PinHole = mScanSettingsVM.Engine.Configuration.ScanChannels[id].PinHole;
         }
 
     }

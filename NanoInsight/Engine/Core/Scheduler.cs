@@ -42,6 +42,7 @@ namespace NanoInsight.Engine.Core
         public event ChannelLaserColorChangedEventHandler ChannelLaserColorChangedEvent;
         public event ChannelPseudoColorChangedEventHandler ChannelPseudoColorChangedEvent;
         public event ChannelActivateChangedEventHandler ChannelActivateChangedEvent;
+        public event ChannelPinHoleChangedEventHandler ChannelPinHoleChangedEvent;
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         private NiDaq mNiDaq;
@@ -615,6 +616,27 @@ namespace NanoInsight.Engine.Core
                 if (ChannelActivateChangedEvent != null)
                 {
                     return ChannelActivateChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道小孔孔径
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pinHole"></param>
+        /// <returns></returns>
+        public int SetChannelPinHole(int id, int pinHole)
+        {
+            int code = BeforePropertyChanged();
+            code |= mConfig.SetChannelPinHole(id, pinHole);
+            code |= AfterPropertyChanged();
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ChannelPinHoleChangedEvent != null)
+                {
+                    ChannelPinHoleChangedEvent.Invoke(mConfig.ScanChannels[id]);
                 }
             }
             return code;
