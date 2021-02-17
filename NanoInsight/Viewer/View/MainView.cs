@@ -92,5 +92,14 @@ namespace NanoInsight.Viewer.View
                 Visible = true
             };
         }
+
+        private void ScanParasClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            ScanParasView mScanParasView = new ScanParasView()
+            {
+                MdiParent = this,
+                Visible = true
+            };
+        }
     }
 }

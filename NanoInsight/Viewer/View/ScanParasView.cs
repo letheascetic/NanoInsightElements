@@ -38,9 +38,30 @@ namespace NanoInsight.Viewer.View
 
         private void SetDataBindings()
         {
+            tbxOutputSampleRate.DataBindings.Add("Text", mScanParasVM, "OutputSampleRate");
+            tbxOutputSampleCountPerRoundTrip.DataBindings.Add("Text", mScanParasVM, "OutputSampleCountPerRoundTrip");
+            tbxOutputRoundTripPerFrame.DataBindings.Add("Text", mScanParasVM, "OutputRoundTripCountPerFrame");
+            tbxOutputSampleCountPerFrame.DataBindings.Add("Text", mScanParasVM, "OutputSampleCountPerFrame");
 
+            tbxInputSampleRate.DataBindings.Add("Text", mScanParasVM, "InputSampleRate");
+            tbxInputSampleCountPerRoundTrip.DataBindings.Add("Text", mScanParasVM, "InputSampleCountPerRoundTrip");
+            tbxInputRoundTripCountPerFrame.DataBindings.Add("Text", mScanParasVM, "InputRoundTripCountPerFrame");
+            tbxInputSampleCountPerFrame.DataBindings.Add("Text", mScanParasVM, "InputSampleCountPerFrame");
+            tbxInputSampleCountPerPixel.DataBindings.Add("Text", mScanParasVM, "InputSampleCountPerPixel");
+            tbxInputSampleCountPerAcquisition.DataBindings.Add("Text", mScanParasVM, "InputSampleCountPerAcquisition");
+            tbxInputPixelCountPerAcquisition.DataBindings.Add("Text", mScanParasVM, "InputPixelCountPerAcquisition");
+            tbxInputRoundTripCountPerAcquisition.DataBindings.Add("Text", mScanParasVM, "InputRoundTripCountPerAcquisition");
+            tbxInputAcquisitionCountPerFrame.DataBindings.Add("Text", mScanParasVM, "InputAcquisitionCountPerFrame");
+
+            tbxFPS.DataBindings.Add("Text", mScanParasVM, "FPS");
+            tbxFrameTime.DataBindings.Add("Text", mScanParasVM, "FrameTime");
         }
 
-
+        private void ScanParasViewLoad(object sender, EventArgs e)
+        {
+            Initialize();
+            SetDataBindings();
+            RegisterEvents();
+        }
     }
 }

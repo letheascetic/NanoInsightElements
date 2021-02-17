@@ -39,6 +39,8 @@
             this.cmdScanArea = new C1.Win.C1Command.C1Command();
             this.cmdLinkSysSettings = new C1.Win.C1Command.C1CommandLink();
             this.cmdSysSettings = new C1.Win.C1Command.C1Command();
+            this.cmdLinkScanSettings = new C1.Win.C1Command.C1CommandLink();
+            this.cmdScanSettings = new C1.Win.C1Command.C1Command();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainMenu = new C1.Win.C1Command.C1MainMenu();
             this.cmdLinkFile = new C1.Win.C1Command.C1CommandLink();
@@ -51,8 +53,8 @@
             this.btnLaserRelease = new System.Windows.Forms.ToolStripButton();
             this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
             this.toolBar = new C1.Win.C1Command.C1ToolBar();
-            this.cmdLinkScanSettings = new C1.Win.C1Command.C1CommandLink();
-            this.cmdScanSettings = new C1.Win.C1Command.C1Command();
+            this.cmdLinkScanParas = new C1.Win.C1Command.C1CommandLink();
+            this.cmdScanParas = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
@@ -68,6 +70,7 @@
             this.c1CommandHolder.Commands.Add(this.cmdScanArea);
             this.c1CommandHolder.Commands.Add(this.cmdSysSettings);
             this.c1CommandHolder.Commands.Add(this.cmdScanSettings);
+            this.c1CommandHolder.Commands.Add(this.cmdScanParas);
             this.c1CommandHolder.Owner = this;
             // 
             // cmdMenuFile
@@ -102,7 +105,8 @@
             this.cmdMenuWindow.CommandLinks.AddRange(new C1.Win.C1Command.C1CommandLink[] {
             this.cmdLinkScanArea,
             this.cmdLinkSysSettings,
-            this.cmdLinkScanSettings});
+            this.cmdLinkScanSettings,
+            this.cmdLinkScanParas});
             this.cmdMenuWindow.HideNonRecentLinks = false;
             this.cmdMenuWindow.Name = "cmdMenuWindow";
             this.cmdMenuWindow.ShortcutText = "";
@@ -130,6 +134,18 @@
             this.cmdSysSettings.ShortcutText = "";
             this.cmdSysSettings.Text = "系统设置（&S）";
             this.cmdSysSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.SysSettingsClick);
+            // 
+            // cmdLinkScanSettings
+            // 
+            this.cmdLinkScanSettings.Command = this.cmdScanSettings;
+            this.cmdLinkScanSettings.SortOrder = 2;
+            // 
+            // cmdScanSettings
+            // 
+            this.cmdScanSettings.Name = "cmdScanSettings";
+            this.cmdScanSettings.ShortcutText = "";
+            this.cmdScanSettings.Text = "扫描设置（&C）";
+            this.cmdScanSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanSettingsClick);
             // 
             // statusStrip
             // 
@@ -243,17 +259,17 @@
             this.toolBar.VisualStyle = C1.Win.C1Command.VisualStyle.Custom;
             this.toolBar.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue;
             // 
-            // cmdLinkScanSettings
+            // cmdLinkScanParas
             // 
-            this.cmdLinkScanSettings.Command = this.cmdScanSettings;
-            this.cmdLinkScanSettings.SortOrder = 2;
+            this.cmdLinkScanParas.Command = this.cmdScanParas;
+            this.cmdLinkScanParas.SortOrder = 3;
             // 
-            // cmdScanSettings
+            // cmdScanParas
             // 
-            this.cmdScanSettings.Name = "cmdScanSettings";
-            this.cmdScanSettings.ShortcutText = "";
-            this.cmdScanSettings.Text = "扫描设置（&C）";
-            this.cmdScanSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanSettingsClick);
+            this.cmdScanParas.Name = "cmdScanParas";
+            this.cmdScanParas.ShortcutText = "";
+            this.cmdScanParas.Text = "扫描参数（&P）";
+            this.cmdScanParas.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanParasClick);
             // 
             // MainView
             // 
@@ -306,5 +322,7 @@
         private C1.Win.C1Command.C1Command cmdSysSettings;
         private C1.Win.C1Command.C1CommandLink cmdLinkScanSettings;
         private C1.Win.C1Command.C1Command cmdScanSettings;
+        private C1.Win.C1Command.C1CommandLink cmdLinkScanParas;
+        private C1.Win.C1Command.C1Command cmdScanParas;
     }
 }
