@@ -554,5 +554,9 @@ namespace NanoInsight.Engine.Core
             }
         }
 
+        private ScanSequence()
+        {
+            GenerateScanCoordinates();
+        }
     }
 }

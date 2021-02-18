@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.c1CommandHolder = new C1.Win.C1Command.C1CommandHolder();
             this.cmdMenuFile = new C1.Win.C1Command.C1CommandMenu();
@@ -41,6 +42,8 @@
             this.cmdSysSettings = new C1.Win.C1Command.C1Command();
             this.cmdLinkScanSettings = new C1.Win.C1Command.C1CommandLink();
             this.cmdScanSettings = new C1.Win.C1Command.C1Command();
+            this.cmdLinkScanParas = new C1.Win.C1Command.C1CommandLink();
+            this.cmdScanParas = new C1.Win.C1Command.C1Command();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainMenu = new C1.Win.C1Command.C1MainMenu();
             this.cmdLinkFile = new C1.Win.C1Command.C1CommandLink();
@@ -53,12 +56,12 @@
             this.btnLaserRelease = new System.Windows.Forms.ToolStripButton();
             this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
             this.toolBar = new C1.Win.C1Command.C1ToolBar();
-            this.cmdLinkScanParas = new C1.Win.C1Command.C1CommandLink();
-            this.cmdScanParas = new C1.Win.C1Command.C1Command();
+            this.snapFormExtender = new SnapFormExtender.SnapFormExtender(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
             this.dockToolBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snapFormExtender)).BeginInit();
             this.SuspendLayout();
             // 
             // c1CommandHolder
@@ -146,6 +149,18 @@
             this.cmdScanSettings.ShortcutText = "";
             this.cmdScanSettings.Text = "扫描设置（&C）";
             this.cmdScanSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanSettingsClick);
+            // 
+            // cmdLinkScanParas
+            // 
+            this.cmdLinkScanParas.Command = this.cmdScanParas;
+            this.cmdLinkScanParas.SortOrder = 3;
+            // 
+            // cmdScanParas
+            // 
+            this.cmdScanParas.Name = "cmdScanParas";
+            this.cmdScanParas.ShortcutText = "";
+            this.cmdScanParas.Text = "扫描参数（&P）";
+            this.cmdScanParas.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanParasClick);
             // 
             // statusStrip
             // 
@@ -259,17 +274,10 @@
             this.toolBar.VisualStyle = C1.Win.C1Command.VisualStyle.Custom;
             this.toolBar.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue;
             // 
-            // cmdLinkScanParas
+            // snapFormExtender
             // 
-            this.cmdLinkScanParas.Command = this.cmdScanParas;
-            this.cmdLinkScanParas.SortOrder = 3;
-            // 
-            // cmdScanParas
-            // 
-            this.cmdScanParas.Name = "cmdScanParas";
-            this.cmdScanParas.ShortcutText = "";
-            this.cmdScanParas.Text = "扫描参数（&P）";
-            this.cmdScanParas.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanParasClick);
+            this.snapFormExtender.Distance = 10;
+            this.snapFormExtender.Form = this;
             // 
             // MainView
             // 
@@ -292,6 +300,7 @@
             this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).EndInit();
             this.dockToolBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.snapFormExtender)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +333,6 @@
         private C1.Win.C1Command.C1Command cmdScanSettings;
         private C1.Win.C1Command.C1CommandLink cmdLinkScanParas;
         private C1.Win.C1Command.C1Command cmdScanParas;
+        private SnapFormExtender.SnapFormExtender snapFormExtender;
     }
 }

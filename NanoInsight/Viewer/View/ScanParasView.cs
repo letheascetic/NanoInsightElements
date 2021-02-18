@@ -1,5 +1,6 @@
 ﻿using C1.Win.C1Ribbon;
 using log4net;
+using NanoInsight.Engine.Core;
 using NanoInsight.Viewer.Model;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,16 @@ namespace NanoInsight.Viewer.View
 
         private void RegisterEvents()
         {
-
+            // 注册事件
+            mScanParasVM.Engine.ScanAreaChangedEvent += ScanAreaChangedEventHandler;
+            mScanParasVM.Engine.FullScanAreaChangedEvent += ScanAreaChangedEventHandler;
+            mScanParasVM.Engine.ScanHeadChangedEvent += ScanHeadChangedEventHandler;
+            mScanParasVM.Engine.ScanDirectionChangedEvent += ScanDirectionChangedEventHandler;
+            mScanParasVM.Engine.LineSkipChangedEvent += LineSkipChangedEventHandler;
+            mScanParasVM.Engine.LineSkipStatusChangedEvent += LineSkipStatusChangedEventHandler;
+            mScanParasVM.Engine.ScanPixelChangedEvent += ScanPixelChangedEventHandler;
+            mScanParasVM.Engine.ScanPixelDwellChangedEvent += ScanPixelDwellChangedEventHandler;
+            mScanParasVM.Engine.ChannelActivateChangedEvent += ChannelActivateChangedEventHandler;
         }
 
         private void SetDataBindings()
@@ -63,5 +73,86 @@ namespace NanoInsight.Viewer.View
             SetDataBindings();
             RegisterEvents();
         }
+
+        private int ChannelActivateChangedEventHandler(Engine.Attribute.ScanChannel channel)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int ScanPixelDwellChangedEventHandler(Engine.Attribute.ScanPixelDwell scanPixelDwell)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int ScanPixelChangedEventHandler(Engine.Attribute.ScanPixel scanPixel)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int LineSkipStatusChangedEventHandler(bool status)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int LineSkipChangedEventHandler(Engine.Attribute.ScanLineSkip lineSkip)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int ScanDirectionChangedEventHandler(Engine.Attribute.ScanDirection scanDirection)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int ScanHeadChangedEventHandler(Engine.Attribute.ScanHead scanHead)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
+        private int ScanAreaChangedEventHandler(Engine.Attribute.ScanArea scanArea)
+        {
+            mScanParasVM.UpdateVariables();
+            mScanParasVM.UpdateChartValues();
+            chart.Series[0].Points.DataBindXY(mScanParasVM.TimeValues, mScanParasVM.XGalvoValues);
+            chart.Series[1].Points.DataBindXY(mScanParasVM.TriggerTimeValues, mScanParasVM.TriggerValues);
+            chart.Update();
+            return ApiCode.Success;
+        }
+
     }
 }

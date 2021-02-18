@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using log4net;
+using NanoInsight.Engine.Attribute;
 using NanoInsight.Engine.Core;
 using System;
 using System.Collections.Generic;
@@ -234,67 +235,9 @@ namespace NanoInsight.Viewer.Model
         {
             mScheduler = Scheduler.CreateInstance();
             UpdateVariables();
-            // 注册事件
-            mScheduler.ScanAreaChangedEvent += ScanAreaChangedEventHandler;
-            mScheduler.FullScanAreaChangedEvent += ScanAreaChangedEventHandler;
-            mScheduler.ScanHeadChangedEvent += ScanHeadChangedEventHandler;
-            mScheduler.ScanDirectionChangedEvent += ScanDirectionChangedEventHandler;
-            mScheduler.LineSkipChangedEvent += LineSkipChangedEventHandler;
-            mScheduler.LineSkipStatusChangedEvent += LineSkipStatusChangedEventHandler;
-            mScheduler.ScanPixelChangedEvent += ScanPixelChangedEventHandler;
-            mScheduler.ScanPixelDwellChangedEvent += ScanPixelDwellChangedEventHandler;
-            mScheduler.ChannelActivateChangedEvent += ChannelActivateChangedEventHandler;
         }
 
-        private int ChannelActivateChangedEventHandler(Engine.Attribute.ScanChannel channel)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int ScanPixelDwellChangedEventHandler(Engine.Attribute.ScanPixelDwell scanPixelDwell)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int ScanPixelChangedEventHandler(Engine.Attribute.ScanPixel scanPixel)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int LineSkipStatusChangedEventHandler(bool status)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int LineSkipChangedEventHandler(Engine.Attribute.ScanLineSkip lineSkip)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int ScanDirectionChangedEventHandler(Engine.Attribute.ScanDirection scanDirection)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int ScanHeadChangedEventHandler(Engine.Attribute.ScanHead scanHead)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private int ScanAreaChangedEventHandler(Engine.Attribute.ScanArea scanArea)
-        {
-            UpdateVariables();
-            return ApiCode.Success;
-        }
-
-        private void UpdateVariables()
+        public void UpdateVariables()
         {
             OutputSampleCountPerFrame = mScheduler.Sequence.OutputSampleCountPerFrame;
             OutputRoundTripCountPerFrame = mScheduler.Sequence.OutputRoundTripCountPerFrame;
@@ -316,5 +259,35 @@ namespace NanoInsight.Viewer.Model
             FrameTime = mScheduler.Sequence.FrameTime;
         }
 
+        public void UpdateChartValues()
+        {
+            double sampleTime = 1e3 / OutputSampleRate;
+            int sampleCount = OutputSampleCountPerRoundTrip * SAMPLE_COUNT_FACTOR;
+
+            TimeValues = new double[sampleCount];
+            TimeValues[0] = sampleTime;
+            for (int i = 1; i < sampleCount; i++)
+            {
+                TimeValues[i] = TimeValues[i - 1] + sampleTime;
+            }
+
+            if (Engine.Configuration.Detector.CurrentDetecor.ID == DetectorType.Pmt)
+            {
+                TriggerTimeValues = TimeValues;
+            }
+            else
+            {
+                sampleTime /= 2;
+                sampleCount *= 2;
+                TriggerTimeValues = new double[sampleCount];
+                for (int i = 1; i < sampleCount; i++)
+                {
+                    TriggerTimeValues[i] = TriggerTimeValues[i - 1] + sampleTime;
+                }
+            }
+
+            XGalvoValues = Enumerable.Concat(Engine.Sequence.XVoltages, Engine.Sequence.XVoltages).ToArray();
+            TriggerValues = Enumerable.Concat(Engine.Sequence.TriggerVoltages, Engine.Sequence.TriggerVoltages).ToArray();
+        }
     }
 }

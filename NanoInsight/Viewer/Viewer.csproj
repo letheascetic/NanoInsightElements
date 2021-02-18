@@ -284,6 +284,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\c1\v4.0\Microsoft.AnalysisServices.SPClient.Interfaces.DLL</HintPath>
     </Reference>
+    <Reference Include="SnapFormExtender">
+      <HintPath>..\lib\SnapFormExtender.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
