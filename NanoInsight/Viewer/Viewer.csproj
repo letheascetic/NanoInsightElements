@@ -322,6 +322,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ScanAreaViewModel.cs" />
+    <Compile Include="ViewModel\ScanImageViewModel.cs" />
     <Compile Include="ViewModel\ScanSettingsViewModel.cs" />
     <Compile Include="ViewModel\SysSettingsViewModel.cs" />
     <Compile Include="View\MainView.cs">
@@ -335,6 +336,12 @@
     </Compile>
     <Compile Include="View\ScanAreaView.Designer.cs">
       <DependentUpon>ScanAreaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScanImageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScanImageView.Designer.cs">
+      <DependentUpon>ScanImageView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ScanParasView.cs">
       <SubType>Form</SubType>
@@ -376,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ScanAreaView.resx">
       <DependentUpon>ScanAreaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScanImageView.resx">
+      <DependentUpon>ScanImageView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ScanParasView.resx">
       <DependentUpon>ScanParasView.cs</DependentUpon>
