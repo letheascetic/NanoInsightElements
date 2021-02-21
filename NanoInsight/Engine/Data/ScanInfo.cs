@@ -105,9 +105,10 @@ namespace NanoInsight.Engine.Data
 
         public void UpdateScanInfo(PmtSampleData sampleData)
         {
-            AcquisitionCount = sampleData.AcquisitionCount;
+            // AcquisitionCount = sampleData.AcquisitionCount;
             for (int i = 0; i < AcquisitionCount.Length; i++)
             {
+                AcquisitionCount[i] = sampleData.AcquisitionCount[i];
                 if (AcquisitionCount[i] >= 0)
                 {
                     CurrentBank[i] = (int)(AcquisitionCount[i] % NumOfBank);

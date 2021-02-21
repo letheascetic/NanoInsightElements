@@ -13,13 +13,13 @@ namespace NanoInsight.Engine.Data
     /// </summary>
     public class ScanBank
     {
-        private int index;
-        private Matrix<DepthType> bank;
+        private int bankIndex;
+        private Mat bank;
 
         /// <summary>
         /// 子图像数据
         /// </summary>
-        public Matrix<DepthType> Bank
+        public Mat Bank
         {
             get { return bank; }
             set { bank = value; }
@@ -28,17 +28,24 @@ namespace NanoInsight.Engine.Data
         /// <summary>
         /// 子图像在图像中的索引号
         /// </summary>
-        public int Index
+        public int BankIndex
         {
-            get { return index; }
-            set { index = value; }
+            get { return bankIndex; }
+            set { bankIndex = value; }
         }
 
-        public ScanBank(int rows, int columns, int channels, IntPtr data, int step, int index)
+        public int RowIndex
         {
-            Bank = new Matrix<DepthType>(rows, columns, channels, data, step);
-            Index = index;
+            get { return BankIndex * Bank.Rows; }
         }
 
+        public ScanBank(int rows, int columns, DepthType type, int channels, IntPtr data, int step, int bankIndex)
+        {
+            Bank = new Mat(rows, columns, type, channels, data, step);
+            BankIndex = bankIndex;
+        }
     }
+
+
+
 }

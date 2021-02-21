@@ -13,9 +13,19 @@ namespace NanoInsight.Engine.Data
     /// </summary>
     public class ScanImage
     {
+        private int sliceIndex;
         private int numOfBank;
         private Mat matImage;
         private ScanBank[] banks;
+
+        /// <summary>
+        /// 切片索引
+        /// </summary>
+        public int SliceIndex
+        {
+            get { return sliceIndex; }
+            set { sliceIndex = value; }
+        }
 
         /// <summary>
         /// 扫描图像
@@ -42,13 +52,14 @@ namespace NanoInsight.Engine.Data
             set { numOfBank = value; }
         }
 
-        public ScanImage(int rows, int columns, DepthType type, int channels, int numOfBank)
+        public ScanImage(int rows, int columns, DepthType type, int channels, int numOfBank, int sliceIndex)
         {
             if (rows % numOfBank != 0)
             {
                 throw new ArgumentException(string.Format("Rows[{0}] % NumOfBank[{1}] != 0", rows, numOfBank));
             }
 
+            SliceIndex = sliceIndex;
             NumOfBank = numOfBank;
             Image = new Mat(rows, columns, type, channels);
 
@@ -58,7 +69,7 @@ namespace NanoInsight.Engine.Data
             for (int i = 0; i < NumOfBank; i++)
             {
                 rowIndex = i * rowsOfBank;
-                Banks[i] = new ScanBank(rowsOfBank, columns, channels, Image.Row(rowIndex).DataPointer, Image.Step, i);
+                Banks[i] = new ScanBank(rowsOfBank, columns, type, channels, Image.Row(rowIndex).DataPointer, Image.Step, i);
             }
         }
 
