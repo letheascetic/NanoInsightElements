@@ -1,5 +1,8 @@
-﻿using log4net;
+﻿using Emgu.CV;
+using log4net;
+using NanoInsight.Engine.Common;
 using NanoInsight.Engine.Data;
+using NumSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,5 +81,53 @@ namespace NanoInsight.Engine.Core
         {
 
         }
+
+        /// <summary>
+        /// 更新Bank图像
+        /// </summary>
+        /// <param name="sampleData"></param>
+        public void ConvertSamples(PmtSampleData sampleData)
+        {
+            for (int i = 0; i < mConfig.GetChannelNum(); i++)
+            {
+                if (sampleData.NSamples[i] != null)
+                {
+                    // 负电压转换
+                    MatrixUtil.ToPositive(ref sampleData.NSamples[i]);
+                    // 生成Bank数据矩阵[截断/双向扫描偶数行翻转和错位补偿]
+                    NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples[i], mSequence.InputSampleCountPerPixel, mSequence.InputPixelCountPerRow,
+                        mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
+                        mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
+                        mConfig.SelectedScanPixel.Data);
+                    // Bank数据矩阵更新到OriginImages对应的BankImage
+                    Mat originImage = ScanData.OriginImages[i][0].Banks[sampleData.CurrentBank[i]].Bank;
+                    MatrixUtil.ToBankImage(matrix, ref originImage);
+                    // Origin的BankImage更新到Gray
+                    Mat grayImage = ScanData.GrayImages[i][0].Banks[ScanInfo.CurrentBank[i]].Bank;
+                    double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
+                    MatrixUtil.ToGrayImage(originImage, ref grayImage, scale, mConfig.ScanChannels[i].Offset);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 更新Bank图像
+        /// </summary>
+        /// <param name="sampleData"></param>
+        public void ConvertSamples(ApdSampleData sampleData)
+        {
+            MatrixUtil.ToCounter(sampleData.NSamples, mSequence.InputSampleCountPerRow);
+            NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples, mSequence.InputSampleCountPerPixel, mSequence.InputPixelCountPerRow,
+                mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
+                mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
+                mConfig.SelectedScanPixel.Data);
+            Mat originImage = ScanData.OriginImages[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
+            MatrixUtil.ToBankImage(matrix, ref originImage);
+            Mat grayImage = ScanData.GrayImages[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
+            double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
+            MatrixUtil.ToGrayImage(originImage, ref grayImage, scale, mConfig.ScanChannels[sampleData.ChannelIndex].Offset);
+        }
+
     }
 }
+

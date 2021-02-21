@@ -53,6 +53,7 @@
             this.page640 = new System.Windows.Forms.TabPage();
             this.image640 = new Emgu.CV.UI.ImageBox();
             this.mImageTimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
             this.dockToolBar.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -79,7 +80,7 @@
             this.dockToolBar.Id = 3;
             this.dockToolBar.Location = new System.Drawing.Point(0, 0);
             this.dockToolBar.Name = "dockToolBar";
-            this.dockToolBar.Size = new System.Drawing.Size(592, 26);
+            this.dockToolBar.Size = new System.Drawing.Size(592, 27);
             // 
             // toolBar
             // 
@@ -173,9 +174,9 @@
             this.c1CommandDock.Dock = System.Windows.Forms.DockStyle.Right;
             this.c1CommandDock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.c1CommandDock.Id = 3;
-            this.c1CommandDock.Location = new System.Drawing.Point(566, 26);
+            this.c1CommandDock.Location = new System.Drawing.Point(566, 27);
             this.c1CommandDock.Name = "c1CommandDock";
-            this.c1CommandDock.Size = new System.Drawing.Size(26, 517);
+            this.c1CommandDock.Size = new System.Drawing.Size(26, 516);
             // 
             // c1ToolBar
             // 
@@ -198,21 +199,22 @@
             this.tabControl.Controls.Add(this.page561);
             this.tabControl.Controls.Add(this.page640);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 26);
+            this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(566, 517);
+            this.tabControl.Size = new System.Drawing.Size(566, 516);
             this.tabControl.TabIndex = 22;
             // 
             // pageAll
             // 
             this.pageAll.BackColor = System.Drawing.Color.Transparent;
+            this.pageAll.Controls.Add(this.button1);
             this.pageAll.Controls.Add(this.imageAll);
             this.pageAll.Location = new System.Drawing.Point(4, 4);
             this.pageAll.Margin = new System.Windows.Forms.Padding(0);
             this.pageAll.Name = "pageAll";
-            this.pageAll.Size = new System.Drawing.Size(558, 491);
+            this.pageAll.Size = new System.Drawing.Size(558, 490);
             this.pageAll.TabIndex = 0;
             this.pageAll.Tag = "-1";
             this.pageAll.Text = "全部";
@@ -224,7 +226,7 @@
             this.imageAll.Location = new System.Drawing.Point(0, 0);
             this.imageAll.Margin = new System.Windows.Forms.Padding(0);
             this.imageAll.Name = "imageAll";
-            this.imageAll.Size = new System.Drawing.Size(558, 491);
+            this.imageAll.Size = new System.Drawing.Size(558, 490);
             this.imageAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageAll.TabIndex = 2;
             this.imageAll.TabStop = false;
@@ -330,6 +332,16 @@
             this.image640.TabStop = false;
             this.image640.Tag = "3";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(254, 117);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ButtonClick);
+            // 
             // ScanImageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -392,5 +404,6 @@
         private System.Windows.Forms.TabPage page640;
         private Emgu.CV.UI.ImageBox image640;
         private System.Windows.Forms.Timer mImageTimer;
+        private System.Windows.Forms.Button button1;
     }
 }

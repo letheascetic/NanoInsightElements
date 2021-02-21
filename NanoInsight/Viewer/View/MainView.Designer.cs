@@ -57,6 +57,8 @@
             this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
             this.toolBar = new C1.Win.C1Command.C1ToolBar();
             this.snapFormExtender = new SnapFormExtender.SnapFormExtender(this.components);
+            this.cmdLinkScanImage = new C1.Win.C1Command.C1CommandLink();
+            this.cmdScanImage = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
@@ -74,6 +76,7 @@
             this.c1CommandHolder.Commands.Add(this.cmdSysSettings);
             this.c1CommandHolder.Commands.Add(this.cmdScanSettings);
             this.c1CommandHolder.Commands.Add(this.cmdScanParas);
+            this.c1CommandHolder.Commands.Add(this.cmdScanImage);
             this.c1CommandHolder.Owner = this;
             // 
             // cmdMenuFile
@@ -109,7 +112,8 @@
             this.cmdLinkScanArea,
             this.cmdLinkSysSettings,
             this.cmdLinkScanSettings,
-            this.cmdLinkScanParas});
+            this.cmdLinkScanParas,
+            this.cmdLinkScanImage});
             this.cmdMenuWindow.HideNonRecentLinks = false;
             this.cmdMenuWindow.Name = "cmdMenuWindow";
             this.cmdMenuWindow.ShortcutText = "";
@@ -279,6 +283,18 @@
             this.snapFormExtender.Distance = 10;
             this.snapFormExtender.Form = this;
             // 
+            // cmdLinkScanImage
+            // 
+            this.cmdLinkScanImage.Command = this.cmdScanImage;
+            this.cmdLinkScanImage.SortOrder = 4;
+            // 
+            // cmdScanImage
+            // 
+            this.cmdScanImage.Name = "cmdScanImage";
+            this.cmdScanImage.ShortcutText = "";
+            this.cmdScanImage.Text = "扫描图像（&I）";
+            this.cmdScanImage.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanImageClick);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -334,5 +350,7 @@
         private C1.Win.C1Command.C1CommandLink cmdLinkScanParas;
         private C1.Win.C1Command.C1Command cmdScanParas;
         private SnapFormExtender.SnapFormExtender snapFormExtender;
+        private C1.Win.C1Command.C1CommandLink cmdLinkScanImage;
+        private C1.Win.C1Command.C1Command cmdScanImage;
     }
 }

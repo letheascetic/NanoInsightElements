@@ -88,13 +88,49 @@ namespace NanoInsight.Engine.Common
         /// <returns></returns>
         public static NDArray ToMatrix(int[] samples, int samplesPerPixel, int pixelsPerRow, int pixelsPerCol, int scanDirection, int pixelOffset, int pixelCalibration, int matrixWidth)
         {
+            // create NDArray，no copy
             var origin = np.array<int>(samples, false).reshape(samplesPerPixel, pixelsPerRow, pixelsPerCol);
+            // integrate pixels 样本累加，计算像素值，并转置
             var matrix = origin.sum(0).T;
+            // 如果是单向扫描，则直接截取Bank数据矩阵
             if (scanDirection == ScanDirection.Unidirection)
             {
                 matrix = matrix["...", string.Format("{0}:{1}", pixelOffset, pixelOffset + matrixWidth)];
                 return matrix;
             }
+            // 如果是双向扫描，则偶数行需要翻转和错位补偿
+            var cy = matrix["1::2", "::-1"].copy();
+            matrix = matrix["...", string.Format("{0}:{1}", pixelOffset, pixelOffset + matrixWidth)];
+            matrix["1::2"] = cy["...", string.Format("{0}:{1}", pixelCalibration, pixelCalibration + matrixWidth)];
+            return matrix;
+        }
+
+        /// <summary>
+        /// 将单次采集的样本转换成矩阵数据
+        /// </summary>
+        /// <param name="samples">单次采集的样本</param>
+        /// <param name="samplesPerPixel">单像素包含的样本数，每个像素等于多个样本的和</param>
+        /// <param name="pixelsPerRow">初始矩阵单行的像素数</param>
+        /// <param name="pixelsPerCol">矩阵包含的行数</param>
+        /// <param name="scanDirection">扫描方向标志位</param>
+        /// <param name="pixelOffset">Bank矩阵相对于初始矩阵的行偏置</param>
+        /// <param name="pixelCalibration">双向扫描时，Bank矩阵偶数行相对于初始矩阵的错位补偿</param>
+        /// <param name="matrixWidth">Bank矩阵单行的像素数</param>
+        /// <returns></returns>
+        public static NDArray ToMatrix(short[] samples, int samplesPerPixel, int pixelsPerRow, int pixelsPerCol, int scanDirection, int pixelOffset, int pixelCalibration, int matrixWidth)
+        {
+            // create NDArray，no copy
+            var origin = np.array(samples, false).reshape(samplesPerPixel, pixelsPerRow, pixelsPerCol);
+            origin = origin.astype(NPTypeCode.Int32);
+            // integrate pixels 样本累加，计算像素值，并转置
+            var matrix = origin.sum(0).T;
+            // 如果是单向扫描，则直接截取Bank数据矩阵
+            if (scanDirection == ScanDirection.Unidirection)
+            {
+                matrix = matrix["...", string.Format("{0}:{1}", pixelOffset, pixelOffset + matrixWidth)];
+                return matrix;
+            }
+            // 如果是双向扫描，则偶数行需要翻转和错位补偿
             var cy = matrix["1::2", "::-1"].copy();
             matrix = matrix["...", string.Format("{0}:{1}", pixelOffset, pixelOffset + matrixWidth)];
             matrix["1::2"] = cy["...", string.Format("{0}:{1}", pixelCalibration, pixelCalibration + matrixWidth)];

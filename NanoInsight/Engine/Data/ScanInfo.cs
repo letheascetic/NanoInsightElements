@@ -103,12 +103,11 @@ namespace NanoInsight.Engine.Data
             AcquisitionCount = new long[] { -1, -1, -1, -1 };
         }
 
-        public void UpdateScanInfo(PmtSampleData sampleData)
+        public void UpdateScanInfo(long[] acquisitionCount)
         {
-            // AcquisitionCount = sampleData.AcquisitionCount;
             for (int i = 0; i < AcquisitionCount.Length; i++)
             {
-                AcquisitionCount[i] = sampleData.AcquisitionCount[i];
+                AcquisitionCount[i] = acquisitionCount[i];
                 if (AcquisitionCount[i] >= 0)
                 {
                     CurrentBank[i] = (int)(AcquisitionCount[i] % NumOfBank);
@@ -127,20 +126,58 @@ namespace NanoInsight.Engine.Data
             }
         }
 
-        public void UpdateScanInfo(ApdSampleData sampleData)
+        public void UpdateScanInfo(int channelIndex, long acquisitionCount)
         {
-            AcquisitionCount[sampleData.ChannelIndex] = sampleData.AcquisitionCount;
-            CurrentBank[sampleData.ChannelIndex] = (int)(AcquisitionCount[sampleData.ChannelIndex] % NumOfBank);
-            CurrentFrame[sampleData.ChannelIndex] = AcquisitionCount[sampleData.ChannelIndex] / NumOfBank;
+            AcquisitionCount[channelIndex] = acquisitionCount;
+            CurrentBank[channelIndex] = (int)(AcquisitionCount[channelIndex] % NumOfBank);
+            CurrentFrame[channelIndex] = AcquisitionCount[channelIndex] / NumOfBank;
 
-            if (CurrentBank[sampleData.ChannelIndex] == NumOfBank - 1)
+            if (CurrentBank[channelIndex] == NumOfBank - 1)
             {
                 TimeSpan = (DateTime.Now - StartTime).TotalSeconds;
-                FrameTime = TimeSpan / (CurrentFrame[sampleData.ChannelIndex] + 1);
+                FrameTime = TimeSpan / (CurrentFrame[channelIndex] + 1);
                 FPS = 1.0 / FrameTime;
-                Logger.Info(string.Format("TimeSpan[{0}] Frame[{1}] Bank[{2}] FPS[{3}] FrameTime[{4}].", TimeSpan, CurrentFrame[sampleData.ChannelIndex], CurrentBank[sampleData.ChannelIndex], FPS, FrameTime));
+                Logger.Info(string.Format("TimeSpan[{0}] Frame[{1}] Bank[{2}] FPS[{3}] FrameTime[{4}].", TimeSpan, CurrentFrame[channelIndex], CurrentBank[channelIndex], FPS, FrameTime));
             }
         }
+
+        //public void UpdateScanInfo(PmtSampleData sampleData)
+        //{
+        //    for (int i = 0; i < AcquisitionCount.Length; i++)
+        //    {
+        //        AcquisitionCount[i] = sampleData.AcquisitionCount[i];
+        //        if (AcquisitionCount[i] >= 0)
+        //        {
+        //            CurrentBank[i] = (int)(AcquisitionCount[i] % NumOfBank);
+        //            CurrentFrame[i] = AcquisitionCount[i] / NumOfBank;
+        //        }
+        //    }
+
+        //    int bank = CurrentBank.Where(p => p >= 0).First();
+        //    long frame = CurrentFrame.Where(p => p >= 0).First();
+        //    if (bank == NumOfBank - 1)
+        //    {
+        //        TimeSpan = (DateTime.Now - StartTime).TotalSeconds;
+        //        FrameTime = TimeSpan / (frame + 1);
+        //        FPS = 1.0 / FrameTime;
+        //        Logger.Info(string.Format("TimeSpan[{0}] Frame[{1}] Bank[{2}] FPS[{3}] FrameTime[{4}].", TimeSpan, frame, bank, FPS, FrameTime));
+        //    }
+        //}
+
+        //public void UpdateScanInfo(ApdSampleData sampleData)
+        //{
+        //    AcquisitionCount[sampleData.ChannelIndex] = sampleData.AcquisitionCount;
+        //    CurrentBank[sampleData.ChannelIndex] = (int)(AcquisitionCount[sampleData.ChannelIndex] % NumOfBank);
+        //    CurrentFrame[sampleData.ChannelIndex] = AcquisitionCount[sampleData.ChannelIndex] / NumOfBank;
+
+        //    if (CurrentBank[sampleData.ChannelIndex] == NumOfBank - 1)
+        //    {
+        //        TimeSpan = (DateTime.Now - StartTime).TotalSeconds;
+        //        FrameTime = TimeSpan / (CurrentFrame[sampleData.ChannelIndex] + 1);
+        //        FPS = 1.0 / FrameTime;
+        //        Logger.Info(string.Format("TimeSpan[{0}] Frame[{1}] Bank[{2}] FPS[{3}] FrameTime[{4}].", TimeSpan, CurrentFrame[sampleData.ChannelIndex], CurrentBank[sampleData.ChannelIndex], FPS, FrameTime));
+        //    }
+        //}
 
     }
 }

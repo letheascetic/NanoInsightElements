@@ -101,5 +101,14 @@ namespace NanoInsight.Viewer.View
                 Visible = true
             };
         }
+
+        private void ScanImageClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            ScanImageView mScanImageView = new ScanImageView(null)
+            {
+                MdiParent = this, 
+                Visible = true
+            };
+        }
     }
 }

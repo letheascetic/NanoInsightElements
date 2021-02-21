@@ -1005,9 +1005,10 @@ namespace NanoInsight.Engine.Core
         {
             try
             {
-                PmtSampleData sampleData = new PmtSampleData(samples, acquisitionCount);
+                ScanningTask.ScanInfo.UpdateScanInfo(acquisitionCount);
+                PmtSampleData sampleData = new PmtSampleData(samples, acquisitionCount, 
+                    ScanningTask.ScanInfo.CurrentFrame, ScanningTask.ScanInfo.CurrentBank);
                 mPmtSampleQueue.TryAdd(sampleData, 50, mCancelToken.Token);
-                // Logger.Info(string.Format("Enqueue Pmt Samples [{0}][{1}].", acquisitionCount, samples[0].Length));
             }
             catch (OperationCanceledException)
             {
@@ -1020,7 +1021,9 @@ namespace NanoInsight.Engine.Core
         {
             try
             {
-                ApdSampleData sampleData = new ApdSampleData(samples, channelIndex, acquisitionCount);
+                ScanningTask.ScanInfo.UpdateScanInfo(channelIndex, acquisitionCount);
+                ApdSampleData sampleData = new ApdSampleData(samples, channelIndex, acquisitionCount, 
+                    ScanningTask.ScanInfo.CurrentFrame[channelIndex], ScanningTask.ScanInfo.CurrentBank[channelIndex]);
                 mApdSampleQueue.TryAdd(sampleData, 50, mCancelToken.Token);
                 Logger.Info(string.Format("Enqueue Apd Samples [{0}][{1}].", channelIndex, acquisitionCount));
             }
@@ -1039,8 +1042,7 @@ namespace NanoInsight.Engine.Core
                 {
                     if (mPmtSampleQueue.TryTake(out PmtSampleData sampleData, 20, mCancelToken.Token))
                     {
-                        ScanningTask.ScanInfo.UpdateScanInfo(sampleData);
-                        //ScanningTask.ConvertSamples(sampleData);
+                        ScanningTask.ConvertSamples(sampleData);
                         //if (ScanImageUpdatedEvent != null)
                         //{
                         //    ScanImageUpdatedEvent.Invoke(ScanningTask.ScanData.GrayImages);
@@ -1064,8 +1066,7 @@ namespace NanoInsight.Engine.Core
                 {
                     if (mApdSampleQueue.TryTake(out ApdSampleData sampleData, 20, mCancelToken.Token))
                     {
-                        ScanningTask.ScanInfo.UpdateScanInfo(sampleData);
-                        //ScanningTask.ConvertSamples(sampleData);
+                        ScanningTask.ConvertSamples(sampleData);
                         //if (ScanImageUpdatedEvent != null)
                         //{
                         //    ScanImageUpdatedEvent.Invoke(ScanningTask.ScanData.GrayImages);
