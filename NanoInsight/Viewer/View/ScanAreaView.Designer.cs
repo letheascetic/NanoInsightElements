@@ -339,6 +339,10 @@ namespace NanoInsight.Viewer.View
             this.mCursorTimer.Interval = 250;
             this.mCursorTimer.Tick += new System.EventHandler(this.TimerTick);
             // 
+            // mImageTimer
+            // 
+            this.mImageTimer.Tick += new System.EventHandler(this.ImageToUpdate);
+            // 
             // ScanAreaView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);

@@ -387,5 +387,11 @@ namespace NanoInsight.Viewer.View
             return mScanAreaVM.FullScanAreaChangedEventHandler(scanArea.ScanRange);
         }
 
+        private void ImageToUpdate(object sender, EventArgs e)
+        {
+            mScanAreaVM.ScanImage = mScanAreaVM.Engine.ScanningTask.ScanData.GrayImages[0][0].Image;
+            pictureBox.Image = mScanAreaVM.ScanImage;
+        }
+
     }
 }
