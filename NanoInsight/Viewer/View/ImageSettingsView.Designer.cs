@@ -35,6 +35,13 @@ namespace NanoInsight.Viewer.View
             this.histogramBox = new Emgu.CV.UI.HistogramBox();
             this.inputPanel = new C1.Win.C1InputPanel.C1InputPanel();
             this.inputSeparator1 = new C1.Win.C1InputPanel.InputSeparator();
+            this.lbImageColor = new C1.Win.C1InputPanel.InputLabel();
+            this.cbxImageColor = new C1.Win.C1InputPanel.InputComboBox();
+            this.inputSeparator2 = new C1.Win.C1InputPanel.InputSeparator();
+            this.lbChannel = new C1.Win.C1InputPanel.InputLabel();
+            this.inputComboBox1 = new C1.Win.C1InputPanel.InputComboBox();
+            this.lbPseudoColor = new C1.Win.C1InputPanel.InputLabel();
+            this.btnPseudoColor = new C1.Win.C1InputPanel.InputButton();
             this.lbBrightness = new C1.Win.C1InputPanel.InputLabel();
             this.tbrBrightness = new C1.Win.C1InputPanel.InputTrackBar();
             this.tbxBrightness = new C1.Win.C1InputPanel.InputTextBox();
@@ -48,13 +55,6 @@ namespace NanoInsight.Viewer.View
             this.nbMinimum = new C1.Win.C1InputPanel.InputNumericBox();
             this.lbMaximum = new C1.Win.C1InputPanel.InputLabel();
             this.nbMaximum = new C1.Win.C1InputPanel.InputNumericBox();
-            this.inputComboBox1 = new C1.Win.C1InputPanel.InputComboBox();
-            this.lbChannel = new C1.Win.C1InputPanel.InputLabel();
-            this.btnPseudoColor = new C1.Win.C1InputPanel.InputButton();
-            this.cbxImageColor = new C1.Win.C1InputPanel.InputComboBox();
-            this.lbImageColor = new C1.Win.C1InputPanel.InputLabel();
-            this.inputSeparator2 = new C1.Win.C1InputPanel.InputSeparator();
-            this.lbPseudoColor = new C1.Win.C1InputPanel.InputLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
             this.dockToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
@@ -130,6 +130,49 @@ namespace NanoInsight.Viewer.View
             this.inputSeparator1.Break = C1.Win.C1InputPanel.BreakType.Group;
             this.inputSeparator1.Name = "inputSeparator1";
             this.inputSeparator1.Width = 260;
+            // 
+            // lbImageColor
+            // 
+            this.lbImageColor.Name = "lbImageColor";
+            this.lbImageColor.Text = "图像色彩";
+            // 
+            // cbxImageColor
+            // 
+            this.cbxImageColor.Break = C1.Win.C1InputPanel.BreakType.Group;
+            this.cbxImageColor.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
+            this.cbxImageColor.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbxImageColor.Name = "cbxImageColor";
+            this.cbxImageColor.Width = 50;
+            // 
+            // inputSeparator2
+            // 
+            this.inputSeparator2.Break = C1.Win.C1InputPanel.BreakType.Group;
+            this.inputSeparator2.Name = "inputSeparator2";
+            this.inputSeparator2.Width = 260;
+            // 
+            // lbChannel
+            // 
+            this.lbChannel.Name = "lbChannel";
+            this.lbChannel.Text = "通道";
+            // 
+            // inputComboBox1
+            // 
+            this.inputComboBox1.Break = C1.Win.C1InputPanel.BreakType.None;
+            this.inputComboBox1.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
+            this.inputComboBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.inputComboBox1.Name = "inputComboBox1";
+            this.inputComboBox1.Width = 50;
+            // 
+            // lbPseudoColor
+            // 
+            this.lbPseudoColor.Name = "lbPseudoColor";
+            this.lbPseudoColor.Text = "伪彩色";
+            // 
+            // btnPseudoColor
+            // 
+            this.btnPseudoColor.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPseudoColor.Name = "btnPseudoColor";
+            this.btnPseudoColor.Width = 25;
             // 
             // lbBrightness
             // 
@@ -221,49 +264,6 @@ namespace NanoInsight.Viewer.View
             this.nbMaximum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nbMaximum.Name = "nbMaximum";
             this.nbMaximum.Width = 40;
-            // 
-            // inputComboBox1
-            // 
-            this.inputComboBox1.Break = C1.Win.C1InputPanel.BreakType.None;
-            this.inputComboBox1.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
-            this.inputComboBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.inputComboBox1.Name = "inputComboBox1";
-            this.inputComboBox1.Width = 50;
-            // 
-            // lbChannel
-            // 
-            this.lbChannel.Name = "lbChannel";
-            this.lbChannel.Text = "通道";
-            // 
-            // btnPseudoColor
-            // 
-            this.btnPseudoColor.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnPseudoColor.Name = "btnPseudoColor";
-            this.btnPseudoColor.Width = 25;
-            // 
-            // cbxImageColor
-            // 
-            this.cbxImageColor.Break = C1.Win.C1InputPanel.BreakType.Group;
-            this.cbxImageColor.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
-            this.cbxImageColor.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cbxImageColor.Name = "cbxImageColor";
-            this.cbxImageColor.Width = 50;
-            // 
-            // lbImageColor
-            // 
-            this.lbImageColor.Name = "lbImageColor";
-            this.lbImageColor.Text = "图像色彩";
-            // 
-            // inputSeparator2
-            // 
-            this.inputSeparator2.Break = C1.Win.C1InputPanel.BreakType.Group;
-            this.inputSeparator2.Name = "inputSeparator2";
-            this.inputSeparator2.Width = 260;
-            // 
-            // lbPseudoColor
-            // 
-            this.lbPseudoColor.Name = "lbPseudoColor";
-            this.lbPseudoColor.Text = "图像色彩";
             // 
             // ImageSettingsView
             // 
