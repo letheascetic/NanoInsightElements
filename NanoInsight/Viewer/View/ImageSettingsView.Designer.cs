@@ -323,12 +323,17 @@ namespace NanoInsight.Viewer.View
             this.nb405Minimum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb405Minimum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nb405Minimum.Maximum = new decimal(new int[] {
-            255,
+            127,
             0,
             0,
             0});
             this.nb405Minimum.Name = "nb405Minimum";
-            this.nb405Minimum.Width = 40;
+            this.nb405Minimum.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nb405Minimum.Width = 42;
             // 
             // lb405Maximum
             // 
@@ -340,8 +345,23 @@ namespace NanoInsight.Viewer.View
             // 
             this.nb405Maximum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb405Maximum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.nb405Maximum.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb405Maximum.Minimum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
             this.nb405Maximum.Name = "nb405Maximum";
-            this.nb405Maximum.Width = 40;
+            this.nb405Maximum.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb405Maximum.Width = 42;
             // 
             // lb405PseudoColor
             // 
@@ -480,12 +500,17 @@ namespace NanoInsight.Viewer.View
             this.nb488Minimum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb488Minimum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nb488Minimum.Maximum = new decimal(new int[] {
-            255,
+            127,
             0,
             0,
             0});
             this.nb488Minimum.Name = "nb488Minimum";
-            this.nb488Minimum.Width = 40;
+            this.nb488Minimum.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nb488Minimum.Width = 42;
             // 
             // lb488Maximum
             // 
@@ -497,8 +522,23 @@ namespace NanoInsight.Viewer.View
             // 
             this.nb488Maximum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb488Maximum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.nb488Maximum.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb488Maximum.Minimum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
             this.nb488Maximum.Name = "nb488Maximum";
-            this.nb488Maximum.Width = 40;
+            this.nb488Maximum.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb488Maximum.Width = 42;
             // 
             // lb488PseudoColor
             // 
@@ -637,12 +677,17 @@ namespace NanoInsight.Viewer.View
             this.bn561Minimum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.bn561Minimum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.bn561Minimum.Maximum = new decimal(new int[] {
-            255,
+            127,
             0,
             0,
             0});
             this.bn561Minimum.Name = "bn561Minimum";
-            this.bn561Minimum.Width = 40;
+            this.bn561Minimum.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.bn561Minimum.Width = 42;
             // 
             // lb561Maximum
             // 
@@ -654,8 +699,23 @@ namespace NanoInsight.Viewer.View
             // 
             this.nb561Maximum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb561Maximum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.nb561Maximum.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb561Maximum.Minimum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
             this.nb561Maximum.Name = "nb561Maximum";
-            this.nb561Maximum.Width = 40;
+            this.nb561Maximum.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb561Maximum.Width = 42;
             // 
             // lb561PseudoColor
             // 
@@ -802,12 +862,17 @@ namespace NanoInsight.Viewer.View
             this.nb640Minimum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb640Minimum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nb640Minimum.Maximum = new decimal(new int[] {
-            255,
+            127,
             0,
             0,
             0});
             this.nb640Minimum.Name = "nb640Minimum";
-            this.nb640Minimum.Width = 40;
+            this.nb640Minimum.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nb640Minimum.Width = 42;
             // 
             // lb640Maximum
             // 
@@ -819,8 +884,23 @@ namespace NanoInsight.Viewer.View
             // 
             this.nb640Maximum.Break = C1.Win.C1InputPanel.BreakType.None;
             this.nb640Maximum.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.nb640Maximum.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb640Maximum.Minimum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
             this.nb640Maximum.Name = "nb640Maximum";
-            this.nb640Maximum.Width = 40;
+            this.nb640Maximum.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nb640Maximum.Width = 42;
             // 
             // lb640PseudoColor
             // 
