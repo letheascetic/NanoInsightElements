@@ -634,5 +634,101 @@ namespace NanoInsight.Engine.Properties {
                 this["DetectorType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel405Brightness {
+            get {
+                return ((int)(this["ScanChannel405Brightness"]));
+            }
+            set {
+                this["ScanChannel405Brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel488Brightness {
+            get {
+                return ((int)(this["ScanChannel488Brightness"]));
+            }
+            set {
+                this["ScanChannel488Brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel561Brightness {
+            get {
+                return ((int)(this["ScanChannel561Brightness"]));
+            }
+            set {
+                this["ScanChannel561Brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel640Brightness {
+            get {
+                return ((int)(this["ScanChannel640Brightness"]));
+            }
+            set {
+                this["ScanChannel640Brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel405Contrast {
+            get {
+                return ((int)(this["ScanChannel405Contrast"]));
+            }
+            set {
+                this["ScanChannel405Contrast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel488Contrast {
+            get {
+                return ((int)(this["ScanChannel488Contrast"]));
+            }
+            set {
+                this["ScanChannel488Contrast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel561Contrast {
+            get {
+                return ((int)(this["ScanChannel561Contrast"]));
+            }
+            set {
+                this["ScanChannel561Contrast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ScanChannel640Contrast {
+            get {
+                return ((int)(this["ScanChannel640Contrast"]));
+            }
+            set {
+                this["ScanChannel640Contrast"] = value;
+            }
+        }
     }
 }

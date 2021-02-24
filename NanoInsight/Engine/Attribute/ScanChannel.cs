@@ -87,6 +87,14 @@ namespace NanoInsight.Engine.Attribute
 
         public Color PseudoColor { get; set; }
 
+        public int Brightness { get; set; }
+
+        public int Contrast { get; set; }
+
+        public int ThresholdMin { get; set; }
+
+        public int ThresholdMax { get; set; }
+
         public ScanChannel(int id)
         {
             switch (id)
@@ -103,6 +111,10 @@ namespace NanoInsight.Engine.Attribute
                     Gamma = Settings.Default.ScanChannel405Gamma;
                     PseudoColor = Settings.Default.ScanChannel405PseudoColor;
                     PinHole = 1;
+                    Brightness = Settings.Default.ScanChannel405Brightness;
+                    Contrast = Settings.Default.ScanChannel405Contrast;
+                    ThresholdMin = 0;
+                    ThresholdMax = 255;
                     break;
                 case Channel488:
                     ID = Channel488;
@@ -116,6 +128,10 @@ namespace NanoInsight.Engine.Attribute
                     Gamma = Settings.Default.ScanChannel488Gamma;
                     PseudoColor = Settings.Default.ScanChannel488PseudoColor;
                     PinHole = 1;
+                    Brightness = Settings.Default.ScanChannel488Brightness;
+                    Contrast = Settings.Default.ScanChannel488Contrast;
+                    ThresholdMin = 0;
+                    ThresholdMax = 255;
                     break;
                 case Channel561:
                     ID = Channel561;
@@ -129,6 +145,10 @@ namespace NanoInsight.Engine.Attribute
                     Gamma = Settings.Default.ScanChannel561Gamma;
                     PseudoColor = Settings.Default.ScanChannel561PseudoColor;
                     PinHole = 1;
+                    Brightness = Settings.Default.ScanChannel561Brightness;
+                    Contrast = Settings.Default.ScanChannel561Contrast;
+                    ThresholdMin = 0;
+                    ThresholdMax = 255;
                     break;
                 case Channel640:
                     ID = Channel640;
@@ -142,6 +162,10 @@ namespace NanoInsight.Engine.Attribute
                     Gamma = Settings.Default.ScanChannel640Gamma;
                     PseudoColor = Settings.Default.ScanChannel640PseudoColor;
                     PinHole = 1;
+                    Brightness = Settings.Default.ScanChannel640Brightness;
+                    Contrast = Settings.Default.ScanChannel640Contrast;
+                    ThresholdMin = 0;
+                    ThresholdMax = 255;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("ID Exception");

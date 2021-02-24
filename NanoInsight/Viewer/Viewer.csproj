@@ -284,6 +284,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\c1\v4.0\Microsoft.AnalysisServices.SPClient.Interfaces.DLL</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.Common, Version=19.0.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.NetworkVariable, Version=19.0.45.49153, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL" />
     <Reference Include="NumSharp.Core, Version=0.20.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NumSharp.Core.dll</HintPath>
@@ -294,6 +296,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -310,10 +313,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ColorSpaceModel.cs" />
     <Compile Include="Model\DetectorPropertyModel.cs" />
     <Compile Include="Model\GalvoPropertyModel.cs" />
     <Compile Include="Model\ScanAcquisitionModel.cs" />
     <Compile Include="Model\ScanAreaModel.cs" />
+    <Compile Include="Model\ScanChannelImageModel.cs" />
     <Compile Include="Model\ScanChannelModel.cs" />
     <Compile Include="Model\ScanDirectionModel.cs" />
     <Compile Include="Model\ScanHeadModel.cs" />
@@ -325,10 +330,17 @@
     <Compile Include="Model\ScanPropertyBaseModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ImageSettingsViewModel.cs" />
     <Compile Include="ViewModel\ScanAreaViewModel.cs" />
     <Compile Include="ViewModel\ScanImageViewModel.cs" />
     <Compile Include="ViewModel\ScanSettingsViewModel.cs" />
     <Compile Include="ViewModel\SysSettingsViewModel.cs" />
+    <Compile Include="View\ImageSettingsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ImageSettingsView.Designer.cs">
+      <DependentUpon>ImageSettingsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,6 +394,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\ImageSettingsView.resx">
+      <DependentUpon>ImageSettingsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

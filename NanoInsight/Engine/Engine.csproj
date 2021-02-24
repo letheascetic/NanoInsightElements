@@ -73,6 +73,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute\ColorSpace.cs" />
+    <Compile Include="Common\ImageUtil.cs" />
     <Compile Include="Common\MatrixUtil.cs" />
     <Compile Include="Data\ApdSampleData.cs" />
     <Compile Include="Core\ApiCode.cs" />

@@ -110,5 +110,14 @@ namespace NanoInsight.Viewer.View
                 Visible = true
             };
         }
+
+        private void ImageSettingsClick(object sender, C1.Win.C1Command.ClickEventArgs e)
+        {
+            ImageSettingsView mImageSettingsView = new ImageSettingsView()
+            {
+                MdiParent = this,
+                Visible = true
+            };
+        }
     }
 }

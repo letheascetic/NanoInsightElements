@@ -9,6 +9,10 @@ namespace NanoInsight.Engine.Data
     public class ScanData
     {
         /// <summary>
+        /// 原始数据
+        /// </summary>
+        public ScanImage[][] OriginDataSet { get; set; }
+        /// <summary>
         /// 原始图像
         /// </summary>
         public ScanImage[][] OriginImages { get; set; }
@@ -19,7 +23,7 @@ namespace NanoInsight.Engine.Data
         /// <summary>
         /// 三通道灰度图像
         /// </summary>
-        public ScanImage[][] Gray3Images { get; set; }
+        // public ScanImage[][] Gray3Images { get; set; }
         /// <summary>
         /// BGR彩色图像
         /// </summary>
@@ -27,31 +31,35 @@ namespace NanoInsight.Engine.Data
 
         public ScanData(int rows, int columns, int numOfBank, int numOfChannels, int numOfSlices, bool[] statusOfChannels)
         {
+            OriginDataSet = new ScanImage[numOfChannels][];
             OriginImages = new ScanImage[numOfChannels][];
             GrayImages = new ScanImage[numOfChannels][];
-            Gray3Images = new ScanImage[numOfChannels][];
+            // Gray3Images = new ScanImage[numOfChannels][];
             BGRImages = new ScanImage[numOfChannels][];
             for (int i = 0; i < numOfChannels; i++)
             {
                 if (statusOfChannels[i])
                 {
+                    OriginDataSet[i] = new ScanImage[numOfSlices];
                     OriginImages[i] = new ScanImage[numOfSlices];
                     GrayImages[i] = new ScanImage[numOfSlices];
-                    Gray3Images[i] = new ScanImage[numOfSlices];
+                    // Gray3Images[i] = new ScanImage[numOfSlices];
                     BGRImages[i] = new ScanImage[numOfSlices];
                     for (int j = 0; j < numOfSlices; j++)
                     {
-                        OriginImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv32S, 1, numOfBank, j);
+                        OriginDataSet[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv32S, 1, numOfBank, j);
+                        OriginImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 1, numOfBank, j);
                         GrayImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 1, numOfBank, j);
-                        Gray3Images[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3, numOfBank, j);
+                        // Gray3Images[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3, numOfBank, j);
                         BGRImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3, numOfBank, j);
                     }
                 }
                 else
                 {
+                    OriginDataSet[i] = null;
                     OriginImages[i] = null;
                     GrayImages[i] = null;
-                    Gray3Images[i] = null;
+                    // Gray3Images[i] = null;
                     BGRImages[i] = null;
                 }
             }

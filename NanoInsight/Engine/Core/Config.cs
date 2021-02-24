@@ -340,7 +340,17 @@ namespace NanoInsight.Engine.Core
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
-        
+        /// <summary>
+        /// 颜色空间列表
+        /// </summary>
+        public List<ColorSpace> ColorSpaceList { get; set; }
+        /// <summary>
+        /// 选择的颜色空间
+        /// </summary>
+        public ColorSpace SelectedColorSpace { get; set; }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
         public ScanChannel ScanChannel405 { get; set; }
 
         public ScanChannel ScanChannel488 { get; set; }
@@ -611,6 +621,9 @@ namespace NanoInsight.Engine.Core
             ScanLineSkipEnabled = Settings.Default.ScanLineSkipEnabled;
             ScanLineSkipList = ScanLineSkip.Initialize();
             SelectedScanLineSkip = ScanLineSkipList.Where(p => p.ID == Settings.Default.ScanLineSkip).First();
+            // 颜色空间
+            ColorSpaceList = ColorSpace.Initialize();
+            SelectedColorSpace = ColorSpaceList[0];
             // 扫描通道
             ScanChannel405 = new ScanChannel(ScanChannel.Channel405);
             ScanChannel488 = new ScanChannel(ScanChannel.Channel488);
