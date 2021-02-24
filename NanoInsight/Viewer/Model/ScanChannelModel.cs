@@ -15,7 +15,7 @@ namespace NanoInsight.Viewer.Model
         private int id;                     // 通道ID
         private string name;                // 通道名
 
-        private int laserPower;          // 激光功率
+        private int laserPower;             // 激光功率
         private Color laserColor;           // 激光颜色
         private string laserWaveLength;     // 激光波长
 
