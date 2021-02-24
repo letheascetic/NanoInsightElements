@@ -34,6 +34,12 @@ namespace NanoInsight.Viewer.View
             this.spAll = new C1.Win.C1SplitContainer.C1SplitterPanel();
             this.hmAll = new Emgu.CV.UI.HistogramBox();
             this.sp405 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            this.pnl4052 = new System.Windows.Forms.Panel();
+            this.btn405PseudoColor = new C1.Win.C1Input.C1Button();
+            this.lb405PseudoColor = new System.Windows.Forms.Label();
+            this.tbx405Max = new System.Windows.Forms.TextBox();
+            this.tbx405Min = new System.Windows.Forms.TextBox();
+            this.rs405 = new C1.Win.C1Input.C1RangeSlider();
             this.pnl405 = new C1.Win.C1InputPanel.C1InputPanel();
             this.lb405Brightness = new C1.Win.C1InputPanel.InputLabel();
             this.tbar405Brightness = new C1.Win.C1InputPanel.InputTrackBar();
@@ -46,6 +52,12 @@ namespace NanoInsight.Viewer.View
             this.tbx405Gamma = new C1.Win.C1InputPanel.InputTextBox();
             this.hm405 = new Emgu.CV.UI.HistogramBox();
             this.sp488 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            this.pnl4882 = new System.Windows.Forms.Panel();
+            this.btn488PseudoColor = new C1.Win.C1Input.C1Button();
+            this.lb488PseudoColor = new System.Windows.Forms.Label();
+            this.tbx488Max = new System.Windows.Forms.TextBox();
+            this.tbx488Min = new System.Windows.Forms.TextBox();
+            this.rs488 = new C1.Win.C1Input.C1RangeSlider();
             this.pnl488 = new C1.Win.C1InputPanel.C1InputPanel();
             this.lb488Brightness = new C1.Win.C1InputPanel.InputLabel();
             this.tbar488Brightness = new C1.Win.C1InputPanel.InputTrackBar();
@@ -58,6 +70,12 @@ namespace NanoInsight.Viewer.View
             this.tbx488Gamma = new C1.Win.C1InputPanel.InputTextBox();
             this.hm488 = new Emgu.CV.UI.HistogramBox();
             this.sp561 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            this.pnl5612 = new System.Windows.Forms.Panel();
+            this.btn561PseudoColor = new C1.Win.C1Input.C1Button();
+            this.lb561PseudoColor = new System.Windows.Forms.Label();
+            this.tbx561Max = new System.Windows.Forms.TextBox();
+            this.tbx561Min = new System.Windows.Forms.TextBox();
+            this.rs561 = new C1.Win.C1Input.C1RangeSlider();
             this.pnl561 = new C1.Win.C1InputPanel.C1InputPanel();
             this.lb561Brightness = new C1.Win.C1InputPanel.InputLabel();
             this.tbar561Brightness = new C1.Win.C1InputPanel.InputTrackBar();
@@ -70,6 +88,12 @@ namespace NanoInsight.Viewer.View
             this.tbx561Gamma = new C1.Win.C1InputPanel.InputTextBox();
             this.hm561 = new Emgu.CV.UI.HistogramBox();
             this.sp640 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            this.pnl6402 = new System.Windows.Forms.Panel();
+            this.btn640PseudoColor = new C1.Win.C1Input.C1Button();
+            this.lb640PseudoColor = new System.Windows.Forms.Label();
+            this.tbx640Max = new System.Windows.Forms.TextBox();
+            this.tbx640Min = new System.Windows.Forms.TextBox();
+            this.rs640 = new C1.Win.C1Input.C1RangeSlider();
             this.pnl640 = new C1.Win.C1InputPanel.C1InputPanel();
             this.lb640Brightness = new C1.Win.C1InputPanel.InputLabel();
             this.tbar640Brightness = new C1.Win.C1InputPanel.InputTrackBar();
@@ -81,30 +105,6 @@ namespace NanoInsight.Viewer.View
             this.tbar640Gamma = new C1.Win.C1InputPanel.InputTrackBar();
             this.tbx640Gamma = new C1.Win.C1InputPanel.InputTextBox();
             this.hm640 = new Emgu.CV.UI.HistogramBox();
-            this.pnl4052 = new System.Windows.Forms.Panel();
-            this.btn405PseudoColor = new C1.Win.C1Input.C1Button();
-            this.lb405PseudoColor = new System.Windows.Forms.Label();
-            this.tbx405Max = new System.Windows.Forms.TextBox();
-            this.tbx405Min = new System.Windows.Forms.TextBox();
-            this.rs405 = new C1.Win.C1Input.C1RangeSlider();
-            this.pnl4882 = new System.Windows.Forms.Panel();
-            this.btn488PseudoColor = new C1.Win.C1Input.C1Button();
-            this.lb488PseudoColor = new System.Windows.Forms.Label();
-            this.tbx488Max = new System.Windows.Forms.TextBox();
-            this.tbx488Min = new System.Windows.Forms.TextBox();
-            this.rs488 = new C1.Win.C1Input.C1RangeSlider();
-            this.pnl5612 = new System.Windows.Forms.Panel();
-            this.btn561PseudoColor = new C1.Win.C1Input.C1Button();
-            this.lb561PseudoColor = new System.Windows.Forms.Label();
-            this.tbx561Max = new System.Windows.Forms.TextBox();
-            this.tbx561Min = new System.Windows.Forms.TextBox();
-            this.rs561 = new C1.Win.C1Input.C1RangeSlider();
-            this.pnl6402 = new System.Windows.Forms.Panel();
-            this.btn640PseudoColor = new C1.Win.C1Input.C1Button();
-            this.lb640PseudoColor = new System.Windows.Forms.Label();
-            this.tbx640Max = new System.Windows.Forms.TextBox();
-            this.tbx640Min = new System.Windows.Forms.TextBox();
-            this.rs640 = new C1.Win.C1Input.C1RangeSlider();
             this.c1InputPanel1 = new C1.Win.C1InputPanel.C1InputPanel();
             this.inputSeparator3 = new C1.Win.C1InputPanel.InputSeparator();
             this.lbImageColor = new C1.Win.C1InputPanel.InputLabel();
@@ -114,21 +114,21 @@ namespace NanoInsight.Viewer.View
             this.c1SplitContainer.SuspendLayout();
             this.spAll.SuspendLayout();
             this.sp405.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl405)).BeginInit();
-            this.sp488.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl488)).BeginInit();
-            this.sp561.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl561)).BeginInit();
-            this.sp640.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl640)).BeginInit();
             this.pnl4052.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn405PseudoColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl405)).BeginInit();
+            this.sp488.SuspendLayout();
             this.pnl4882.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn488PseudoColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl488)).BeginInit();
+            this.sp561.SuspendLayout();
             this.pnl5612.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn561PseudoColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl561)).BeginInit();
+            this.sp640.SuspendLayout();
             this.pnl6402.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn640PseudoColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl640)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1InputPanel1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,6 +198,74 @@ namespace NanoInsight.Viewer.View
             this.sp405.TabIndex = 1;
             this.sp405.Text = "405nm";
             // 
+            // pnl4052
+            // 
+            this.pnl4052.Controls.Add(this.btn405PseudoColor);
+            this.pnl4052.Controls.Add(this.lb405PseudoColor);
+            this.pnl4052.Controls.Add(this.tbx405Max);
+            this.pnl4052.Controls.Add(this.tbx405Min);
+            this.pnl4052.Controls.Add(this.rs405);
+            this.pnl4052.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl4052.Location = new System.Drawing.Point(0, 130);
+            this.pnl4052.Name = "pnl4052";
+            this.pnl4052.Size = new System.Drawing.Size(272, 25);
+            this.pnl4052.TabIndex = 28;
+            // 
+            // btn405PseudoColor
+            // 
+            this.btn405PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn405PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btn405PseudoColor.Location = new System.Drawing.Point(244, 2);
+            this.btn405PseudoColor.Name = "btn405PseudoColor";
+            this.btn405PseudoColor.Size = new System.Drawing.Size(20, 20);
+            this.btn405PseudoColor.TabIndex = 26;
+            this.btn405PseudoColor.Tag = "0";
+            this.btn405PseudoColor.UseVisualStyleBackColor = true;
+            this.btn405PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            // 
+            // lb405PseudoColor
+            // 
+            this.lb405PseudoColor.AutoSize = true;
+            this.lb405PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb405PseudoColor.Location = new System.Drawing.Point(205, 8);
+            this.lb405PseudoColor.Name = "lb405PseudoColor";
+            this.lb405PseudoColor.Size = new System.Drawing.Size(35, 10);
+            this.lb405PseudoColor.TabIndex = 31;
+            this.lb405PseudoColor.Text = "伪彩色";
+            // 
+            // tbx405Max
+            // 
+            this.tbx405Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx405Max.Location = new System.Drawing.Point(174, 3);
+            this.tbx405Max.Name = "tbx405Max";
+            this.tbx405Max.Size = new System.Drawing.Size(25, 19);
+            this.tbx405Max.TabIndex = 30;
+            this.tbx405Max.Tag = "0";
+            this.tbx405Max.Text = "255";
+            // 
+            // tbx405Min
+            // 
+            this.tbx405Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx405Min.Location = new System.Drawing.Point(3, 3);
+            this.tbx405Min.Name = "tbx405Min";
+            this.tbx405Min.Size = new System.Drawing.Size(25, 19);
+            this.tbx405Min.TabIndex = 29;
+            this.tbx405Min.Tag = "0";
+            this.tbx405Min.Text = "255";
+            // 
+            // rs405
+            // 
+            this.rs405.LargeChange = 5D;
+            this.rs405.Location = new System.Drawing.Point(34, 3);
+            this.rs405.LowerValue = 10D;
+            this.rs405.Maximum = 100D;
+            this.rs405.Minimum = 0D;
+            this.rs405.Name = "rs405";
+            this.rs405.Size = new System.Drawing.Size(134, 19);
+            this.rs405.TabIndex = 28;
+            this.rs405.Tag = "0";
+            this.rs405.UpperValue = 90D;
+            // 
             // pnl405
             // 
             this.pnl405.AutoSizeElement = C1.Framework.AutoSizeElement.Both;
@@ -230,6 +298,7 @@ namespace NanoInsight.Viewer.View
             this.tbar405Brightness.Maximum = 128;
             this.tbar405Brightness.Minimum = -128;
             this.tbar405Brightness.Name = "tbar405Brightness";
+            this.tbar405Brightness.Tag = "0";
             this.tbar405Brightness.TickFrequency = 10;
             this.tbar405Brightness.Width = 160;
             // 
@@ -252,6 +321,7 @@ namespace NanoInsight.Viewer.View
             this.tbar405Contrast.Height = 20;
             this.tbar405Contrast.Minimum = -10;
             this.tbar405Contrast.Name = "tbar405Contrast";
+            this.tbar405Contrast.Tag = "0";
             this.tbar405Contrast.TickFrequency = 1;
             this.tbar405Contrast.Width = 160;
             // 
@@ -276,6 +346,7 @@ namespace NanoInsight.Viewer.View
             this.tbar405Gamma.Minimum = -200;
             this.tbar405Gamma.Name = "tbar405Gamma";
             this.tbar405Gamma.StepFrequency = 5;
+            this.tbar405Gamma.Tag = "0";
             this.tbar405Gamma.TickFrequency = 20;
             this.tbar405Gamma.Width = 160;
             // 
@@ -311,6 +382,74 @@ namespace NanoInsight.Viewer.View
             this.sp488.TabIndex = 2;
             this.sp488.Text = "488nm";
             // 
+            // pnl4882
+            // 
+            this.pnl4882.Controls.Add(this.btn488PseudoColor);
+            this.pnl4882.Controls.Add(this.lb488PseudoColor);
+            this.pnl4882.Controls.Add(this.tbx488Max);
+            this.pnl4882.Controls.Add(this.tbx488Min);
+            this.pnl4882.Controls.Add(this.rs488);
+            this.pnl4882.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl4882.Location = new System.Drawing.Point(0, 133);
+            this.pnl4882.Name = "pnl4882";
+            this.pnl4882.Size = new System.Drawing.Size(272, 25);
+            this.pnl4882.TabIndex = 35;
+            // 
+            // btn488PseudoColor
+            // 
+            this.btn488PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn488PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btn488PseudoColor.Location = new System.Drawing.Point(244, 2);
+            this.btn488PseudoColor.Name = "btn488PseudoColor";
+            this.btn488PseudoColor.Size = new System.Drawing.Size(20, 20);
+            this.btn488PseudoColor.TabIndex = 26;
+            this.btn488PseudoColor.Tag = "1";
+            this.btn488PseudoColor.UseVisualStyleBackColor = true;
+            this.btn488PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            // 
+            // lb488PseudoColor
+            // 
+            this.lb488PseudoColor.AutoSize = true;
+            this.lb488PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb488PseudoColor.Location = new System.Drawing.Point(205, 8);
+            this.lb488PseudoColor.Name = "lb488PseudoColor";
+            this.lb488PseudoColor.Size = new System.Drawing.Size(35, 10);
+            this.lb488PseudoColor.TabIndex = 31;
+            this.lb488PseudoColor.Text = "伪彩色";
+            // 
+            // tbx488Max
+            // 
+            this.tbx488Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx488Max.Location = new System.Drawing.Point(174, 3);
+            this.tbx488Max.Name = "tbx488Max";
+            this.tbx488Max.Size = new System.Drawing.Size(25, 19);
+            this.tbx488Max.TabIndex = 30;
+            this.tbx488Max.Tag = "1";
+            this.tbx488Max.Text = "255";
+            // 
+            // tbx488Min
+            // 
+            this.tbx488Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx488Min.Location = new System.Drawing.Point(3, 3);
+            this.tbx488Min.Name = "tbx488Min";
+            this.tbx488Min.Size = new System.Drawing.Size(25, 19);
+            this.tbx488Min.TabIndex = 29;
+            this.tbx488Min.Tag = "1";
+            this.tbx488Min.Text = "255";
+            // 
+            // rs488
+            // 
+            this.rs488.LargeChange = 5D;
+            this.rs488.Location = new System.Drawing.Point(34, 3);
+            this.rs488.LowerValue = 10D;
+            this.rs488.Maximum = 100D;
+            this.rs488.Minimum = 0D;
+            this.rs488.Name = "rs488";
+            this.rs488.Size = new System.Drawing.Size(134, 19);
+            this.rs488.TabIndex = 28;
+            this.rs488.Tag = "1";
+            this.rs488.UpperValue = 90D;
+            // 
             // pnl488
             // 
             this.pnl488.AutoSizeElement = C1.Framework.AutoSizeElement.Both;
@@ -343,6 +482,7 @@ namespace NanoInsight.Viewer.View
             this.tbar488Brightness.Maximum = 128;
             this.tbar488Brightness.Minimum = -128;
             this.tbar488Brightness.Name = "tbar488Brightness";
+            this.tbar488Brightness.Tag = "1";
             this.tbar488Brightness.TickFrequency = 10;
             this.tbar488Brightness.Width = 160;
             // 
@@ -365,6 +505,7 @@ namespace NanoInsight.Viewer.View
             this.tbar488Contrast.Height = 20;
             this.tbar488Contrast.Minimum = -10;
             this.tbar488Contrast.Name = "tbar488Contrast";
+            this.tbar488Contrast.Tag = "1";
             this.tbar488Contrast.TickFrequency = 1;
             this.tbar488Contrast.Width = 160;
             // 
@@ -389,6 +530,7 @@ namespace NanoInsight.Viewer.View
             this.tbar488Gamma.Minimum = -200;
             this.tbar488Gamma.Name = "tbar488Gamma";
             this.tbar488Gamma.StepFrequency = 5;
+            this.tbar488Gamma.Tag = "1";
             this.tbar488Gamma.TickFrequency = 20;
             this.tbar488Gamma.Width = 160;
             // 
@@ -424,6 +566,75 @@ namespace NanoInsight.Viewer.View
             this.sp561.TabIndex = 3;
             this.sp561.Text = "561nm";
             // 
+            // pnl5612
+            // 
+            this.pnl5612.Controls.Add(this.btn561PseudoColor);
+            this.pnl5612.Controls.Add(this.lb561PseudoColor);
+            this.pnl5612.Controls.Add(this.tbx561Max);
+            this.pnl5612.Controls.Add(this.tbx561Min);
+            this.pnl5612.Controls.Add(this.rs561);
+            this.pnl5612.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl5612.Location = new System.Drawing.Point(0, 132);
+            this.pnl5612.Name = "pnl5612";
+            this.pnl5612.Size = new System.Drawing.Size(272, 25);
+            this.pnl5612.TabIndex = 29;
+            // 
+            // btn561PseudoColor
+            // 
+            this.btn561PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn561PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btn561PseudoColor.Location = new System.Drawing.Point(244, 2);
+            this.btn561PseudoColor.Name = "btn561PseudoColor";
+            this.btn561PseudoColor.Size = new System.Drawing.Size(20, 20);
+            this.btn561PseudoColor.TabIndex = 26;
+            this.btn561PseudoColor.Tag = "2";
+            this.btn561PseudoColor.UseVisualStyleBackColor = true;
+            this.btn561PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            // 
+            // lb561PseudoColor
+            // 
+            this.lb561PseudoColor.AutoSize = true;
+            this.lb561PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb561PseudoColor.Location = new System.Drawing.Point(205, 8);
+            this.lb561PseudoColor.Name = "lb561PseudoColor";
+            this.lb561PseudoColor.Size = new System.Drawing.Size(35, 10);
+            this.lb561PseudoColor.TabIndex = 31;
+            this.lb561PseudoColor.Text = "伪彩色";
+            // 
+            // tbx561Max
+            // 
+            this.tbx561Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx561Max.Location = new System.Drawing.Point(174, 3);
+            this.tbx561Max.Name = "tbx561Max";
+            this.tbx561Max.Size = new System.Drawing.Size(25, 19);
+            this.tbx561Max.TabIndex = 30;
+            this.tbx561Max.Tag = "2";
+            this.tbx561Max.Text = "255";
+            // 
+            // tbx561Min
+            // 
+            this.tbx561Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx561Min.Location = new System.Drawing.Point(3, 3);
+            this.tbx561Min.Name = "tbx561Min";
+            this.tbx561Min.Size = new System.Drawing.Size(25, 19);
+            this.tbx561Min.TabIndex = 29;
+            this.tbx561Min.Tag = "2";
+            this.tbx561Min.Text = "255";
+            // 
+            // rs561
+            // 
+            this.rs561.LargeChange = 5D;
+            this.rs561.Location = new System.Drawing.Point(34, 3);
+            this.rs561.LowerValue = 10D;
+            this.rs561.Maximum = 100D;
+            this.rs561.Minimum = 0D;
+            this.rs561.Name = "rs561";
+            this.rs561.Size = new System.Drawing.Size(134, 19);
+            this.rs561.TabIndex = 28;
+            this.rs561.Tag = "2";
+            this.rs561.Text = "c1RangeSlider2";
+            this.rs561.UpperValue = 90D;
+            // 
             // pnl561
             // 
             this.pnl561.AutoSizeElement = C1.Framework.AutoSizeElement.Both;
@@ -456,6 +667,7 @@ namespace NanoInsight.Viewer.View
             this.tbar561Brightness.Maximum = 128;
             this.tbar561Brightness.Minimum = -128;
             this.tbar561Brightness.Name = "tbar561Brightness";
+            this.tbar561Brightness.Tag = "2";
             this.tbar561Brightness.TickFrequency = 10;
             this.tbar561Brightness.Width = 160;
             // 
@@ -478,6 +690,7 @@ namespace NanoInsight.Viewer.View
             this.tbar561Contrast.Height = 20;
             this.tbar561Contrast.Minimum = -10;
             this.tbar561Contrast.Name = "tbar561Contrast";
+            this.tbar561Contrast.Tag = "2";
             this.tbar561Contrast.TickFrequency = 1;
             this.tbar561Contrast.Width = 160;
             // 
@@ -502,6 +715,7 @@ namespace NanoInsight.Viewer.View
             this.tbar561Gamma.Minimum = -200;
             this.tbar561Gamma.Name = "tbar561Gamma";
             this.tbar561Gamma.StepFrequency = 5;
+            this.tbar561Gamma.Tag = "2";
             this.tbar561Gamma.TickFrequency = 20;
             this.tbar561Gamma.Width = 160;
             // 
@@ -536,6 +750,75 @@ namespace NanoInsight.Viewer.View
             this.sp640.TabIndex = 4;
             this.sp640.Text = "640nm";
             // 
+            // pnl6402
+            // 
+            this.pnl6402.Controls.Add(this.btn640PseudoColor);
+            this.pnl6402.Controls.Add(this.lb640PseudoColor);
+            this.pnl6402.Controls.Add(this.tbx640Max);
+            this.pnl6402.Controls.Add(this.tbx640Min);
+            this.pnl6402.Controls.Add(this.rs640);
+            this.pnl6402.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl6402.Location = new System.Drawing.Point(0, 129);
+            this.pnl6402.Name = "pnl6402";
+            this.pnl6402.Size = new System.Drawing.Size(272, 25);
+            this.pnl6402.TabIndex = 30;
+            // 
+            // btn640PseudoColor
+            // 
+            this.btn640PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn640PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btn640PseudoColor.Location = new System.Drawing.Point(244, 2);
+            this.btn640PseudoColor.Name = "btn640PseudoColor";
+            this.btn640PseudoColor.Size = new System.Drawing.Size(20, 20);
+            this.btn640PseudoColor.TabIndex = 26;
+            this.btn640PseudoColor.Tag = "3";
+            this.btn640PseudoColor.UseVisualStyleBackColor = true;
+            this.btn640PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            // 
+            // lb640PseudoColor
+            // 
+            this.lb640PseudoColor.AutoSize = true;
+            this.lb640PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb640PseudoColor.Location = new System.Drawing.Point(205, 8);
+            this.lb640PseudoColor.Name = "lb640PseudoColor";
+            this.lb640PseudoColor.Size = new System.Drawing.Size(35, 10);
+            this.lb640PseudoColor.TabIndex = 31;
+            this.lb640PseudoColor.Text = "伪彩色";
+            // 
+            // tbx640Max
+            // 
+            this.tbx640Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx640Max.Location = new System.Drawing.Point(174, 3);
+            this.tbx640Max.Name = "tbx640Max";
+            this.tbx640Max.Size = new System.Drawing.Size(25, 19);
+            this.tbx640Max.TabIndex = 30;
+            this.tbx640Max.Tag = "3";
+            this.tbx640Max.Text = "255";
+            // 
+            // tbx640Min
+            // 
+            this.tbx640Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbx640Min.Location = new System.Drawing.Point(3, 3);
+            this.tbx640Min.Name = "tbx640Min";
+            this.tbx640Min.Size = new System.Drawing.Size(25, 19);
+            this.tbx640Min.TabIndex = 29;
+            this.tbx640Min.Tag = "3";
+            this.tbx640Min.Text = "255";
+            // 
+            // rs640
+            // 
+            this.rs640.LargeChange = 5D;
+            this.rs640.Location = new System.Drawing.Point(34, 3);
+            this.rs640.LowerValue = 10D;
+            this.rs640.Maximum = 100D;
+            this.rs640.Minimum = 0D;
+            this.rs640.Name = "rs640";
+            this.rs640.Size = new System.Drawing.Size(134, 19);
+            this.rs640.TabIndex = 28;
+            this.rs640.Tag = "3";
+            this.rs640.Text = "c1RangeSlider2";
+            this.rs640.UpperValue = 90D;
+            // 
             // pnl640
             // 
             this.pnl640.AutoSizeElement = C1.Framework.AutoSizeElement.Both;
@@ -568,6 +851,7 @@ namespace NanoInsight.Viewer.View
             this.tbar640Brightness.Maximum = 128;
             this.tbar640Brightness.Minimum = -128;
             this.tbar640Brightness.Name = "tbar640Brightness";
+            this.tbar640Brightness.Tag = "3";
             this.tbar640Brightness.TickFrequency = 10;
             this.tbar640Brightness.Width = 160;
             // 
@@ -590,6 +874,7 @@ namespace NanoInsight.Viewer.View
             this.tbar640Contrast.Height = 20;
             this.tbar640Contrast.Minimum = -10;
             this.tbar640Contrast.Name = "tbar640Contrast";
+            this.tbar640Contrast.Tag = "3";
             this.tbar640Contrast.TickFrequency = 1;
             this.tbar640Contrast.Width = 160;
             // 
@@ -614,6 +899,7 @@ namespace NanoInsight.Viewer.View
             this.tbar640Gamma.Minimum = -200;
             this.tbar640Gamma.Name = "tbar640Gamma";
             this.tbar640Gamma.StepFrequency = 5;
+            this.tbar640Gamma.Tag = "3";
             this.tbar640Gamma.TickFrequency = 20;
             this.tbar640Gamma.Width = 160;
             // 
@@ -633,266 +919,6 @@ namespace NanoInsight.Viewer.View
             this.hm640.Size = new System.Drawing.Size(272, 61);
             this.hm640.TabIndex = 25;
             // 
-            // pnl4052
-            // 
-            this.pnl4052.Controls.Add(this.btn405PseudoColor);
-            this.pnl4052.Controls.Add(this.lb405PseudoColor);
-            this.pnl4052.Controls.Add(this.tbx405Max);
-            this.pnl4052.Controls.Add(this.tbx405Min);
-            this.pnl4052.Controls.Add(this.rs405);
-            this.pnl4052.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl4052.Location = new System.Drawing.Point(0, 130);
-            this.pnl4052.Name = "pnl4052";
-            this.pnl4052.Size = new System.Drawing.Size(272, 25);
-            this.pnl4052.TabIndex = 28;
-            // 
-            // btn405PseudoColor
-            // 
-            this.btn405PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn405PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btn405PseudoColor.Location = new System.Drawing.Point(244, 2);
-            this.btn405PseudoColor.Name = "btn405PseudoColor";
-            this.btn405PseudoColor.Size = new System.Drawing.Size(20, 20);
-            this.btn405PseudoColor.TabIndex = 26;
-            this.btn405PseudoColor.UseVisualStyleBackColor = true;
-            this.btn405PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
-            // 
-            // lb405PseudoColor
-            // 
-            this.lb405PseudoColor.AutoSize = true;
-            this.lb405PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb405PseudoColor.Location = new System.Drawing.Point(205, 8);
-            this.lb405PseudoColor.Name = "lb405PseudoColor";
-            this.lb405PseudoColor.Size = new System.Drawing.Size(35, 10);
-            this.lb405PseudoColor.TabIndex = 31;
-            this.lb405PseudoColor.Text = "伪彩色";
-            // 
-            // tbx405Max
-            // 
-            this.tbx405Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx405Max.Location = new System.Drawing.Point(174, 3);
-            this.tbx405Max.Name = "tbx405Max";
-            this.tbx405Max.Size = new System.Drawing.Size(25, 19);
-            this.tbx405Max.TabIndex = 30;
-            this.tbx405Max.Text = "255";
-            // 
-            // tbx405Min
-            // 
-            this.tbx405Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx405Min.Location = new System.Drawing.Point(3, 3);
-            this.tbx405Min.Name = "tbx405Min";
-            this.tbx405Min.Size = new System.Drawing.Size(25, 19);
-            this.tbx405Min.TabIndex = 29;
-            this.tbx405Min.Text = "255";
-            // 
-            // rs405
-            // 
-            this.rs405.LargeChange = 5D;
-            this.rs405.Location = new System.Drawing.Point(34, 3);
-            this.rs405.LowerValue = 10D;
-            this.rs405.Maximum = 100D;
-            this.rs405.Minimum = 0D;
-            this.rs405.Name = "rs405";
-            this.rs405.Size = new System.Drawing.Size(134, 19);
-            this.rs405.TabIndex = 28;
-            this.rs405.Text = "c1RangeSlider2";
-            this.rs405.UpperValue = 90D;
-            // 
-            // pnl4882
-            // 
-            this.pnl4882.Controls.Add(this.btn488PseudoColor);
-            this.pnl4882.Controls.Add(this.lb488PseudoColor);
-            this.pnl4882.Controls.Add(this.tbx488Max);
-            this.pnl4882.Controls.Add(this.tbx488Min);
-            this.pnl4882.Controls.Add(this.rs488);
-            this.pnl4882.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl4882.Location = new System.Drawing.Point(0, 133);
-            this.pnl4882.Name = "pnl4882";
-            this.pnl4882.Size = new System.Drawing.Size(272, 25);
-            this.pnl4882.TabIndex = 35;
-            // 
-            // btn488PseudoColor
-            // 
-            this.btn488PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn488PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btn488PseudoColor.Location = new System.Drawing.Point(244, 2);
-            this.btn488PseudoColor.Name = "btn488PseudoColor";
-            this.btn488PseudoColor.Size = new System.Drawing.Size(20, 20);
-            this.btn488PseudoColor.TabIndex = 26;
-            this.btn488PseudoColor.UseVisualStyleBackColor = true;
-            this.btn488PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
-            // 
-            // lb488PseudoColor
-            // 
-            this.lb488PseudoColor.AutoSize = true;
-            this.lb488PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb488PseudoColor.Location = new System.Drawing.Point(205, 8);
-            this.lb488PseudoColor.Name = "lb488PseudoColor";
-            this.lb488PseudoColor.Size = new System.Drawing.Size(35, 10);
-            this.lb488PseudoColor.TabIndex = 31;
-            this.lb488PseudoColor.Text = "伪彩色";
-            // 
-            // tbx488Max
-            // 
-            this.tbx488Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx488Max.Location = new System.Drawing.Point(174, 3);
-            this.tbx488Max.Name = "tbx488Max";
-            this.tbx488Max.Size = new System.Drawing.Size(25, 19);
-            this.tbx488Max.TabIndex = 30;
-            this.tbx488Max.Text = "255";
-            // 
-            // tbx488Min
-            // 
-            this.tbx488Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx488Min.Location = new System.Drawing.Point(3, 3);
-            this.tbx488Min.Name = "tbx488Min";
-            this.tbx488Min.Size = new System.Drawing.Size(25, 19);
-            this.tbx488Min.TabIndex = 29;
-            this.tbx488Min.Text = "255";
-            // 
-            // rs488
-            // 
-            this.rs488.LargeChange = 5D;
-            this.rs488.Location = new System.Drawing.Point(34, 3);
-            this.rs488.LowerValue = 10D;
-            this.rs488.Maximum = 100D;
-            this.rs488.Minimum = 0D;
-            this.rs488.Name = "rs488";
-            this.rs488.Size = new System.Drawing.Size(134, 19);
-            this.rs488.TabIndex = 28;
-            this.rs488.Text = "c1RangeSlider2";
-            this.rs488.UpperValue = 90D;
-            // 
-            // pnl5612
-            // 
-            this.pnl5612.Controls.Add(this.btn561PseudoColor);
-            this.pnl5612.Controls.Add(this.lb561PseudoColor);
-            this.pnl5612.Controls.Add(this.tbx561Max);
-            this.pnl5612.Controls.Add(this.tbx561Min);
-            this.pnl5612.Controls.Add(this.rs561);
-            this.pnl5612.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl5612.Location = new System.Drawing.Point(0, 132);
-            this.pnl5612.Name = "pnl5612";
-            this.pnl5612.Size = new System.Drawing.Size(272, 25);
-            this.pnl5612.TabIndex = 29;
-            // 
-            // btn561PseudoColor
-            // 
-            this.btn561PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn561PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btn561PseudoColor.Location = new System.Drawing.Point(244, 2);
-            this.btn561PseudoColor.Name = "btn561PseudoColor";
-            this.btn561PseudoColor.Size = new System.Drawing.Size(20, 20);
-            this.btn561PseudoColor.TabIndex = 26;
-            this.btn561PseudoColor.UseVisualStyleBackColor = true;
-            this.btn561PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
-            // 
-            // lb561PseudoColor
-            // 
-            this.lb561PseudoColor.AutoSize = true;
-            this.lb561PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb561PseudoColor.Location = new System.Drawing.Point(205, 8);
-            this.lb561PseudoColor.Name = "lb561PseudoColor";
-            this.lb561PseudoColor.Size = new System.Drawing.Size(35, 10);
-            this.lb561PseudoColor.TabIndex = 31;
-            this.lb561PseudoColor.Text = "伪彩色";
-            // 
-            // tbx561Max
-            // 
-            this.tbx561Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx561Max.Location = new System.Drawing.Point(174, 3);
-            this.tbx561Max.Name = "tbx561Max";
-            this.tbx561Max.Size = new System.Drawing.Size(25, 19);
-            this.tbx561Max.TabIndex = 30;
-            this.tbx561Max.Text = "255";
-            // 
-            // tbx561Min
-            // 
-            this.tbx561Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx561Min.Location = new System.Drawing.Point(3, 3);
-            this.tbx561Min.Name = "tbx561Min";
-            this.tbx561Min.Size = new System.Drawing.Size(25, 19);
-            this.tbx561Min.TabIndex = 29;
-            this.tbx561Min.Text = "255";
-            // 
-            // rs561
-            // 
-            this.rs561.LargeChange = 5D;
-            this.rs561.Location = new System.Drawing.Point(34, 3);
-            this.rs561.LowerValue = 10D;
-            this.rs561.Maximum = 100D;
-            this.rs561.Minimum = 0D;
-            this.rs561.Name = "rs561";
-            this.rs561.Size = new System.Drawing.Size(134, 19);
-            this.rs561.TabIndex = 28;
-            this.rs561.Text = "c1RangeSlider2";
-            this.rs561.UpperValue = 90D;
-            // 
-            // pnl6402
-            // 
-            this.pnl6402.Controls.Add(this.btn640PseudoColor);
-            this.pnl6402.Controls.Add(this.lb640PseudoColor);
-            this.pnl6402.Controls.Add(this.tbx640Max);
-            this.pnl6402.Controls.Add(this.tbx640Min);
-            this.pnl6402.Controls.Add(this.rs640);
-            this.pnl6402.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl6402.Location = new System.Drawing.Point(0, 129);
-            this.pnl6402.Name = "pnl6402";
-            this.pnl6402.Size = new System.Drawing.Size(272, 25);
-            this.pnl6402.TabIndex = 30;
-            // 
-            // btn640PseudoColor
-            // 
-            this.btn640PseudoColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn640PseudoColor.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btn640PseudoColor.Location = new System.Drawing.Point(244, 2);
-            this.btn640PseudoColor.Name = "btn640PseudoColor";
-            this.btn640PseudoColor.Size = new System.Drawing.Size(20, 20);
-            this.btn640PseudoColor.TabIndex = 26;
-            this.btn640PseudoColor.UseVisualStyleBackColor = true;
-            this.btn640PseudoColor.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
-            // 
-            // lb640PseudoColor
-            // 
-            this.lb640PseudoColor.AutoSize = true;
-            this.lb640PseudoColor.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb640PseudoColor.Location = new System.Drawing.Point(205, 8);
-            this.lb640PseudoColor.Name = "lb640PseudoColor";
-            this.lb640PseudoColor.Size = new System.Drawing.Size(35, 10);
-            this.lb640PseudoColor.TabIndex = 31;
-            this.lb640PseudoColor.Text = "伪彩色";
-            // 
-            // tbx640Max
-            // 
-            this.tbx640Max.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx640Max.Location = new System.Drawing.Point(174, 3);
-            this.tbx640Max.Name = "tbx640Max";
-            this.tbx640Max.Size = new System.Drawing.Size(25, 19);
-            this.tbx640Max.TabIndex = 30;
-            this.tbx640Max.Text = "255";
-            // 
-            // tbx640Min
-            // 
-            this.tbx640Min.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbx640Min.Location = new System.Drawing.Point(3, 3);
-            this.tbx640Min.Name = "tbx640Min";
-            this.tbx640Min.Size = new System.Drawing.Size(25, 19);
-            this.tbx640Min.TabIndex = 29;
-            this.tbx640Min.Text = "255";
-            // 
-            // rs640
-            // 
-            this.rs640.LargeChange = 5D;
-            this.rs640.Location = new System.Drawing.Point(34, 3);
-            this.rs640.LowerValue = 10D;
-            this.rs640.Maximum = 100D;
-            this.rs640.Minimum = 0D;
-            this.rs640.Name = "rs640";
-            this.rs640.Size = new System.Drawing.Size(134, 19);
-            this.rs640.TabIndex = 28;
-            this.rs640.Text = "c1RangeSlider2";
-            this.rs640.UpperValue = 90D;
-            // 
             // c1InputPanel1
             // 
             this.c1InputPanel1.AutoSizeElement = C1.Framework.AutoSizeElement.Both;
@@ -901,7 +927,7 @@ namespace NanoInsight.Viewer.View
             this.c1InputPanel1.Items.Add(this.inputSeparator3);
             this.c1InputPanel1.Items.Add(this.lbImageColor);
             this.c1InputPanel1.Items.Add(this.cbxImageColor);
-            this.c1InputPanel1.Location = new System.Drawing.Point(0, 685);
+            this.c1InputPanel1.Location = new System.Drawing.Point(0, 805);
             this.c1InputPanel1.Name = "c1InputPanel1";
             this.c1InputPanel1.Size = new System.Drawing.Size(272, 34);
             this.c1InputPanel1.TabIndex = 27;
@@ -923,13 +949,13 @@ namespace NanoInsight.Viewer.View
             this.cbxImageColor.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
             this.cbxImageColor.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbxImageColor.Name = "cbxImageColor";
-            this.cbxImageColor.Width = 50;
+            this.cbxImageColor.Width = 79;
             // 
             // ImageSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 719);
+            this.ClientSize = new System.Drawing.Size(272, 839);
             this.Controls.Add(this.c1InputPanel1);
             this.Controls.Add(this.c1SplitContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -945,25 +971,25 @@ namespace NanoInsight.Viewer.View
             this.c1SplitContainer.ResumeLayout(false);
             this.spAll.ResumeLayout(false);
             this.sp405.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnl405)).EndInit();
-            this.sp488.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnl488)).EndInit();
-            this.sp561.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnl561)).EndInit();
-            this.sp640.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnl640)).EndInit();
             this.pnl4052.ResumeLayout(false);
             this.pnl4052.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn405PseudoColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl405)).EndInit();
+            this.sp488.ResumeLayout(false);
             this.pnl4882.ResumeLayout(false);
             this.pnl4882.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn488PseudoColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl488)).EndInit();
+            this.sp561.ResumeLayout(false);
             this.pnl5612.ResumeLayout(false);
             this.pnl5612.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn561PseudoColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl561)).EndInit();
+            this.sp640.ResumeLayout(false);
             this.pnl6402.ResumeLayout(false);
             this.pnl6402.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn640PseudoColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl640)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1InputPanel1)).EndInit();
             this.ResumeLayout(false);
 

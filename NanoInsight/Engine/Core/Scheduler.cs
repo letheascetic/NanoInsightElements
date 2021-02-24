@@ -51,6 +51,7 @@ namespace NanoInsight.Engine.Core
 
         private List<ScanTask> mScanTasks;
         private ScanTask mScanningTask;
+        private ScanTask mActivatedTask;
 
         private CancellationTokenSource mCancelToken;
         private BlockingCollection<PmtSampleData> mPmtSampleQueue;
