@@ -99,13 +99,13 @@ namespace NanoInsight.Engine.Core
                         mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
                         mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
                         mConfig.SelectedScanPixel.Data);
-                    // Bank数据矩阵更新到OriginImages对应的BankImage
+                    // Bank数据矩阵更新到OriginDataSet对应的Bank中
                     Mat originImage = ScanData.OriginDataSet[i][0].Banks[sampleData.CurrentBank[i]].Bank;
                     MatrixUtil.ToBankImage(matrix, ref originImage);
                     // Origin的BankImage更新到Gray
-                    Mat grayImage = ScanData.GrayImages[i][0].Banks[ScanInfo.CurrentBank[i]].Bank;
+                    Mat grayImage = ScanData.GrayImages[i][0].Banks[sampleData.CurrentBank[i]].Bank;
                     double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
-                    MatrixUtil.ToGrayImage(originImage, ref grayImage, scale, mConfig.ScanChannels[i].Offset);
+                    MatrixUtil.ToOriginImage(originImage, ref grayImage, scale, mConfig.ScanChannels[i].Offset);
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace NanoInsight.Engine.Core
             MatrixUtil.ToBankImage(matrix, ref originImage);
             Mat grayImage = ScanData.GrayImages[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
             double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
-            MatrixUtil.ToGrayImage(originImage, ref grayImage, scale, mConfig.ScanChannels[sampleData.ChannelIndex].Offset);
+            MatrixUtil.ToOriginImage(originImage, ref grayImage, scale, mConfig.ScanChannels[sampleData.ChannelIndex].Offset);
         }
 
     }

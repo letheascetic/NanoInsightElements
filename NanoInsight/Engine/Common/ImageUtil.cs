@@ -10,7 +10,7 @@ namespace NanoInsight.Engine.Common
 {
     public class ImageUtil
     {
-        public static void GenerateColorMapping(Color color, ref Mat colorMappingMat)
+        public static void GenerateColorMapping(Color color, ref Mat colorMapLookupTable)
         {
             float rCoff = color.R / 256.0f;
             float gCoff = color.G / 256.0f;
@@ -25,17 +25,26 @@ namespace NanoInsight.Engine.Common
                 colorMapping[i * 3 + 1] = (byte)(gCoff * value);
                 colorMapping[i * 3 + 0] = (byte)(bCoff * value);
             }
-            colorMappingMat.SetTo<byte>(colorMapping);
+            colorMapLookupTable.SetTo<byte>(colorMapping);
         }
 
-        public static void GenerateGammaMapping(double gamma, ref Mat gammaMappingMat)
+        public static void GenerateGammaMapping(double gamma, ref Mat gammaMapLookupTable)
         {
             byte[] data = new byte[256];
             for (int i = 0; i < 256; i++)
             {
                 data[i] = (byte)(Math.Pow(i / 255.0, gamma) * 255.0);
             }
-            gammaMappingMat.SetTo<byte>(data);
+            gammaMapLookupTable.SetTo<byte>(data);
         }
+
+        public static void GenerateGammaMapping(int gammaCoff, ref Mat gammaMapLookupTable)
+        {
+            double gamma = Math.Pow(2, gammaCoff / 100.0);
+            GenerateGammaMapping(gamma, ref gammaMapLookupTable);
+        }
+    
+        
+    
     }
 }

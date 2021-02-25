@@ -712,6 +712,49 @@ namespace NanoInsight.Engine.Core
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
+        public int SetChannelGamma(int id, int gamma)
+        {
+            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.SchedulerScanChannelIdInvalid;
+            }
+            scanChannel.Gamma = gamma;
+
+            if (mConfig.IsScanning)
+            {
+                
+            }
+            return ApiCode.Success;
+        }
+
+        public int SetChannelBrightness(int id, int brightness)
+        {
+            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.SchedulerScanChannelIdInvalid;
+            }
+            scanChannel.Brightness = brightness;
+
+            return ApiCode.Success;
+        }
+
+        public int SetChannelContrast(int id, int contrast)
+        {
+            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.SchedulerScanChannelIdInvalid;
+            }
+            scanChannel.Contrast = contrast;
+
+            return ApiCode.Success;
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
         public int SetXGalvoChannel(string xGalvoChannel)
         {
             if (mConfig.IsScanning)

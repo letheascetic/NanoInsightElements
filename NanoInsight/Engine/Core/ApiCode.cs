@@ -63,6 +63,7 @@ namespace NanoInsight.Engine.Core
         public const int SchedulerScanTaskInvalid = 0x15000002;
         public const int SchedulerScanTaskNotFound = 0x15000004;
         public const int SchedulerTaskScanning = 0x15000008;
+        public const int SchedulerScanChannelIdInvalid = 0x15000010;
 
 
         /// <summary>

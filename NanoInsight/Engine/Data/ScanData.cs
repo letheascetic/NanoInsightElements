@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Emgu.CV;
+using NanoInsight.Engine.Common;
+using NumSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,5 +67,69 @@ namespace NanoInsight.Engine.Data
                 }
             }
         }
+
+        /// <summary>
+        /// 将Matrix数据矩阵更新到DataSet对应的bank
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <param name="channelIndex"></param>
+        /// <param name="sliceIndex"></param>
+        /// <param name="bankIndex"></param>
+        public void ToDataSet(NDArray matrix, int channelIndex, int sliceIndex, int bankIndex)
+        {
+            Mat datasetBank = OriginDataSet[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            MatrixUtil.ToBankImage(matrix, ref datasetBank);
+        }
+
+        /// <summary>
+        /// 将DataSet中指定的Bank转换成对应的OriginImage中的Bank
+        /// </summary>
+        /// <param name="scaleCoff"></param>
+        /// <param name="channelIndex"></param>
+        /// <param name="sliceIndex"></param>
+        /// <param name="bankIndex"></param>
+        /// <param name="offset"></param>
+        public void ToOriginImages(int scaleCoff, int channelIndex, int sliceIndex, int bankIndex, int offset)
+        {
+            double scale = 1.0 / Math.Pow(2, scaleCoff);
+            Mat originImageBank = OriginImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            Mat datsetBank = OriginDataSet[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            MatrixUtil.ToOriginImage(datsetBank, ref originImageBank, scale, offset);
+        }
+
+        /// <summary>
+        /// 将DataSet中指定的图像数据集转换成OriginImages中对应的Image
+        /// </summary>
+        /// <param name="scaleCoff"></param>
+        /// <param name="channelIndex"></param>
+        /// <param name="sliceIndex"></param>
+        /// <param name="offset"></param>
+        public void ToOriginImages(int scaleCoff, int channelIndex, int sliceIndex, int offset)
+        {
+            double scale = 1.0 / Math.Pow(2, scaleCoff);
+            Mat originImage = OriginImages[channelIndex][sliceIndex].Image;
+            Mat dataset = OriginDataSet[channelIndex][sliceIndex].Image;
+            MatrixUtil.ToOriginImage(dataset, ref originImage, scale, offset);
+        }
+
+        /// <summary>
+        /// 将DataSet中指定通道的图像数据转换成OriginImages中对应的Image
+        /// </summary>
+        /// <param name="scaleCoff"></param>
+        /// <param name="channelIndex"></param>
+        /// <param name="offset"></param>
+        public void ToOriginImages(int scaleCoff, int channelIndex, int offset)
+        {
+            for (int i = 0; i < OriginDataSet[channelIndex].Length; i++)
+            {
+                ToOriginImages(scaleCoff, channelIndex, i, offset);
+            }
+        }
+
+
+
+
+
+
     }
 }

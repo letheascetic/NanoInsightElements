@@ -154,9 +154,9 @@ namespace NanoInsight.Engine.Common
             image.SetTo<int>(matrix.ToArray<int>());
         }
 
-        public static void ToGrayImage(Mat originImage, ref Mat grayImage, double scale, int offset)
+        public static void ToOriginImage(Mat originDataSet, ref Mat originImage, double scale, int offset)
         {
-            originImage.ConvertTo(grayImage, DepthType.Cv8U, scale, offset);
+            originDataSet.ConvertTo(originImage, DepthType.Cv8U, scale, offset);
         }
 
     }
