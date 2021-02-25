@@ -12,13 +12,6 @@ namespace NanoInsight.Engine.Attribute
     public delegate int ChannelGainChangedEventHandler(ScanChannel channel);
 
     /// <summary>
-    /// 通道偏置更新事件委托
-    /// </summary>
-    /// <param name="channel"></param>
-    /// <returns></returns>
-    public delegate int ChannelOffsetChangedEventHandler(ScanChannel channel);
-
-    /// <summary>
     /// 通道功率更新事件委托
     /// </summary>
     /// <param name="channel"></param>
@@ -31,13 +24,6 @@ namespace NanoInsight.Engine.Attribute
     /// <param name="channel"></param>
     /// <returns></returns>
     public delegate int ChannelLaserColorChangedEventHandler(ScanChannel channel);
-
-    /// <summary>
-    /// 通道伪彩色更新事件
-    /// </summary>
-    /// <param name="channel"></param>
-    /// <returns></returns>
-    public delegate int ChannelPseudoColorChangedEventHandler(ScanChannel channel);
 
     /// <summary>
     /// 通道激活状态更新事件委托
@@ -81,19 +67,7 @@ namespace NanoInsight.Engine.Attribute
 
         public int PinHole { get; set; }
 
-        public int Offset { get; set; }
-
-        public int Gamma { get; set; }
-
-        public Color PseudoColor { get; set; }
-
-        public int Brightness { get; set; }
-
-        public int Contrast { get; set; }
-
-        public int ThresholdMin { get; set; }
-
-        public int ThresholdMax { get; set; }
+        public ImageProperty ImageSettings { get; set; }
 
         public ScanChannel(int id)
         {
@@ -107,14 +81,8 @@ namespace NanoInsight.Engine.Attribute
                     LaserWaveLength = "405nm";
                     Activated = Settings.Default.ScanChannel405Activated;
                     Gain = Settings.Default.ScanChannel405Gain;
-                    Offset = Settings.Default.ScanChannel405Offset;
-                    Gamma = Settings.Default.ScanChannel405Gamma;
-                    PseudoColor = Settings.Default.ScanChannel405PseudoColor;
                     PinHole = 1;
-                    Brightness = Settings.Default.ScanChannel405Brightness;
-                    Contrast = Settings.Default.ScanChannel405Contrast;
-                    ThresholdMin = 0;
-                    ThresholdMax = 255;
+                    ImageSettings = new ImageProperty(id);
                     break;
                 case Channel488:
                     ID = Channel488;
@@ -124,14 +92,8 @@ namespace NanoInsight.Engine.Attribute
                     LaserWaveLength = "488nm";
                     Activated = Settings.Default.ScanChannel488Activated;
                     Gain = Settings.Default.ScanChannel488Gain;
-                    Offset = Settings.Default.ScanChannel488Offset;
-                    Gamma = Settings.Default.ScanChannel488Gamma;
-                    PseudoColor = Settings.Default.ScanChannel488PseudoColor;
                     PinHole = 1;
-                    Brightness = Settings.Default.ScanChannel488Brightness;
-                    Contrast = Settings.Default.ScanChannel488Contrast;
-                    ThresholdMin = 0;
-                    ThresholdMax = 255;
+                    ImageSettings = new ImageProperty(id);
                     break;
                 case Channel561:
                     ID = Channel561;
@@ -141,14 +103,8 @@ namespace NanoInsight.Engine.Attribute
                     LaserWaveLength = "561nm";
                     Activated = Settings.Default.ScanChannel561Activated;
                     Gain = Settings.Default.ScanChannel561Gain;
-                    Offset = Settings.Default.ScanChannel561Offset;
-                    Gamma = Settings.Default.ScanChannel561Gamma;
-                    PseudoColor = Settings.Default.ScanChannel561PseudoColor;
                     PinHole = 1;
-                    Brightness = Settings.Default.ScanChannel561Brightness;
-                    Contrast = Settings.Default.ScanChannel561Contrast;
-                    ThresholdMin = 0;
-                    ThresholdMax = 255;
+                    ImageSettings = new ImageProperty(id);
                     break;
                 case Channel640:
                     ID = Channel640;
@@ -158,14 +114,8 @@ namespace NanoInsight.Engine.Attribute
                     LaserWaveLength = "640nm";
                     Activated = Settings.Default.ScanChannel640Activated;
                     Gain = Settings.Default.ScanChannel640Gain;
-                    Offset = Settings.Default.ScanChannel640Offset;
-                    Gamma = Settings.Default.ScanChannel640Gamma;
-                    PseudoColor = Settings.Default.ScanChannel640PseudoColor;
                     PinHole = 1;
-                    Brightness = Settings.Default.ScanChannel640Brightness;
-                    Contrast = Settings.Default.ScanChannel640Contrast;
-                    ThresholdMin = 0;
-                    ThresholdMax = 255;
+                    ImageSettings = new ImageProperty(id);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("ID Exception");

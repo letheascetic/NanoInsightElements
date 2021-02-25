@@ -37,12 +37,12 @@ namespace NanoInsight.Engine.Core
         public event ScanPixelCalibrationChangedEventHandler ScanPixelCalibrationChangedEvent;
         public event ScanPixelScaleChangedEventHandler ScanPixelScaleChangedEvent;
         public event ChannelGainChangedEventHandler ChannelGainChangedEvent;
-        public event ChannelOffsetChangedEventHandler ChannelOffsetChangedEvent;
         public event ChannelPowerChangedEventHandler ChannelPowerChangedEvent;
         public event ChannelLaserColorChangedEventHandler ChannelLaserColorChangedEvent;
-        public event ChannelPseudoColorChangedEventHandler ChannelPseudoColorChangedEvent;
         public event ChannelActivateChangedEventHandler ChannelActivateChangedEvent;
         public event ChannelPinHoleChangedEventHandler ChannelPinHoleChangedEvent;
+        public event ImageOffsetChangedEventHandler ImageOffsetChangedEvent;
+        public event ImagePseudoColorChangedEventHandler ImagePseudoColorChangedEvent;
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         private NiDaq mNiDaq;
@@ -51,7 +51,6 @@ namespace NanoInsight.Engine.Core
 
         private List<ScanTask> mScanTasks;
         private ScanTask mScanningTask;
-        private ScanTask mActivatedTask;
 
         private CancellationTokenSource mCancelToken;
         private BlockingCollection<PmtSampleData> mPmtSampleQueue;
@@ -525,9 +524,9 @@ namespace NanoInsight.Engine.Core
             int code = mConfig.SetChannelOffset(id, offset);
             if (ApiCode.IsSuccessful(code))
             {
-                if (ChannelOffsetChangedEvent != null)
+                if (ImageOffsetChangedEvent != null)
                 {
-                    return ChannelOffsetChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                    return ImageOffsetChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
                 }
             }
             return code;
@@ -582,9 +581,9 @@ namespace NanoInsight.Engine.Core
             int code = mConfig.SetChannelPseudoColor(id, color);
             if (ApiCode.IsSuccessful(code))
             {
-                if (ChannelPseudoColorChangedEvent != null)
+                if (ImagePseudoColorChangedEvent != null)
                 {
-                    return ChannelPseudoColorChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                    return ImagePseudoColorChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
                 }
             }
             return code;
@@ -719,7 +718,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.SchedulerScanChannelIdInvalid;
             }
-            scanChannel.Gamma = gamma;
+            scanChannel.ImageSettings.Gamma = gamma;
 
             if (mConfig.IsScanning)
             {
@@ -735,7 +734,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.SchedulerScanChannelIdInvalid;
             }
-            scanChannel.Brightness = brightness;
+            scanChannel.ImageSettings.Brightness = brightness;
 
             return ApiCode.Success;
         }
@@ -747,7 +746,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.SchedulerScanChannelIdInvalid;
             }
-            scanChannel.Contrast = contrast;
+            scanChannel.ImageSettings.Contrast = contrast;
 
             return ApiCode.Success;
         }

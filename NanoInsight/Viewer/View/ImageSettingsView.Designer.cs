@@ -107,8 +107,10 @@ namespace NanoInsight.Viewer.View
             this.hm640 = new Emgu.CV.UI.HistogramBox();
             this.c1InputPanel1 = new C1.Win.C1InputPanel.C1InputPanel();
             this.inputSeparator3 = new C1.Win.C1InputPanel.InputSeparator();
-            this.lbImageColor = new C1.Win.C1InputPanel.InputLabel();
-            this.cbxImageColor = new C1.Win.C1InputPanel.InputComboBox();
+            this.lbColorSpace = new C1.Win.C1InputPanel.InputLabel();
+            this.cbxColorSpace = new C1.Win.C1InputPanel.InputComboBox();
+            this.lbCorrection = new C1.Win.C1InputPanel.InputLabel();
+            this.cbxCorrection = new C1.Win.C1InputPanel.InputComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer)).BeginInit();
             this.c1SplitContainer.SuspendLayout();
@@ -925,8 +927,10 @@ namespace NanoInsight.Viewer.View
             this.c1InputPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.c1InputPanel1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.c1InputPanel1.Items.Add(this.inputSeparator3);
-            this.c1InputPanel1.Items.Add(this.lbImageColor);
-            this.c1InputPanel1.Items.Add(this.cbxImageColor);
+            this.c1InputPanel1.Items.Add(this.lbColorSpace);
+            this.c1InputPanel1.Items.Add(this.cbxColorSpace);
+            this.c1InputPanel1.Items.Add(this.lbCorrection);
+            this.c1InputPanel1.Items.Add(this.cbxCorrection);
             this.c1InputPanel1.Location = new System.Drawing.Point(0, 805);
             this.c1InputPanel1.Name = "c1InputPanel1";
             this.c1InputPanel1.Size = new System.Drawing.Size(272, 34);
@@ -938,18 +942,33 @@ namespace NanoInsight.Viewer.View
             this.inputSeparator3.Name = "inputSeparator3";
             this.inputSeparator3.Width = 260;
             // 
-            // lbImageColor
+            // lbColorSpace
             // 
-            this.lbImageColor.Name = "lbImageColor";
-            this.lbImageColor.Text = "图像色彩";
+            this.lbColorSpace.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbColorSpace.Name = "lbColorSpace";
+            this.lbColorSpace.Text = "图像色彩";
             // 
-            // cbxImageColor
+            // cbxColorSpace
             // 
-            this.cbxImageColor.Break = C1.Win.C1InputPanel.BreakType.Group;
-            this.cbxImageColor.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
-            this.cbxImageColor.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cbxImageColor.Name = "cbxImageColor";
-            this.cbxImageColor.Width = 79;
+            this.cbxColorSpace.Break = C1.Win.C1InputPanel.BreakType.None;
+            this.cbxColorSpace.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
+            this.cbxColorSpace.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbxColorSpace.Name = "cbxColorSpace";
+            this.cbxColorSpace.Width = 60;
+            // 
+            // lbCorrection
+            // 
+            this.lbCorrection.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbCorrection.Name = "lbCorrection";
+            this.lbCorrection.Text = "图像校正";
+            // 
+            // cbxCorrection
+            // 
+            this.cbxCorrection.Break = C1.Win.C1InputPanel.BreakType.None;
+            this.cbxCorrection.DropDownStyle = C1.Win.C1InputPanel.InputComboBoxStyle.DropDownList;
+            this.cbxCorrection.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbxCorrection.Name = "cbxCorrection";
+            this.cbxCorrection.Width = 80;
             // 
             // ImageSettingsView
             // 
@@ -1074,7 +1093,9 @@ namespace NanoInsight.Viewer.View
         private C1.Win.C1Input.C1RangeSlider rs640;
         private C1.Win.C1InputPanel.C1InputPanel c1InputPanel1;
         private C1.Win.C1InputPanel.InputSeparator inputSeparator3;
-        private C1.Win.C1InputPanel.InputLabel lbImageColor;
-        private C1.Win.C1InputPanel.InputComboBox cbxImageColor;
+        private C1.Win.C1InputPanel.InputLabel lbColorSpace;
+        private C1.Win.C1InputPanel.InputComboBox cbxColorSpace;
+        private C1.Win.C1InputPanel.InputLabel lbCorrection;
+        private C1.Win.C1InputPanel.InputComboBox cbxCorrection;
     }
 }

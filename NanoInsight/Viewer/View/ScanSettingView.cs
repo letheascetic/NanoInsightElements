@@ -468,7 +468,7 @@ namespace NanoInsight.Viewer.View
             InputTrackBar bar = (InputTrackBar)sender;
             int id = (int)bar.Tag;
             mScanSettingsVM.Engine.SetChannelOffset(id, bar.Value);
-            mScanSettingsVM.ScanChannels[id].Offset = mScanSettingsVM.Engine.Configuration.ScanChannels[id].Offset;
+            mScanSettingsVM.ScanChannels[id].Offset = mScanSettingsVM.Engine.Configuration.ScanChannels[id].ImageSettings.Offset;
         }
 
         /// <summary>

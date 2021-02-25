@@ -14,6 +14,9 @@ namespace NanoInsight.Viewer.ViewModel
         private List<ColorSpaceModel> mColorSpaceList;
         private ColorSpaceModel mSelectedColorSpace;
 
+        private List<ImageCorrectionModel> mImageCorrectionList;
+        private ImageCorrectionModel mSelectedImageCorrection;
+
         private ScanChannelImageModel mScanChannel405;
         private ScanChannelImageModel mScanChannel488;
         private ScanChannelImageModel mScanChannel561;
@@ -30,6 +33,18 @@ namespace NanoInsight.Viewer.ViewModel
         {
             get { return mSelectedColorSpace; }
             set { mSelectedColorSpace = value; RaisePropertyChanged(() => SelectedColorSpace); }
+        }
+
+        public List<ImageCorrectionModel> ImageCorrectionList
+        {
+            get { return mImageCorrectionList; }
+            set { mImageCorrectionList = value; RaisePropertyChanged(() => ImageCorrectionList); }
+        }
+
+        public ImageCorrectionModel SelectedImageCorrection
+        {
+            get { return mSelectedImageCorrection; }
+            set { mSelectedImageCorrection = value; RaisePropertyChanged(() => SelectedImageCorrection); }
         }
 
         public ScanChannelImageModel ScanChannel405
@@ -74,6 +89,9 @@ namespace NanoInsight.Viewer.ViewModel
             mScheduler = Scheduler.CreateInstance();
             ColorSpaceList = ColorSpaceModel.Initialize(Engine.Configuration.ColorSpaceList);
             SelectedColorSpace = ColorSpaceList.Where(p => p.ID == Engine.Configuration.SelectedColorSpace.ID).First();
+            ImageCorrectionList = ImageCorrectionModel.Initialize(Engine.Configuration.ImageCorrectionList);
+            SelectedImageCorrection = ImageCorrectionList.Where(p => p.ID == Engine.Configuration.SelectedImageCorrection.ID).First();
+
             ScanChannel405 = new ScanChannelImageModel(Engine.Configuration.ScanChannel405);
             ScanChannel488 = new ScanChannelImageModel(Engine.Configuration.ScanChannel488);
             ScanChannel561 = new ScanChannelImageModel(Engine.Configuration.ScanChannel561);

@@ -159,5 +159,15 @@ namespace NanoInsight.Engine.Common
             originDataSet.ConvertTo(originImage, DepthType.Cv8U, scale, offset);
         }
 
+        public static void ToGrayImage(Mat originImage, ref Mat grayImage, double alpha, double beta)
+        {
+            originImage.ConvertTo(grayImage, DepthType.Cv8U, alpha, beta);
+        }
+
+        public static void LUT(Mat originImage, ref Mat grayImage, Mat lut)
+        {
+            CvInvoke.LUT(originImage, lut, grayImage);
+        }
+
     }
 }

@@ -135,9 +135,9 @@ namespace NanoInsight.Viewer.Model
             LaserWaveLength = scanChannel.LaserWaveLength;
             Activated = scanChannel.Activated;
             Gain = scanChannel.Gain;
-            Offset = scanChannel.Offset;
-            Gamma = scanChannel.Gamma;
-            PseudoColor = scanChannel.PseudoColor;
+            Offset = scanChannel.ImageSettings.Offset;
+            Gamma = scanChannel.ImageSettings.Gamma;
+            PseudoColor = scanChannel.ImageSettings.PseudoColor;
             PinHole = scanChannel.PinHole;
         }
 

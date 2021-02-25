@@ -102,10 +102,15 @@ namespace NanoInsight.Viewer.View
         /// </summary>
         private void SetDataBindings()
         {
-            cbxImageColor.DataSource = mImageSettingsVM.ColorSpaceList;
-            cbxImageColor.DisplayMember = "Name";
-            cbxImageColor.ValueMember = "ID";
-            cbxImageColor.DataBindings.Add("SelectedItem", mImageSettingsVM, "SelectedColorSpace");
+            cbxColorSpace.DataSource = mImageSettingsVM.ColorSpaceList;
+            cbxColorSpace.DisplayMember = "Name";
+            cbxColorSpace.ValueMember = "ID";
+            cbxColorSpace.DataBindings.Add("SelectedItem", mImageSettingsVM, "SelectedColorSpace");
+
+            cbxCorrection.DataSource = mImageSettingsVM.ImageCorrectionList;
+            cbxCorrection.DisplayMember = "Name";
+            cbxCorrection.ValueMember = "ID";
+            cbxCorrection.DataBindings.Add("SelectedItem", mImageSettingsVM, "SelectedImageCorrection");
 
             sp405.DataBindings.Add("HeaderBackColor", mImageSettingsVM.ScanChannel405, "LaserColor");
             sp488.DataBindings.Add("HeaderBackColor", mImageSettingsVM.ScanChannel488, "LaserColor");

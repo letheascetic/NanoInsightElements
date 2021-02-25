@@ -349,6 +349,15 @@ namespace NanoInsight.Engine.Core
         /// </summary>
         public ColorSpace SelectedColorSpace { get; set; }
 
+        /// <summary>
+        /// 图像校正列表
+        /// </summary>
+        public List<ImageCorrection> ImageCorrectionList { get; set; }
+        /// <summary>
+        /// 选择的图像校正
+        /// </summary>
+        public ImageCorrection SelectedImageCorrection { get; set; }
+
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         public ScanChannel ScanChannel405 { get; set; }
@@ -380,7 +389,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.ConfigSetChannelOffsetFailed;
             }
-            scanChannel.Offset = offset;
+            scanChannel.ImageSettings.Offset = offset;
             Logger.Info(string.Format("Channel Offset [{0}:{1}].", id, offset));
             return ApiCode.Success;
         }
@@ -416,7 +425,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.ConfigSetChannelPseudoColorFailed;
             }
-            scanChannel.PseudoColor = color;
+            scanChannel.ImageSettings.PseudoColor = color;
             Logger.Info(string.Format("Channel Pseudo Color [{0}:{1}].", id, color));
             return ApiCode.Success;
         }
@@ -624,6 +633,9 @@ namespace NanoInsight.Engine.Core
             // 颜色空间
             ColorSpaceList = ColorSpace.Initialize();
             SelectedColorSpace = ColorSpaceList[0];
+            // 图像校正
+            ImageCorrectionList = ImageCorrection.Initialize();
+            SelectedImageCorrection = ImageCorrectionList[0];
             // 扫描通道
             ScanChannel405 = new ScanChannel(ScanChannel.Channel405);
             ScanChannel488 = new ScanChannel(ScanChannel.Channel488);

@@ -47,6 +47,7 @@ namespace NanoInsight.Engine.Core
         private double[] xVoltages;
         private double[] yVoltaegs;
         private byte[] triggerVoltages;
+
         ///////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// 触发波形

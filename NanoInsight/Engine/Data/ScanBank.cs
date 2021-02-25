@@ -44,6 +44,12 @@ namespace NanoInsight.Engine.Data
             Bank = new Mat(rows, columns, type, channels, data, step);
             BankIndex = bankIndex;
         }
+
+        public ScanBank(int rows, int columns, DepthType type, int channels)
+        {
+            Bank = new Mat(rows, columns, type, channels);
+            BankIndex = -1;
+        }
     }
 
 

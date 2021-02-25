@@ -1,4 +1,5 @@
 ﻿using Emgu.CV;
+using Emgu.CV.CvEnum;
 using NanoInsight.Engine.Common;
 using NumSharp;
 using System;
@@ -24,9 +25,9 @@ namespace NanoInsight.Engine.Data
         /// </summary>
         public ScanImage[][] GrayImages { get; set; }
         /// <summary>
-        /// 三通道灰度图像
+        /// 三通道灰度图像[只用作临时数据]
         /// </summary>
-        // public ScanImage[][] Gray3Images { get; set; }
+        // public ScanBank[][] Gray3Banks { get; set; }
         /// <summary>
         /// BGR彩色图像
         /// </summary>
@@ -37,8 +38,8 @@ namespace NanoInsight.Engine.Data
             OriginDataSet = new ScanImage[numOfChannels][];
             OriginImages = new ScanImage[numOfChannels][];
             GrayImages = new ScanImage[numOfChannels][];
-            // Gray3Images = new ScanImage[numOfChannels][];
             BGRImages = new ScanImage[numOfChannels][];
+            // Gray3Banks = new ScanBank[numOfChannels][];
             for (int i = 0; i < numOfChannels; i++)
             {
                 if (statusOfChannels[i])
@@ -46,15 +47,15 @@ namespace NanoInsight.Engine.Data
                     OriginDataSet[i] = new ScanImage[numOfSlices];
                     OriginImages[i] = new ScanImage[numOfSlices];
                     GrayImages[i] = new ScanImage[numOfSlices];
-                    // Gray3Images[i] = new ScanImage[numOfSlices];
                     BGRImages[i] = new ScanImage[numOfSlices];
+                    // Gray3Banks[i] = new ScanBank[numOfSlices];
                     for (int j = 0; j < numOfSlices; j++)
                     {
                         OriginDataSet[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv32S, 1, numOfBank, j);
                         OriginImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 1, numOfBank, j);
                         GrayImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 1, numOfBank, j);
-                        // Gray3Images[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3, numOfBank, j);
                         BGRImages[i][j] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3, numOfBank, j);
+                        // Gray3Banks[i][j] = new ScanBank(rows / numOfBank, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3);
                     }
                 }
                 else
@@ -62,8 +63,8 @@ namespace NanoInsight.Engine.Data
                     OriginDataSet[i] = null;
                     OriginImages[i] = null;
                     GrayImages[i] = null;
-                    // Gray3Images[i] = null;
                     BGRImages[i] = null;
+                    // Gray3Banks[i] = null;
                 }
             }
         }
@@ -126,10 +127,102 @@ namespace NanoInsight.Engine.Data
             }
         }
 
+        /// <summary>
+        /// 将OriginImages中指定的bank转换成GrayIamges中对应的bank
+        /// </summary>
+        /// <param name="brightness"></param>
+        /// <param name="contrast"></param>
+        /// <param name="channelIndex"></param>
+        /// <param name="sliceIndex"></param>
+        /// <param name="bankIndex"></param>
+        public void ToGrayImages(int brightness, int contrast, int channelIndex, int sliceIndex, int bankIndex)
+        {
+            double alpha = Math.Pow(10, contrast / 10.0);
+            Mat originImageBank = OriginImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            Mat grayImageBank = GrayImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            MatrixUtil.ToGrayImage(originImageBank, ref grayImageBank, alpha, brightness);
+        }
 
+        /// <summary>
+        /// 将OriginImages中指定的Image转换成GrayIamges中对应的Image
+        /// </summary>
+        /// <param name="brightness"></param>
+        /// <param name="contrast"></param>
+        /// <param name="channelIndex"></param>
+        /// <param name="sliceIndex"></param>
+        public void ToGrayImages(int brightness, int contrast, int channelIndex, int sliceIndex)
+        {
+            double alpha = Math.Pow(10, contrast / 10.0);
+            Mat originImage = OriginImages[channelIndex][sliceIndex].Image;
+            Mat grayImage = GrayImages[channelIndex][sliceIndex].Image;
+            MatrixUtil.ToGrayImage(originImage, ref grayImage, alpha, brightness);
+        }
 
+        /// <summary>
+        /// 将OriginImages中指定的Image转换成GrayIamges中对应的Image
+        /// </summary>
+        /// <param name="brightness"></param>
+        /// <param name="contrast"></param>
+        /// <param name="channelIndex"></param>
+        public void ToGrayImages(int brightness, int contrast, int channelIndex)
+        {
+            for (int i = 0; i < OriginImages[channelIndex].Length; i++)
+            {
+                ToGrayImages(brightness, contrast, channelIndex, i);
+            }
+        }
 
+        public void ToGrayImages(Mat lookupTable, int channelIndex, int sliceIndex, int bankIndex)
+        {
+            Mat originImageBank = OriginImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            Mat grayImageBank = GrayImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            MatrixUtil.LUT(originImageBank, ref grayImageBank, lookupTable);
+        }
 
+        public void ToGrayImages(Mat lookupTable, int channelIndex, int sliceIndex)
+        {
+            Mat originImage = OriginImages[channelIndex][sliceIndex].Image;
+            Mat grayImage = GrayImages[channelIndex][sliceIndex].Image;
+            MatrixUtil.LUT(originImage, ref grayImage, lookupTable);
+        }
+
+        public void ToGrayImages(Mat lookupTable, int channelIndex)
+        {
+            for (int i = 0; i < OriginImages[channelIndex].Length; i++)
+            {
+                ToGrayImages(lookupTable, channelIndex, i);
+            }
+        }
+
+        public void ToBGRImages(Mat lookupTable, int channelIndex, int sliceIndex, int bankIndex)
+        {
+            Mat grayImageBank = GrayImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            Mat gray3ImageBank = new Mat();
+            Mat bgrImageBank = BGRImages[channelIndex][sliceIndex].Banks[bankIndex].Bank;
+            CvInvoke.CvtColor(grayImageBank, gray3ImageBank, ColorConversion.Gray2Bgr);
+            CvInvoke.LUT(gray3ImageBank, lookupTable, bgrImageBank);
+        }
+
+        public void ToBGRImages(Mat lookupTable, int channelIndex, int sliceIndex)
+        {
+            Mat grayImage = GrayImages[channelIndex][sliceIndex].Image;
+            Mat gray3Image = new Mat();
+            Mat bgrImage = BGRImages[channelIndex][sliceIndex].Image;
+            CvInvoke.CvtColor(grayImage, gray3Image, ColorConversion.Gray2Bgr);
+            CvInvoke.LUT(gray3Image, lookupTable, bgrImage);
+        }
+
+        public void ToBGRImages(Mat lookupTable, int channelIndex)
+        {
+            Mat gray3Image = new Mat();
+            for (int i = 0; i < GrayImages[channelIndex].Length; i++)
+            {
+                Mat grayImage = GrayImages[channelIndex][i].Image;
+                CvInvoke.CvtColor(grayImage, gray3Image, ColorConversion.Gray2Bgr);
+                Mat bgrImage = BGRImages[channelIndex][i].Image;
+                CvInvoke.LUT(gray3Image, lookupTable, bgrImage);
+            }
+        }
 
     }
 }

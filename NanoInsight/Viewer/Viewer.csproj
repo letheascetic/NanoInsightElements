@@ -316,6 +316,7 @@
     <Compile Include="Model\ColorSpaceModel.cs" />
     <Compile Include="Model\DetectorPropertyModel.cs" />
     <Compile Include="Model\GalvoPropertyModel.cs" />
+    <Compile Include="Model\ImageCorrectionModel.cs" />
     <Compile Include="Model\ScanAcquisitionModel.cs" />
     <Compile Include="Model\ScanAreaModel.cs" />
     <Compile Include="Model\ScanChannelImageModel.cs" />

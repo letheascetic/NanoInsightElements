@@ -19,10 +19,12 @@ namespace NanoInsight.Viewer.Model
         private string laserWaveLength;     // 激光波长
         private bool activated;             // 通道激活状态
 
-        private int gamma;                  // 伽马
         private Color pseudoColor;          // 伪彩色
         private int brightness;             // 亮度
         private int contrast;               // 对比度
+        private int gamma;                  // 伽马
+        private int gammaMin;               // 伽马校正最小值
+        private int gammaMax;               // 伽马校正最大值
 
         /// <summary>
         /// 通道ID
@@ -105,6 +107,24 @@ namespace NanoInsight.Viewer.Model
             set { contrast = value; RaisePropertyChanged(() => Contrast); }
         }
 
+        /// <summary>
+        /// gamma校正最小值
+        /// </summary>
+        public int GammaMin
+        {
+            get { return gammaMin; }
+            set { gammaMin = value; RaisePropertyChanged(() => GammaMin); }
+        }
+
+        /// <summary>
+        /// gamma校正最大值
+        /// </summary>
+        public int GammaMax
+        {
+            get { return gammaMax; }
+            set { gammaMax = value; RaisePropertyChanged(() => GammaMax); }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////
         public ScanChannelImageModel(ScanChannel scanChannel)
         {
@@ -113,10 +133,12 @@ namespace NanoInsight.Viewer.Model
             LaserColor = scanChannel.LaserColor;
             LaserWaveLength = scanChannel.LaserWaveLength;
             Activated = scanChannel.Activated;
-            Gamma = scanChannel.Gamma;
-            PseudoColor = scanChannel.PseudoColor;
-            Brightness = scanChannel.Brightness;
-            Contrast = scanChannel.Contrast;
+            Gamma = scanChannel.ImageSettings.Gamma;
+            PseudoColor = scanChannel.ImageSettings.PseudoColor;
+            Brightness = scanChannel.ImageSettings.Brightness;
+            Contrast = scanChannel.ImageSettings.Contrast;
+            GammaMin = scanChannel.ImageSettings.ThresholdMin;
+            GammaMax = scanChannel.ImageSettings.ThresholdMax;
         }
 
     }
