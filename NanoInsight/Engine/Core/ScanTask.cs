@@ -111,11 +111,10 @@ namespace NanoInsight.Engine.Core
                     }
                     else
                     {
-
-                        ScanData.ToGrayImages(new Mat(), i, 0, sampleData.CurrentBank[i]);
+                        ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i, 0, sampleData.CurrentBank[i]);
                     }
                     //  GrayImages.Bank -> BGRImages.Bank
-                    ScanData.ToBGRImages(new Mat(), i, 0, sampleData.CurrentBank[i]);
+                    ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i, 0, sampleData.CurrentBank[i]);
                 }
             }
         }

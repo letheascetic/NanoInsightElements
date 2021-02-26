@@ -137,8 +137,8 @@ namespace NanoInsight.Viewer.Model
             PseudoColor = scanChannel.ImageSettings.PseudoColor;
             Brightness = scanChannel.ImageSettings.Brightness;
             Contrast = scanChannel.ImageSettings.Contrast;
-            GammaMin = scanChannel.ImageSettings.ThresholdMin;
-            GammaMax = scanChannel.ImageSettings.ThresholdMax;
+            GammaMin = scanChannel.ImageSettings.GammaMin;
+            GammaMax = scanChannel.ImageSettings.GammaMax;
         }
 
     }

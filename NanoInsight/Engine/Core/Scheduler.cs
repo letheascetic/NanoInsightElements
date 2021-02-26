@@ -514,25 +514,6 @@ namespace NanoInsight.Engine.Core
         }
 
         /// <summary>
-        /// 设置通道偏置
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="offset"></param>
-        /// <returns></returns>
-        public int SetChannelOffset(int id, int offset)
-        {
-            int code = mConfig.SetChannelOffset(id, offset);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ImageOffsetChangedEvent != null)
-                {
-                    return ImageOffsetChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
         /// 设置通道功率
         /// </summary>
         /// <param name="id"></param>
@@ -565,25 +546,6 @@ namespace NanoInsight.Engine.Core
                 if (ChannelLaserColorChangedEvent != null)
                 {
                     return ChannelLaserColorChangedEvent.Invoke(mConfig.ScanChannels[id]);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置通道伪彩色
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="color"></param>
-        /// <returns></returns>
-        public int SetChannelPseudoColor(int id, Color color)
-        {
-            int code = mConfig.SetChannelPseudoColor(id, color);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ImagePseudoColorChangedEvent != null)
-                {
-                    return ImagePseudoColorChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
                 }
             }
             return code;
@@ -711,46 +673,229 @@ namespace NanoInsight.Engine.Core
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
-        public int SetChannelGamma(int id, int gamma)
+        /// <summary>
+        /// 设置伽马校正值
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="gamma"></param>
+        /// <returns></returns>
+        public int SetImageGamma(int id, int gamma)
         {
             ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
             if (scanChannel == null)
             {
                 return ApiCode.SchedulerScanChannelIdInvalid;
             }
-            scanChannel.ImageSettings.Gamma = gamma;
+            scanChannel.ImageSettings.SetGamma(gamma);
 
-            if (mConfig.IsScanning)
+            // 当前正在扫描且图像校正模式是Gamma校正，则需要依次对所有激活通道的图像做伽马校正，并重新转换成伪彩色
+            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.Gamma)
             {
-                
+                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                for (int i = 0; i < statusOfChannels.Length; i++)
+                {
+                    if (statusOfChannels[i])
+                    {
+                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
+                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                    }
+                }
             }
             return ApiCode.Success;
         }
 
-        public int SetChannelBrightness(int id, int brightness)
+        /// <summary>
+        /// 设置伽马校正范围的最小值
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="gammaMin"></param>
+        /// <returns></returns>
+        public int SetImageGammaRangeMin(int id, int gammaMin)
         {
             ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
             if (scanChannel == null)
             {
                 return ApiCode.SchedulerScanChannelIdInvalid;
             }
-            scanChannel.ImageSettings.Brightness = brightness;
+            scanChannel.ImageSettings.SetGammaMin(gammaMin);
 
+            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.Gamma)
+            {
+                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                for (int i = 0; i < statusOfChannels.Length; i++)
+                {
+                    if (statusOfChannels[i])
+                    {
+                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
+                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                    }
+                }
+            }
             return ApiCode.Success;
         }
 
-        public int SetChannelContrast(int id, int contrast)
+        /// <summary>
+        /// 设置伽马校正范围的最大值
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="gammaMax"></param>
+        /// <returns></returns>
+        public int SetImageGammaRangeMax(int id, int gammaMax)
         {
             ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
             if (scanChannel == null)
             {
                 return ApiCode.SchedulerScanChannelIdInvalid;
             }
-            scanChannel.ImageSettings.Contrast = contrast;
+            scanChannel.ImageSettings.SetGammaMax(gammaMax);
 
+            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.Gamma)
+            {
+                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                for (int i = 0; i < statusOfChannels.Length; i++)
+                {
+                    if (statusOfChannels[i])
+                    {
+                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
+                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                    }
+                }
+            }
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置亮度对比度校正的亮度
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="brightness"></param>
+        /// <returns></returns>
+        public int SetImageBrightness(int id, int brightness)
+        {
+            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.SchedulerScanChannelIdInvalid;
+            }
+            scanChannel.ImageSettings.SetBrightness(brightness);
+
+            // 当前正在扫描且图像校正模式是亮度-对比度校正，则需要依次对所有激活通道的图像做亮度-对比度校正，并重新转换成伪彩色
+            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
+            {
+                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                for (int i = 0; i < statusOfChannels.Length; i++)
+                {
+                    if (statusOfChannels[i])
+                    {
+                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i);
+                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                    }
+                }
+            }
+            return ApiCode.Success;
+        }
+
+        /// <summary>
+        /// 设置图像的对比度
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="contrast"></param>
+        /// <returns></returns>
+        public int SetImageContrast(int id, int contrast)
+        {
+            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
+            if (scanChannel == null)
+            {
+                return ApiCode.SchedulerScanChannelIdInvalid;
+            }
+            scanChannel.ImageSettings.SetContrast(contrast);
+
+            // 当前正在扫描且图像校正模式是亮度-对比度校正，则需要依次对所有激活通道的图像做亮度-对比度校正，并重新转换成伪彩色
+            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
+            {
+                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                for (int i = 0; i < statusOfChannels.Length; i++)
+                {
+                    if (statusOfChannels[i])
+                    {
+                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i);
+                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                    }
+                }
+            }
+            return ApiCode.Success;
+        }
+
+        /// <summary>
+        /// 设置通道伪彩色
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public int SetImagePseudoColor(int id, Color color)
+        {
+            int code = mConfig.SetChannelPseudoColor(id, color);
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (mConfig.IsScanning)
+                {
+                    bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                    for (int i = 0; i < statusOfChannels.Length; i++)
+                    {
+                        if (statusOfChannels[i])
+                        {
+                            ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                        }
+                    }
+                }
+
+                if (ImagePseudoColorChangedEvent != null)
+                {
+                    return ImagePseudoColorChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道偏置
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public int SetImageOffset(int id, int offset)
+        {
+            int code = mConfig.SetChannelOffset(id, offset);
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (mConfig.IsScanning)
+                {
+                    bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+                    for (int i = 0; i < statusOfChannels.Length; i++)
+                    {
+                        if (statusOfChannels[i])
+                        {
+                            ScanningTask.ScanData.ToOriginImages(mConfig.SelectedScanPixelDwell.ScanPixelScale, i, mConfig.ScanChannels[i].ImageSettings.Offset);
+                            if (mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
+                            {
+                                ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i);
+                            }
+                            else
+                            {
+                                ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
+                            }
+                            ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
+                        }
+                    }
+                }
+
+                if (ImageOffsetChangedEvent != null)
+                {
+                    return ImageOffsetChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
+                }
+            }
+            return code;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 

@@ -43,8 +43,23 @@ namespace NanoInsight.Engine.Common
             double gamma = Math.Pow(2, gammaCoff / 100.0);
             GenerateGammaMapping(gamma, ref gammaMapLookupTable);
         }
-    
-        
-    
+
+        public static void GenerateGammaMapping(int gammaCoff, int gammaMin, int gammaMax, ref Mat gammaMapLookupTable)
+        {
+            double gamma = Math.Pow(2, gammaCoff / 100.0);
+            byte[] data = new byte[256];
+            for (int i = 0; i < 256; i++)
+            {
+                if (i < gammaMin || i > gammaMax)
+                {
+                    data[i] = (byte)i;
+                }
+                else
+                {
+                    data[i] = (byte)(Math.Pow(i / 255.0, gamma) * 255.0);
+                }
+            }
+        }
+
     }
 }

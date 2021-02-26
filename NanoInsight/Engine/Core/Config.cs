@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using Emgu.CV;
+using log4net;
 using NanoInsight.Engine.Attribute;
 using NanoInsight.Engine.Properties;
 using System;
@@ -389,7 +390,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.ConfigSetChannelOffsetFailed;
             }
-            scanChannel.ImageSettings.Offset = offset;
+            scanChannel.ImageSettings.SetOffset(offset);
             Logger.Info(string.Format("Channel Offset [{0}:{1}].", id, offset));
             return ApiCode.Success;
         }
@@ -425,7 +426,7 @@ namespace NanoInsight.Engine.Core
             {
                 return ApiCode.ConfigSetChannelPseudoColorFailed;
             }
-            scanChannel.ImageSettings.PseudoColor = color;
+            scanChannel.ImageSettings.SetPseudoColor(color);
             Logger.Info(string.Format("Channel Pseudo Color [{0}:{1}].", id, color));
             return ApiCode.Success;
         }
@@ -453,6 +454,9 @@ namespace NanoInsight.Engine.Core
             Logger.Info(string.Format("Channel Status [{0}:{1}].", id, activated));
             return ApiCode.Success;
         }
+
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
