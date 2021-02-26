@@ -148,7 +148,18 @@ namespace NanoInsight.Engine.Attribute
 
         public ImageProperty(ImageProperty imageProperty)
         {
-
+            ID = imageProperty.ID;
+            mOffset = imageProperty.Offset;
+            mGamma = imageProperty.Gamma;
+            mPseudoColor = imageProperty.PseudoColor;
+            mBrightness = imageProperty.Brightness;
+            mContrast = imageProperty.Contrast;
+            mGammaMin = imageProperty.GammaMin;
+            mGammaMax = imageProperty.GammaMax;
+            mGammaLUT = new Mat(1, 256, DepthType.Cv8U, 1);
+            mPseudoColorLUT = new Mat(1, 256, DepthType.Cv8U, 3);
+            ImageUtil.GenerateGammaMapping(Gamma, mGammaMin, mGammaMax, ref mGammaLUT);
+            ImageUtil.GenerateColorMapping(PseudoColor, ref mPseudoColorLUT);
         }
         
         /// <summary>
