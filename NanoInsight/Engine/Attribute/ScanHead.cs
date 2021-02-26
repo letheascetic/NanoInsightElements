@@ -45,5 +45,12 @@ namespace NanoInsight.Engine.Attribute
             }
         }
 
+        public ScanHead(ScanHead scanHead)
+        {
+            ID = scanHead.ID;
+            Text = scanHead.Text;
+            IsEnabled = scanHead.IsEnabled;
+        }
+        
     }
 }

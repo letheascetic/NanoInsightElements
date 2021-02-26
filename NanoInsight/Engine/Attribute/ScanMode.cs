@@ -43,5 +43,12 @@ namespace NanoInsight.Engine.Attribute
             }
         }
 
+        public ScanMode(ScanMode scanMode)
+        {
+            ID = scanMode.ID;
+            Text = scanMode.Text;
+            IsEnabled = scanMode.IsEnabled;
+        }
+
     }
 }

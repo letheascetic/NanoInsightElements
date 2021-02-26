@@ -146,6 +146,11 @@ namespace NanoInsight.Engine.Attribute
             ImageUtil.GenerateColorMapping(PseudoColor, ref mPseudoColorLUT);
         }
 
+        public ImageProperty(ImageProperty imageProperty)
+        {
+
+        }
+        
         /// <summary>
         /// 设置伪彩色[同时更新伪彩色LUT]
         /// </summary>

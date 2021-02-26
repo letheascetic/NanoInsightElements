@@ -43,5 +43,13 @@ namespace NanoInsight.Engine.Attribute
                 throw new ArgumentOutOfRangeException("ID Exception");
             }
         }
+
+        public ScanDirection(ScanDirection scanDirection)
+        {
+            ID = scanDirection.ID;
+            Text = scanDirection.Text;
+            IsEnabled = scanDirection.IsEnabled;
+        }
+
     }
 }

@@ -57,11 +57,11 @@ namespace NanoInsight.Engine.Core
         /// 启动指定的采集模式
         /// </summary>
         /// <param name="id"></param>
-        public int StartAcquisition(int id)
+        public int SetAcquisition(int id)
         {
             if (id != ScanLiveMode.ID && id != ScanCaptureMode.ID)
             {
-                return ApiCode.ConfigStartAcquisitionFailed;
+                return ApiCode.AcquisitionIdInvalid;
             }
             ScanLiveMode.IsEnabled = id == ScanLiveMode.ID;
             ScanCaptureMode.IsEnabled = !ScanLiveMode.IsEnabled;
@@ -454,9 +454,6 @@ namespace NanoInsight.Engine.Core
             Logger.Info(string.Format("Channel Status [{0}:{1}].", id, activated));
             return ApiCode.Success;
         }
-
-
-
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>

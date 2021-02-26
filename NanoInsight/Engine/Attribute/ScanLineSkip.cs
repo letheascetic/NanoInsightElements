@@ -28,11 +28,48 @@ namespace NanoInsight.Engine.Attribute
         {
             return new List<ScanLineSkip>()
             {
-                new ScanLineSkip(){ ID = 0, Text = "2x", Data = 2 },
-                new ScanLineSkip(){ ID = 1, Text = "4x", Data = 4 },
-                new ScanLineSkip(){ ID = 2, Text = "8x", Data = 8 },
-                new ScanLineSkip(){ ID = 3, Text = "16x", Data = 16 },
+                new ScanLineSkip(0),
+                new ScanLineSkip(1),
+                new ScanLineSkip(2),
+                new ScanLineSkip(3),
             };
         }
+
+        public ScanLineSkip(int id)
+        {
+            switch(id)
+            {
+                case 0:
+                    ID = 0;
+                    Text = "2x";
+                    Data = 2;
+                    break;
+                case 1:
+                    ID = 1;
+                    Text = "4x";
+                    Data = 4;
+                    break;
+                case 2:
+                    ID = 2;
+                    Text = "8x";
+                    Data = 8;
+                    break;
+                case 3:
+                    ID = 0;
+                    Text = "16x";
+                    Data = 16;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("ID Exception");
+            }
+        }
+
+        public ScanLineSkip(ScanLineSkip lineSkip)
+        {
+            ID = lineSkip.ID;
+            Text = lineSkip.Text;
+            Data = lineSkip.Data;
+        }
+
     }
 }

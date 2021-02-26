@@ -20,10 +20,38 @@ namespace NanoInsight.Engine.Attribute
         {
             return new List<ColorSpace>()
             {
-                new ColorSpace(){ID = GrayScale, Name = "灰度图"},
-                new ColorSpace(){ID = LaserLight, Name = "激发色"},
-                new ColorSpace(){ID = Pseudo, Name = "伪彩色"},
+                new ColorSpace(GrayScale),
+                new ColorSpace(LaserLight),
+                new ColorSpace(Pseudo),
             };
         }
+
+        public ColorSpace(ColorSpace colorSpace)
+        {
+            ID = colorSpace.ID;
+            Name = colorSpace.Name;
+        }
+
+        public ColorSpace(int id)
+        {
+            switch (id)
+            {
+                case GrayScale:
+                    ID = GrayScale;
+                    Name = "灰度图";
+                    break;
+                case LaserLight:
+                    ID = LaserLight;
+                    Name = "激发色";
+                    break;
+                case Pseudo:
+                    ID = Pseudo;
+                    Name = "伪彩色";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("ID Exception");
+            }
+        }
+
     }
 }

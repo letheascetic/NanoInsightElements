@@ -122,5 +122,18 @@ namespace NanoInsight.Engine.Attribute
             }
         }
 
+        public ScanChannel(ScanChannel scanChannel)
+        {
+            ID = scanChannel.ID;
+            Name = scanChannel.Name;
+            LaserPower = scanChannel.LaserPower;
+            LaserColor = scanChannel.LaserColor;
+            LaserWaveLength = scanChannel.LaserWaveLength;
+            Activated = scanChannel.Activated;
+            Gain = scanChannel.Gain;
+            PinHole = scanChannel.PinHole;
+
+        }
+
     }
 }

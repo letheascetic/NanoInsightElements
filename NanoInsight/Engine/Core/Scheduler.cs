@@ -58,6 +58,13 @@ namespace NanoInsight.Engine.Core
         private Task[] mSampleWorkers;
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// 是否有任务正在扫描中
+        /// </summary>
+        public bool IsScanning { get { return mConfig.IsScanning; } }
+
+
         public List<ScanTask> ScanTasks
         {
             get { return mScanTasks; }
@@ -228,25 +235,30 @@ namespace NanoInsight.Engine.Core
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// 启动指定的采集模式
+        /// 启动指定采集类型的采集任务
         /// </summary>
-        /// <param name="id"></param>
-        public int StartAcquisition(int id)
+        /// <param name="acquisitionId">采集类型</param>
+        /// <param name="taskId">任务Id</param>
+        /// <returns></returns>
+        public int StartAcquisition(int acquisitionId, int taskId)
         {
-            int code = BeforePropertyChanged();
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
 
             if (mConfig.GetActivatedChannelNum() == 0)
             {
                 return ApiCode.SchedulerNoScanChannelActivated;
             }
 
-            code |= mConfig.StartAcquisition(id);
+            int code = mConfig.SetAcquisition(acquisitionId);
             if (!ApiCode.IsSuccessful(code))
             {
                 return code;
             }
 
-            CreateScanTask(0, "实时扫描", out ScanTask scanTask);
+            CreateScanTask(taskId, "实时扫描", out ScanTask scanTask);
             code = StartScanTask(scanTask);
 
             if (ApiCode.IsSuccessful(code))
