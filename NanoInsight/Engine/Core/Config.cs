@@ -650,6 +650,7 @@ namespace NanoInsight.Engine.Core
                 new ScanAreaType(ScanAreaType.Bank),
                 new ScanAreaType(ScanAreaType.Line)
             };
+            SelectedScanAreaType = ScanAreaTypeList.Where(p => p.IsEnabled).First();
             FullScanArea = ScanArea.CreateFullScanArea();
             SelectedScanArea = ScanArea.CreateFullScanArea();
             // 像素尺寸

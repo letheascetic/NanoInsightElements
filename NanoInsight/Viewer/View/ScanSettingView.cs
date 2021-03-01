@@ -257,7 +257,11 @@ namespace NanoInsight.Viewer.View
 
             if (btnLive.Pressed)
             {
-                mScanSettingsVM.Engine.StartAcquisition(mScanSettingsVM.ScanLiveMode.ID);
+                if (mScanSettingsVM.Engine.IsScanning)
+                {
+                    mScanSettingsVM.Engine.StopAcquisition();
+                }
+                mScanSettingsVM.Engine.StartAcquisition(mScanSettingsVM.ScanLiveMode.ID, 0);
             }
             else
             {
@@ -282,7 +286,11 @@ namespace NanoInsight.Viewer.View
 
             if (btnCapture.Pressed)
             {
-                mScanSettingsVM.Engine.StartAcquisition(mScanSettingsVM.ScanCaptureMode.ID);
+                if (mScanSettingsVM.Engine.IsScanning)
+                {
+                    mScanSettingsVM.Engine.StopAcquisition();
+                }
+                mScanSettingsVM.Engine.StartAcquisition(mScanSettingsVM.ScanCaptureMode.ID, 0);
             }
             else
             {
@@ -301,7 +309,18 @@ namespace NanoInsight.Viewer.View
         private void ScanHeadChanged(object sender, EventArgs e)
         {
             int id = rbtnTwoScanners.Checked ? mScanSettingsVM.TwoGalvo.ID : mScanSettingsVM.ThreeGalvo.ID;
-            mScanSettingsVM.Engine.SetScanHead(id);
+
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetScanHead(id);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetScanHead(id);
+            }
             mScanSettingsVM.TwoGalvo.IsEnabled = mScanSettingsVM.Engine.Configuration.TwoGalvo.IsEnabled;
             mScanSettingsVM.ThreeGalvo.IsEnabled = mScanSettingsVM.Engine.Configuration.ThreeGalvo.IsEnabled;
         }
@@ -314,11 +333,27 @@ namespace NanoInsight.Viewer.View
         private void ScanModeChanged(object sender, EventArgs e)
         {
             int id = rbtnGalvano.Checked ? mScanSettingsVM.Galavano.ID : mScanSettingsVM.Resonant.ID;
-            mScanSettingsVM.Engine.SetScanMode(id);
+
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetScanMode(id);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetScanMode(id);
+            }
             mScanSettingsVM.Galavano.IsEnabled = mScanSettingsVM.Engine.Configuration.Galvano.IsEnabled;
             mScanSettingsVM.Resonant.IsEnabled = mScanSettingsVM.Engine.Configuration.Resonant.IsEnabled;
         }
 
+        /// <summary>
+        /// 使用单向扫描
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UnidirectionClick(object sender, EventArgs e)
         {
             if (mScanSettingsVM.Unidirection.IsEnabled)
@@ -326,12 +361,28 @@ namespace NanoInsight.Viewer.View
                 btnUnidirection.Pressed = true;
                 return;
             }
-            mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Unidirection.ID);
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Unidirection.ID);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Unidirection.ID);
+            }
+            
             mScanSettingsVM.Bidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Bidirection.IsEnabled;
             mScanSettingsVM.Unidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Unidirection.IsEnabled;
             mScanSettingsVM.Update();
         }
 
+        /// <summary>
+        /// 使用双向扫描
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BidirectionClick(object sender, EventArgs e)
         {
             if (mScanSettingsVM.Bidirection.IsEnabled)
@@ -339,7 +390,18 @@ namespace NanoInsight.Viewer.View
                 btnBidirection.Pressed = true;
                 return;
             }
-            mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Bidirection.ID);
+
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Bidirection.ID);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetScanDirection(mScanSettingsVM.Bidirection.ID);
+            }
             mScanSettingsVM.Bidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Bidirection.IsEnabled;
             mScanSettingsVM.Unidirection.IsEnabled = mScanSettingsVM.Engine.Configuration.Unidirection.IsEnabled;
             mScanSettingsVM.Update();
@@ -359,8 +421,19 @@ namespace NanoInsight.Viewer.View
                 button.Pressed = true;
                 return;
             }
+
             nbScanPixelCalibration.ValueChanged -= ScanPixelCalibrationChanged;
-            mScanSettingsVM.SelectScanPixelDwell(model.ID);
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.SelectScanPixelDwell(model.ID);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.SelectScanPixelDwell(model.ID);
+            }
             mScanSettingsVM.Update();
             nbScanPixelCalibration.ValueChanged += ScanPixelCalibrationChanged;
         }
@@ -380,7 +453,17 @@ namespace NanoInsight.Viewer.View
                 return;
             }
 
-            mScanSettingsVM.SelectScanPixel(model.ID);
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.SelectScanPixel(model.ID);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.SelectScanPixel(model.ID);
+            }
             mScanSettingsVM.Update();
         }
 
@@ -412,7 +495,19 @@ namespace NanoInsight.Viewer.View
         private void ScanLineSkipChanged(object sender, EventArgs e)
         {
             int id = ((ScanLineSkipModel)cbxLineSkip.SelectedItem).ID;
-            mScanSettingsVM.Engine.SelectLineSkip(id);
+
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SelectLineSkip(id);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SelectLineSkip(id);
+            }
+
             mScanSettingsVM.SelectedScanLineSkip = mScanSettingsVM.ScanLineSkipList.Where(p => p.ID == mScanSettingsVM.Engine.Configuration.SelectedScanLineSkip.ID).First();
         }
 
@@ -440,7 +535,18 @@ namespace NanoInsight.Viewer.View
         /// <param name="e"></param>
         private void FastModeClick(object sender, EventArgs e)
         {
-            mScanSettingsVM.Engine.SetFastModeStatus(rbtnFastMode.Pressed);
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetFastModeStatus(rbtnFastMode.Pressed);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetFastModeStatus(rbtnFastMode.Pressed);
+            }
+
             mScanSettingsVM.FastModeEnabled = mScanSettingsVM.Engine.Configuration.FastModeEnabled;
             Logger.Info(string.Format("Fast Mode Enabled [{0}].", mScanSettingsVM.FastModeEnabled));
         }
@@ -467,7 +573,7 @@ namespace NanoInsight.Viewer.View
         {
             InputTrackBar bar = (InputTrackBar)sender;
             int id = (int)bar.Tag;
-            mScanSettingsVM.Engine.SetImageOffset(id, bar.Value);
+            mScanSettingsVM.Engine.SetImageOffset(mScanSettingsVM.Engine.ScanningTask.TaskId, id, bar.Value);
             mScanSettingsVM.ScanChannels[id].Offset = mScanSettingsVM.Engine.Configuration.ScanChannels[id].ImageSettings.Offset;
         }
 
@@ -493,7 +599,23 @@ namespace NanoInsight.Viewer.View
         {
             InputButton button = (InputButton)sender;
             int id = (int)button.Tag;
-            mScanSettingsVM.Engine.SetChannelStatus(id, button.Pressed);
+
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetChannelStatus(id, button.Pressed);
+                if (mScanSettingsVM.Engine.Configuration.GetActivatedChannelNum() == 0)
+                {
+                    mScanSettingsVM.Engine.SetChannelStatus(id, true);
+                }
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetChannelStatus(id, button.Pressed);
+            }
+
             mScanSettingsVM.ScanChannels[id].Activated = mScanSettingsVM.Engine.Configuration.ScanChannels[id].Activated;
         }
 
@@ -519,7 +641,19 @@ namespace NanoInsight.Viewer.View
         {
             InputTrackBar bar = (InputTrackBar)sender;
             int id = mScanSettingsVM.SelectedScanChannel.ID;
-            mScanSettingsVM.Engine.SetChannelPinHole(id, bar.Value);
+
+            if (mScanSettingsVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanSettingsVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanSettingsVM.Engine.StopAcquisition();
+                mScanSettingsVM.Engine.SetChannelPinHole(id, bar.Value);
+                mScanSettingsVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanSettingsVM.Engine.SetChannelPinHole(id, bar.Value);
+            }
+
             mScanSettingsVM.SelectedScanChannel.PinHole = mScanSettingsVM.Engine.Configuration.ScanChannels[id].PinHole;
         }
 

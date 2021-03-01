@@ -132,7 +132,7 @@ namespace NanoInsight.Engine.Attribute
             Activated = scanChannel.Activated;
             Gain = scanChannel.Gain;
             PinHole = scanChannel.PinHole;
-
+            ImageSettings = new ImageProperty(scanChannel.ImageSettings);
         }
 
     }

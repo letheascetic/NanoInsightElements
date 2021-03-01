@@ -272,17 +272,17 @@ namespace NanoInsight.Engine.Core
 
         public ScanSequence(ScanSequence scanSequence)
         {
-            TriggerWave = new byte[scanSequence.TriggerWave.Length];
-            scanSequence.TriggerWave.CopyTo(TriggerWave, 0);
+            //TriggerWave = new byte[scanSequence.TriggerWave.Length];
+            //scanSequence.TriggerWave.CopyTo(TriggerWave, 0);
 
-            XWave = new double[scanSequence.XWave.Length];
-            scanSequence.XWave.CopyTo(XWave, 0);
+            //XWave = new double[scanSequence.XWave.Length];
+            //scanSequence.XWave.CopyTo(XWave, 0);
 
-            Y1Wave = new double[scanSequence.Y1Wave.Length];
-            scanSequence.Y1Wave.CopyTo(Y1Wave, 0);
+            //Y1Wave = new double[scanSequence.Y1Wave.Length];
+            //scanSequence.Y1Wave.CopyTo(Y1Wave, 0);
 
-            Y2Wave = new double[scanSequence.Y2Wave.Length];
-            scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
+            //Y2Wave = new double[scanSequence.Y2Wave.Length];
+            //scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
 
             XVoltages = new double[scanSequence.XVoltages.Length];
             scanSequence.XVoltages.CopyTo(XVoltages, 0);
@@ -290,17 +290,14 @@ namespace NanoInsight.Engine.Core
             YVoltages = new double[scanSequence.YVoltages.Length];
             scanSequence.YVoltages.CopyTo(YVoltages, 0);
 
-            Y2Wave = new double[scanSequence.Y2Wave.Length];
-            scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
-
-            Y2Wave = new double[scanSequence.Y2Wave.Length];
-            scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
+            TriggerVoltages = new byte[scanSequence.TriggerVoltages.Length];
+            scanSequence.TriggerVoltages.CopyTo(TriggerVoltages, 0);
 
             XCoordinates = new double[scanSequence.XCoordinates.Length];
             scanSequence.XCoordinates.CopyTo(XCoordinates, 0);
 
             YCoordinates = new double[scanSequence.YCoordinates.Length];
-            scanSequence.Y2Wave.CopyTo(YCoordinates, 0);
+            scanSequence.YCoordinates.CopyTo(YCoordinates, 0);
 
             TriggerOutputSampleRate = scanSequence.TriggerOutputSampleRate;
             OutputSampleRate = scanSequence.OutputSampleRate;

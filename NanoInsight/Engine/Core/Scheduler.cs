@@ -113,6 +113,8 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
+
                 if (ScanHeadChangedEvent != null)
                 {
                     return ScanHeadChangedEvent.Invoke(mConfig.SelectedScanHead);
@@ -136,6 +138,8 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
+
                 if (ScanModeChangedEvent != null)
                 {
                     return ScanModeChangedEvent.Invoke(mConfig.SelectedScanMode);
@@ -159,6 +163,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
                 if (ScanDirectionChangedEvent != null)
                 {
                     return ScanDirectionChangedEvent.Invoke(mConfig.SelectedScanDirection);
@@ -183,6 +188,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
                 if (ScanPixelChangedEvent != null)
                 {
                     return ScanPixelChangedEvent.Invoke(mConfig.SelectedScanPixel);
@@ -207,6 +213,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
                 if (ScanPixelDwellChangedEvent != null)
                 {
                     return ScanPixelDwellChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
@@ -228,6 +235,7 @@ namespace NanoInsight.Engine.Core
             }
 
             mConfig.FastModeEnabled = status;
+            mSequence.GenerateScanCoordinates();
             return ApiCode.Success;
         }
 
@@ -321,6 +329,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
                 if (LineSkipChangedEvent != null)
                 {
                     return LineSkipChangedEvent.Invoke(mConfig.SelectedScanLineSkip);
@@ -345,6 +354,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
                 if (LineSkipStatusChangedEvent != null)
                 {
                     return LineSkipStatusChangedEvent.Invoke(status);
@@ -499,6 +509,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                mSequence.GenerateScanCoordinates();
                 if (ScanAreaChangedEvent != null)
                 {
                     return ScanAreaChangedEvent.Invoke(mConfig.SelectedScanArea);
@@ -555,32 +566,6 @@ namespace NanoInsight.Engine.Core
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-        /// <summary>
-        /// 创建指定TaskID的扫描任务，若已经存在，则返回已经存在的
-        /// </summary>
-        /// <param name="taskId"></param>
-        /// <param name="taskName"></param>
-        /// <param name="scanTask"></param>
-        /// <returns></returns>
-        public int CreateScanTask(int taskId, string taskName, out ScanTask scanTask)
-        {
-            scanTask = GetScanTask(taskId);
-            if (scanTask == null)
-            {
-                scanTask = new ScanTask(taskId, taskName, mConfig, mSequence);
-                mScanTasks.Add(scanTask);
-            }
-            return ApiCode.Success;
-        }
-
         /// <summary>
         /// 获取指定TaskId的扫描任务
         /// </summary>
@@ -590,109 +575,6 @@ namespace NanoInsight.Engine.Core
         {
             return mScanTasks.Where(p => p.TaskId == taskId).FirstOrDefault();
         }
-
-        /// <summary>
-        /// 启动扫描任务
-        /// </summary>
-        /// <param name="taskId"></param>
-        /// <param name="taskName"></param>
-        /// <returns></returns>
-        private int StartScanTask(ScanTask scanTask)
-        {
-            int code = ApiCode.Success;
-            if (mConfig.GetActivatedChannelNum() == 0)
-            {
-                code = ApiCode.SchedulerNoScanChannelActivated;
-                Logger.Info(string.Format("start scan task[{0}|{1}] failed: [{2}].", scanTask.TaskId, scanTask.TaskName, code));
-                return code;
-            }
-
-            mScanningTask = scanTask;
-
-            mSequence.GenerateScanCoordinates();         // 生成扫描范围序列和电压序列
-            mSequence.GenerateFrameScanWaves();          // 生成帧电压序列
-            OpenLaserChannels();                         // 打开激光器
-            ScanningTask.Start();
-
-            mCancelToken = new CancellationTokenSource();
-            if (mConfig.Detector.CurrentDetecor.ID == DetectorType.Pmt)
-            {
-                mPmtSampleQueue = new BlockingCollection<PmtSampleData>(new ConcurrentQueue<PmtSampleData>());
-                mSampleWorkers = new Task[PMT_TASK_COUNT];
-                for (int i = 0; i < mSampleWorkers.Length; i++)
-                {
-                    mSampleWorkers[i] = Task.Run(() => PmtSampleWorker());
-                }
-            }
-            else
-            {
-                mApdSampleQueue = new BlockingCollection<ApdSampleData>(new ConcurrentQueue<ApdSampleData>());
-                mSampleWorkers = new Task[APD_TASK_COUNT];
-                for (int i = 0; i < mSampleWorkers.Length; i++)
-                {
-                    mSampleWorkers[i] = Task.Run(() => ApdSampleWorker());
-                }
-            }
-
-            code = mNiDaq.Start();                       // 启动板卡
-
-            if (!ApiCode.IsSuccessful(code))
-            {
-                Logger.Info(string.Format("start scan task[{0}|{1}] failed: [{2}].", scanTask.TaskId, scanTask.TaskName, code));
-                StopScanTask();
-                return code;
-            }
-
-            Logger.Info(string.Format("start scan task[{0}|{1}] success.", scanTask.TaskId, scanTask.TaskName));
-            return code;
-        }
-
-        /// <summary>
-        /// 停止扫描任务
-        /// </summary>
-        /// <returns></returns>
-        private int StopScanTask()
-        {
-            if (ScanningTask == null)
-            {
-                return ApiCode.SchedulerScanTaskInvalid;
-            }
-
-            if (GetScanTask(ScanningTask.TaskId) == null)
-            {
-                return ApiCode.SchedulerScanTaskNotFound;
-            }
-
-            Logger.Info(string.Format("stop scan task[{0}|{1}].", ScanningTask.TaskId, ScanningTask.TaskName));
-
-            mNiDaq.Stop();
-            ScanningTask.Stop();
-
-            mCancelToken.Cancel();
-            if (mConfig.Detector.CurrentDetecor.ID == DetectorType.Pmt)
-            {
-                mPmtSampleQueue.CompleteAdding();
-            }
-            else
-            {
-                mApdSampleQueue.CompleteAdding();
-            }
-            Task.WaitAll(mSampleWorkers);
-            Dispose();
-
-            mScanningTask = null;
-            CloseLaserChannels();
-
-            return ApiCode.Success;
-        }
-
-        public void Release()
-        {
-            ReleaseLaser();
-            ReleaseUsbDac();
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// 启动指定采集类型的采集任务
@@ -754,19 +636,129 @@ namespace NanoInsight.Engine.Core
             return code;
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 创建指定TaskID的扫描任务，若已经存在，则从任务池中删除已有的，再新建
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="taskName"></param>
+        /// <param name="scanTask"></param>
+        /// <returns></returns>
+        private int CreateScanTask(int taskId, string taskName, out ScanTask scanTask)
+        {
+            scanTask = GetScanTask(taskId);
+            if (scanTask != null)
+            {
+                mScanTasks.Remove(scanTask);
+            }
 
+            scanTask = new ScanTask(taskId, taskName, mConfig, mSequence);
+            mScanTasks.Add(scanTask);
+            return ApiCode.Success;
+        }
 
+        /// <summary>
+        /// 启动扫描任务
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="taskName"></param>
+        /// <returns></returns>
+        private int StartScanTask(ScanTask scanTask)
+        {
+            int code = ApiCode.Success;
+            if (mConfig.GetActivatedChannelNum() == 0)
+            {
+                code = ApiCode.SchedulerNoScanChannelActivated;
+                Logger.Info(string.Format("start scan task[{0}|{1}] failed: [{2}].", scanTask.TaskId, scanTask.TaskName, code));
+                return code;
+            }
 
+            mScanningTask = scanTask;
+            mScanningTask.Settings.Sequence.GenerateFrameScanWaves();
+            // mSequence.GenerateScanCoordinates();      // 生成扫描范围序列和电压序列
+            // mSequence.GenerateFrameScanWaves();       // 生成帧电压序列
 
+            OpenLaserChannels();                         // 打开激光器
+            ScanningTask.Start();
 
+            mCancelToken = new CancellationTokenSource();
+            if (mConfig.Detector.CurrentDetecor.ID == DetectorType.Pmt)
+            {
+                mPmtSampleQueue = new BlockingCollection<PmtSampleData>(new ConcurrentQueue<PmtSampleData>());
+                mSampleWorkers = new Task[PMT_TASK_COUNT];
+                for (int i = 0; i < mSampleWorkers.Length; i++)
+                {
+                    mSampleWorkers[i] = Task.Run(() => PmtSampleWorker());
+                }
+            }
+            else
+            {
+                mApdSampleQueue = new BlockingCollection<ApdSampleData>(new ConcurrentQueue<ApdSampleData>());
+                mSampleWorkers = new Task[APD_TASK_COUNT];
+                for (int i = 0; i < mSampleWorkers.Length; i++)
+                {
+                    mSampleWorkers[i] = Task.Run(() => ApdSampleWorker());
+                }
+            }
 
+            code = mNiDaq.Start(mScanningTask.Settings.Sequence);                       // 启动板卡
 
+            if (!ApiCode.IsSuccessful(code))
+            {
+                Logger.Info(string.Format("start scan task[{0}|{1}] failed: [{2}].", scanTask.TaskId, scanTask.TaskName, code));
+                StopScanTask();
+                return code;
+            }
 
+            Logger.Info(string.Format("start scan task[{0}|{1}] success.", scanTask.TaskId, scanTask.TaskName));
+            return code;
+        }
 
+        /// <summary>
+        /// 停止扫描任务
+        /// </summary>
+        /// <returns></returns>
+        private int StopScanTask()
+        {
+            if (ScanningTask == null)
+            {
+                return ApiCode.SchedulerScanTaskInvalid;
+            }
 
+            if (GetScanTask(ScanningTask.TaskId) == null)
+            {
+                return ApiCode.SchedulerScanTaskNotFound;
+            }
 
+            Logger.Info(string.Format("stop scan task[{0}|{1}].", ScanningTask.TaskId, ScanningTask.TaskName));
 
+            mNiDaq.Stop();
+            ScanningTask.Stop();
+
+            mCancelToken.Cancel();
+            if (mConfig.Detector.CurrentDetecor.ID == DetectorType.Pmt)
+            {
+                mPmtSampleQueue.CompleteAdding();
+            }
+            else
+            {
+                mApdSampleQueue.CompleteAdding();
+            }
+            Task.WaitAll(mSampleWorkers);
+            Dispose();
+
+            mScanningTask = null;
+            CloseLaserChannels();
+
+            return ApiCode.Success;
+        }
+
+        //public void Release()
+        //{
+        //    ReleaseLaser();
+        //    ReleaseUsbDac();
+        //}
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -901,7 +893,8 @@ namespace NanoInsight.Engine.Core
                 return ApiCode.SchedulerNoScanTaskExist;
             }
 
-            int code = scanTask.SetImageOffset(channelId, offset);
+            int code = mConfig.SetChannelOffset(channelId, offset);
+            code |= scanTask.SetImageOffset(channelId, offset);
             if (ApiCode.IsSuccessful(code))
             {
                 if (ImageOffsetChangedEvent != null)
@@ -1187,8 +1180,8 @@ namespace NanoInsight.Engine.Core
         private void Initialize()
         {
             mConfig = Config.GetConfig();
-            mNiDaq = new NiDaq();
             mSequence = new ScanSequence();
+            mNiDaq = new NiDaq(mConfig);
             mScanTasks = new List<ScanTask>();
             mScanningTask = null;
             ConfigUsbDac();

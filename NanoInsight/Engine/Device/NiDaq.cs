@@ -33,7 +33,7 @@ namespace NanoInsight.Engine.Device
         public CiSamplesReceivedEventHandler CiSamplesReceived;
         ///////////////////////////////////////////////////////////////////////////////////////////
         private readonly Config mConfig;
-        private readonly ScanSequence mSequence;
+        private ScanSequence mSequence;
         private Task mAoTask;
         private Task mDoTask;
         private Task mAiTask;
@@ -44,10 +44,10 @@ namespace NanoInsight.Engine.Device
         private long[] mAcquisitionCount;
         ///////////////////////////////////////////////////////////////////////////////////////////
 
-        public NiDaq()
+        public NiDaq(Config config)
         {
-            mConfig = Config.GetConfig();
-            mSequence = ScanSequence.CreateInstance();
+            mConfig = config;
+            mSequence = null;
             mAoTask = null;
             mDoTask = null;
             mAiTask = null;
@@ -63,8 +63,9 @@ namespace NanoInsight.Engine.Device
         /// 启动任务
         /// </summary>
         /// <returns></returns>
-        public int Start()
+        public int Start(ScanSequence sequence)
         {
+            mSequence = sequence;
             mAcquisitionCount = Enumerable.Repeat<long>(-1, mConfig.GetChannelNum()).ToArray();
 
             int code = ConfigAoTask();
@@ -181,6 +182,8 @@ namespace NanoInsight.Engine.Device
                 mCiTasks = null;
                 mCiChannelReaders = null;
             }
+
+            mSequence = null;
         }
 
         /// <summary>
