@@ -439,5 +439,23 @@ namespace NanoInsight.Viewer.ViewModel
             ScanPixelScale = scanPixelDwell.ScanPixelScale;
             return ApiCode.Success;
         }
+
+        public int ScanPixelChangedEventHandler(int id)
+        {
+            foreach (ScanPixelModel scanPixel in ScanPixelList)
+            {
+                if (scanPixel.ID == id)
+                {
+                    SelectedScanPixel = scanPixel;
+                    scanPixel.IsEnabled = true;
+                }
+                else
+                {
+                    scanPixel.IsEnabled = false;
+                }
+            }
+            return ApiCode.Success;
+        }
+
     }
 }

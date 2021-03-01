@@ -207,7 +207,20 @@ namespace NanoInsight.Viewer.ViewModel
         public int SetScanArea(RectangleF scanRange)
         {
             SelectedScanArea.Update(scanRange);
-            int code = mScheduler.SetScanArea(scanRange);
+            int code = ApiCode.Success;
+
+            if (Engine.IsScanning)
+            {
+                int acquisitionId = Engine.Configuration.SelectedScanAcquisition.ID;
+                code = Engine.StopAcquisition();
+                code |= mScheduler.SetScanArea(scanRange);
+                code |= Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                code = mScheduler.SetScanArea(scanRange);
+            }
+
             ScanPixelSize = mScheduler.Configuration.ScanPixelSize;
             return code;
         }

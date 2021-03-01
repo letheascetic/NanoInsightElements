@@ -103,6 +103,8 @@ namespace NanoInsight.Viewer.View
         /// </summary>
         private void RegisterEvents()
         {
+            mScanSettingsVM.Engine.ScanPixelChangedEvent += ScanPixelChangedEventHandler;
+
             this.rbtnTwoScanners.CheckedChanged += ScanHeadChanged;
             this.rbtnGalvano.CheckedChanged += ScanModeChanged;
 
@@ -655,6 +657,16 @@ namespace NanoInsight.Viewer.View
             }
 
             mScanSettingsVM.SelectedScanChannel.PinHole = mScanSettingsVM.Engine.Configuration.ScanChannels[id].PinHole;
+        }
+
+        /// <summary>
+        /// 扫描像素变化事件处理
+        /// </summary>
+        /// <param name="scanPixel"></param>
+        /// <returns></returns>
+        private int ScanPixelChangedEventHandler(Engine.Attribute.ScanPixel scanPixel)
+        {
+            return mScanSettingsVM.ScanPixelChangedEventHandler(scanPixel.ID);
         }
 
     }

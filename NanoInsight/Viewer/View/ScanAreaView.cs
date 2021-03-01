@@ -307,7 +307,18 @@ namespace NanoInsight.Viewer.View
             {
                 return;
             }
-            mScanAreaVM.SelectScanPixel(scanPixel.ID);
+
+            if (mScanAreaVM.Engine.IsScanning)
+            {
+                int acquisitionId = mScanAreaVM.Engine.Configuration.SelectedScanAcquisition.ID;
+                mScanAreaVM.Engine.StopAcquisition();
+                mScanAreaVM.SelectScanPixel(scanPixel.ID);
+                mScanAreaVM.Engine.StartAcquisition(acquisitionId, 0);
+            }
+            else
+            {
+                mScanAreaVM.SelectScanPixel(scanPixel.ID);
+            }
         }
 
         /// <summary>
