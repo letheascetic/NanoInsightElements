@@ -17,12 +17,12 @@ namespace NanoInsight.Engine.Core
         ///////////////////////////////////////////////////////////////////////////////////////////
         private static readonly ILog Logger = LogManager.GetLogger("info");
         ///////////////////////////////////////////////////////////////////////////////////////////
-        private readonly Config mConfig;
-        private readonly ScanSequence mSequence;
+
         private int mTaskId;
         private string mTaskName;
         private ScanInfo mScanInfo;
         private ScanData mScanData;
+        private TaskSettings mTaskSettings;
 
         /// <summary>
         /// 扫描任务ID
@@ -55,24 +55,45 @@ namespace NanoInsight.Engine.Core
             set { mScanData = value; }
         }
 
-        public ScanTask(int taskId, string taskName)
+        public ScanTask(int taskId, string taskName, Config config, ScanSequence sequence)
         {
-            mConfig = Config.GetConfig();
-            mSequence = ScanSequence.CreateInstance();
+            mTaskSettings = new TaskSettings(config, sequence);
             TaskId = taskId;
             TaskName = taskName;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// 启动扫描
         /// </summary>
         public void Start()
         {
-            bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
+            bool[] statusOfChannels = mTaskSettings.ScanChannels.Select(p => p.Activated).ToArray();
 
-            ScanInfo = new ScanInfo(mSequence.InputAcquisitionCountPerFrame);
-            ScanData = new ScanData(mConfig.SelectedScanPixel.Data, mConfig.SelectedScanPixel.Data, mSequence.InputAcquisitionCountPerFrame,
-                mConfig.GetChannelNum(), 1, statusOfChannels);
+            ScanInfo = new ScanInfo(mTaskSettings.Sequence.InputAcquisitionCountPerFrame);
+            ScanData = new ScanData(mTaskSettings.SelectedScanPixel.Data, mTaskSettings.SelectedScanPixel.Data, mTaskSettings.Sequence.InputAcquisitionCountPerFrame,
+                mTaskSettings.GetChannelNum(), 1, statusOfChannels);
         }
 
         /// <summary>
@@ -89,32 +110,32 @@ namespace NanoInsight.Engine.Core
         /// <param name="sampleData"></param>
         public void ConvertSamples(PmtSampleData sampleData)
         {
-            for (int i = 0; i < mConfig.GetChannelNum(); i++)
+            for (int i = 0; i < mTaskSettings.GetChannelNum(); i++)
             {
                 if (sampleData.NSamples[i] != null)
                 {
                     // 负电压转换
                     MatrixUtil.ToPositive(ref sampleData.NSamples[i]);
                     // 生成Bank数据矩阵[截断/双向扫描偶数行翻转和错位补偿]
-                    NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples[i], mSequence.InputSampleCountPerPixel, mSequence.InputPixelCountPerRow,
-                        mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
-                        mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
-                        mConfig.SelectedScanPixel.Data);
+                    NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples[i], mTaskSettings.Sequence.InputSampleCountPerPixel, mTaskSettings.Sequence.InputPixelCountPerRow,
+                        mTaskSettings.Sequence.InputPixelCountPerAcquisition / mTaskSettings.Sequence.InputPixelCountPerRow, mTaskSettings.SelectedScanDirection.ID,
+                        mTaskSettings.SelectedScanPixelDwell.ScanPixelOffset, mTaskSettings.SelectedScanPixelDwell.ScanPixelCalibration,
+                        mTaskSettings.SelectedScanPixel.Data);
                     // Matrix -> OriginDataSet.Bank
                     ScanData.ToDataSet(matrix, i, 0, sampleData.CurrentBank[i]);
                     // OriginDataSet.Bank -> OriginImages.Bank
-                    ScanData.ToOriginImages(mConfig.SelectedScanPixelDwell.ScanPixelScale, i, 0, sampleData.CurrentBank[i], mConfig.ScanChannels[i].ImageSettings.Offset);
+                    ScanData.ToOriginImages(mTaskSettings.SelectedScanPixelDwell.ScanPixelScale, i, 0, sampleData.CurrentBank[i], mTaskSettings.ScanChannels[i].ImageSettings.Offset);
                     // OriginImages.Bank -> GrayImages.Bank
-                    if (mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
+                    if (mTaskSettings.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
                     {
-                        ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i, 0, sampleData.CurrentBank[i]);
+                        ScanData.ToGrayImages(mTaskSettings.ScanChannels[i].ImageSettings.Brightness, mTaskSettings.ScanChannels[i].ImageSettings.Contrast, i, 0, sampleData.CurrentBank[i]);
                     }
                     else
                     {
-                        ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i, 0, sampleData.CurrentBank[i]);
+                        ScanData.ToGrayImages(mTaskSettings.ScanChannels[i].ImageSettings.GammaLUT, i, 0, sampleData.CurrentBank[i]);
                     }
                     //  GrayImages.Bank -> BGRImages.Bank
-                    ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i, 0, sampleData.CurrentBank[i]);
+                    ScanData.ToBGRImages(mTaskSettings.ScanChannels[i].ImageSettings.PseudoColorLUT, i, 0, sampleData.CurrentBank[i]);
                 }
             }
         }
@@ -125,16 +146,16 @@ namespace NanoInsight.Engine.Core
         /// <param name="sampleData"></param>
         public void ConvertSamples(ApdSampleData sampleData)
         {
-            MatrixUtil.ToCounter(sampleData.NSamples, mSequence.InputSampleCountPerRow);
-            NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples, mSequence.InputSampleCountPerPixel, mSequence.InputPixelCountPerRow,
-                mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
-                mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
-                mConfig.SelectedScanPixel.Data);
-            Mat originImage = ScanData.OriginDataSet[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
-            MatrixUtil.ToBankImage(matrix, ref originImage);
-            Mat grayImage = ScanData.GrayImages[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
-            double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
-            MatrixUtil.ToOriginImage(originImage, ref grayImage, scale, mConfig.ScanChannels[sampleData.ChannelIndex].ImageSettings.Offset);
+            //MatrixUtil.ToCounter(sampleData.NSamples, mSequence.InputSampleCountPerRow);
+            //NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples, mSequence.InputSampleCountPerPixel, mSequence.InputPixelCountPerRow,
+            //    mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
+            //    mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
+            //    mConfig.SelectedScanPixel.Data);
+            //Mat originImage = ScanData.OriginDataSet[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
+            //MatrixUtil.ToBankImage(matrix, ref originImage);
+            //Mat grayImage = ScanData.GrayImages[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
+            //double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
+            //MatrixUtil.ToOriginImage(originImage, ref grayImage, scale, mConfig.ScanChannels[sampleData.ChannelIndex].ImageSettings.Offset);
         }
 
     }

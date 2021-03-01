@@ -12,8 +12,6 @@ namespace NanoInsight.Engine.Core
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
         private static readonly ILog Logger = LogManager.GetLogger("info");
-        private volatile static ScanSequence pSequence = null;
-        private static readonly object locker = new object();
         ///////////////////////////////////////////////////////////////////////////////////////////
         private static readonly int TRIGGER_WIDTH_DEFAULT = 4;
         private static readonly double ACQUISITION_INTERVAL_DEFAULT = 50;
@@ -267,19 +265,63 @@ namespace NanoInsight.Engine.Core
             set { triggerVoltages = value; }
         }
 
-        public static ScanSequence CreateInstance()
+        public ScanSequence()
         {
-            if (pSequence == null)
-            {
-                lock (locker)
-                {
-                    if (pSequence == null)
-                    {
-                        pSequence = new ScanSequence();
-                    }
-                }
-            }
-            return pSequence;
+            GenerateScanCoordinates();
+        }
+
+        public ScanSequence(ScanSequence scanSequence)
+        {
+            TriggerWave = new byte[scanSequence.TriggerWave.Length];
+            scanSequence.TriggerWave.CopyTo(TriggerWave, 0);
+
+            XWave = new double[scanSequence.XWave.Length];
+            scanSequence.XWave.CopyTo(XWave, 0);
+
+            Y1Wave = new double[scanSequence.Y1Wave.Length];
+            scanSequence.Y1Wave.CopyTo(Y1Wave, 0);
+
+            Y2Wave = new double[scanSequence.Y2Wave.Length];
+            scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
+
+            XVoltages = new double[scanSequence.XVoltages.Length];
+            scanSequence.XVoltages.CopyTo(XVoltages, 0);
+
+            YVoltages = new double[scanSequence.YVoltages.Length];
+            scanSequence.YVoltages.CopyTo(YVoltages, 0);
+
+            Y2Wave = new double[scanSequence.Y2Wave.Length];
+            scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
+
+            Y2Wave = new double[scanSequence.Y2Wave.Length];
+            scanSequence.Y2Wave.CopyTo(Y2Wave, 0);
+
+            XCoordinates = new double[scanSequence.XCoordinates.Length];
+            scanSequence.XCoordinates.CopyTo(XCoordinates, 0);
+
+            YCoordinates = new double[scanSequence.YCoordinates.Length];
+            scanSequence.Y2Wave.CopyTo(YCoordinates, 0);
+
+            TriggerOutputSampleRate = scanSequence.TriggerOutputSampleRate;
+            OutputSampleRate = scanSequence.OutputSampleRate;
+            OutputSampleCountPerFrame = scanSequence.OutputSampleCountPerFrame;
+            OutputRoundTripCountPerFrame = scanSequence.OutputRoundTripCountPerFrame;
+            OutputSampleCountPerRoundTrip = scanSequence.OutputSampleCountPerRoundTrip;
+
+            InputSampleRate = scanSequence.InputSampleRate;
+            InputSampleCountPerPixel = scanSequence.InputSampleCountPerPixel;
+            InputRoundTripCountPerFrame = scanSequence.InputRoundTripCountPerFrame;
+            InputSampleCountPerFrame = scanSequence.InputSampleCountPerFrame;
+            InputSampleCountPerRoundTrip = scanSequence.InputSampleCountPerRoundTrip;
+            InputSampleCountPerRow = scanSequence.InputSampleCountPerRow;
+            InputRoundTripCountPerAcquisition = scanSequence.InputRoundTripCountPerAcquisition;
+            InputPixelCountPerAcquisition = scanSequence.InputPixelCountPerAcquisition;
+            InputSampleCountPerAcquisition = scanSequence.InputSampleCountPerAcquisition;
+            InputAcquisitionCountPerFrame = scanSequence.InputAcquisitionCountPerFrame;
+            InputPixelCountPerRow = scanSequence.InputPixelCountPerRow;
+
+            FrameTime = scanSequence.FrameTime;
+            FPS = scanSequence.FPS;
         }
 
         /// <summary>
@@ -553,11 +595,6 @@ namespace NanoInsight.Engine.Core
                     Y2Wave = new double[OutputSampleCountPerFrame];
                 }
             }
-        }
-
-        private ScanSequence()
-        {
-            GenerateScanCoordinates();
         }
     }
 }

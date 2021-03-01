@@ -78,6 +78,7 @@
     <Compile Include="Attribute\ImageProperty.cs" />
     <Compile Include="Common\ImageUtil.cs" />
     <Compile Include="Common\MatrixUtil.cs" />
+    <Compile Include="Core\TaskSettings.cs" />
     <Compile Include="Data\ApdSampleData.cs" />
     <Compile Include="Core\ApiCode.cs" />
     <Compile Include="Core\Config.cs" />

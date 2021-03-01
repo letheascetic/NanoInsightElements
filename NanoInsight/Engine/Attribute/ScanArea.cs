@@ -83,6 +83,12 @@ namespace NanoInsight.Engine.Attribute
                 ScanRange.Width.ToString("0.0"), ScanRange.Height.ToString("0.0"));
         }
 
+        public ScanArea(ScanArea scanArea) 
+        {
+            ScanRange = new RectangleF(scanArea.ScanRange.Location, scanArea.ScanRange.Size);
+            Text = string.Format("[{0}, {1}][{2}, {3}]", ScanRange.X.ToString("0.0"), ScanRange.Y.ToString("0.0"), ScanRange.Width.ToString("0.0"), ScanRange.Height.ToString("0.0"));
+        }
+
         public void Update(RectangleF scanRange)
         {
             ScanRange = scanRange;

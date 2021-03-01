@@ -47,17 +47,64 @@ namespace NanoInsight.Engine.Core
 
         public ScanArea FullScanArea { get; }
 
+        public ColorSpace SelectedColorSpace { get; set; }
+
+        public ImageCorrection SelectedImageCorrection { get; set; }
+
+        public ScanSequence Sequence { get; }
+
         ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-        public TaskSettings()
+        public TaskSettings(Config config, ScanSequence sequence)
         {
-            Config mConfig = Config.GetConfig();
-            ScanSequence mSequence = ScanSequence.CreateInstance();
-
-            SelectedScanAcquisition = mConfig.SelectedScanAcquisition;
-
+            SelectedScanAcquisition = new ScanAcquisition(config.SelectedScanAcquisition);
+            SelectedScanHead = new ScanHead(config.SelectedScanHead);
+            SelectedScanDirection = new ScanDirection(config.SelectedScanDirection);
+            SelectedScanMode = new ScanMode(config.SelectedScanMode);
+            SelectedScanPixel = new ScanPixel(config.SelectedScanPixel);
+            ScanPixelSize = config.ScanPixelSize;
+            FastModeEnabled = config.FastModeEnabled;
+            SelectedScanPixelDwell = new ScanPixelDwell(config.SelectedScanPixelDwell);
+            ScanLineSkipEnabled = config.ScanLineSkipEnabled;
+            SelectedScanLineSkip = new ScanLineSkip(config.SelectedScanLineSkip);
+            ScanChannel405 = new ScanChannel(config.ScanChannel405);
+            ScanChannel488 = new ScanChannel(config.ScanChannel488);
+            ScanChannel561 = new ScanChannel(config.ScanChannel561);
+            ScanChannel640 = new ScanChannel(config.ScanChannel640);
+            ScanChannels = new ScanChannel[] { ScanChannel405, ScanChannel488, ScanChannel561, ScanChannel640 };
+            SelectedScanAreaType = new ScanAreaType(config.SelectedScanAreaType);
+            SelectedScanArea = new ScanArea(config.SelectedScanArea);
+            FullScanArea = new ScanArea(config.FullScanArea);
+            SelectedColorSpace = new ColorSpace(config.SelectedColorSpace);
+            SelectedImageCorrection = new ImageCorrection(config.SelectedImageCorrection);
+            Sequence = new ScanSequence(sequence);
         }
+
+        /// <summary>
+        /// 通道数量
+        /// </summary>
+        /// <returns></returns>
+        public int GetChannelNum()
+        {
+            return ScanChannels.Length;
+        }
+
+        /// <summary>
+        /// 当前激活的通道数
+        /// </summary>
+        /// <returns></returns>
+        public int GetActivatedChannelNum()
+        {
+            int activatedChannelNum = 0;
+            activatedChannelNum += ScanChannel405.Activated ? 1 : 0;
+            activatedChannelNum += ScanChannel488.Activated ? 1 : 0;
+            activatedChannelNum += ScanChannel561.Activated ? 1 : 0;
+            activatedChannelNum += ScanChannel640.Activated ? 1 : 0;
+            return activatedChannelNum;
+        }
+
+
 
     }
 }

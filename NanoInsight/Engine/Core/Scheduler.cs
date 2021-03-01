@@ -64,17 +64,12 @@ namespace NanoInsight.Engine.Core
         /// </summary>
         public bool IsScanning { get { return mConfig.IsScanning; } }
 
-
-        public List<ScanTask> ScanTasks
-        {
-            get { return mScanTasks; }
-            set { mScanTasks = value; }
-        }
-
+        /// <summary>
+        /// 正在扫描的任务
+        /// </summary>
         public ScanTask ScanningTask
         {
             get { return mScanningTask; }
-            set { mScanningTask = value; }
         }
 
         public ScanSequence Sequence
@@ -104,6 +99,207 @@ namespace NanoInsight.Engine.Core
         }
 
         /// <summary>
+        /// 设置扫描头
+        /// </summary>
+        /// <param name="id"></param>
+        public int SetScanHead(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetScanHead(id);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanHeadChangedEvent != null)
+                {
+                    return ScanHeadChangedEvent.Invoke(mConfig.SelectedScanHead);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置扫描模式
+        /// </summary>
+        /// <param name="id"></param>
+        public int SetScanMode(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetScanMode(id);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanModeChangedEvent != null)
+                {
+                    return ScanModeChangedEvent.Invoke(mConfig.SelectedScanMode);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置扫描方向
+        /// </summary>
+        /// <param name="id"></param>
+        public int SetScanDirection(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetScanDirection(id);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanDirectionChangedEvent != null)
+                {
+                    return ScanDirectionChangedEvent.Invoke(mConfig.SelectedScanDirection);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置扫描像素
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int SelectScanPixel(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SelectScanPixel(id);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanPixelChangedEvent != null)
+                {
+                    return ScanPixelChangedEvent.Invoke(mConfig.SelectedScanPixel);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 选择像素时间
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int SelectScanPixelDwell(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SelectScanPixelDwell(id);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanPixelDwellChangedEvent != null)
+                {
+                    return ScanPixelDwellChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置快速扫描模式
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int SetFastModeStatus(bool status)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            mConfig.FastModeEnabled = status;
+            return ApiCode.Success;
+        }
+
+        /// <summary>
+        /// 设置双向扫描时候的像素补偿
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scanPixelCalibration"></param>
+        /// <returns></returns>
+        public int SetScanPixelCalibration(int id, int scanPixelCalibration)
+        {
+            int code = mConfig.SetScanPixelCalibration(id, scanPixelCalibration);
+
+            if (mConfig.IsScanning)
+            {
+                
+            }
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanPixelCalibrationChangedEvent != null)
+                {
+                    return ScanPixelCalibrationChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置每行采集像素截取时的偏移量
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scanPixelOffset"></param>
+        /// <returns></returns>
+        public int SetScanPixelOffset(int id, int scanPixelOffset)
+        {
+            int code = mConfig.SetScanPixelOffset(id, scanPixelOffset);
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanPixelOffsetChangedEvent != null)
+                {
+                    return ScanPixelOffsetChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置扫描像素缩放系数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="scanPixelScale"></param>
+        /// <returns></returns>
+        public int SetScanPixelScale(int id, int scanPixelScale)
+        {
+            int code = mConfig.SetScanPixelScale(id, scanPixelScale);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanPixelScaleChangedEvent != null)
+                {
+                    return ScanPixelScaleChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
+                }
+            }
+            return code;
+        }
+
+
+
+
+
+        /// <summary>
         /// 创建指定TaskID的扫描任务，若已经存在，则返回已经存在的
         /// </summary>
         /// <param name="taskId"></param>
@@ -115,8 +311,8 @@ namespace NanoInsight.Engine.Core
             scanTask = GetScanTask(taskId);
             if (scanTask == null)
             {
-                scanTask = new ScanTask(taskId, taskName);
-                ScanTasks.Add(scanTask);
+                scanTask = new ScanTask(taskId, taskName, mConfig, mSequence);
+                mScanTasks.Add(scanTask);
             }
             return ApiCode.Success;
         }
@@ -128,7 +324,7 @@ namespace NanoInsight.Engine.Core
         /// <returns></returns>
         public ScanTask GetScanTask(int taskId)
         {
-            return ScanTasks.Where(p => p.TaskId == taskId).FirstOrDefault();
+            return mScanTasks.Where(p => p.TaskId == taskId).FirstOrDefault();
         }
 
         /// <summary>
@@ -147,7 +343,7 @@ namespace NanoInsight.Engine.Core
                 return code;
             }
 
-            ScanningTask = scanTask;
+            mScanningTask = scanTask;
 
             mSequence.GenerateScanCoordinates();         // 生成扫描范围序列和电压序列
             mSequence.GenerateFrameScanWaves();          // 生成帧电压序列
@@ -220,7 +416,7 @@ namespace NanoInsight.Engine.Core
             Task.WaitAll(mSampleWorkers);
             Dispose();
 
-            ScanningTask = null;
+            mScanningTask = null;
             CloseLaserChannels();
 
             return ApiCode.Success;
@@ -294,176 +490,17 @@ namespace NanoInsight.Engine.Core
             return code;
         }
 
-        /// <summary>
-        /// 设置扫描头
-        /// </summary>
-        /// <param name="id"></param>
-        public int SetScanHead(int id)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetScanHead(id);
-            code |= AfterPropertyChanged();
 
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanHeadChangedEvent != null)
-                {
-                    return ScanHeadChangedEvent.Invoke(mConfig.SelectedScanHead);
-                }
-            }
-            return code;
-        }
 
-        /// <summary>
-        /// 设置扫描方向
-        /// </summary>
-        /// <param name="id"></param>
-        public int SetScanDirection(int id)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetScanDirection(id);
-            code |= AfterPropertyChanged();
 
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanDirectionChangedEvent != null)
-                {
-                    return ScanDirectionChangedEvent.Invoke(mConfig.SelectedScanDirection);
-                }
-            }
-            return code;
-        }
 
-        /// <summary>
-        /// 设置扫描模式
-        /// </summary>
-        /// <param name="id"></param>
-        public int SetScanMode(int id)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetScanMode(id);
-            code |= AfterPropertyChanged();
 
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanModeChangedEvent != null)
-                {
-                    return ScanModeChangedEvent.Invoke(mConfig.SelectedScanMode);
-                }
-            }
-            return code;
-        }
 
-        /// <summary>
-        /// 设置扫描像素
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int SelectScanPixel(int id)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SelectScanPixel(id);
-            code |= AfterPropertyChanged();
 
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanPixelChangedEvent != null)
-                {
-                    return ScanPixelChangedEvent.Invoke(mConfig.SelectedScanPixel);
-                }
-            }
-            return code;
-        }
 
-        /// <summary>
-        /// 设置快速扫描模式
-        /// </summary>
-        /// <param name="status"></param>
-        /// <returns></returns>
-        public int SetFastModeStatus(bool status)
-        {
-            mConfig.FastModeEnabled = status;
-            return ApiCode.Success;
-        }
 
-        /// <summary>
-        /// 选择像素时间
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int SelectScanPixelDwell(int id)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SelectScanPixelDwell(id);
-            code |= AfterPropertyChanged();
 
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanPixelDwellChangedEvent != null)
-                {
-                    return ScanPixelDwellChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
-                }
-            }
-            return code;
-        }
 
-        /// <summary>
-        /// 设置双向扫描时候的像素补偿
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="scanPixelCalibration"></param>
-        /// <returns></returns>
-        public int SetScanPixelCalibration(int id, int scanPixelCalibration)
-        {
-            int code = mConfig.SetScanPixelCalibration(id, scanPixelCalibration);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanPixelCalibrationChangedEvent != null)
-                {
-                    return ScanPixelCalibrationChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置每行采集像素截取时的偏移量
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="scanPixelOffset"></param>
-        /// <returns></returns>
-        public int SetScanPixelOffset(int id, int scanPixelOffset)
-        {
-            int code = mConfig.SetScanPixelOffset(id, scanPixelOffset);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanPixelOffsetChangedEvent != null)
-                {
-                    return ScanPixelOffsetChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置扫描像素缩放系数
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="scanPixelScale"></param>
-        /// <returns></returns>
-        public int SetScanPixelScale(int id, int scanPixelScale)
-        {
-            int code = mConfig.SetScanPixelScale(id, scanPixelScale);
-
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanPixelScaleChangedEvent != null)
-                {
-                    return ScanPixelScaleChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
-                }
-            }
-            return code;
-        }
 
         /// <summary>
         /// 选择跳行扫描
@@ -1107,9 +1144,9 @@ namespace NanoInsight.Engine.Core
         {
             mConfig = Config.GetConfig();
             mNiDaq = new NiDaq();
-            mSequence = ScanSequence.CreateInstance();
-            ScanTasks = new List<ScanTask>();
-            ScanningTask = null;
+            mSequence = new ScanSequence();
+            mScanTasks = new List<ScanTask>();
+            mScanningTask = null;
             ConfigUsbDac();
             ConfigLaser();
             mNiDaq.AiSamplesReceived += PmtReceiveSamples;

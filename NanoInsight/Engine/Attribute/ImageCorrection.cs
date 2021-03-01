@@ -29,9 +29,33 @@ namespace NanoInsight.Engine.Attribute
         {
             return new List<ImageCorrection>()
             {
-                new ImageCorrection(){ID = Gamma, Name = "伽马校正" },
-                new ImageCorrection(){ID = ContrastBrightness, Name = "对比度亮度校正" }
+                new ImageCorrection(Gamma),
+                new ImageCorrection(ContrastBrightness)
             };
+        }
+
+        public ImageCorrection(int id)
+        {
+            if (id == Gamma)
+            {
+                ID = Gamma;
+                Name = "伽马校正";
+            }
+            else if (id == ContrastBrightness)
+            {
+                ID = ContrastBrightness;
+                Name = "对比度亮度校正";
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("ID Exception");
+            }
+        }
+
+        public ImageCorrection(ImageCorrection imageCorrection)
+        {
+            ID = imageCorrection.ID;
+            Name = imageCorrection.Name;
         }
     }
 }
