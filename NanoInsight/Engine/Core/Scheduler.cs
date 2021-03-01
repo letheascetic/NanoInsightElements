@@ -241,13 +241,13 @@ namespace NanoInsight.Engine.Core
         {
             int code = mConfig.SetScanPixelCalibration(id, scanPixelCalibration);
 
-            if (mConfig.IsScanning)
-            {
-                
-            }
-
             if (ApiCode.IsSuccessful(code))
             {
+                if (mConfig.IsScanning)
+                {
+                    ScanningTask.SetScanPixelCalibration(id, scanPixelCalibration);
+                }
+
                 if (ScanPixelCalibrationChangedEvent != null)
                 {
                     return ScanPixelCalibrationChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
@@ -267,6 +267,11 @@ namespace NanoInsight.Engine.Core
             int code = mConfig.SetScanPixelOffset(id, scanPixelOffset);
             if (ApiCode.IsSuccessful(code))
             {
+                if (mConfig.IsScanning)
+                {
+                    ScanningTask.SetScanPixelOffset(id, scanPixelOffset);
+                }
+
                 if (ScanPixelOffsetChangedEvent != null)
                 {
                     return ScanPixelOffsetChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
@@ -287,6 +292,11 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
+                if (mConfig.IsScanning)
+                {
+                    ScanningTask.SetScanPixelScale(id, scanPixelScale);
+                }
+
                 if (ScanPixelScaleChangedEvent != null)
                 {
                     return ScanPixelScaleChangedEvent.Invoke(mConfig.SelectedScanPixelDwell);
@@ -295,7 +305,261 @@ namespace NanoInsight.Engine.Core
             return code;
         }
 
+        /// <summary>
+        /// 选择跳行扫描
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int SelectLineSkip(int id)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
 
+            int code = mConfig.SelectLineSkip(id);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (LineSkipChangedEvent != null)
+                {
+                    return LineSkipChangedEvent.Invoke(mConfig.SelectedScanLineSkip);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 跳行扫描开关状态变化
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public int SetLineSkipStatus(bool status)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetLineSkipStatus(status);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (LineSkipStatusChangedEvent != null)
+                {
+                    return LineSkipStatusChangedEvent.Invoke(status);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="activated"></param>
+        /// <returns></returns>
+        public int SetChannelStatus(int id, bool activated)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetChannelStatus(id, activated);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ChannelActivateChangedEvent != null)
+                {
+                    return ChannelActivateChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道增益
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="gain"></param>
+        /// <returns></returns>
+        public int SetChannelGain(int id, int gain)
+        {
+            int code = mConfig.SetChannelGain(id, gain);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                code |= UsbDac.SetDacOut((uint)id, UsbDac.ConfigValueToVout(gain));
+            }
+                
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (mConfig.IsScanning)
+                {
+                    ScanningTask.SetChannelGain(id, gain);
+                }
+
+                if (ChannelGainChangedEvent != null)
+                {
+                    return ChannelGainChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道功率
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        public int SetChannelPower(int id, int power)
+        {
+            int code = mConfig.SetChannelPower(id, power);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (mConfig.IsScanning)
+                {
+                    ScanningTask.SetChannelPower(id, power);
+                }
+
+                if (ChannelPowerChangedEvent != null)
+                {
+                    return ChannelPowerChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置激光颜色
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public int SetChannelLaserColor(int id, Color color)
+        {
+            int code = mConfig.SetChannelLaserColor(id, color);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (mConfig.IsScanning)
+                {
+                    ScanningTask.SetChannelLaserColor(id, color);
+                }
+
+                if (ChannelLaserColorChangedEvent != null)
+                {
+                    return ChannelLaserColorChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道小孔孔径
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pinHole"></param>
+        /// <returns></returns>
+        public int SetChannelPinHole(int id, int pinHole)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetChannelPinHole(id, pinHole);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ChannelPinHoleChangedEvent != null)
+                {
+                    ChannelPinHoleChangedEvent.Invoke(mConfig.ScanChannels[id]);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置扫描区域
+        /// </summary>
+        /// <param name="scanRange"></param>
+        /// <returns></returns>
+        public int SetScanArea(RectangleF scanRange)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetScanArea(scanRange);
+
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ScanAreaChangedEvent != null)
+                {
+                    return ScanAreaChangedEvent.Invoke(mConfig.SelectedScanArea);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置全视场的扫描范围
+        /// </summary>
+        /// <param name="scanRange"></param>
+        /// <returns></returns>
+        public int SetFullScanArea(RectangleF scanRange)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetFullScanArea(scanRange);
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (FullScanAreaChangedEvent != null)
+                {
+                    return FullScanAreaChangedEvent.Invoke(mConfig.FullScanArea);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置全视场的扫描范围
+        /// </summary>
+        /// <param name="scanRange"></param>
+        /// <returns></returns>
+        public int SetFullScanArea(float scanRange)
+        {
+            if (mConfig.IsScanning)
+            {
+                return ApiCode.SchedulerTaskScanning;
+            }
+
+            int code = mConfig.SetFullScanArea(scanRange);
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (FullScanAreaChangedEvent != null)
+                {
+                    return FullScanAreaChangedEvent.Invoke(mConfig.FullScanArea);
+                }
+            }
+            return code;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -502,285 +766,45 @@ namespace NanoInsight.Engine.Core
 
 
 
-        /// <summary>
-        /// 选择跳行扫描
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int SelectLineSkip(int id)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SelectLineSkip(id); ;
-            code |= AfterPropertyChanged();
 
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (LineSkipChangedEvent != null)
-                {
-                    return LineSkipChangedEvent.Invoke(mConfig.SelectedScanLineSkip);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 跳行扫描开关状态变化
-        /// </summary>
-        /// <param name="status"></param>
-        /// <returns></returns>
-        public int SetLineSkipStatus(bool status)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetLineSkipStatus(status);
-            code |= AfterPropertyChanged();
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (LineSkipStatusChangedEvent != null)
-                {
-                    return LineSkipStatusChangedEvent.Invoke(status);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置通道增益
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="gain"></param>
-        /// <returns></returns>
-        public int SetChannelGain(int id, int gain)
-        {
-            int code = mConfig.SetChannelGain(id, gain);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ChannelGainChangedEvent != null)
-                {
-                    return ChannelGainChangedEvent.Invoke(mConfig.ScanChannels[id]);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置通道功率
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="power"></param>
-        /// <returns></returns>
-        public int SetChannelPower(int id, int power)
-        {
-            int code = mConfig.SetChannelPower(id, power);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ChannelPowerChangedEvent != null)
-                {
-                    return ChannelPowerChangedEvent.Invoke(mConfig.ScanChannels[id]);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置激光颜色
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="color"></param>
-        /// <returns></returns>
-        public int SetChannelLaserColor(int id, Color color)
-        {
-            int code = mConfig.SetChannelLaserColor(id, color);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ChannelLaserColorChangedEvent != null)
-                {
-                    return ChannelLaserColorChangedEvent.Invoke(mConfig.ScanChannels[id]);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置通道状态
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="activated"></param>
-        /// <returns></returns>
-        public int SetChannelStatus(int id, bool activated)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetChannelStatus(id, activated);
-
-            if (mConfig.IsScanning)
-            {
-                ScanChannel channel = mConfig.FindScanChannel(id);
-                if (!channel.Activated && mConfig.GetActivatedChannelNum() == 0)
-                {
-                    channel.Activated = true;
-                }
-            }
-
-            code |= AfterPropertyChanged();
-
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ChannelActivateChangedEvent != null)
-                {
-                    return ChannelActivateChangedEvent.Invoke(mConfig.ScanChannels[id]);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置通道小孔孔径
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="pinHole"></param>
-        /// <returns></returns>
-        public int SetChannelPinHole(int id, int pinHole)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetChannelPinHole(id, pinHole);
-            code |= AfterPropertyChanged();
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ChannelPinHoleChangedEvent != null)
-                {
-                    ChannelPinHoleChangedEvent.Invoke(mConfig.ScanChannels[id]);
-                }
-            }
-            return code;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////
-
-        /// <summary>
-        /// 设置扫描区域
-        /// </summary>
-        /// <param name="scanRange"></param>
-        /// <returns></returns>
-        public int SetScanArea(RectangleF scanRange)
-        {
-            int code = BeforePropertyChanged();
-            code |= mConfig.SetScanArea(scanRange);
-            code |= AfterPropertyChanged();
-
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (ScanAreaChangedEvent != null)
-                {
-                    return ScanAreaChangedEvent.Invoke(mConfig.SelectedScanArea);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置全视场的扫描范围
-        /// </summary>
-        /// <param name="scanRange"></param>
-        /// <returns></returns>
-        public int SetFullScanArea(RectangleF scanRange)
-        {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            int code = mConfig.SetFullScanArea(scanRange);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (FullScanAreaChangedEvent != null)
-                {
-                    return FullScanAreaChangedEvent.Invoke(mConfig.FullScanArea);
-                }
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// 设置全视场的扫描范围
-        /// </summary>
-        /// <param name="scanRange"></param>
-        /// <returns></returns>
-        public int SetFullScanArea(float scanRange)
-        {
-            if (mConfig.IsScanning)
-            {
-                return ApiCode.SchedulerTaskScanning;
-            }
-            int code = mConfig.SetFullScanArea(scanRange);
-            if (ApiCode.IsSuccessful(code))
-            {
-                if (FullScanAreaChangedEvent != null)
-                {
-                    return FullScanAreaChangedEvent.Invoke(mConfig.FullScanArea);
-                }
-            }
-            return code;
-        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// 设置伽马校正值
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="taskId"></param>
+        /// <param name="channelId"></param>
         /// <param name="gamma"></param>
         /// <returns></returns>
-        public int SetImageGamma(int id, int gamma)
+        public int SetImageGamma(int taskId, int channelId, int gamma)
         {
-            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
-            if (scanChannel == null)
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
             {
-                return ApiCode.SchedulerScanChannelIdInvalid;
+                return ApiCode.SchedulerNoScanTaskExist;
             }
-            scanChannel.ImageSettings.SetGamma(gamma);
 
-            // 当前正在扫描且图像校正模式是Gamma校正，则需要依次对所有激活通道的图像做伽马校正，并重新转换成伪彩色
-            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.Gamma)
-            {
-                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                for (int i = 0; i < statusOfChannels.Length; i++)
-                {
-                    if (statusOfChannels[i])
-                    {
-                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
-                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                    }
-                }
-            }
-            return ApiCode.Success;
+            int code = scanTask.SetImageGamma(channelId, gamma);
+            return code;
         }
 
         /// <summary>
         /// 设置伽马校正范围的最小值
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="channelId"></param>
         /// <param name="gammaMin"></param>
         /// <returns></returns>
-        public int SetImageGammaRangeMin(int id, int gammaMin)
+        public int SetImageGammaRangeMin(int taskId, int channelId, int gammaMin)
         {
-            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
-            if (scanChannel == null)
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
             {
-                return ApiCode.SchedulerScanChannelIdInvalid;
+                return ApiCode.SchedulerNoScanTaskExist;
             }
-            scanChannel.ImageSettings.SetGammaMin(gammaMin);
 
-            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.Gamma)
-            {
-                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                for (int i = 0; i < statusOfChannels.Length; i++)
-                {
-                    if (statusOfChannels[i])
-                    {
-                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
-                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                    }
-                }
-            }
-            return ApiCode.Success;
+            int code = scanTask.SetImageGammaRangeMin(channelId, gammaMin);
+            return code;
         }
 
         /// <summary>
@@ -789,28 +813,16 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         /// <param name="gammaMax"></param>
         /// <returns></returns>
-        public int SetImageGammaRangeMax(int id, int gammaMax)
+        public int SetImageGammaRangeMax(int taskId, int channelId, int gammaMax)
         {
-            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
-            if (scanChannel == null)
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
             {
-                return ApiCode.SchedulerScanChannelIdInvalid;
+                return ApiCode.SchedulerNoScanTaskExist;
             }
-            scanChannel.ImageSettings.SetGammaMax(gammaMax);
 
-            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.Gamma)
-            {
-                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                for (int i = 0; i < statusOfChannels.Length; i++)
-                {
-                    if (statusOfChannels[i])
-                    {
-                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
-                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                    }
-                }
-            }
-            return ApiCode.Success;
+            int code = scanTask.SetImageGammaRangeMax(channelId, gammaMax);
+            return code;
         }
 
         /// <summary>
@@ -819,29 +831,16 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         /// <param name="brightness"></param>
         /// <returns></returns>
-        public int SetImageBrightness(int id, int brightness)
+        public int SetImageBrightness(int taskId, int channelId, int brightness)
         {
-            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
-            if (scanChannel == null)
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
             {
-                return ApiCode.SchedulerScanChannelIdInvalid;
+                return ApiCode.SchedulerNoScanTaskExist;
             }
-            scanChannel.ImageSettings.SetBrightness(brightness);
 
-            // 当前正在扫描且图像校正模式是亮度-对比度校正，则需要依次对所有激活通道的图像做亮度-对比度校正，并重新转换成伪彩色
-            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
-            {
-                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                for (int i = 0; i < statusOfChannels.Length; i++)
-                {
-                    if (statusOfChannels[i])
-                    {
-                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i);
-                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                    }
-                }
-            }
-            return ApiCode.Success;
+            int code = scanTask.SetImageBrightness(channelId, brightness);
+            return code;
         }
 
         /// <summary>
@@ -850,57 +849,39 @@ namespace NanoInsight.Engine.Core
         /// <param name="id"></param>
         /// <param name="contrast"></param>
         /// <returns></returns>
-        public int SetImageContrast(int id, int contrast)
+        public int SetImageContrast(int taskId, int channelId, int contrast)
         {
-            ScanChannel scanChannel = mConfig.ScanChannels.FirstOrDefault(p => p.ID == id);
-            if (scanChannel == null)
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
             {
-                return ApiCode.SchedulerScanChannelIdInvalid;
+                return ApiCode.SchedulerNoScanTaskExist;
             }
-            scanChannel.ImageSettings.SetContrast(contrast);
 
-            // 当前正在扫描且图像校正模式是亮度-对比度校正，则需要依次对所有激活通道的图像做亮度-对比度校正，并重新转换成伪彩色
-            if (mConfig.IsScanning && mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
-            {
-                bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                for (int i = 0; i < statusOfChannels.Length; i++)
-                {
-                    if (statusOfChannels[i])
-                    {
-                        ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i);
-                        ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                    }
-                }
-            }
-            return ApiCode.Success;
+            int code = scanTask.SetImageContrast(channelId, contrast);
+            return code;
         }
 
         /// <summary>
         /// 设置通道伪彩色
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="channelId"></param>
         /// <param name="color"></param>
         /// <returns></returns>
-        public int SetImagePseudoColor(int id, Color color)
+        public int SetImagePseudoColor(int taskId, int channelId, Color color)
         {
-            int code = mConfig.SetChannelPseudoColor(id, color);
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
+            {
+                return ApiCode.SchedulerNoScanTaskExist;
+            }
+
+            int code = scanTask.SetImagePseudoColor(channelId, color);
+
             if (ApiCode.IsSuccessful(code))
             {
-                if (mConfig.IsScanning)
-                {
-                    bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                    for (int i = 0; i < statusOfChannels.Length; i++)
-                    {
-                        if (statusOfChannels[i])
-                        {
-                            ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                        }
-                    }
-                }
-
                 if (ImagePseudoColorChangedEvent != null)
                 {
-                    return ImagePseudoColorChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
+                    return ImagePseudoColorChangedEvent.Invoke(scanTask.Settings.ScanChannels[channelId].ImageSettings);
                 }
             }
             return code;
@@ -909,38 +890,23 @@ namespace NanoInsight.Engine.Core
         /// <summary>
         /// 设置通道偏置
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="channelId"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        public int SetImageOffset(int id, int offset)
+        public int SetImageOffset(int taskId, int channelId, int offset)
         {
-            int code = mConfig.SetChannelOffset(id, offset);
+            ScanTask scanTask = mScanTasks.FirstOrDefault(p => p.TaskId == taskId);
+            if (scanTask == null)
+            {
+                return ApiCode.SchedulerNoScanTaskExist;
+            }
+
+            int code = scanTask.SetImageOffset(channelId, offset);
             if (ApiCode.IsSuccessful(code))
             {
-                if (mConfig.IsScanning)
-                {
-                    bool[] statusOfChannels = mConfig.ScanChannels.Select(p => p.Activated).ToArray();
-                    for (int i = 0; i < statusOfChannels.Length; i++)
-                    {
-                        if (statusOfChannels[i])
-                        {
-                            ScanningTask.ScanData.ToOriginImages(mConfig.SelectedScanPixelDwell.ScanPixelScale, i, mConfig.ScanChannels[i].ImageSettings.Offset);
-                            if (mConfig.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
-                            {
-                                ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.Brightness, mConfig.ScanChannels[i].ImageSettings.Contrast, i);
-                            }
-                            else
-                            {
-                                ScanningTask.ScanData.ToGrayImages(mConfig.ScanChannels[i].ImageSettings.GammaLUT, i);
-                            }
-                            ScanningTask.ScanData.ToBGRImages(mConfig.ScanChannels[i].ImageSettings.PseudoColorLUT, i);
-                        }
-                    }
-                }
-
                 if (ImageOffsetChangedEvent != null)
                 {
-                    return ImageOffsetChangedEvent.Invoke(mConfig.ScanChannels[id].ImageSettings);
+                    return ImageOffsetChangedEvent.Invoke(scanTask.Settings.ScanChannels[channelId].ImageSettings);
                 }
             }
             return code;
@@ -948,6 +914,11 @@ namespace NanoInsight.Engine.Core
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 设置X振镜控制通道
+        /// </summary>
+        /// <param name="xGalvoChannel"></param>
+        /// <returns></returns>
         public int SetXGalvoChannel(string xGalvoChannel)
         {
             if (mConfig.IsScanning)
@@ -959,6 +930,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置Y振镜控制通道
+        /// </summary>
+        /// <param name="yGalvoChannel"></param>
+        /// <returns></returns>
         public int SetYGalvoChannel(string yGalvoChannel)
         {
             if (mConfig.IsScanning)
@@ -970,6 +946,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置Y2振镜控制通道
+        /// </summary>
+        /// <param name="y2GalvoChannel"></param>
+        /// <returns></returns>
         public int SetY2GalvoChannel(string y2GalvoChannel)
         {
             if (mConfig.IsScanning)
@@ -981,6 +962,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置X振镜偏置电压
+        /// </summary>
+        /// <param name="offsetVoltage"></param>
+        /// <returns></returns>
         public int SetXGalvoOffsetVoltage(double offsetVoltage)
         {
             if (mConfig.IsScanning)
@@ -992,6 +978,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置X振镜校准电压
+        /// </summary>
+        /// <param name="calibrationVoltage"></param>
+        /// <returns></returns>
         public int SetXGalvoCalibrationVoltage(double calibrationVoltage)
         {
             if (mConfig.IsScanning)
@@ -1003,6 +994,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置Y振镜偏置电压
+        /// </summary>
+        /// <param name="offsetVoltage"></param>
+        /// <returns></returns>
         public int SetYGalvoOffsetVoltage(double offsetVoltage)
         {
             if (mConfig.IsScanning)
@@ -1014,6 +1010,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置Y振镜校准电压
+        /// </summary>
+        /// <param name="calibrationVoltage"></param>
+        /// <returns></returns>
         public int SetYGalvoCalibrationVoltage(double calibrationVoltage)
         {
             if (mConfig.IsScanning)
@@ -1025,6 +1026,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置振镜响应时间
+        /// </summary>
+        /// <param name="responseTime"></param>
+        /// <returns></returns>
         public int SetGalvoResponseTime(double responseTime)
         {
             if (mConfig.IsScanning)
@@ -1036,6 +1042,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置探测器类型
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int SetDetectorMode(int id)
         {
             if (mConfig.IsScanning)
@@ -1049,6 +1060,12 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置PMT通道
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pmtChannel"></param>
+        /// <returns></returns>
         public int SetPmtChannel(int id, string pmtChannel)
         {
             if (mConfig.IsScanning)
@@ -1062,6 +1079,12 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置APD的计数器（Source）
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="apdSource"></param>
+        /// <returns></returns>
         public int SetApdSource(int id, string apdSource)
         {
             if (mConfig.IsScanning)
@@ -1074,6 +1097,12 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置APD的计数器端口
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="apdChannel"></param>
+        /// <returns></returns>
         public int SetApdChannel(int id, string apdChannel)
         {
             if (mConfig.IsScanning)
@@ -1086,6 +1115,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置StartTrigger
+        /// </summary>
+        /// <param name="startTrigger"></param>
+        /// <returns></returns>
         public int SetStartTrigger(string startTrigger)
         {
             if (mConfig.IsScanning)
@@ -1097,6 +1131,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置触发输出端口
+        /// </summary>
+        /// <param name="triggerSignal"></param>
+        /// <returns></returns>
         public int SetTriggerSignal(string triggerSignal)
         {
             if (mConfig.IsScanning)
@@ -1108,6 +1147,11 @@ namespace NanoInsight.Engine.Core
             return ApiCode.Success;
         }
 
+        /// <summary>
+        /// 设置触发接收端口
+        /// </summary>
+        /// <param name="triggerReceive"></param>
+        /// <returns></returns>
         public int SetTriggerReceiver(string triggerReceive)
         {
             if (mConfig.IsScanning)

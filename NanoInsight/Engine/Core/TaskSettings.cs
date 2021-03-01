@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Core
 {
+    /// <summary>
+    /// 扫描任务的配置参数
+    /// </summary>
     public class TaskSettings
     {
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +57,6 @@ namespace NanoInsight.Engine.Core
         public ScanSequence Sequence { get; }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
-
 
         public TaskSettings(Config config, ScanSequence sequence)
         {
