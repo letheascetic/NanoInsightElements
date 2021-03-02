@@ -1,6 +1,8 @@
 ﻿using C1.Win.C1Ribbon;
 using C1.Win.C1Themes;
 using log4net;
+using NanoInsight.Engine.Core;
+using NanoInsight.Viewer.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +21,7 @@ namespace NanoInsight.Viewer.View
         private static readonly ILog Logger = LogManager.GetLogger("info");
         ///////////////////////////////////////////////////////////////////////////////////////////
 
+        private MainViewModel mMainViewModel;
         private ScanSettingView mScanSettingView;
         private ScanAreaView mScanAreaView;
         private SysSettingsView mSysSettingsView;
@@ -30,6 +33,7 @@ namespace NanoInsight.Viewer.View
         {
             InitializeComponent();
             Initialize();
+            RegisterEvents();
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +58,8 @@ namespace NanoInsight.Viewer.View
 
         private void Initialize()
         {
+            mMainViewModel = new MainViewModel();
+
             mScanSettingView = new ScanSettingView() { MdiParent = this };
             mScanAreaView = new ScanAreaView() { MdiParent = this };
             mSysSettingsView = new SysSettingsView() { MdiParent = this };
@@ -88,6 +94,39 @@ namespace NanoInsight.Viewer.View
             }
 
             this.ResumePainting();
+        }
+
+        /// <summary>
+        /// 注册事件
+        /// </summary>
+        private void RegisterEvents()
+        {
+            mMainViewModel.Engine.ScanAcquisitionChangedEvent += ScanAcquisitionChangedEvent;
+        }
+
+        private int ScanAcquisitionChangedEvent(Engine.Attribute.ScanAcquisition scanAcquisition)
+        {
+            if (scanAcquisition == null)
+            {
+
+            }
+            else
+            {
+                int taskId = mMainViewModel.Engine.ScanningTask.TaskId;
+                ScanImageView scanImageView = mScanImageViewList.Where(p => p.TaskId == taskId).FirstOrDefault();
+                if (scanImageView == null)
+                {
+                    scanImageView = new ScanImageView(mMainViewModel.Engine.ScanningTask) { MdiParent = this, Visible = true };
+                    mScanImageViewList.Add(scanImageView);
+                }
+                else
+                {
+                    scanImageView.UpdateStatus(mMainViewModel.Engine.ScanningTask);
+                    scanImageView.Visible = true;
+                }
+                scanImageView.Activate();
+            }
+            return ApiCode.Success;
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////

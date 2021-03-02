@@ -29,6 +29,12 @@ namespace NanoInsight.Viewer.View
         private TabPage[] mTabPages;
         private ImageBox[] mImages;
         private ScanImageViewModel mScanImageVM;
+        private int mTaskId;
+
+        public int TaskId
+        {
+            get { return mTaskId; }
+        }
 
         public ScanImageView(ScanTask scanTask)
         {
@@ -37,6 +43,12 @@ namespace NanoInsight.Viewer.View
             Initialize();
             SetDataBindings();
             RegisterEvents();
+        }
+
+        public void UpdateStatus(ScanTask scanTask)
+        {
+            mScanImageVM = new ScanImageViewModel(scanTask);
+            Initialize();
         }
 
         /// <summary>
@@ -53,24 +65,23 @@ namespace NanoInsight.Viewer.View
         /// <summary>
         /// 初始化
         /// </summary>
-        private void Initialize()        {
+        private void Initialize()        
+        {
+            mTaskId = mScanImageVM.Task.TaskId;
+
             mTabPages = new TabPage[] { pageAll, page405, page488, page561, page640 };
             mImages = new ImageBox[] { imageAll, image405, image488, image561, image640 };
             InitializeTabPages();
 
-            lbPixelSize.Text = string.Format("{0} um/px", mScanImageVM.Engine.Configuration.ScanPixelSize.ToString("F3"));
-            lbScanPixel.Text = string.Format("{0} x {1} pixels", mScanImageVM.Engine.Configuration.SelectedScanPixel.Data, mScanImageVM.Engine.Configuration.SelectedScanPixel.Data);
-            lbFps.Text = string.Format("{0} fps", mScanImageVM.Engine.Sequence.FPS.ToString("F3"));
-            if (mScanImageVM.Engine.Configuration.IsScanning)
-            {
-                lbFrame.Text = string.Format("NO. {0} frame", mScanImageVM.Engine.ScanningTask.ScanInfo.CurrentFrame);
-                lbTimeSpan.Text = string.Format("{0} secs", mScanImageVM.Engine.ScanningTask.ScanInfo.TimeSpan.ToString("F1"));
-            }
-            else
-            {
-                lbFrame.Text = string.Format("NO. 0 frame");
-                lbTimeSpan.Text = string.Format("0.0 secs");
-            }
+            lbPixelSize.Text = string.Format("{0} um/px", mScanImageVM.Task.Settings.ScanPixelSize.ToString("F3"));
+            lbScanPixel.Text = string.Format("{0} x {1} pixels", mScanImageVM.Task.Settings.SelectedScanPixel.Data, mScanImageVM.Task.Settings.SelectedScanPixel.Data);
+            lbFps.Text = string.Format("{0} fps", mScanImageVM.Task.Settings.Sequence.FPS.ToString("F3"));
+
+            lbFrame.Text = string.Format("NO. {0} frame", mScanImageVM.Task.ScanInfo.CurrentFrame.Where(p => p>=0).FirstOrDefault());
+            lbTimeSpan.Text = string.Format("{0} secs", mScanImageVM.Engine.ScanningTask.ScanInfo.TimeSpan.ToString("F1"));
+
+            //lbFrame.Text = string.Format("NO. 0 frame");
+            //lbTimeSpan.Text = string.Format("0.0 secs");
         }
 
         /// <summary>
@@ -78,36 +89,7 @@ namespace NanoInsight.Viewer.View
         /// </summary>
         private void RegisterEvents()
         {
-            mScanImageVM.Engine.ChannelActivateChangedEvent += ChannelActivateChangedEventHandler;
-            mScanImageVM.Engine.ScanAcquisitionChangedEvent += ScanAcquisitionChangedEventHandler;
-            mScanImageVM.Engine.ScanPixelChangedEvent += ScanPixelChangedEventHandler;
-        }
 
-        private int ScanPixelChangedEventHandler(Engine.Attribute.ScanPixel scanPixel)
-        {
-            lbPixelSize.Text = string.Format("{0} um/px", mScanImageVM.Engine.Configuration.ScanPixelSize.ToString("F3"));
-            lbFps.Text = string.Format("{0} fps", mScanImageVM.Engine.Sequence.FPS.ToString("F3"));
-            lbScanPixel.Text = string.Format("{0} x {1} pixels", mScanImageVM.Engine.Configuration.SelectedScanPixel.Data, mScanImageVM.Engine.Configuration.SelectedScanPixel.Data);
-            return ApiCode.Success;
-        }
-
-        private int ScanAcquisitionChangedEventHandler(Engine.Attribute.ScanAcquisition scanAcquisition)
-        {
-            if (scanAcquisition != null)
-            {
-                mImageTimer.Start();
-            }
-            else
-            {
-                mImageTimer.Stop();
-            }
-            return ApiCode.Success;
-        }
-
-        private int ChannelActivateChangedEventHandler(Engine.Attribute.ScanChannel channel)
-        {
-            InitializeTabPages();
-            return ApiCode.Success;
         }
 
         /// <summary>
@@ -124,11 +106,11 @@ namespace NanoInsight.Viewer.View
             foreach (TabPage page in mTabPages)
             {
                 int id = int.Parse(page.Tag.ToString());
-                if (id < 0 && mScanImageVM.Engine.Configuration.GetActivatedChannelNum() > 1)
+                if (id < 0 && mScanImageVM.Task.Settings.GetActivatedChannelNum() > 1)
                 {
                     tabControl.TabPages.Add(page);
                 }
-                else if (id >= 0 && mScanImageVM.Engine.Configuration.ScanChannels[id].Activated)
+                else if (id >= 0 && mScanImageVM.Task.Settings.ScanChannels[id].Activated)
                 {
                     tabControl.TabPages.Add(page);
                 }

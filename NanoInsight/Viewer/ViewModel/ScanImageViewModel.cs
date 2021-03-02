@@ -25,7 +25,7 @@ namespace NanoInsight.Viewer.ViewModel
         private Mat mScanImage561;
         private Mat mScanImage640;
 
-        private ScanTask Task
+        public ScanTask Task
         {
             get { return mScanTask; }
             set { mScanTask = value; RaisePropertyChanged(() => Task); }

@@ -355,7 +355,9 @@ namespace NanoInsight.Viewer.View
             this.Controls.Add(this.dockToolBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(280, 460);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(280, 460);
             this.Name = "ScanAreaView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "扫描区域";
