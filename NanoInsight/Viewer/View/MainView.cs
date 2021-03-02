@@ -22,6 +22,7 @@ namespace NanoInsight.Viewer.View
         private ScanSettingView mScanSettingView;
         private ScanAreaView mScanAreaView;
         private SysSettingsView mSysSettingsView;
+        private ScanParasView mScanParasView;
         private ImageSettingsView mImageSettingsView;
         private List<ScanImageView> mScanImageViewList;
         
@@ -43,6 +44,12 @@ namespace NanoInsight.Viewer.View
             mScanSettingView.Visible = true;
             mScanAreaView.Visible = true;
             // mImageSettingsView.Visible = true;
+
+            cmdScanSettings.Checked = mScanSettingView.Visible;
+            cmdScanArea.Checked = mScanAreaView.Visible;
+            cmdImageSettings.Checked = mImageSettingsView.Visible;
+            cmdSysSettings.Checked = mSysSettingsView.Visible;
+            cmdScanParas.Checked = mScanParasView.Visible;
         }
 
         private void Initialize()
@@ -51,6 +58,7 @@ namespace NanoInsight.Viewer.View
             mScanAreaView = new ScanAreaView() { MdiParent = this };
             mSysSettingsView = new SysSettingsView() { MdiParent = this };
             mImageSettingsView = new ImageSettingsView() { MdiParent = this };
+            mScanParasView = new ScanParasView() { MdiParent = this };
             mScanImageViewList = new List<ScanImageView>();
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -65,7 +73,7 @@ namespace NanoInsight.Viewer.View
             this.SuspendPainting();
             Properties.Settings.Default.ThemeName = themeName;
 
-            List<Control> noThemeControls = new List<Control>() { mScanSettingView, mScanAreaView, mSysSettingsView, mImageSettingsView };
+            List<Control> noThemeControls = new List<Control>() { mScanSettingView, mScanAreaView, mSysSettingsView, mImageSettingsView, mScanParasView };
             noThemeControls.AddRange(mScanImageViewList);
             C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false), (c) => !noThemeControls.Contains(c));
 
@@ -73,6 +81,7 @@ namespace NanoInsight.Viewer.View
             mScanAreaView.ApplyTheme();
             mSysSettingsView.ApplyTheme();
             mImageSettingsView.ApplyTheme();
+            mScanParasView.ApplyTheme();
             foreach (ScanImageView scanImageView in mScanImageViewList)
             {
                 scanImageView.ApplyTheme();
@@ -102,38 +111,22 @@ namespace NanoInsight.Viewer.View
 
         private void ScanAreaClick(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-            ScanAreaView mScanAreaView = new ScanAreaView()
-            {
-                MdiParent = this,
-                Visible = true
-            };
+            mScanAreaView.Visible = cmdScanArea.Checked;
         }
 
         private void SysSettingsClick(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-            SysSettingsView mSysSettingsView = new SysSettingsView()
-            {
-                MdiParent = this,
-                Visible = true
-            };
+            mSysSettingsView.Visible = cmdSysSettings.Checked;
         }
 
         private void ScanSettingsClick(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-            ScanSettingView mScanSettingsView = new ScanSettingView()
-            {
-                MdiParent = this,
-                Visible = true
-            };
+            mScanSettingView.Visible = cmdScanSettings.Checked;
         }
 
         private void ScanParasClick(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-            ScanParasView mScanParasView = new ScanParasView()
-            {
-                MdiParent = this,
-                Visible = true
-            };
+            mScanParasView.Visible = cmdScanParas.Checked;
         }
 
         private void ScanImageClick(object sender, C1.Win.C1Command.ClickEventArgs e)
@@ -147,11 +140,7 @@ namespace NanoInsight.Viewer.View
 
         private void ImageSettingsClick(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
-            ImageSettingsView mImageSettingsView = new ImageSettingsView()
-            {
-                MdiParent = this,
-                Visible = true
-            };
+            mImageSettingsView.Visible = cmdImageSettings.Checked;
         }
     }
 }

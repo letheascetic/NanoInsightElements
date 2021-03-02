@@ -907,6 +907,7 @@ namespace NanoInsight.Viewer.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(272, 719);
+            this.ControlBox = false;
             this.Controls.Add(this.inputPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;

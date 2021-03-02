@@ -335,6 +335,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 569);
+            this.ControlBox = false;
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.c1CommandDock);
             this.Controls.Add(this.statusStrip);
