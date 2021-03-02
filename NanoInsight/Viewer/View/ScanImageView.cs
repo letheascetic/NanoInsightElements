@@ -1,4 +1,5 @@
 ﻿using C1.Win.C1Ribbon;
+using C1.Win.C1Themes;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.UI;
@@ -33,6 +34,20 @@ namespace NanoInsight.Viewer.View
         {
             InitializeComponent();
             mScanImageVM = new ScanImageViewModel(scanTask);
+            Initialize();
+            SetDataBindings();
+            RegisterEvents();
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public void ApplyTheme()
+        {
+            this.SuspendPainting();
+            string themeName = Properties.Settings.Default.ThemeName;
+            C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false));
+            this.ResumePainting();
         }
 
         /// <summary>
@@ -134,9 +149,7 @@ namespace NanoInsight.Viewer.View
 
         private void ScanImageViewLoad(object sender, EventArgs e)
         {
-            Initialize();
-            SetDataBindings();
-            RegisterEvents();
+            ApplyTheme();
         }
     }
 }

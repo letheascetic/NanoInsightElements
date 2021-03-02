@@ -46,6 +46,8 @@
             this.cmdScanParas = new C1.Win.C1Command.C1Command();
             this.cmdLinkScanImage = new C1.Win.C1Command.C1CommandLink();
             this.cmdScanImage = new C1.Win.C1Command.C1Command();
+            this.cmdLinkImageSettings = new C1.Win.C1Command.C1CommandLink();
+            this.cmdImageSettings = new C1.Win.C1Command.C1Command();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.mainMenu = new C1.Win.C1Command.C1MainMenu();
             this.cmdLinkFile = new C1.Win.C1Command.C1CommandLink();
@@ -59,8 +61,6 @@
             this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
             this.toolBar = new C1.Win.C1Command.C1ToolBar();
             this.snapFormExtender = new SnapFormExtender.SnapFormExtender(this.components);
-            this.cmdLinkImageSettings = new C1.Win.C1Command.C1CommandLink();
-            this.cmdImageSettings = new C1.Win.C1Command.C1Command();
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
@@ -129,6 +129,7 @@
             // 
             // cmdScanArea
             // 
+            this.cmdScanArea.CheckAutoToggle = true;
             this.cmdScanArea.Name = "cmdScanArea";
             this.cmdScanArea.ShortcutText = "";
             this.cmdScanArea.Text = "扫描区域（&A）";
@@ -141,6 +142,7 @@
             // 
             // cmdSysSettings
             // 
+            this.cmdSysSettings.CheckAutoToggle = true;
             this.cmdSysSettings.Name = "cmdSysSettings";
             this.cmdSysSettings.ShortcutText = "";
             this.cmdSysSettings.Text = "系统设置（&S）";
@@ -153,6 +155,7 @@
             // 
             // cmdScanSettings
             // 
+            this.cmdScanSettings.CheckAutoToggle = true;
             this.cmdScanSettings.Name = "cmdScanSettings";
             this.cmdScanSettings.ShortcutText = "";
             this.cmdScanSettings.Text = "扫描设置（&C）";
@@ -165,6 +168,7 @@
             // 
             // cmdScanParas
             // 
+            this.cmdScanParas.CheckAutoToggle = true;
             this.cmdScanParas.Name = "cmdScanParas";
             this.cmdScanParas.ShortcutText = "";
             this.cmdScanParas.Text = "扫描参数（&P）";
@@ -182,13 +186,27 @@
             this.cmdScanImage.Text = "扫描图像（&I）";
             this.cmdScanImage.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanImageClick);
             // 
+            // cmdLinkImageSettings
+            // 
+            this.cmdLinkImageSettings.Command = this.cmdImageSettings;
+            this.cmdLinkImageSettings.SortOrder = 5;
+            this.cmdLinkImageSettings.Text = "图像调节（&H）";
+            // 
+            // cmdImageSettings
+            // 
+            this.cmdImageSettings.CheckAutoToggle = true;
+            this.cmdImageSettings.Name = "cmdImageSettings";
+            this.cmdImageSettings.ShortcutText = "";
+            this.cmdImageSettings.Text = "图像调节";
+            this.cmdImageSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.ImageSettingsClick);
+            // 
             // statusStrip
             // 
             this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Location = new System.Drawing.Point(0, 739);
+            this.statusStrip.Location = new System.Drawing.Point(0, 945);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1184, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1592, 22);
             this.statusStrip.TabIndex = 11;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -203,7 +221,7 @@
             this.mainMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(1184, 26);
+            this.mainMenu.Size = new System.Drawing.Size(1592, 26);
             this.mainMenu.VisualStyle = C1.Win.C1Command.VisualStyle.Custom;
             this.mainMenu.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue;
             // 
@@ -230,7 +248,7 @@
             this.btnLaserRelease});
             this.toolStrip.Location = new System.Drawing.Point(0, 26);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1184, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1592, 25);
             this.toolStrip.TabIndex = 15;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -281,7 +299,7 @@
             this.dockToolBar.Id = 3;
             this.dockToolBar.Location = new System.Drawing.Point(0, 51);
             this.dockToolBar.Name = "dockToolBar";
-            this.dockToolBar.Size = new System.Drawing.Size(1184, 28);
+            this.dockToolBar.Size = new System.Drawing.Size(1592, 28);
             // 
             // toolBar
             // 
@@ -299,23 +317,11 @@
             this.snapFormExtender.Distance = 10;
             this.snapFormExtender.Form = this;
             // 
-            // cmdLinkImageSettings
-            // 
-            this.cmdLinkImageSettings.Command = this.cmdImageSettings;
-            this.cmdLinkImageSettings.SortOrder = 5;
-            // 
-            // cmdImageSettings
-            // 
-            this.cmdImageSettings.Name = "cmdImageSettings";
-            this.cmdImageSettings.ShortcutText = "";
-            this.cmdImageSettings.Text = "图像调节";
-            this.cmdImageSettings.Click += new C1.Win.C1Command.ClickEventHandler(this.ImageSettingsClick);
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.ClientSize = new System.Drawing.Size(1592, 967);
             this.Controls.Add(this.dockToolBar);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);

@@ -43,7 +43,6 @@
             this.c1ToolBar = new C1.Win.C1Command.C1ToolBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pageAll = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.imageAll = new Emgu.CV.UI.ImageBox();
             this.page405 = new System.Windows.Forms.TabPage();
             this.image405 = new Emgu.CV.UI.ImageBox();
@@ -209,7 +208,6 @@
             // pageAll
             // 
             this.pageAll.BackColor = System.Drawing.Color.Transparent;
-            this.pageAll.Controls.Add(this.button1);
             this.pageAll.Controls.Add(this.imageAll);
             this.pageAll.Location = new System.Drawing.Point(4, 4);
             this.pageAll.Margin = new System.Windows.Forms.Padding(0);
@@ -218,16 +216,6 @@
             this.pageAll.TabIndex = 0;
             this.pageAll.Tag = "-1";
             this.pageAll.Text = "全部";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(254, 117);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ButtonClick);
             // 
             // imageAll
             // 
@@ -405,6 +393,5 @@
         private System.Windows.Forms.TabPage page640;
         private Emgu.CV.UI.ImageBox image640;
         private System.Windows.Forms.Timer mImageTimer;
-        private System.Windows.Forms.Button button1;
     }
 }

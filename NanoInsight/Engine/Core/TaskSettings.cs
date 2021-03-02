@@ -106,7 +106,5 @@ namespace NanoInsight.Engine.Core
             return activatedChannelNum;
         }
 
-
-
     }
 }

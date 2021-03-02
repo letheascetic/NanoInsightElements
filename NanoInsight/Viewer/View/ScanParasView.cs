@@ -1,4 +1,5 @@
 ﻿using C1.Win.C1Ribbon;
+using C1.Win.C1Themes;
 using log4net;
 using NanoInsight.Engine.Core;
 using NanoInsight.Viewer.Model;
@@ -25,6 +26,20 @@ namespace NanoInsight.Viewer.View
         public ScanParasView()
         {
             InitializeComponent();
+            Initialize();
+            SetDataBindings();
+            RegisterEvents();
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public void ApplyTheme()
+        {
+            this.SuspendPainting();
+            string themeName = Properties.Settings.Default.ThemeName;
+            C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false));
+            this.ResumePainting();
         }
 
         private void Initialize()
@@ -69,9 +84,7 @@ namespace NanoInsight.Viewer.View
 
         private void ScanParasViewLoad(object sender, EventArgs e)
         {
-            Initialize();
-            SetDataBindings();
-            RegisterEvents();
+            ApplyTheme();
         }
 
         private int ChannelActivateChangedEventHandler(Engine.Attribute.ScanChannel channel)

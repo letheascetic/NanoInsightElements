@@ -373,9 +373,15 @@ namespace NanoInsight.Engine.Core
                     {
                         ScanData.ToGrayImages(mTaskSettings.ScanChannels[i].ImageSettings.GammaLUT, i, 0, sampleData.CurrentBank[i]);
                     }
-                    //  GrayImages.Bank -> BGRImages.Bank
+                    // GrayImages.Bank -> BGRImages.Bank
                     ScanData.ToBGRImages(mTaskSettings.ScanChannels[i].ImageSettings.PseudoColorLUT, i, 0, sampleData.CurrentBank[i]);
                 }
+            }
+            // BGRImages.Bank -> MergeImages.Bank
+            if (ScanData.ActivatedChannelNum > 1)
+            {
+                int bankIndex = sampleData.CurrentBank.Where(p => p >= 0).First();
+                ScanData.ToMergeImages(0, bankIndex);
             }
         }
 

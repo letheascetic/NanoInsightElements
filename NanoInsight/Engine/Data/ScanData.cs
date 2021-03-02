@@ -12,6 +12,8 @@ namespace NanoInsight.Engine.Data
 {
     public class ScanData
     {
+        public int ActivatedChannelNum { get; }
+
         /// <summary>
         /// 原始数据
         /// </summary>
@@ -32,6 +34,10 @@ namespace NanoInsight.Engine.Data
         /// BGR彩色图像
         /// </summary>
         public ScanImage[][] BGRImages { get; set; }
+        /// <summary>
+        /// 多通道合成后的图像
+        /// </summary>
+        public ScanImage[] MergeImages { get; set; }
 
         public ScanData(int rows, int columns, int numOfBank, int numOfChannels, int numOfSlices, bool[] statusOfChannels)
         {
@@ -40,6 +46,17 @@ namespace NanoInsight.Engine.Data
             GrayImages = new ScanImage[numOfChannels][];
             BGRImages = new ScanImage[numOfChannels][];
             // Gray3Banks = new ScanBank[numOfChannels][];
+
+            int mActivatedChannelNum = statusOfChannels.Select(p => p == true).Count();
+            MergeImages = mActivatedChannelNum > 1 ? new ScanImage[numOfSlices] : null;
+            if (MergeImages != null)
+            {
+                for (int i = 0; i < numOfSlices; i++)
+                {
+                    MergeImages[i] = new ScanImage(rows, columns, Emgu.CV.CvEnum.DepthType.Cv8U, 3, numOfBank, i);
+                }
+            }
+
             for (int i = 0; i < numOfChannels; i++)
             {
                 if (statusOfChannels[i])
@@ -67,6 +84,7 @@ namespace NanoInsight.Engine.Data
                     // Gray3Banks[i] = null;
                 }
             }
+
         }
 
         /// <summary>
@@ -221,6 +239,54 @@ namespace NanoInsight.Engine.Data
                 CvInvoke.CvtColor(grayImage, gray3Image, ColorConversion.Gray2Bgr);
                 Mat bgrImage = BGRImages[channelIndex][i].Image;
                 CvInvoke.LUT(gray3Image, lookupTable, bgrImage);
+            }
+        }
+
+        public void ToMergeImages(int sliceIndex, int bankIndex)
+        {
+            Mat[] bankImages = new Mat[ActivatedChannelNum];
+            Mat mergeImage = new Mat();
+            int activatedIndex = 0;
+            for (int i = 0; i < BGRImages.Length; i++)
+            {
+                if (BGRImages[i] != null)
+                {
+                    bankImages[activatedIndex++] = BGRImages[i][sliceIndex].Banks[bankIndex].Bank;
+                }
+            }
+            CvInvoke.Add(bankImages[0], bankImages[1], mergeImage);
+            for (int i = 2; i < ActivatedChannelNum; i++)
+            {
+                CvInvoke.Add(mergeImage, bankImages[i], mergeImage);
+            }
+            MergeImages[sliceIndex].Banks[bankIndex].Bank = mergeImage;
+        }
+
+        public void ToMergeImages(int sliceIndex)
+        {
+            Mat[] bankImages = new Mat[ActivatedChannelNum];
+            Mat mergeImage = new Mat();
+            int activatedIndex = 0;
+            for (int i = 0; i < BGRImages.Length; i++)
+            {
+                if (BGRImages[i] != null)
+                {
+                    bankImages[activatedIndex++] = BGRImages[i][sliceIndex].Image;
+                }
+            }
+            CvInvoke.Add(bankImages[0], bankImages[1], mergeImage);
+            for (int i = 2; i < ActivatedChannelNum; i++)
+            {
+                CvInvoke.Add(mergeImage, bankImages[i], mergeImage);
+            }
+            MergeImages[sliceIndex].Image = mergeImage;
+        }
+
+        public void ToMergeImages()
+        {
+            for (int i = 0; i < MergeImages.Length; i++)
+            {
+                ToMergeImages(i);
             }
         }
 

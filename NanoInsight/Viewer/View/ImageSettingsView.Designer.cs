@@ -985,6 +985,7 @@ namespace NanoInsight.Viewer.View
             this.Name = "ImageSettingsView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "图像调整";
+            this.Load += new System.EventHandler(this.ImageSettingsViewLoad);
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer)).EndInit();
             this.c1SplitContainer.ResumeLayout(false);

@@ -19,20 +19,42 @@ namespace NanoInsight.Viewer.View
         private static readonly ILog Logger = LogManager.GetLogger("info");
         ///////////////////////////////////////////////////////////////////////////////////////////
 
+        private ScanSettingView mScanSettingView;
+        private ScanAreaView mScanAreaView;
+        private SysSettingsView mSysSettingsView;
+        private ImageSettingsView mImageSettingsView;
+        private List<ScanImageView> mScanImageViewList;
+        
         public MainView()
         {
             InitializeComponent();
+            Initialize();
         }
-
-
-
-
 
         ///////////////////////////////////////////////////////////////////////////////////////////
 
         private void InitAppearance()
         {
+            // WindowState = FormWindowState.Maximized;
+            mScanSettingView.Location = new Point(this.ClientRectangle.Right - mScanSettingView.Width, 0);
+            mScanAreaView.Location = new Point(mScanSettingView.Location.X - mScanAreaView.Width, 0);
+            // mImageSettingsView.Location = new Point(mScanAreaView.Location.X - mImageSettingsView.Width, 0);
 
+            mScanSettingView.Visible = true;
+            mScanAreaView.Visible = true;
+            // mImageSettingsView.Visible = true;
+        }
+
+        private void Initialize()
+        {
+            mScanSettingView = new ScanSettingView() { MdiParent = this };
+            mScanAreaView = new ScanAreaView() { MdiParent = this };
+            mSysSettingsView = new SysSettingsView() { MdiParent = this };
+            mImageSettingsView = new ImageSettingsView() { MdiParent = this };
+            mScanImageViewList = new List<ScanImageView>();
+
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            ApplyTheme(Properties.Settings.Default.ThemeName);
         }
 
         /// <summary>
@@ -42,7 +64,20 @@ namespace NanoInsight.Viewer.View
         {
             this.SuspendPainting();
             Properties.Settings.Default.ThemeName = themeName;
-            C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false));
+
+            List<Control> noThemeControls = new List<Control>() { mScanSettingView, mScanAreaView, mSysSettingsView, mImageSettingsView };
+            noThemeControls.AddRange(mScanImageViewList);
+            C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false), (c) => !noThemeControls.Contains(c));
+
+            mScanSettingView.ApplyTheme();
+            mScanAreaView.ApplyTheme();
+            mSysSettingsView.ApplyTheme();
+            mImageSettingsView.ApplyTheme();
+            foreach (ScanImageView scanImageView in mScanImageViewList)
+            {
+                scanImageView.ApplyTheme();
+            }
+
             this.ResumePainting();
         }
 
@@ -50,8 +85,7 @@ namespace NanoInsight.Viewer.View
 
         private void MainViewLoad(object sender, EventArgs e)
         {
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-            ApplyTheme(Properties.Settings.Default.ThemeName);
+            InitAppearance();
         }
 
         private void ThemeClick(object sender, C1.Win.C1Command.ClickEventArgs e)

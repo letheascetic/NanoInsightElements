@@ -1,5 +1,6 @@
 ﻿using C1.Win.C1InputPanel;
 using C1.Win.C1Ribbon;
+using C1.Win.C1Themes;
 using log4net;
 using NanoInsight.Viewer.Model;
 using NanoInsight.Viewer.ViewModel;
@@ -33,6 +34,20 @@ namespace NanoInsight.Viewer.View
         public ScanSettingView()
         {
             InitializeComponent();
+            Initialize();
+            SetDataBindings();
+            RegisterEvents();
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public void ApplyTheme()
+        {
+            this.SuspendPainting();
+            string themeName = Properties.Settings.Default.ThemeName;
+            C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false));
+            this.ResumePainting();
         }
 
         /// <summary>
@@ -515,9 +530,7 @@ namespace NanoInsight.Viewer.View
 
         private void ScanSettingViewLoad(object sender, EventArgs e)
         {
-            Initialize();
-            SetDataBindings();
-            RegisterEvents();
+            ApplyTheme();
         }
 
         /// <summary>

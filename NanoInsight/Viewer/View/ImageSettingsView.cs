@@ -1,6 +1,7 @@
 ﻿using C1.Win.C1Input;
 using C1.Win.C1InputPanel;
 using C1.Win.C1Ribbon;
+using C1.Win.C1Themes;
 using log4net;
 using NanoInsight.Viewer.ViewModel;
 using System;
@@ -26,6 +27,7 @@ namespace NanoInsight.Viewer.View
         private InputTrackBar[] mChannelContrastBars;
         private InputTrackBar[] mChannelGammaBars;
         private C1RangeSlider[] mChannelThresholdSliders;
+        private C1Button[] mPseudoColorBtns;
 
         public ImageSettingsView()
         {
@@ -33,6 +35,17 @@ namespace NanoInsight.Viewer.View
             Initialize();
             SetDataBindings();
             RegisterEvents();
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public void ApplyTheme()
+        {
+            this.SuspendPainting();
+            string themeName = Properties.Settings.Default.ThemeName;
+            C1ThemeController.ApplyThemeToControlTree(this, C1ThemeController.GetThemeByName(themeName, false), (c) => !mPseudoColorBtns.Contains(c));
+            this.ResumePainting();
         }
 
         /// <summary>
@@ -67,6 +80,8 @@ namespace NanoInsight.Viewer.View
             };
 
             mChannelThresholdSliders = new C1RangeSlider[] { rs405, rs488, rs561, rs640 };
+
+            mPseudoColorBtns = new C1Button[] { btn405PseudoColor, btn488PseudoColor, btn561PseudoColor, btn640PseudoColor };
         }
 
         /// <summary>
@@ -94,7 +109,6 @@ namespace NanoInsight.Viewer.View
                 mChannelThresholdSliders[i].LowerValueChanged += ChannelThresholdMinChanged;
                 mChannelThresholdSliders[i].UpperValueChanged += ChannelThresholdMaxChanged;
             }
-
         }
 
         /// <summary>
@@ -176,5 +190,9 @@ namespace NanoInsight.Viewer.View
 
         }
 
+        private void ImageSettingsViewLoad(object sender, EventArgs e)
+        {
+            ApplyTheme();
+        }
     }
 }
