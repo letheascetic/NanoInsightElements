@@ -24,6 +24,7 @@ namespace NanoInsight.Viewer.ViewModel
         private Mat mScanImage488;
         private Mat mScanImage561;
         private Mat mScanImage640;
+        private Mat[] mChannelImages;
 
         public ScanTask Task
         {
@@ -72,6 +73,26 @@ namespace NanoInsight.Viewer.ViewModel
         {
             mScanTask = scanTask;
             mScheduler = Scheduler.CreateInstance();
+            mChannelImages = new Mat[] { ScanImage405, ScanImage488, ScanImage561, ScanImage640 };
+            UpdateScanImages();
+        }
+
+        public void UpdateScanImages()
+        {
+            bool[] statusOfChannels = mScanTask.Settings.ScanChannels.Select(p => p.Activated).ToArray();
+
+            for (int i = 0; i < mScanTask.Settings.GetChannelNum(); i++)
+            {
+                if (statusOfChannels[i])
+                {
+                    mChannelImages[i] = mScanTask.ScanData.GrayImages[i][0].Image;
+                }
+            }
+
+            if (mScanTask.Settings.GetActivatedChannelNum() > 1)
+            {
+                ScanImageAll = mScanTask.ScanData.MergeImages[0].Image;
+            }
         }
     }
 }

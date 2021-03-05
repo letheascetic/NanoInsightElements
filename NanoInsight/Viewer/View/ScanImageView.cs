@@ -31,6 +31,11 @@ namespace NanoInsight.Viewer.View
         private ScanImageViewModel mScanImageVM;
         private int mTaskId;
 
+        public ScanImageViewModel ScanImageVM
+        {
+            get { return mScanImageVM; }
+        }
+
         public int TaskId
         {
             get { return mTaskId; }
@@ -49,6 +54,16 @@ namespace NanoInsight.Viewer.View
         {
             mScanImageVM = new ScanImageViewModel(scanTask);
             Initialize();
+        }
+
+        public void StartScanning()
+        {
+            mImageTimer.Start();
+        }
+
+        public void StopScanning()
+        {
+            mImageTimer.Stop();
         }
 
         /// <summary>
@@ -132,6 +147,11 @@ namespace NanoInsight.Viewer.View
         private void ScanImageViewLoad(object sender, EventArgs e)
         {
             ApplyTheme();
+        }
+
+        private void ImageTimerTick(object sender, EventArgs e)
+        {
+            
         }
     }
 }

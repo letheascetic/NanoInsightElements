@@ -108,7 +108,11 @@ namespace NanoInsight.Viewer.View
         {
             if (scanAcquisition == null)
             {
-
+                ScanImageView scanImageView = mScanImageViewList.Where(p => p.ScanImageVM.Task.Scanning).FirstOrDefault();
+                if (scanImageView != null)
+                {
+                    scanImageView.StopScanning();
+                }
             }
             else
             {
@@ -124,6 +128,7 @@ namespace NanoInsight.Viewer.View
                     scanImageView.UpdateStatus(mMainViewModel.Engine.ScanningTask);
                     scanImageView.Visible = true;
                 }
+                scanImageView.StartScanning();
                 scanImageView.Activate();
             }
             return ApiCode.Success;

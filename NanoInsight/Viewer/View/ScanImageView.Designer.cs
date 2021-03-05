@@ -219,6 +219,7 @@
             // 
             // imageAll
             // 
+            this.imageAll.BackColor = System.Drawing.Color.Black;
             this.imageAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageAll.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.imageAll.Location = new System.Drawing.Point(0, 0);
@@ -244,6 +245,7 @@
             // 
             // image405
             // 
+            this.image405.BackColor = System.Drawing.Color.Black;
             this.image405.Dock = System.Windows.Forms.DockStyle.Fill;
             this.image405.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.RightClickMenu;
             this.image405.Location = new System.Drawing.Point(0, 0);
@@ -269,6 +271,7 @@
             // 
             // image488
             // 
+            this.image488.BackColor = System.Drawing.Color.Black;
             this.image488.Dock = System.Windows.Forms.DockStyle.Fill;
             this.image488.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.image488.Location = new System.Drawing.Point(0, 0);
@@ -294,6 +297,7 @@
             // 
             // image561
             // 
+            this.image561.BackColor = System.Drawing.Color.Black;
             this.image561.Dock = System.Windows.Forms.DockStyle.Fill;
             this.image561.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.image561.Location = new System.Drawing.Point(0, 0);
@@ -319,6 +323,7 @@
             // 
             // image640
             // 
+            this.image640.BackColor = System.Drawing.Color.Black;
             this.image640.Dock = System.Windows.Forms.DockStyle.Fill;
             this.image640.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.image640.Location = new System.Drawing.Point(0, 0);
@@ -329,6 +334,10 @@
             this.image640.TabIndex = 2;
             this.image640.TabStop = false;
             this.image640.Tag = "3";
+            // 
+            // mImageTimer
+            // 
+            this.mImageTimer.Tick += new System.EventHandler(this.ImageTimerTick);
             // 
             // ScanImageView
             // 

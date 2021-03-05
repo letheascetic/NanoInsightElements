@@ -19,12 +19,17 @@ namespace NanoInsight.Engine.Core
         private static readonly ILog Logger = LogManager.GetLogger("info");
         ///////////////////////////////////////////////////////////////////////////////////////////
 
+        private bool mScanning;
         private int mTaskId;
         private string mTaskName;
         private ScanInfo mScanInfo;
         private ScanData mScanData;
         private TaskSettings mTaskSettings;
 
+        public bool Scanning
+        {
+            get { return mScanning; }
+        }
         /// <summary>
         /// 扫描任务ID
         /// </summary>
@@ -71,6 +76,7 @@ namespace NanoInsight.Engine.Core
             mTaskSettings = new TaskSettings(config, sequence);
             TaskId = taskId;
             TaskName = taskName;
+            mScanning = false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -328,6 +334,7 @@ namespace NanoInsight.Engine.Core
         /// </summary>
         public void Start()
         {
+            mScanning = true;
             bool[] statusOfChannels = mTaskSettings.ScanChannels.Select(p => p.Activated).ToArray();
 
             ScanInfo = new ScanInfo(mTaskSettings.Sequence.InputAcquisitionCountPerFrame);
@@ -340,7 +347,7 @@ namespace NanoInsight.Engine.Core
         /// </summary>
         public void Stop()
         {
-
+            mScanning = false;
         }
 
         /// <summary>
