@@ -59,6 +59,7 @@ namespace NanoInsight.Engine.Common
                     data[i] = (byte)(Math.Pow(i / 255.0, gamma) * 255.0);
                 }
             }
+            gammaMapLookupTable.SetTo<byte>(data);
         }
 
     }

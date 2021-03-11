@@ -157,7 +157,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int ScanChannel405Gamma {
             get {
                 return ((int)(this["ScanChannel405Gamma"]));
@@ -241,7 +241,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int ScanChannel488Gamma {
             get {
                 return ((int)(this["ScanChannel488Gamma"]));
@@ -325,7 +325,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int ScanChannel561Gamma {
             get {
                 return ((int)(this["ScanChannel561Gamma"]));
@@ -409,7 +409,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int ScanChannel640Gamma {
             get {
                 return ((int)(this["ScanChannel640Gamma"]));

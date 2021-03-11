@@ -391,12 +391,12 @@ namespace NanoInsight.Engine.Core
                     ScanData.ToBGRImages(mTaskSettings.ScanChannels[i].ImageSettings.PseudoColorLUT, i, 0, sampleData.CurrentBank[i]);
                 }
             }
-            // BGRImages.Bank -> MergeImages.Bank
-            //if (ScanData.ActivatedChannelNum > 1)
-            //{
-            //    int bankIndex = sampleData.CurrentBank.Where(p => p >= 0).First();
-            //    ScanData.ToMergeImages(0, bankIndex);
-            //}
+            // BGRImages.Bank->MergeImages.Bank
+            if (ScanData.ActivatedChannelNum > 1)
+            {
+                int bankIndex = sampleData.CurrentBank.Where(p => p >= 0).First();
+                ScanData.ToMergeImages(0, bankIndex);
+            }
         }
 
         /// <summary>

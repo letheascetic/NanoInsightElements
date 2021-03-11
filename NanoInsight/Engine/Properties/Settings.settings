@@ -36,7 +36,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel405Gamma" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel405PseudoColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">MediumPurple</Value>
@@ -57,7 +57,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel488Gamma" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">40</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel488PseudoColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">DarkCyan</Value>
@@ -78,7 +78,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel561Gamma" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel561PseudoColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">YellowGreen</Value>
@@ -99,7 +99,7 @@
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="ScanChannel640Gamma" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ScanChannel640PseudoColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">MediumVioletRed</Value>
