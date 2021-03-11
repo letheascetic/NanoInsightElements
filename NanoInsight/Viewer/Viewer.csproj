@@ -285,7 +285,6 @@
       <HintPath>..\lib\c1\v4.0\Microsoft.AnalysisServices.SPClient.Interfaces.DLL</HintPath>
     </Reference>
     <Reference Include="NationalInstruments.Common, Version=19.0.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
-    <Reference Include="NationalInstruments.NetworkVariable, Version=19.0.45.49153, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL" />
     <Reference Include="NumSharp.Core, Version=0.20.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NumSharp.Core.dll</HintPath>

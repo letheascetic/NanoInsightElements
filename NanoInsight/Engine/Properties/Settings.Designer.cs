@@ -505,7 +505,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("58.48")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public double XGalvoCalibrationVoltage {
             get {
                 return ((double)(this["XGalvoCalibrationVoltage"]));
@@ -517,7 +517,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("58.48")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public double YGalvoCalibrationVoltage {
             get {
                 return ((double)(this["YGalvoCalibrationVoltage"]));

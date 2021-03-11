@@ -310,5 +310,10 @@ namespace NanoInsight.Viewer.View
         {
             ApplyTheme();
         }
+
+        private void CalibrationClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -340,7 +340,8 @@ namespace NanoInsight.Engine.Core
                 double step1 = Math.PI / ScanArea.ScanLineHoldTime * config.SelectedScanPixelDwell.Data;
                 double[] lineHoldSamples = CreateSinArray(scale, step1, lineHoldSampleCount, extendScanArea.ScanRange.Right);
 
-                int lineEndSampleCount = (int)(ScanArea.ScanLineEndTime / config.SelectedScanPixelDwell.Data);
+                // int lineEndSampleCount = (int)(ScanArea.ScanLineEndTime / config.SelectedScanPixelDwell.Data);
+                int lineEndSampleCount = config.GetExtendScanXPixels();
                 double[] lineEndSamples = CreateLinearArray(extendScanArea.ScanRange.Right, extendScanArea.ScanRange.X, lineEndSampleCount);
 
                 int lineScanSampleCount = config.GetExtendScanXPixels();

@@ -123,10 +123,10 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="XGalvoCalibrationVoltage" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">58.48</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="YGalvoCalibrationVoltage" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">58.48</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="NiDeviceName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Dev1</Value>
