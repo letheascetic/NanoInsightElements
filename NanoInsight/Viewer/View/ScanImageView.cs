@@ -134,13 +134,13 @@ namespace NanoInsight.Viewer.View
 
         private void ButtonClick(object sender, EventArgs e)
         {
-            short[] data = new short[2 * 20 * 10];
+            short[] data = new short[2 * 10 * 3];
             for (int i = 0; i < data.Length; i++)
             {
                 data[i] = (short)i;
             }
-            NDArray matrix = MatrixUtil.ToMatrix(data, 2, 20, 10, 1, 4, 2, 16);
-            Mat image = new Mat(10, 16, DepthType.Cv32S, 1);
+            NDArray matrix = MatrixUtil.ToMatrix(data, 2, 10, 3, 0, 1, 2, 7);
+            Mat image = new Mat(3, 7, DepthType.Cv32S, 1);
             MatrixUtil.ToBankImage(matrix, ref image);
         }
 

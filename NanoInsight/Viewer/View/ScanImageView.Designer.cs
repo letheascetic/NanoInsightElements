@@ -53,6 +53,7 @@
             this.page640 = new System.Windows.Forms.TabPage();
             this.image640 = new Emgu.CV.UI.ImageBox();
             this.mImageTimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
             this.dockToolBar.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -234,6 +235,7 @@
             // page405
             // 
             this.page405.BackColor = System.Drawing.Color.Transparent;
+            this.page405.Controls.Add(this.button1);
             this.page405.Controls.Add(this.image405);
             this.page405.Location = new System.Drawing.Point(4, 4);
             this.page405.Margin = new System.Windows.Forms.Padding(0);
@@ -339,6 +341,16 @@
             // 
             this.mImageTimer.Tick += new System.EventHandler(this.ImageTimerTick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(191, 100);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ButtonClick);
+            // 
             // ScanImageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -403,5 +415,6 @@
         private System.Windows.Forms.TabPage page640;
         private Emgu.CV.UI.ImageBox image640;
         private System.Windows.Forms.Timer mImageTimer;
+        private System.Windows.Forms.Button button1;
     }
 }

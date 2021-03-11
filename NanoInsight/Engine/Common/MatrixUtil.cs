@@ -89,9 +89,9 @@ namespace NanoInsight.Engine.Common
         public static NDArray ToMatrix(int[] samples, int samplesPerPixel, int pixelsPerRow, int pixelsPerCol, int scanDirection, int pixelOffset, int pixelCalibration, int matrixWidth)
         {
             // create NDArray，no copy
-            var origin = np.array<int>(samples, false).reshape(samplesPerPixel, pixelsPerRow, pixelsPerCol);
+            var origin = np.array<int>(samples, false).reshape(pixelsPerCol, pixelsPerRow, samplesPerPixel);
             // integrate pixels 样本累加，计算像素值，并转置
-            var matrix = origin.sum(0).T;
+            var matrix = origin.sum(2);
             // 如果是单向扫描，则直接截取Bank数据矩阵
             if (scanDirection == ScanDirection.Unidirection)
             {
@@ -120,10 +120,10 @@ namespace NanoInsight.Engine.Common
         public static NDArray ToMatrix(short[] samples, int samplesPerPixel, int pixelsPerRow, int pixelsPerCol, int scanDirection, int pixelOffset, int pixelCalibration, int matrixWidth)
         {
             // create NDArray，no copy
-            var origin = np.array(samples, false).reshape(samplesPerPixel, pixelsPerRow, pixelsPerCol);
+            var origin = np.array(samples, false).reshape(pixelsPerCol, pixelsPerRow, samplesPerPixel);
             origin = origin.astype(NPTypeCode.Int32);
             // integrate pixels 样本累加，计算像素值，并转置
-            var matrix = origin.sum(0).T;
+            var matrix = origin.sum(2);
             // 如果是单向扫描，则直接截取Bank数据矩阵
             if (scanDirection == ScanDirection.Unidirection)
             {

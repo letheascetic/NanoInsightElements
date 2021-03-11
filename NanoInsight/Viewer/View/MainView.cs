@@ -1,8 +1,12 @@
 ﻿using C1.Win.C1Ribbon;
 using C1.Win.C1Themes;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
 using log4net;
+using NanoInsight.Engine.Common;
 using NanoInsight.Engine.Core;
 using NanoInsight.Viewer.ViewModel;
+using NumSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -185,6 +189,26 @@ namespace NanoInsight.Viewer.View
         private void ImageSettingsClick(object sender, C1.Win.C1Command.ClickEventArgs e)
         {
             mImageSettingsView.Visible = cmdImageSettings.Checked;
+        }
+
+        private void ButtonClick(object sender, EventArgs e)
+        {
+            // PMT单向测试
+            short[] data = new short[2 * 10 * 3];
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = (short)i;
+            }
+            NDArray matrix = MatrixUtil.ToMatrix(data, 2, 10, 3, 0, 1, 2, 7);
+            Mat image = new Mat(3, 7, DepthType.Cv32S, 1);
+            MatrixUtil.ToBankImage(matrix, ref image);
+
+            NDArray matrix2 = MatrixUtil.ToMatrix(data, 2, 10, 3, 1, 1, 2, 7);
+            Mat image2 = new Mat(3, 7, DepthType.Cv32S, 1);
+            MatrixUtil.ToBankImage(matrix2, ref image2);
+
+
+
         }
     }
 }
