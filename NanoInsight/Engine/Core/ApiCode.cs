@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace NanoInsight.Engine.Core
 {
-    // 60 61 62
+    /// <summary>
+    /// 返回码
+    /// </summary>
     public static class ApiCode
     {
         public const int Success = 0x00000000;
@@ -65,7 +67,6 @@ namespace NanoInsight.Engine.Core
         public const int SchedulerTaskScanning = 0x15000008;
         public const int SchedulerScanChannelIdInvalid = 0x15000010;
         public const int SchedulerNoScanTaskExist = 0x15000020;
-
 
         /// <summary>
         /// 是否成功

@@ -174,6 +174,7 @@ namespace NanoInsight.Engine.Attribute
             ScanPixelCalibrationMaximum = scanPixelDwell.ScanPixelCalibrationMaximum;
             ScanPixelOffset = scanPixelDwell.ScanPixelOffset;
             ScanPixelCalibration = scanPixelDwell.ScanPixelCalibration;
+            ScanPixelScale = scanPixelDwell.ScanPixelScale;
         }
 
     }

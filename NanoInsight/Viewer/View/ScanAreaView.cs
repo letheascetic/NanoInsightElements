@@ -413,7 +413,8 @@ namespace NanoInsight.Viewer.View
 
         private void ImageToUpdate(object sender, EventArgs e)
         {
-            mScanAreaVM.ScanImage = mScanAreaVM.Engine.ScanningTask.ScanData.GrayImages[0][0].Image;
+            int channelId = mScanAreaVM.Engine.ScanningTask.Settings.ScanChannels.Where(p => p.Activated).First().ID;
+            mScanAreaVM.ScanImage = mScanAreaVM.Engine.ScanningTask.ScanData.GrayImages[channelId][0].Image;
             pictureBox.Image = mScanAreaVM.ScanImage;
         }
 

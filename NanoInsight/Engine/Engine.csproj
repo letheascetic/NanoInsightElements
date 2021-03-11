@@ -76,6 +76,7 @@
     <Compile Include="Attribute\ColorSpace.cs" />
     <Compile Include="Attribute\ImageCorrection.cs" />
     <Compile Include="Attribute\ImageProperty.cs" />
+    <Compile Include="Basic\SingleLineTaskPara.cs" />
     <Compile Include="Common\ImageUtil.cs" />
     <Compile Include="Common\MatrixUtil.cs" />
     <Compile Include="Core\TaskSettings.cs" />

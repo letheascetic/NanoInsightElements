@@ -20,7 +20,7 @@ namespace NanoInsight.Engine.Core
         private volatile static Scheduler pScheduler = null;
         private static readonly object locker = new object();
         ///////////////////////////////////////////////////////////////////////////////////////////
-        private const int PMT_TASK_COUNT = 4;
+        private const int PMT_TASK_COUNT = 1;
         private const int APD_TASK_COUNT = 4;
         ///////////////////////////////////////////////////////////////////////////////////////////
         public event ScanAreaChangedEventHandler ScanAreaChangedEvent;
@@ -1340,11 +1340,8 @@ namespace NanoInsight.Engine.Core
                 {
                     if (mApdSampleQueue.TryTake(out ApdSampleData sampleData, 20, mCancelToken.Token))
                     {
-                        ScanningTask.ConvertSamples(sampleData);
-                        //if (ScanImageUpdatedEvent != null)
-                        //{
-                        //    ScanImageUpdatedEvent.Invoke(ScanningTask.ScanData.GrayImages);
-                        //}
+                        int lastBankIndex = GetLastBankIndex(ScanningTask.ScanInfo);
+                        ScanningTask.ConvertSamples(sampleData, lastBankIndex);
                     }
                 }
                 catch (OperationCanceledException)
@@ -1412,6 +1409,20 @@ namespace NanoInsight.Engine.Core
                 mSequence.GenerateScanCoordinates();
             }
             return ApiCode.Success;
+        }
+
+        private int GetLastBankIndex(ScanInfo scanInfo)
+        {
+            long acquisitionCount = scanInfo.AcquisitionCount.Where(p => p>=0).Min();
+            int bankIndex = (int)(acquisitionCount % scanInfo.NumOfBank);
+            if (bankIndex > 0)
+            {
+                return bankIndex - 1;
+            }
+            else
+            {
+                return acquisitionCount == 0 ? -1 : scanInfo.NumOfBank - 1;
+            }
         }
 
     }

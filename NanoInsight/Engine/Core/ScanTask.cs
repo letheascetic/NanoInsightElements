@@ -26,6 +26,8 @@ namespace NanoInsight.Engine.Core
         private ScanData mScanData;
         private TaskSettings mTaskSettings;
 
+        private int mApdCurrentBank;    
+
         public bool Scanning
         {
             get { return mScanning; }
@@ -77,6 +79,7 @@ namespace NanoInsight.Engine.Core
             TaskId = taskId;
             TaskName = taskName;
             mScanning = false;
+            mApdCurrentBank = -1;
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
@@ -340,6 +343,7 @@ namespace NanoInsight.Engine.Core
             ScanInfo = new ScanInfo(mTaskSettings.Sequence.InputAcquisitionCountPerFrame);
             ScanData = new ScanData(mTaskSettings.SelectedScanPixel.Data, mTaskSettings.SelectedScanPixel.Data, mTaskSettings.Sequence.InputAcquisitionCountPerFrame,
                 mTaskSettings.GetChannelNum(), 1, statusOfChannels);
+            mApdCurrentBank = -1;
         }
 
         /// <summary>
@@ -360,6 +364,9 @@ namespace NanoInsight.Engine.Core
             {
                 if (sampleData.NSamples[i] != null)
                 {
+                    short[] list = sampleData.NSamples[i];
+                    double x = sampleData.NSamples[i].Average<short>(new Func<short, int>(delegate (short p) { return (int)p; }));
+                    Logger.Info(string.Format("Average value [{0}][{1}].", i, x));
                     // 负电压转换
                     MatrixUtil.ToPositive(ref sampleData.NSamples[i]);
                     // 生成Bank数据矩阵[截断/双向扫描偶数行翻转和错位补偿]
@@ -385,29 +392,51 @@ namespace NanoInsight.Engine.Core
                 }
             }
             // BGRImages.Bank -> MergeImages.Bank
-            if (ScanData.ActivatedChannelNum > 1)
-            {
-                int bankIndex = sampleData.CurrentBank.Where(p => p >= 0).First();
-                ScanData.ToMergeImages(0, bankIndex);
-            }
+            //if (ScanData.ActivatedChannelNum > 1)
+            //{
+            //    int bankIndex = sampleData.CurrentBank.Where(p => p >= 0).First();
+            //    ScanData.ToMergeImages(0, bankIndex);
+            //}
         }
 
         /// <summary>
         /// 更新Bank图像
         /// </summary>
         /// <param name="sampleData"></param>
-        public void ConvertSamples(ApdSampleData sampleData)
+        public void ConvertSamples(ApdSampleData sampleData, int lastBankIndex)
         {
-            //MatrixUtil.ToCounter(sampleData.NSamples, mSequence.InputSampleCountPerRow);
-            //NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples, mSequence.InputSampleCountPerPixel, mSequence.InputPixelCountPerRow,
-            //    mSequence.InputPixelCountPerAcquisition / mSequence.InputPixelCountPerRow, mConfig.SelectedScanDirection.ID,
-            //    mConfig.SelectedScanPixelDwell.ScanPixelOffset, mConfig.SelectedScanPixelDwell.ScanPixelCalibration,
-            //    mConfig.SelectedScanPixel.Data);
-            //Mat originImage = ScanData.OriginDataSet[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
-            //MatrixUtil.ToBankImage(matrix, ref originImage);
-            //Mat grayImage = ScanData.GrayImages[sampleData.ChannelIndex][0].Banks[ScanInfo.CurrentBank[sampleData.ChannelIndex]].Bank;
-            //double scale = 1.0 / Math.Pow(2, mConfig.SelectedScanPixelDwell.ScanPixelScale);
-            //MatrixUtil.ToOriginImage(originImage, ref grayImage, scale, mConfig.ScanChannels[sampleData.ChannelIndex].ImageSettings.Offset);
+            // BGRImages.Bank -> MergeImages.Bank
+            if (ScanData.ActivatedChannelNum > 1)
+            {
+                if (mApdCurrentBank != lastBankIndex)
+                {
+                    mApdCurrentBank = lastBankIndex;
+                    ScanData.ToMergeImages(0, mApdCurrentBank);
+                }
+            }
+
+            // 脉冲计数
+            MatrixUtil.ToCounter(sampleData.NSamples, mTaskSettings.Sequence.InputSampleCountPerRow);
+            // 
+            NDArray matrix = MatrixUtil.ToMatrix(sampleData.NSamples, mTaskSettings.Sequence.InputSampleCountPerPixel, mTaskSettings.Sequence.InputPixelCountPerRow,
+                mTaskSettings.Sequence.InputPixelCountPerAcquisition / mTaskSettings.Sequence.InputPixelCountPerRow, mTaskSettings.SelectedScanDirection.ID,
+                mTaskSettings.SelectedScanPixelDwell.ScanPixelOffset, mTaskSettings.SelectedScanPixelDwell.ScanPixelCalibration,
+                mTaskSettings.SelectedScanPixel.Data);
+            // Matrix -> OriginDataSet.Bank
+            ScanData.ToDataSet(matrix, sampleData.ChannelIndex, 0, sampleData.CurrentBank);
+            // OriginDataSet.Bank -> OriginImages.Bank
+            ScanData.ToOriginImages(mTaskSettings.SelectedScanPixelDwell.ScanPixelScale, sampleData.ChannelIndex, 0, sampleData.CurrentBank, mTaskSettings.ScanChannels[sampleData.ChannelIndex].ImageSettings.Offset);
+            // OriginImages.Bank -> GrayImages.Bank
+            if (mTaskSettings.SelectedImageCorrection.ID == ImageCorrection.ContrastBrightness)
+            {
+                ScanData.ToGrayImages(mTaskSettings.ScanChannels[sampleData.ChannelIndex].ImageSettings.Brightness, mTaskSettings.ScanChannels[sampleData.ChannelIndex].ImageSettings.Contrast, sampleData.ChannelIndex, 0, sampleData.CurrentBank);
+            }
+            else
+            {
+                ScanData.ToGrayImages(mTaskSettings.ScanChannels[sampleData.ChannelIndex].ImageSettings.GammaLUT, sampleData.ChannelIndex, 0, sampleData.CurrentBank);
+            }
+            // GrayImages.Bank -> BGRImages.Bank
+            ScanData.ToBGRImages(mTaskSettings.ScanChannels[sampleData.ChannelIndex].ImageSettings.PseudoColorLUT, sampleData.ChannelIndex, 0, sampleData.CurrentBank);
         }
 
     }
