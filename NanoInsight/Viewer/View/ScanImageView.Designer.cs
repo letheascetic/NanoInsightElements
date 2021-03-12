@@ -75,7 +75,7 @@
             this.dockToolBar.Id = 3;
             this.dockToolBar.Location = new System.Drawing.Point(0, 0);
             this.dockToolBar.Name = "dockToolBar";
-            this.dockToolBar.Size = new System.Drawing.Size(592, 27);
+            this.dockToolBar.Size = new System.Drawing.Size(792, 27);
             // 
             // toolBar
             // 
@@ -99,10 +99,10 @@
             this.lbFrame,
             this.lbTimeSpan,
             this.lbCurrent});
-            this.statusStrip.Location = new System.Drawing.Point(0, 543);
+            this.statusStrip.Location = new System.Drawing.Point(0, 743);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this.statusStrip.Size = new System.Drawing.Size(592, 26);
+            this.statusStrip.Size = new System.Drawing.Size(792, 26);
             this.statusStrip.TabIndex = 14;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -175,7 +175,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(592, 516);
+            this.tabControl.Size = new System.Drawing.Size(792, 716);
             this.tabControl.TabIndex = 22;
             // 
             // pageAll
@@ -211,7 +211,7 @@
             this.page405.Location = new System.Drawing.Point(4, 4);
             this.page405.Margin = new System.Windows.Forms.Padding(0);
             this.page405.Name = "page405";
-            this.page405.Size = new System.Drawing.Size(584, 490);
+            this.page405.Size = new System.Drawing.Size(784, 690);
             this.page405.TabIndex = 1;
             this.page405.Tag = "0";
             this.page405.Text = "405nm";
@@ -224,7 +224,7 @@
             this.image405.Location = new System.Drawing.Point(0, 0);
             this.image405.Margin = new System.Windows.Forms.Padding(0);
             this.image405.Name = "image405";
-            this.image405.Size = new System.Drawing.Size(584, 490);
+            this.image405.Size = new System.Drawing.Size(784, 690);
             this.image405.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.image405.TabIndex = 2;
             this.image405.TabStop = false;
@@ -316,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 569);
+            this.ClientSize = new System.Drawing.Size(792, 769);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip);

@@ -169,7 +169,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MediumPurple")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
         public global::System.Drawing.Color ScanChannel405PseudoColor {
             get {
                 return ((global::System.Drawing.Color)(this["ScanChannel405PseudoColor"]));
@@ -253,7 +253,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DarkCyan")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lime")]
         public global::System.Drawing.Color ScanChannel488PseudoColor {
             get {
                 return ((global::System.Drawing.Color)(this["ScanChannel488PseudoColor"]));
@@ -337,7 +337,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YellowGreen")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
         public global::System.Drawing.Color ScanChannel561PseudoColor {
             get {
                 return ((global::System.Drawing.Color)(this["ScanChannel561PseudoColor"]));
@@ -421,7 +421,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MediumVioletRed")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
         public global::System.Drawing.Color ScanChannel640PseudoColor {
             get {
                 return ((global::System.Drawing.Color)(this["ScanChannel640PseudoColor"]));

@@ -293,6 +293,5 @@ namespace NanoInsight.Engine.Data
                 ToMergeImages(i);
             }
         }
-
     }
 }
