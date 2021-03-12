@@ -199,7 +199,7 @@ namespace NanoInsight.Engine.Device
             {
                 using (Task myTask = new Task())
                 {
-                    myTask.AOChannels.CreateVoltageChannel(channelName, "", -10.0, 10.0, AOVoltageUnits.Volts);
+                    myTask.AOChannels.CreateVoltageChannel(channelName, "", -5.0, 5.0, AOVoltageUnits.Volts);
                     AnalogSingleChannelWriter writer = new AnalogSingleChannelWriter(myTask.Stream);
                     writer.WriteSingleSample(true, offsetVoltage);
                 }
@@ -259,7 +259,7 @@ namespace NanoInsight.Engine.Device
             {
                 mAoTask = new Task();
 
-                mAoTask.AOChannels.CreateVoltageChannel(GetAoPhysicalChannelName(), "", -10.0, 10.0, AOVoltageUnits.Volts);
+                mAoTask.AOChannels.CreateVoltageChannel(GetAoPhysicalChannelName(), "", -5.0, 5.0, AOVoltageUnits.Volts);
                 mAoTask.Control(TaskAction.Verify);
 
                 mAoTask.Timing.SampleClockRate = mSequence.OutputSampleRate;

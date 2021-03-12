@@ -189,7 +189,7 @@
             this.lbCalibration.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbCalibration.Name = "lbCalibration";
             this.lbCalibration.Text = "校准";
-            this.lbCalibration.Click += new System.EventHandler(this.CalibrationClick);
+            this.lbCalibration.Click += new System.EventHandler(this.SetGalvoOffsetVoltage);
             // 
             // lbInfo
             // 

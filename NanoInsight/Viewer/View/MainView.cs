@@ -207,8 +207,6 @@ namespace NanoInsight.Viewer.View
             Mat image2 = new Mat(3, 7, DepthType.Cv32S, 1);
             MatrixUtil.ToBankImage(matrix2, ref image2);
 
-
-
         }
     }
 }
