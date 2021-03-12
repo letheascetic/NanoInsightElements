@@ -400,7 +400,7 @@ namespace NanoInsight.Engine.Core
 
             if (ApiCode.IsSuccessful(code))
             {
-                code |= UsbDac.SetDacOut((uint)id, UsbDac.ConfigValueToVout(gain));
+                code |= UsbDac.SetDacOut(UsbDac.ScanChannelToDacChannel(id), UsbDac.ConfigValueToVout(gain));
             }
                 
             if (ApiCode.IsSuccessful(code))
@@ -702,6 +702,8 @@ namespace NanoInsight.Engine.Core
                 }
             }
 
+            code = mNiDaq.SetGalvoOffsetVoltage(mConfig.GalvoAttr.XGalvoAoChannel, mScanningTask.Settings.Sequence.XWave[0]);
+            code |= mNiDaq.SetGalvoOffsetVoltage(mConfig.GalvoAttr.YGalvoAoChannel, mScanningTask.Settings.Sequence.Y1Wave[0]);
             code = mNiDaq.Start(mScanningTask.Settings.Sequence);                       // 启动板卡
 
             if (!ApiCode.IsSuccessful(code))
@@ -750,6 +752,7 @@ namespace NanoInsight.Engine.Core
 
             mScanningTask = null;
             CloseLaserChannels();
+            SetGalvoOffsetVoltage();
 
             return ApiCode.Success;
         }
@@ -900,6 +903,25 @@ namespace NanoInsight.Engine.Core
                 if (ImageOffsetChangedEvent != null)
                 {
                     return ImageOffsetChangedEvent.Invoke(scanTask.Settings.ScanChannels[channelId].ImageSettings);
+                }
+            }
+            return code;
+        }
+
+        /// <summary>
+        /// 设置通道偏置
+        /// </summary>
+        /// <param name="channelId"></param>
+        /// <param name="offset"></param>
+        /// <returns></returns>
+        public int SetImageOffset(int channelId, int offset)
+        {
+            int code = mConfig.SetChannelOffset(channelId, offset);
+            if (ApiCode.IsSuccessful(code))
+            {
+                if (ImageOffsetChangedEvent != null)
+                {
+                    return ImageOffsetChangedEvent.Invoke(mConfig.ScanChannels[channelId].ImageSettings);
                 }
             }
             return code;
@@ -1196,6 +1218,10 @@ namespace NanoInsight.Engine.Core
         private void ConfigUsbDac()
         {
             UsbDac.Connect();
+            UsbDac.SetDacOut(UsbDac.ScanChannelToDacChannel(ScanChannel.Channel405), UsbDac.ConfigValueToVout(mConfig.ScanChannel405.Gain));
+            UsbDac.SetDacOut(UsbDac.ScanChannelToDacChannel(ScanChannel.Channel488), UsbDac.ConfigValueToVout(mConfig.ScanChannel488.Gain));
+            UsbDac.SetDacOut(UsbDac.ScanChannelToDacChannel(ScanChannel.Channel561), UsbDac.ConfigValueToVout(mConfig.ScanChannel561.Gain));
+            UsbDac.SetDacOut(UsbDac.ScanChannelToDacChannel(ScanChannel.Channel640), UsbDac.ConfigValueToVout(mConfig.ScanChannel640.Gain));
         }
 
         /// <summary>

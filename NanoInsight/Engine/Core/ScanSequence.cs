@@ -340,8 +340,13 @@ namespace NanoInsight.Engine.Core
                 double step1 = Math.PI / ScanArea.ScanLineHoldTime * config.SelectedScanPixelDwell.Data;
                 double[] lineHoldSamples = CreateSinArray(scale, step1, lineHoldSampleCount, extendScanArea.ScanRange.Right);
 
-                // int lineEndSampleCount = (int)(ScanArea.ScanLineEndTime / config.SelectedScanPixelDwell.Data);
                 int lineEndSampleCount = config.GetExtendScanXPixels();
+                //int lineEndSampleCount = (int)(ScanArea.ScanLineEndTime / config.SelectedScanPixelDwell.Data);
+                //if (lineEndSampleCount < config.GetExtendScanXPixels())
+                //{
+                //    lineEndSampleCount = config.GetExtendScanXPixels();
+                //}
+
                 double[] lineEndSamples = CreateLinearArray(extendScanArea.ScanRange.Right, extendScanArea.ScanRange.X, lineEndSampleCount);
 
                 int lineScanSampleCount = config.GetExtendScanXPixels();
@@ -501,6 +506,36 @@ namespace NanoInsight.Engine.Core
                         Array.Copy(Enumerable.Repeat<double>(YVoltages[n] * 2, OutputSampleCountPerRoundTrip).ToArray(), 0, Y2Wave, index, OutputSampleCountPerRoundTrip);
                     }
                 }
+
+                int resetSampleCount = (int)(ScanArea.ScanLineStartTime / config.SelectedScanPixelDwell.Data) + config.GetExtendScanXPixels();
+                double[] y1ResetVoltages = CreateLinearArray(YVoltages.Last(), YVoltages[0], resetSampleCount);
+                for (int i = 0; i < resetSampleCount; i++)
+                {
+                    if (i < config.GetExtendScanXPixels())
+                    {
+                        Y1Wave[Y1Wave.Length - config.GetExtendScanXPixels() + i] = y1ResetVoltages[i];
+                    }
+                    else
+                    {
+                        Y1Wave[i - config.GetExtendScanXPixels()] = y1ResetVoltages[i];
+                    }
+                }
+
+                if (config.SelectedScanHead.ID == ScanHead.ThreeGalvo)
+                {
+                    double[] y2ResetVoltages = CreateLinearArray(YVoltages.Last() * 2, YVoltages[0] * 2, resetSampleCount);
+                    for (int i = 0; i < resetSampleCount; i++)
+                    {
+                        if (i < config.GetExtendScanXPixels())
+                        {
+                            Y2Wave[Y2Wave.Length - config.GetExtendScanXPixels() + i] = y2ResetVoltages[i];
+                        }
+                        else
+                        {
+                            Y2Wave[i - config.GetExtendScanXPixels()] = y2ResetVoltages[i];
+                        }
+                    }
+                }
             }
             else
             {
@@ -517,18 +552,17 @@ namespace NanoInsight.Engine.Core
                         Array.Copy(Enumerable.Repeat<double>(YVoltages[2 * n + 1] * 2, OutputSampleCountPerRoundTrip >> 1).ToArray(), 0, Y2Wave, index + (OutputSampleCountPerRoundTrip >> 1), OutputSampleCountPerRoundTrip >> 1);
                     }
                 }
+                int resetSampleCount = (int)(ScanArea.ScanLineStartTime / config.SelectedScanPixelDwell.Data);
+                double[] y1ResetVoltages = CreateLinearArray(YVoltages.Last(), YVoltages[0], resetSampleCount);
+                Array.Copy(y1ResetVoltages, 0, Y1Wave, 0, resetSampleCount);
+                if (config.SelectedScanHead.ID == ScanHead.ThreeGalvo)
+                {
+                    double[] y2ResetVoltages = CreateLinearArray(YVoltages.Last() * 2, YVoltages[0] * 2, resetSampleCount);
+                    Array.Copy(y2ResetVoltages, 0, Y2Wave, 0, resetSampleCount);
+                }
             }
 
             Array.Copy(TriggerVoltages, TriggerWave, TriggerVoltages.Length);
-
-            int resetSampleCount = (int)(ScanArea.ScanLineStartTime / config.SelectedScanPixelDwell.Data);
-            double[] y1ResetVoltages = CreateLinearArray(YVoltages.Last(), YVoltages[0], resetSampleCount);
-            Array.Copy(y1ResetVoltages, 0, Y1Wave, 0, resetSampleCount);
-            if (config.SelectedScanHead.ID == ScanHead.ThreeGalvo)
-            {
-                double[] y2ResetVoltages = CreateLinearArray(YVoltages.Last() * 2, YVoltages[0] * 2, resetSampleCount);
-                Array.Copy(y2ResetVoltages, 0, Y2Wave, 0, resetSampleCount);
-            }
         }
 
         /// <summary>

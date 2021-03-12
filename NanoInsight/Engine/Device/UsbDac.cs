@@ -1,4 +1,5 @@
 ﻿using log4net;
+using NanoInsight.Engine.Attribute;
 using NanoInsight.Engine.Core;
 using System;
 using System.Collections.Generic;
@@ -104,16 +105,16 @@ namespace NanoInsight.Engine.Device
             //}
 
             // 设置各通道电压输出值
-            for (int i = 0; i < USB_DAC_CHANNEL_NUM_USED; i++)
-            {
-                short value = 0;
-                VoutToWriteValue((uint)i, m_voutList[i], ref value);
-                code |= SetDacOut((uint)i, value);
-            }
-            if (!ApiCode.IsSuccessful(code))
-            {
-                return code;
-            }
+            //for (int i = 0; i < USB_DAC_CHANNEL_NUM_USED; i++)
+            //{
+            //    short value = 0;
+            //    VoutToWriteValue(UsbDac.ScanChannelToDacChannel(i), m_voutList[i], ref value);
+            //    code |= SetDacOut(UsbDac.ScanChannelToDacChannel(i), value);
+            //}
+            //if (!ApiCode.IsSuccessful(code))
+            //{
+            //    return code;
+            //}
 
             m_connected = true;
             Logger.Info(string.Format("Usb dac connect success: [{0}].", ApiCode.Success));
@@ -332,5 +333,21 @@ namespace NanoInsight.Engine.Device
             return 100.0f * vout / 5.0f;
         }
 
+        public static uint ScanChannelToDacChannel(int id)
+        {
+            switch (id)
+            {
+                case ScanChannel.Channel405:
+                    return 13;
+                case ScanChannel.Channel488:
+                    return 14;
+                case ScanChannel.Channel561:
+                    return 12;
+                case ScanChannel.Channel640:
+                    return 15;
+                default:
+                    throw new ArgumentOutOfRangeException("Invalid Id.");
+            }
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace NanoInsight.Engine.Attribute
         /// <summary>
         /// 扫描行结束时间[只对单向扫描有效]
         /// </summary>
-        public static double ScanLineEndTime { get { return Settings.Default.GalvoResponseTime * 2; } }
+        public static double ScanLineEndTime { get { return Settings.Default.GalvoResponseTime * 3; } }
 
         public RectangleF ScanRange { get; set; }
 
