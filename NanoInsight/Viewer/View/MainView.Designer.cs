@@ -44,7 +44,6 @@
             this.cmdScanSettings = new C1.Win.C1Command.C1Command();
             this.cmdLinkScanParas = new C1.Win.C1Command.C1CommandLink();
             this.cmdScanParas = new C1.Win.C1Command.C1Command();
-            this.cmdLinkScanImage = new C1.Win.C1Command.C1CommandLink();
             this.cmdScanImage = new C1.Win.C1Command.C1Command();
             this.cmdLinkImageSettings = new C1.Win.C1Command.C1CommandLink();
             this.cmdImageSettings = new C1.Win.C1Command.C1Command();
@@ -106,7 +105,6 @@
             this.cmdLinkSysSettings,
             this.cmdLinkScanSettings,
             this.cmdLinkScanParas,
-            this.cmdLinkScanImage,
             this.cmdLinkImageSettings});
             this.cmdMenuWindow.HideNonRecentLinks = false;
             this.cmdMenuWindow.Name = "cmdMenuWindow";
@@ -164,11 +162,6 @@
             this.cmdScanParas.Text = "扫描参数（&P）";
             this.cmdScanParas.Click += new C1.Win.C1Command.ClickEventHandler(this.ScanParasClick);
             // 
-            // cmdLinkScanImage
-            // 
-            this.cmdLinkScanImage.Command = this.cmdScanImage;
-            this.cmdLinkScanImage.SortOrder = 4;
-            // 
             // cmdScanImage
             // 
             this.cmdScanImage.Name = "cmdScanImage";
@@ -179,7 +172,7 @@
             // cmdLinkImageSettings
             // 
             this.cmdLinkImageSettings.Command = this.cmdImageSettings;
-            this.cmdLinkImageSettings.SortOrder = 5;
+            this.cmdLinkImageSettings.SortOrder = 4;
             this.cmdLinkImageSettings.Text = "图像调节（&H）";
             // 
             // cmdImageSettings
@@ -276,7 +269,6 @@
         private C1.Win.C1Command.C1CommandLink cmdLinkScanParas;
         private C1.Win.C1Command.C1Command cmdScanParas;
         private SnapFormExtender.SnapFormExtender snapFormExtender;
-        private C1.Win.C1Command.C1CommandLink cmdLinkScanImage;
         private C1.Win.C1Command.C1Command cmdScanImage;
         private C1.Win.C1Command.C1CommandLink cmdLinkImageSettings;
         private C1.Win.C1Command.C1Command cmdImageSettings;

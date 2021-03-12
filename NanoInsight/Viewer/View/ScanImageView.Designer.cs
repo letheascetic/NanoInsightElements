@@ -43,7 +43,6 @@
             this.pageAll = new System.Windows.Forms.TabPage();
             this.imageAll = new Emgu.CV.UI.ImageBox();
             this.page405 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.image405 = new Emgu.CV.UI.ImageBox();
             this.page488 = new System.Windows.Forms.TabPage();
             this.image488 = new Emgu.CV.UI.ImageBox();
@@ -208,25 +207,14 @@
             // page405
             // 
             this.page405.BackColor = System.Drawing.Color.Transparent;
-            this.page405.Controls.Add(this.button1);
             this.page405.Controls.Add(this.image405);
             this.page405.Location = new System.Drawing.Point(4, 4);
             this.page405.Margin = new System.Windows.Forms.Padding(0);
             this.page405.Name = "page405";
-            this.page405.Size = new System.Drawing.Size(558, 490);
+            this.page405.Size = new System.Drawing.Size(584, 490);
             this.page405.TabIndex = 1;
             this.page405.Tag = "0";
             this.page405.Text = "405nm";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(191, 100);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ButtonClick);
             // 
             // image405
             // 
@@ -236,7 +224,7 @@
             this.image405.Location = new System.Drawing.Point(0, 0);
             this.image405.Margin = new System.Windows.Forms.Padding(0);
             this.image405.Name = "image405";
-            this.image405.Size = new System.Drawing.Size(558, 490);
+            this.image405.Size = new System.Drawing.Size(584, 490);
             this.image405.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.image405.TabIndex = 2;
             this.image405.TabStop = false;
@@ -249,7 +237,7 @@
             this.page488.Location = new System.Drawing.Point(4, 4);
             this.page488.Margin = new System.Windows.Forms.Padding(0);
             this.page488.Name = "page488";
-            this.page488.Size = new System.Drawing.Size(558, 490);
+            this.page488.Size = new System.Drawing.Size(584, 490);
             this.page488.TabIndex = 2;
             this.page488.Tag = "1";
             this.page488.Text = "488nm";
@@ -262,7 +250,7 @@
             this.image488.Location = new System.Drawing.Point(0, 0);
             this.image488.Margin = new System.Windows.Forms.Padding(0);
             this.image488.Name = "image488";
-            this.image488.Size = new System.Drawing.Size(558, 490);
+            this.image488.Size = new System.Drawing.Size(584, 490);
             this.image488.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.image488.TabIndex = 2;
             this.image488.TabStop = false;
@@ -275,7 +263,7 @@
             this.page561.Location = new System.Drawing.Point(4, 4);
             this.page561.Margin = new System.Windows.Forms.Padding(0);
             this.page561.Name = "page561";
-            this.page561.Size = new System.Drawing.Size(558, 490);
+            this.page561.Size = new System.Drawing.Size(584, 490);
             this.page561.TabIndex = 3;
             this.page561.Tag = "2";
             this.page561.Text = "561nm";
@@ -288,7 +276,7 @@
             this.image561.Location = new System.Drawing.Point(0, 0);
             this.image561.Margin = new System.Windows.Forms.Padding(0);
             this.image561.Name = "image561";
-            this.image561.Size = new System.Drawing.Size(558, 490);
+            this.image561.Size = new System.Drawing.Size(584, 490);
             this.image561.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.image561.TabIndex = 3;
             this.image561.TabStop = false;
@@ -301,7 +289,7 @@
             this.page640.Location = new System.Drawing.Point(4, 4);
             this.page640.Margin = new System.Windows.Forms.Padding(0);
             this.page640.Name = "page640";
-            this.page640.Size = new System.Drawing.Size(558, 490);
+            this.page640.Size = new System.Drawing.Size(584, 490);
             this.page640.TabIndex = 4;
             this.page640.Tag = "3";
             this.page640.Text = "640nm";
@@ -314,7 +302,7 @@
             this.image640.Location = new System.Drawing.Point(0, 0);
             this.image640.Margin = new System.Windows.Forms.Padding(0);
             this.image640.Name = "image640";
-            this.image640.Size = new System.Drawing.Size(558, 490);
+            this.image640.Size = new System.Drawing.Size(584, 490);
             this.image640.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.image640.TabIndex = 2;
             this.image640.TabStop = false;
@@ -383,6 +371,5 @@
         private System.Windows.Forms.TabPage page640;
         private Emgu.CV.UI.ImageBox image640;
         private System.Windows.Forms.Timer mImageTimer;
-        private System.Windows.Forms.Button button1;
     }
 }

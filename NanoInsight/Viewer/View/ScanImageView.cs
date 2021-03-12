@@ -94,9 +94,6 @@ namespace NanoInsight.Viewer.View
 
             lbFrame.Text = string.Format("NO. {0} frame", mScanImageVM.Task.ScanInfo.CurrentFrame.Where(p => p>=0).FirstOrDefault());
             lbTimeSpan.Text = string.Format("{0} secs", mScanImageVM.Engine.ScanningTask.ScanInfo.TimeSpan.ToString("F1"));
-
-            //lbFrame.Text = string.Format("NO. 0 frame");
-            //lbTimeSpan.Text = string.Format("0.0 secs");
         }
 
         /// <summary>
@@ -132,18 +129,6 @@ namespace NanoInsight.Viewer.View
             }
         }
 
-        private void ButtonClick(object sender, EventArgs e)
-        {
-            short[] data = new short[2 * 10 * 3];
-            for (int i = 0; i < data.Length; i++)
-            {
-                data[i] = (short)i;
-            }
-            NDArray matrix = MatrixUtil.ToMatrix(data, 2, 10, 3, 0, 1, 2, 7);
-            Mat image = new Mat(3, 7, DepthType.Cv32S, 1);
-            MatrixUtil.ToBankImage(matrix, ref image);
-        }
-
         private void ScanImageViewLoad(object sender, EventArgs e)
         {
             ApplyTheme();
@@ -151,7 +136,30 @@ namespace NanoInsight.Viewer.View
 
         private void ImageTimerTick(object sender, EventArgs e)
         {
-            
+            if (mScanImageVM.Task.Settings.GetActivatedChannelNum() > 1)
+            {
+                imageAll.Image = mScanImageVM.Task.ScanData.MergeImages[0].Image;
+            }
+            if (mScanImageVM.Task.Settings.ScanChannel405.Activated)
+            {
+                // image405.Image = mScanImageVM.Task.ScanData.GrayImages[0][0].Image;
+                image405.Image = mScanImageVM.Task.ScanData.BGRImages[0][0].Image;
+            }
+            if (mScanImageVM.Task.Settings.ScanChannel488.Activated)
+            {
+                // image488.Image = mScanImageVM.Task.ScanData.GrayImages[1][0].Image;
+                image488.Image = mScanImageVM.Task.ScanData.BGRImages[1][0].Image;
+            }
+            if (mScanImageVM.Task.Settings.ScanChannel561.Activated)
+            {
+                // image561.Image = mScanImageVM.Task.ScanData.GrayImages[2][0].Image;
+                image561.Image = mScanImageVM.Task.ScanData.BGRImages[2][0].Image;
+            }
+            if (mScanImageVM.Task.Settings.ScanChannel640.Activated)
+            {
+                // image640.Image = mScanImageVM.Task.ScanData.GrayImages[3][0].Image;
+                image640.Image = mScanImageVM.Task.ScanData.BGRImages[3][0].Image;
+            }
         }
     }
 }

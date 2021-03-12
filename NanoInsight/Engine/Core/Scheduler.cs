@@ -625,6 +625,7 @@ namespace NanoInsight.Engine.Core
         public int StopAcquisition()
         {
             int code = ApiCode.Success;
+            int taskId = ScanningTask.TaskId;
             if (mConfig.IsScanning)
             {
                 mConfig.StopAcquisition();

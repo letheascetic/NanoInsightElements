@@ -47,8 +47,8 @@ namespace NanoInsight.Engine.Data
             BGRImages = new ScanImage[numOfChannels][];
             // Gray3Banks = new ScanBank[numOfChannels][];
 
-            int mActivatedChannelNum = statusOfChannels.Select(p => p == true).Count();
-            MergeImages = mActivatedChannelNum > 1 ? new ScanImage[numOfSlices] : null;
+            ActivatedChannelNum = statusOfChannels.Where(p => p == true).Count();
+            MergeImages = ActivatedChannelNum > 1 ? new ScanImage[numOfSlices] : null;
             if (MergeImages != null)
             {
                 for (int i = 0; i < numOfSlices; i++)
@@ -244,42 +244,46 @@ namespace NanoInsight.Engine.Data
 
         public void ToMergeImages(int sliceIndex, int bankIndex)
         {
-            Mat[] bankImages = new Mat[ActivatedChannelNum];
-            Mat mergeImage = new Mat();
-            int activatedIndex = 0;
+            int activatedChannelCount = 0;
+            Mat mergeImage = null;
             for (int i = 0; i < BGRImages.Length; i++)
             {
                 if (BGRImages[i] != null)
                 {
-                    bankImages[activatedIndex++] = BGRImages[i][sliceIndex].Banks[bankIndex].Bank;
+                    if (activatedChannelCount == 0)
+                    {
+                        mergeImage = BGRImages[i][sliceIndex].Banks[bankIndex].Bank.Clone();
+                    }
+                    else
+                    {
+                        mergeImage += BGRImages[i][sliceIndex].Banks[bankIndex].Bank;
+                    }
+                    activatedChannelCount++;
                 }
             }
-            CvInvoke.Add(bankImages[0], bankImages[1], mergeImage);
-            for (int i = 2; i < ActivatedChannelNum; i++)
-            {
-                CvInvoke.Add(mergeImage, bankImages[i], mergeImage);
-            }
-            MergeImages[sliceIndex].Banks[bankIndex].Bank = mergeImage;
+            mergeImage.ConvertTo(MergeImages[sliceIndex].Banks[bankIndex].Bank, mergeImage.Depth);
         }
 
         public void ToMergeImages(int sliceIndex)
         {
-            Mat[] bankImages = new Mat[ActivatedChannelNum];
-            Mat mergeImage = new Mat();
-            int activatedIndex = 0;
+            int activatedChannelCount = 0;
+            Mat mergeImage = null;
             for (int i = 0; i < BGRImages.Length; i++)
             {
                 if (BGRImages[i] != null)
                 {
-                    bankImages[activatedIndex++] = BGRImages[i][sliceIndex].Image;
+                    if (activatedChannelCount == 0)
+                    {
+                        mergeImage = BGRImages[i][sliceIndex].Image.Clone();
+                    }
+                    else
+                    {
+                        mergeImage += BGRImages[i][sliceIndex].Image;
+                    }
+                    activatedChannelCount++;
                 }
             }
-            CvInvoke.Add(bankImages[0], bankImages[1], mergeImage);
-            for (int i = 2; i < ActivatedChannelNum; i++)
-            {
-                CvInvoke.Add(mergeImage, bankImages[i], mergeImage);
-            }
-            MergeImages[sliceIndex].Image = mergeImage;
+            mergeImage.ConvertTo(MergeImages[sliceIndex].Image, mergeImage.Depth);
         }
 
         public void ToMergeImages()
