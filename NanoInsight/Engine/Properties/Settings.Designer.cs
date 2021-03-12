@@ -613,7 +613,7 @@ namespace NanoInsight.Engine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM3")]
         public string LaserPortName {
             get {
                 return ((string)(this["LaserPortName"]));

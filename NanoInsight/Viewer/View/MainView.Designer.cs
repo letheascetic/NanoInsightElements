@@ -53,18 +53,8 @@
             this.cmdLinkFile = new C1.Win.C1Command.C1CommandLink();
             this.cmdLinkView = new C1.Win.C1Command.C1CommandLink();
             this.cmdLinkWindow = new C1.Win.C1Command.C1CommandLink();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.lbSelectLaser = new System.Windows.Forms.ToolStripLabel();
-            this.cbxSelectLaser = new System.Windows.Forms.ToolStripComboBox();
-            this.btnLaserConnect = new System.Windows.Forms.ToolStripButton();
-            this.btnLaserRelease = new System.Windows.Forms.ToolStripButton();
-            this.dockToolBar = new C1.Win.C1Command.C1CommandDock();
-            this.toolBar = new C1.Win.C1Command.C1ToolBar();
             this.snapFormExtender = new SnapFormExtender.SnapFormExtender(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).BeginInit();
-            this.toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
-            this.dockToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.snapFormExtender)).BeginInit();
             this.SuspendLayout();
             // 
@@ -239,79 +229,6 @@
             this.cmdLinkWindow.Command = this.cmdMenuWindow;
             this.cmdLinkWindow.SortOrder = 2;
             // 
-            // toolStrip
-            // 
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lbSelectLaser,
-            this.cbxSelectLaser,
-            this.btnLaserConnect,
-            this.btnLaserRelease});
-            this.toolStrip.Location = new System.Drawing.Point(0, 26);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1592, 25);
-            this.toolStrip.TabIndex = 15;
-            this.toolStrip.Text = "toolStrip1";
-            // 
-            // lbSelectLaser
-            // 
-            this.lbSelectLaser.Name = "lbSelectLaser";
-            this.lbSelectLaser.Size = new System.Drawing.Size(59, 22);
-            this.lbSelectLaser.Text = "激光端口:";
-            // 
-            // cbxSelectLaser
-            // 
-            this.cbxSelectLaser.BackColor = System.Drawing.SystemColors.Control;
-            this.cbxSelectLaser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSelectLaser.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cbxSelectLaser.Items.AddRange(new object[] {
-            "COM1",
-            "COM2",
-            "COM3",
-            "COM4",
-            "COM5",
-            "COM6",
-            "COM7",
-            "COM8"});
-            this.cbxSelectLaser.Name = "cbxSelectLaser";
-            this.cbxSelectLaser.Size = new System.Drawing.Size(75, 25);
-            // 
-            // btnLaserConnect
-            // 
-            this.btnLaserConnect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLaserConnect.Image = ((System.Drawing.Image)(resources.GetObject("btnLaserConnect.Image")));
-            this.btnLaserConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLaserConnect.Name = "btnLaserConnect";
-            this.btnLaserConnect.Size = new System.Drawing.Size(23, 22);
-            // 
-            // btnLaserRelease
-            // 
-            this.btnLaserRelease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLaserRelease.Image = ((System.Drawing.Image)(resources.GetObject("btnLaserRelease.Image")));
-            this.btnLaserRelease.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLaserRelease.Name = "btnLaserRelease";
-            this.btnLaserRelease.Size = new System.Drawing.Size(23, 22);
-            // 
-            // dockToolBar
-            // 
-            this.dockToolBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.dockToolBar.Controls.Add(this.toolBar);
-            this.dockToolBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.dockToolBar.Id = 3;
-            this.dockToolBar.Location = new System.Drawing.Point(0, 51);
-            this.dockToolBar.Name = "dockToolBar";
-            this.dockToolBar.Size = new System.Drawing.Size(1592, 28);
-            // 
-            // toolBar
-            // 
-            this.toolBar.AccessibleName = "Tool Bar";
-            this.toolBar.CommandHolder = null;
-            this.toolBar.Location = new System.Drawing.Point(3, 0);
-            this.toolBar.Name = "toolBar";
-            this.toolBar.Size = new System.Drawing.Size(25, 25);
-            this.toolBar.Text = "工具栏";
-            this.toolBar.VisualStyle = C1.Win.C1Command.VisualStyle.Custom;
-            this.toolBar.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue;
-            // 
             // snapFormExtender
             // 
             this.snapFormExtender.Distance = 10;
@@ -322,8 +239,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1592, 967);
-            this.Controls.Add(this.dockToolBar);
-            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -334,10 +249,6 @@
             this.VisualStyleHolder = C1.Win.C1Ribbon.VisualStyle.Custom;
             this.Load += new System.EventHandler(this.MainViewLoad);
             ((System.ComponentModel.ISupportInitialize)(this.c1CommandHolder)).EndInit();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).EndInit();
-            this.dockToolBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.snapFormExtender)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -356,13 +267,6 @@
         private C1.Win.C1Command.C1CommandMenu cmdMenuWindow;
         private C1.Win.C1Command.C1CommandLink cmdLinkTheme;
         private C1.Win.C1Command.C1Command cmdTheme;
-        private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripLabel lbSelectLaser;
-        private System.Windows.Forms.ToolStripComboBox cbxSelectLaser;
-        private System.Windows.Forms.ToolStripButton btnLaserConnect;
-        private System.Windows.Forms.ToolStripButton btnLaserRelease;
-        private C1.Win.C1Command.C1CommandDock dockToolBar;
-        private C1.Win.C1Command.C1ToolBar toolBar;
         private C1.Win.C1Command.C1CommandLink cmdLinkScanArea;
         private C1.Win.C1Command.C1Command cmdScanArea;
         private C1.Win.C1Command.C1CommandLink cmdLinkSysSettings;

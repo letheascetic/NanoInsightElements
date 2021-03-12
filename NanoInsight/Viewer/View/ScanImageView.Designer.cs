@@ -39,12 +39,11 @@
             this.lbFrame = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbTimeSpan = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbCurrent = new System.Windows.Forms.ToolStripStatusLabel();
-            this.c1CommandDock = new C1.Win.C1Command.C1CommandDock();
-            this.c1ToolBar = new C1.Win.C1Command.C1ToolBar();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pageAll = new System.Windows.Forms.TabPage();
             this.imageAll = new Emgu.CV.UI.ImageBox();
             this.page405 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.image405 = new Emgu.CV.UI.ImageBox();
             this.page488 = new System.Windows.Forms.TabPage();
             this.image488 = new Emgu.CV.UI.ImageBox();
@@ -53,12 +52,9 @@
             this.page640 = new System.Windows.Forms.TabPage();
             this.image640 = new Emgu.CV.UI.ImageBox();
             this.mImageTimer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dockToolBar)).BeginInit();
             this.dockToolBar.SuspendLayout();
             this.statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.c1CommandDock)).BeginInit();
-            this.c1CommandDock.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.pageAll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageAll)).BeginInit();
@@ -167,29 +163,6 @@
             this.lbCurrent.Size = new System.Drawing.Size(105, 21);
             this.lbCurrent.Text = "[255, (512, 512)]";
             // 
-            // c1CommandDock
-            // 
-            this.c1CommandDock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.c1CommandDock.Controls.Add(this.c1ToolBar);
-            this.c1CommandDock.Dock = System.Windows.Forms.DockStyle.Right;
-            this.c1CommandDock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.c1CommandDock.Id = 3;
-            this.c1CommandDock.Location = new System.Drawing.Point(566, 27);
-            this.c1CommandDock.Name = "c1CommandDock";
-            this.c1CommandDock.Size = new System.Drawing.Size(26, 516);
-            // 
-            // c1ToolBar
-            // 
-            this.c1ToolBar.AccessibleName = "Tool Bar";
-            this.c1ToolBar.CommandHolder = null;
-            this.c1ToolBar.Horizontal = false;
-            this.c1ToolBar.Location = new System.Drawing.Point(0, 0);
-            this.c1ToolBar.Name = "c1ToolBar";
-            this.c1ToolBar.Size = new System.Drawing.Size(25, 25);
-            this.c1ToolBar.Text = "工具栏";
-            this.c1ToolBar.VisualStyle = C1.Win.C1Command.VisualStyle.Custom;
-            this.c1ToolBar.VisualStyleBase = C1.Win.C1Command.VisualStyle.Office2010Blue;
-            // 
             // tabControl
             // 
             this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
@@ -203,7 +176,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(566, 516);
+            this.tabControl.Size = new System.Drawing.Size(592, 516);
             this.tabControl.TabIndex = 22;
             // 
             // pageAll
@@ -213,7 +186,7 @@
             this.pageAll.Location = new System.Drawing.Point(4, 4);
             this.pageAll.Margin = new System.Windows.Forms.Padding(0);
             this.pageAll.Name = "pageAll";
-            this.pageAll.Size = new System.Drawing.Size(558, 490);
+            this.pageAll.Size = new System.Drawing.Size(584, 490);
             this.pageAll.TabIndex = 0;
             this.pageAll.Tag = "-1";
             this.pageAll.Text = "全部";
@@ -226,7 +199,7 @@
             this.imageAll.Location = new System.Drawing.Point(0, 0);
             this.imageAll.Margin = new System.Windows.Forms.Padding(0);
             this.imageAll.Name = "imageAll";
-            this.imageAll.Size = new System.Drawing.Size(558, 490);
+            this.imageAll.Size = new System.Drawing.Size(584, 490);
             this.imageAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageAll.TabIndex = 2;
             this.imageAll.TabStop = false;
@@ -244,6 +217,16 @@
             this.page405.TabIndex = 1;
             this.page405.Tag = "0";
             this.page405.Text = "405nm";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(191, 100);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ButtonClick);
             // 
             // image405
             // 
@@ -341,16 +324,6 @@
             // 
             this.mImageTimer.Tick += new System.EventHandler(this.ImageTimerTick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(191, 100);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ButtonClick);
-            // 
             // ScanImageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -358,7 +331,6 @@
             this.ClientSize = new System.Drawing.Size(592, 569);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.c1CommandDock);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.dockToolBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -371,8 +343,6 @@
             this.dockToolBar.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.c1CommandDock)).EndInit();
-            this.c1CommandDock.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.pageAll.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageAll)).EndInit();
@@ -401,8 +371,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lbFrame;
         private System.Windows.Forms.ToolStripStatusLabel lbTimeSpan;
         private System.Windows.Forms.ToolStripStatusLabel lbCurrent;
-        private C1.Win.C1Command.C1CommandDock c1CommandDock;
-        private C1.Win.C1Command.C1ToolBar c1ToolBar;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage pageAll;
         private Emgu.CV.UI.ImageBox imageAll;

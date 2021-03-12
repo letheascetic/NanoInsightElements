@@ -659,7 +659,7 @@ namespace NanoInsight.Engine.Core
             GalvoAttr = new GalvoProperty();
             Detector = new DetectorProperty();
             // 激光端口
-            LaserPort = "COM2";
+            LaserPort = Settings.Default.LaserPortName;
         }
 
     }

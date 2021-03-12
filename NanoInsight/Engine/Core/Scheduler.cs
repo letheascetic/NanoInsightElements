@@ -432,6 +432,10 @@ namespace NanoInsight.Engine.Core
             {
                 if (mConfig.IsScanning)
                 {
+                    if (mConfig.ScanChannels[id].Activated)
+                    {
+                        Laser.SetChannelPower(id, power);
+                    }
                     ScanningTask.SetChannelPower(id, power);
                 }
 
@@ -680,6 +684,7 @@ namespace NanoInsight.Engine.Core
             // mSequence.GenerateFrameScanWaves();       // 生成帧电压序列
 
             OpenLaserChannels();                         // 打开激光器
+            // SetLaserChannelPower();                      // 设置激光器功率
             ScanningTask.Start();
 
             mCancelToken = new CancellationTokenSource();
@@ -752,7 +757,7 @@ namespace NanoInsight.Engine.Core
 
             mScanningTask = null;
             CloseLaserChannels();
-            SetGalvoOffsetVoltage();
+            // SetGalvoOffsetVoltage();
 
             return ApiCode.Success;
         }
@@ -1261,7 +1266,7 @@ namespace NanoInsight.Engine.Core
                 if (mConfig.ScanChannels[i].Activated)
                 {
                     Laser.OpenChannel(i);
-                    Laser.SetChannelPower(mConfig.ScanChannels[i].ID, Laser.ConfigValueToPower(mConfig.ScanChannels[i].LaserPower));
+                    Laser.SetChannelPower(mConfig.ScanChannels[i].ID, mConfig.ScanChannels[i].LaserPower);
                 }
             }
         }

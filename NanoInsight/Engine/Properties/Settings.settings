@@ -150,7 +150,7 @@
       <Value Profile="(Default)">/PFI9</Value>
     </Setting>
     <Setting Name="LaserPortName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM1</Value>
+      <Value Profile="(Default)">COM3</Value>
     </Setting>
     <Setting Name="DetectorType" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
