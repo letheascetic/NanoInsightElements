@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NanoInsight.Viewer.Model
+namespace NanoInsight.Viewer.ViewModel
 {
     public class ScanParasViewModel : ViewModelBase
     {

@@ -324,7 +324,7 @@
     <Compile Include="Model\ScanHeadModel.cs" />
     <Compile Include="Model\ScanLineSkipModel.cs" />
     <Compile Include="Model\ScanModeModel.cs" />
-    <Compile Include="Model\ScanParasViewModel.cs" />
+    <Compile Include="ViewModel\ScanParasViewModel.cs" />
     <Compile Include="Model\ScanPixelDwellModel.cs" />
     <Compile Include="Model\ScanPixelModel.cs" />
     <Compile Include="Model\ScanPropertyBaseModel.cs" />

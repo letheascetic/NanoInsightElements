@@ -3,6 +3,7 @@ using C1.Win.C1Themes;
 using log4net;
 using NanoInsight.Engine.Core;
 using NanoInsight.Viewer.Model;
+using NanoInsight.Viewer.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
